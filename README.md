@@ -1,6 +1,7 @@
 # tip2thetop
 
-## A CPSC 233 Game made with JavaFX
+A CPSC 233 Game made with JavaFX.
+
 ![alt text](https://i.gyazo.com/c9cd45db46933844bcd489f9b37864d5.png)
 
 The game is made for the Java CPSC 233 course. This game is much like a hotel simulator, where there are mutiple interactions
