@@ -6,7 +6,7 @@ A CPSC 233 Game.
 
 The game is made for the Java CPSC 233 course. This game is much like a hotel simulator, where there are mutiple interactions
 with multiple characters. Each character you interact with and the choices you make in this game will eventually influence
-the ending you get.
+the gameplay experience.
 
 ## Technologies
 Made with the JavaFX Library and JDK 1.8.
