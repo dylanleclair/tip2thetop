@@ -47,6 +47,7 @@ java Game
 
 ## Team
 >Contributers and people
+
 -Jason Jiang
 -Dylan Leclair
 -Patrica Lively
