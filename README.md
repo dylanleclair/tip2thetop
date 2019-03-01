@@ -52,6 +52,8 @@ If you get no compilation errors, proceed with running the CLASS file that was j
 ```
 java Game
 ```
+## Version
+Version 1.0
 
 ## Team
 >Contributers and people
