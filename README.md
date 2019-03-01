@@ -53,6 +53,31 @@ If you get no compilation errors, proceed with running the CLASS file that was j
 ```
 java Game
 ```
+### For Mac OSX
+1.) Make sure git is installed for your computer. The link can be found above in the *Windows* Section.
+
+2.) "cd" to the desired location/repository
+
+3.) Clone from the terminal
+
+```
+git clone https://github.com/dylanleclair/tip2thetop.git
+```
+
+4.) Load the application directory of the cloned repository
+
+5.) Run the game.java file in the terminal
+
+```
+javac game.java
+```
+
+6.) If you get no compilation errors, proceed with running the CLASS file that was just made
+
+```
+java Game
+```
+
 ## Version
 Version 1.0
 
