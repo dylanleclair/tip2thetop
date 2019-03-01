@@ -37,9 +37,9 @@ for JavaFX
 
 Instructions on the installation of Java can be found [here](https://www.java.com/en/download/help/download_options.xml)
 
-4.) Compile the game in the terminal of your choice.
+4.) Compile the game in the terminal of your choice. First load the directory the repository is located in
 
-Follow the steps below.
+Then follow the steps below.
 ```
 cd tip2thetop
 cd src
