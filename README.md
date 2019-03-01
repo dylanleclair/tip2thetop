@@ -12,6 +12,7 @@ the gameplay experience.
 Made with the JavaFX Library and JDK 1.8.
 
 ## Setup/Installation
+### For Windows
 
 1.) Install git for the desktop [here](https://git-scm.com/downloads). Choose the appropriate operating system.
 
