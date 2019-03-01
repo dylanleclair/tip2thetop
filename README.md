@@ -10,7 +10,22 @@ the ending you get.
 ## How to compile and run
 
 1.) Download the repository and store it on any part of your computer. An example would be 
-'''
+
+```
 C:/Users/Desktop/tip2thetop
-'''
-2.)
+```
+
+2.) Make sure you have Java8 installed as you will need it to run the application. The most recent versions of Java, such as JDK11
+do not come with support for JavaFX.
+
+3.) Compile the game in the terminal of your choice.
+```
+cd tip2thetop
+javac Game.java
+```
+
+If you get no compilation errors, proceed with running the CLASS file that was just made
+
+```
+java Game
+```
