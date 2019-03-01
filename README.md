@@ -59,5 +59,5 @@ java Game
 - [Jason Jiang](https://github.com/jjiaang)
 - [Dylan Leclair](https://github.com/dylanleclair)
 - [Patrica Lively](https://github.com/lively15)
-- Yvonne Ng
+- [Yvonne Ng](https://github.com/ng-yvonne)
 - [Tiffany Chang](https://github.com/tiffany-TIFF)
