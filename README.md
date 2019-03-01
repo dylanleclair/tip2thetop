@@ -21,6 +21,8 @@ do not come with support for JavaFX.
 3.) Compile the game in the terminal of your choice.
 ```
 cd tip2thetop
+cd src
+cd application
 javac Game.java
 ```
 
