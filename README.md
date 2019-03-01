@@ -47,8 +47,8 @@ java Game
 
 ## Team
 >Contributers and people
-Jason Jiang
-Dylan Leclair
-Patrica Lively
-Yvonne Ng
-Tiffany Chang
+-Jason Jiang
+-Dylan Leclair
+-Patrica Lively
+-Yvonne Ng
+-Tiffany Chang
