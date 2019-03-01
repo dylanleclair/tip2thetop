@@ -20,7 +20,7 @@ C:/Users/Desktop/tip2thetop
 ```
 
 2.) Make sure you have Java8 installed as you will need it to run the application.
-...Recent versions such as JDK 11 lack support for JavaFX.
+... Recent versions such as JDK 11 lack support for JavaFX.
 
 Instructions on the installation of Java can be found [here](https://www.java.com/en/download/help/download_options.xml)
 
