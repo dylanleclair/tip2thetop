@@ -78,12 +78,12 @@ public class Game extends Application {
 			//plays the main theme
 			//Sound.mainTheme();
 
+			//gameBuilder.buildMenu();
+			
 			BorderPane menu = new BorderPane();
 			menusc = new Scene(menu,1280,720);
-			
 			Text title = new Text("");
 			title.setFont(new Font(120));
-			
 			VBox menuButtons = new VBox(20);
 			Button newGame = new Button();
 			Button loadGame = new Button();
