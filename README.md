@@ -44,3 +44,11 @@ If you get no compilation errors, proceed with running the CLASS file that was j
 ```
 java Game
 ```
+
+## Team
+>Contributers and people
+Jason Jiang
+Dylan Leclair
+Patrica Lively
+Yvonne Ng
+Tiffany Chang
