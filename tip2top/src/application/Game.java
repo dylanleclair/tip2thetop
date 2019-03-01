@@ -37,7 +37,7 @@ public class Game extends Application {
 		for (int i = 10; i >= 1; i--) {
 			Image image;
 			try {
-				image = new Image(new FileInputStream("./src/application/resources/introimg/screen" + i + ".jpg"));
+				image = new Image(new FileInputStream("./resources/introimg/screen" + i + ".jpg"));
 			    ImageView imageView = new ImageView(image); 
 			    pane.getChildren().add(imageView);
 			} catch (FileNotFoundException e) {
@@ -76,7 +76,7 @@ public class Game extends Application {
 			/// Menu Screen
 
 			//plays the main theme
-			Sound.mainTheme();
+			//Sound.mainTheme();
 
 			BorderPane menu = new BorderPane();
 			menusc = new Scene(menu,1280,720);
@@ -89,11 +89,11 @@ public class Game extends Application {
 			Button loadGame = new Button();
 			Button help = new Button();
 
-			Image newimg = new Image(new FileInputStream("./src/application/resources/menuimg/newgame.jpg"));
+			Image newimg = new Image(new FileInputStream("./resources/menuimg/newgame.jpg"));
 			newGame.setGraphic(new ImageView(newimg));
-			Image loadimg = new Image(new FileInputStream("./src/application/resources/menuimg/loadgame.jpg"));
+			Image loadimg = new Image(new FileInputStream("./resources/menuimg/loadgame.jpg"));
 			loadGame.setGraphic(new ImageView(loadimg));
-			Image helpimg = new Image(new FileInputStream("./src/application/resources/menuimg/help.jpg"));
+			Image helpimg = new Image(new FileInputStream("./resources/menuimg/help.jpg"));
 			help.setGraphic(new ImageView(helpimg));
 			
 			// Event handling for menu buttons
