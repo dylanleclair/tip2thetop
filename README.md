@@ -32,7 +32,7 @@ C:\Users\J
 ```
 That is where the git clone will be located.
 
-3.) Make sure you have Java8 installed as you will need it to run the application. Recent versions such as JDK 11 lack support
+3.) Make sure you have Java8 installed as you will need it to run the application.<br/> Recent versions such as JDK 11 lack support
 for JavaFX
 
 Instructions on the installation of Java can be found [here](https://www.java.com/en/download/help/download_options.xml)
