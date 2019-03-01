@@ -13,26 +13,34 @@ Made with the JavaFX Library and JDK 1.8.
 
 ## Setup/Installation
 
-1.) Download the repository and store it on any part of your computer. An example would be 
+1.) Install git for the desktop [here](https://git-scm.com/downloads). Choose the appropriate operating system.
+
+2.) Open the command line, then clone the source repository from GitHub
 
 ```
-C:/Users/Desktop/tip2thetop
+git clone https://github.com/dylanleclair/tip2thetop.git
 ```
 
-2.) Make sure you have Java8 installed as you will need it to run the application.
-⋅⋅* Unordered sub-list. 
+If you are on windows, the repository will be cloned to wherever your initial directory is located from when you started the installation.
+
+Such as here
+[!alt text](https://i.gyazo.com/2bbea0d516534f8e15f4eb27b055a2af.png)
+
+You can see that the terminal is in 
+```
+C:\Users\J
+```
+That is where the git clone will be located.
+
+3.) Make sure you have Java8 installed as you will need it to run the application. Recent versions such as JDK 11 lack support
+for JavaFX
 
 Instructions on the installation of Java can be found [here](https://www.java.com/en/download/help/download_options.xml)
 
-3.) Compile the game in the terminal of your choice.
+4.) Compile the game in the terminal of your choice.
 
-First load the directory the file is stored in. If you downloaded in 
+Follow the steps below.
 ```
-C:/Users/Desktop/tip2thetop
-```
-You can follow the steps below.
-```
-cd desktop
 cd tip2thetop
 cd src
 cd application
