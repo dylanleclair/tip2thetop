@@ -1,22 +1,62 @@
 package application;
 	
-import javafx.application.Application;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
+import javafx.animation.TranslateTransition;
+import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class Game extends Application {
 
-	
+	int clickCount = 9;
 	Stage window;
 	Scene menusc, opening, loadsc, helpsc;
+	
+	
+	/**
+	 * Loads opening scene onto a StackPane
+	 * @param pane - the stackpane to load images onto, from back to front.
+	 */
+	public static void loadOpening (StackPane pane) {
+		for (int i = 10; i >= 1; i--) {
+			Image image;
+			try {
+				image = new Image(new FileInputStream("./src/application/introimg/screen" + i + ".jpg"));
+			    ImageView imageView = new ImageView(image); 
+			    pane.getChildren().add(imageView);
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}  
+		}
+	}
+	/**
+	 * Translates a node downward and off of the screen. 
+	 * @param node a node, to be translated off the screen.
+	 */
+	public static void fadeImageDown (Node node) {
+		TranslateTransition translate = new TranslateTransition();
+		translate.setDuration(Duration.millis(3000)); 
+		translate.setNode(node);
+		translate.setByY(720);
+		translate.setCycleCount(1); 
+		translate.setAutoReverse(false); 
+		translate.play(); 
+	}
 	
 	@Override
 	public void start(Stage primaryStage) {
@@ -65,14 +105,17 @@ public class Game extends Application {
 			           "-fx-background-repeat: stretch;");
 			
 			// Opening Scene
-			Pane openingPane = new Pane();
+			StackPane openingPane = new StackPane();
 			opening = new Scene(openingPane,1280,720);
-			Text placeholder = new Text("Hello!");
-			placeholder.setFont(new Font(50));
-			placeholder.setLayoutX(50);
-			placeholder.setLayoutY(50); 
-
-			openingPane.getChildren().addAll(placeholder);
+		    
+			loadOpening(openingPane);
+			opening.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+			    @Override
+			    public void handle(MouseEvent mouseEvent) {
+			    	fadeImageDown(openingPane.getChildren().get(clickCount));
+			    	clickCount--;
+			    }
+			});
 			
 			// Load Screen
 			
