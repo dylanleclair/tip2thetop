@@ -55,6 +55,10 @@ java Game
 ## Version
 Version 1.0
 
+## Goals
+- Finish sound
+- Transition screen between days
+
 ## Team
 >Contributers and people
 
