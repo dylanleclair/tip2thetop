@@ -24,7 +24,7 @@ git clone https://github.com/dylanleclair/tip2thetop.git
 If you are on windows, the repository will be cloned to wherever your initial directory is located from when you started the installation.
 
 Such as here
-[!alt text](https://i.gyazo.com/2bbea0d516534f8e15f4eb27b055a2af.png)
+![alt text](https://i.gyazo.com/2bbea0d516534f8e15f4eb27b055a2af.png)
 
 You can see that the terminal is in 
 ```
