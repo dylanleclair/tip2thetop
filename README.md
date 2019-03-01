@@ -9,7 +9,7 @@ with multiple characters. Each character you interact with and the choices you m
 the ending you get.
 
 ## Technologies
-Made with the JavaFX Library.
+Made with the JavaFX Library and JDK 1.8.
 
 ## How to compile and run
 
@@ -39,7 +39,7 @@ cd application
 javac Game.java
 ```
 
-If you get no compilation errors, proceed with running the CLASS file that was just made
+If you get no compilation errors, proceed with running the CLASS file that was just made.
 
 ```
 java Game
