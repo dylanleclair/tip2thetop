@@ -11,7 +11,7 @@ the ending you get.
 ## Technologies
 Made with the JavaFX Library and JDK 1.8.
 
-## How to compile and run
+## Setup/Installation
 
 1.) Download the repository and store it on any part of your computer. An example would be 
 
