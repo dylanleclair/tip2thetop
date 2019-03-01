@@ -21,7 +21,14 @@ do not come with support for JavaFX.
 Instructions on the installation of Java can be found [here](https://www.java.com/en/download/help/download_options.xml)
 
 3.) Compile the game in the terminal of your choice.
+
+First load the directory the file is stored in. If you downloaded in 
 ```
+C:/Users/Desktop/tip2thetop
+```
+You can follow the steps below.
+```
+cd desktop
 cd tip2thetop
 cd src
 cd application
