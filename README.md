@@ -49,7 +49,7 @@ java Game
 >Contributers and people
 
 - [Jason Jiang](https://github.com/jjiaang)
-- Dylan Leclair
-- Patrica Lively
+- [Dylan Leclair](https://github.com/dylanleclair)
+- [Patrica Lively](https://github.com/lively15)
 - Yvonne Ng
-- Tiffany Chang
+- [Tiffany Chang](https://github.com/tiffany-TIFF)
