@@ -2,7 +2,6 @@ package application;
 	
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -58,6 +57,13 @@ public class Game extends Application {
 		translate.play(); 
 	}
 	
+	/**
+	 * Launches the menu screen, which has three different paths. 
+	 * New game, load a game, or "Help". Defines a different scene for each
+	 * of these options and implements the above two functions to animate the 
+	 * opening sequence for the game. After which, a save will be generated 
+	 * through which the game continues. 
+	 */
 	@Override
 	public void start(Stage primaryStage) {
 		try {	
@@ -83,7 +89,7 @@ public class Game extends Application {
 			loadGame.setOnAction(e -> window.setScene(loadsc));
 			help.setOnAction(e -> window.setScene(helpsc));
 			
-			// Styling menu buttons
+			// Styling menu buttons (replace with images later)
 			
 			newGame.setStyle("-fx-font: 30 arial;");
 			loadGame.setStyle("-fx-font: 30 arial;");
@@ -91,8 +97,7 @@ public class Game extends Application {
 			
 			menuButtons.getChildren().addAll(newGame, loadGame, help);
 
-		
-			// for Insets, it goes (top, right, bottom, left)
+			// for Insets (padding), the order is (top, right, bottom, left)
 			
 			menu.setCenter(menuButtons);
 			menu.setTop(title);
@@ -105,13 +110,16 @@ public class Game extends Application {
 			           "-fx-background-repeat: stretch;");
 			
 			// Opening Scene
-			StackPane openingPane = new StackPane();
-			opening = new Scene(openingPane,1280,720);
+			StackPane openingPane = new StackPane(); // Container objects for this scene
+			opening = new Scene(openingPane,1280,720); // Creates actual scene
 		    
 			loadOpening(openingPane);
 			opening.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
 			    @Override
 			    public void handle(MouseEvent mouseEvent) {
+			    	/*  calls fadeImageDown on an object in openingPane when the mouse is pressed.
+			    	 *  (remember that these are the images added by loadOpening() )
+			    	 *  This is performed once per image, for a total of 10 times. */
 			    	fadeImageDown(openingPane.getChildren().get(clickCount));
 			    	clickCount--;
 			    }
