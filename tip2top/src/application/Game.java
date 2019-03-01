@@ -73,8 +73,11 @@ public class Game extends Application {
 		try {	
 			window = primaryStage;
 			
-			/// Menu Screen 
-			
+			/// Menu Screen
+
+			//plays the main theme
+			Sound.mainTheme();
+
 			BorderPane menu = new BorderPane();
 			menusc = new Scene(menu,1280,720);
 			
@@ -85,8 +88,7 @@ public class Game extends Application {
 			Button newGame = new Button();
 			Button loadGame = new Button();
 			Button help = new Button();
-			
-			
+
 			Image newimg = new Image(new FileInputStream("./src/application/resources/menuimg/newgame.jpg"));
 			newGame.setGraphic(new ImageView(newimg));
 			Image loadimg = new Image(new FileInputStream("./src/application/resources/menuimg/loadgame.jpg"));
