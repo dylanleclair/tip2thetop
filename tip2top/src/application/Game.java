@@ -24,9 +24,7 @@ public class Game extends Application {
 	public void start(Stage primaryStage) {
 		try {	
 			window = primaryStage; // renaming primaryStage to window for the sake of clarification
-
-			//Sound.mainTheme();
-
+			
 			// Initializing the Menu Scene
 			
 			BorderPane menu = new BorderPane();
@@ -51,8 +49,11 @@ public class Game extends Application {
 			window.setScene(menusc);
 			window.setTitle("Tip to the Top");
 			window.setResizable(false);
-			window.show();
 			
+			// plays the main theme when the game starts up
+			Sound.mainTheme();
+			
+			window.show();
 			
 		} catch(Exception e) {
 			e.printStackTrace();
