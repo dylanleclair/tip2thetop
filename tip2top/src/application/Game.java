@@ -19,47 +19,15 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class Game extends Application {
 
-	int clickCount = 9; // starts at 9, since stackpane loads from front to back. 
+	int clickCount = 9; // starts at 9, representing the top image of the StackPane in opening. 
 	Stage window;
 	Scene menusc, opening, loadsc, helpsc;
-	
-	
-	/**
-	 * Loads opening scene onto a StackPane, reading files named "screen(digit)" from path.
-	 * @param pane - the stackpane to load images onto, from back to front.
-	 */
-	public static void loadOpening (StackPane pane) {
-		for (int i = 10; i >= 1; i--) {
-			Image image;
-			try {
-				image = new Image(new FileInputStream("./resources/introimg/screen" + i + ".jpg"));
-			    ImageView imageView = new ImageView(image); 
-			    pane.getChildren().add(imageView);
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			}  
-		}
-	}
-	/**
-	 * Translates a node downward and off of the screen. 
-	 * @param node a node, to be translated off the screen.
-	 */
-	public static void fadeImageDown (Node node) {
-		
-		
-		TranslateTransition translate = new TranslateTransition();
-		translate.setDuration(Duration.millis(2500)); 
-		translate.setNode(node);
-		translate.setByY(720);
-		translate.setCycleCount(1); 
-		translate.setAutoReverse(false); 
-		translate.play(); 
-	}
 	
 	/**
 	 * Launches the menu screen, which has three different paths. 
@@ -71,64 +39,20 @@ public class Game extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {	
-			window = primaryStage;
-			
-			/// Menu Screen
+			window = primaryStage; // renaming primaryStage to window for the sake of clarification
 
-			//plays the main theme
 			//Sound.mainTheme();
 
-			//gameBuilder.buildMenu();
+			// Initializing the Menu Scene
 			
 			BorderPane menu = new BorderPane();
-			menusc = new Scene(menu,1280,720);
-			Text title = new Text("");
-			title.setFont(new Font(120));
-			VBox menuButtons = new VBox(20);
-			Button newGame = new Button();
-			Button loadGame = new Button();
-			Button help = new Button();
-
-			Image newimg = new Image(new FileInputStream("./resources/menuimg/newgame.jpg"));
-			newGame.setGraphic(new ImageView(newimg));
-			Image loadimg = new Image(new FileInputStream("./resources/menuimg/loadgame.jpg"));
-			loadGame.setGraphic(new ImageView(loadimg));
-			Image helpimg = new Image(new FileInputStream("./resources/menuimg/help.jpg"));
-			help.setGraphic(new ImageView(helpimg));
-			
-			// Event handling for menu buttons
-			
-			newGame.setOnAction(e -> window.setScene(opening));
-			loadGame.setOnAction(e -> window.setScene(loadsc));
-			help.setOnAction(e -> window.setScene(helpsc));
-			
-			// Styling menu buttons (replace with images later)
-			
-			newGame.setStyle("-fx-base: #000000;");
-			loadGame.setStyle("-fx-base: #000000;");
-			help.setStyle("-fx-base: #000000;");
-			
-			menuButtons.getChildren().addAll(newGame, loadGame, help);
-
-			// for Insets (padding), the order is (top, right, bottom, left)
-			
-			menu.setCenter(menuButtons);
-			menu.setTop(title);
-			BorderPane.setMargin(menuButtons, new Insets(40,0,0,150));
-			BorderPane.setMargin(title, new Insets(70, 0, 0, 120));
-			
-			String image = Game.class.getResource("menu.jpg").toExternalForm();
-			menu.setStyle("-fx-background-image: url('" + image + "'); " +
-			           "-fx-background-position: center center; " +
-			           "-fx-background-repeat: stretch;");
+			menusc = new Scene(menu,1280,720, Color.BLACK);
 			
 			// Opening Scene
 			StackPane openingPane = new StackPane(); // Container objects for this scene
 			opening = new Scene(openingPane,1280,720); // Creates actual scene
-		    
-			// Make it impossible to start next animation unless current finished 
 			
-			loadOpening(openingPane);
+			GameBuilder.loadOpening(openingPane); // loads the images for the opening sequence and display them on top of each other
 			
 			opening.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
 			    @Override
@@ -137,32 +61,25 @@ public class Game extends Application {
 			    	/*  calls fadeImageDown on an object in openingPane when the mouse is pressed.
 			    	 *  (remember that these are the images added by loadOpening() )
 			    	 *  This is performed once per image, for a total of 10 times. */
-			    	fadeImageDown(openingPane.getChildren().get(clickCount));
+			    	GameBuilder.fadeImageDown(openingPane.getChildren().get(clickCount));
 			    	clickCount--;
 			    }
 			});
 			
-			// Load Screen
+			// Load Screen (creates new scene using load screen from GameBuilder
 			
-			BorderPane loadScreen = new BorderPane();
-			loadsc = new Scene (loadScreen, 1280, 720);
-			Button backToMenuL = new Button("Back to the menu");
-			backToMenuL.setOnAction(e -> window.setScene(menusc));
-			loadScreen.setBottom(backToMenuL);
+			loadsc = new Scene (GameBuilder.buildLoadScreen(window, menusc), 1280, 720);
 			
-			
-			// Help Screen
-			BorderPane helpScreen = new BorderPane();
-			helpsc = new Scene(helpScreen, 1280,720);
-			Button backToMenuH = new Button("Back to the menu");
-			backToMenuH.setOnAction(e -> window.setScene(menusc));
-			helpScreen.setBottom(backToMenuH);
-		
+			// Help Screen (creates new scene using help screen from GameBuilder as root note)
+
+			helpsc = new Scene(GameBuilder.buildHelpScreen(window, menusc), 1280,720);
+
 			
 			menusc.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			
 			// Loading and starting the screen. 
 			
+			GameBuilder.buildMenu(menu, window, opening, loadsc, helpsc);
 			window.setScene(menusc);
 			window.setTitle("Tip to the Top");
 			window.setResizable(false);
