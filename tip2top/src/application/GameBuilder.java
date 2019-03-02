@@ -20,7 +20,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-
 public class GameBuilder {
 	
 	private static int openingCount = 9;
@@ -121,12 +120,11 @@ public class GameBuilder {
 		opening.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
 		    @Override
 		    public void handle(MouseEvent mouseEvent) {
-
 		    	/*  calls fadeImageDown on an object in openingPane when the mouse is pressed.
 		    	 *  (remember that these are the images added by loadOpening() )
 		    	 *  This is performed once per image, for a total of 10 times. */
 		    	fadeImageDown(openingPane.getChildren().get(openingCount));
-		    	openingCount--;
+		    	if (openingCount > 0) openingCount--;
 		    }
 		});
 		

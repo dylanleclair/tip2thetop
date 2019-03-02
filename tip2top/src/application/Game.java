@@ -1,31 +1,15 @@
 package application;
 	
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-
-import javafx.animation.Animation.Status;
-import javafx.animation.TranslateTransition;
 import javafx.application.Application;
-import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
+
 
 public class Game extends Application {
 
-	int clickCount = 9; // starts at 9, representing the top image of the StackPane in opening. 
 	Stage window;
 	Scene menusc, opening, loadsc, helpsc;
 	
@@ -51,22 +35,17 @@ public class Game extends Application {
 			// Opening Scene
 			StackPane openingPane = new StackPane(); // Container objects for this scene
 			opening = new Scene(openingPane,1280,720); // Creates actual scene
-			
 			GameBuilder.buildOpeningScreen(openingPane, opening);
 			
-			
-			// Load Screen (creates new scene using load screen from GameBuilder
-			
+			// Load Screen (creates new scene using load screen from GameBuilder		
 			loadsc = new Scene (GameBuilder.buildLoadScreen(window, menusc), 1280, 720);
-			
+	
 			// Help Screen (creates new scene using help screen from GameBuilder as root note)
-
 			helpsc = new Scene(GameBuilder.buildHelpScreen(window, menusc), 1280,720);
 
-			
-			menusc.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			
 			// Loading and starting the screen. 
+			
+			//menusc.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			
 			GameBuilder.buildMenu(menu, window, opening, loadsc, helpsc);
 			window.setScene(menusc);
