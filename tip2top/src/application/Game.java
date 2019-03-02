@@ -52,19 +52,8 @@ public class Game extends Application {
 			StackPane openingPane = new StackPane(); // Container objects for this scene
 			opening = new Scene(openingPane,1280,720); // Creates actual scene
 			
-			GameBuilder.loadOpening(openingPane); // loads the images for the opening sequence and display them on top of each other
+			GameBuilder.buildOpeningScreen(openingPane, opening);
 			
-			opening.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
-			    @Override
-			    public void handle(MouseEvent mouseEvent) {
-
-			    	/*  calls fadeImageDown on an object in openingPane when the mouse is pressed.
-			    	 *  (remember that these are the images added by loadOpening() )
-			    	 *  This is performed once per image, for a total of 10 times. */
-			    	GameBuilder.fadeImageDown(openingPane.getChildren().get(clickCount));
-			    	clickCount--;
-			    }
-			});
 			
 			// Load Screen (creates new scene using load screen from GameBuilder
 			
@@ -95,7 +84,7 @@ public class Game extends Application {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		boolean textV = false;
+		boolean textV = false; // in case of text version integration
 		
 		if (textV == false) {
 			launch(args);

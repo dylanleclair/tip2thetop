@@ -3,9 +3,7 @@ package application;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-import javafx.animation.Animation.Status;
 import javafx.animation.TranslateTransition;
-import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.stage.Stage;
@@ -24,6 +22,9 @@ import javafx.scene.text.Text;
 
 
 public class GameBuilder {
+	
+	private static int openingCount = 9;
+	
 	
 	/**
 	 * Loads opening scene onto a StackPane, reading files named "screen(digit)" from path.
@@ -113,6 +114,24 @@ public class GameBuilder {
 		
 	}
 	
+	public static void buildOpeningScreen (StackPane openingPane, Scene opening) {
+		
+		loadOpening(openingPane); // loads the images for the opening sequence and display them on top of each other
+		
+		opening.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+		    @Override
+		    public void handle(MouseEvent mouseEvent) {
+
+		    	/*  calls fadeImageDown on an object in openingPane when the mouse is pressed.
+		    	 *  (remember that these are the images added by loadOpening() )
+		    	 *  This is performed once per image, for a total of 10 times. */
+		    	fadeImageDown(openingPane.getChildren().get(openingCount));
+		    	openingCount--;
+		    }
+		});
+		
+	}
+	
 	/**
 	 * Builds the screen for "Load Game" from the menu. 
 	 * @param window - the Stage of the application window.
@@ -128,7 +147,12 @@ public class GameBuilder {
 		return loadScreen;
 	}
 	
-	
+	/**
+	 * Builds and returns the help screen of the game (BorderPane). 
+	 * @param window - the Stage of the application window.
+	 * @param menusc - the menu scene (needed for user to return to menu)
+	 * @return the built "Help" screen (BorderPane), to be built into a scene (as a root node)
+	 */
 	public static BorderPane buildHelpScreen(Stage window, Scene menusc) {
 		BorderPane helpScreen = new BorderPane();
 		Button backToMenuH = new Button("Back to the menu");
@@ -136,4 +160,6 @@ public class GameBuilder {
 		helpScreen.setBottom(backToMenuH);
 		return helpScreen;
 	}
+	
+	
 }
