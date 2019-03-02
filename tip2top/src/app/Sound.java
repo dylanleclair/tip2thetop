@@ -17,8 +17,4 @@ public abstract class Sound extends Application{
         mediaPlayer.play();
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
 }
