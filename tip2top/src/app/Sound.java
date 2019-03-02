@@ -1,13 +1,11 @@
 package app;
 
-import javafx.application.Application;
 import javafx.scene.media.*;
-import javafx.stage.Stage;
 
 import java.io.File;
 
 
-public abstract class Sound extends Application{
+public abstract class Sound {
 
     // class for the main theme
     public static void mainTheme() {
