@@ -12,6 +12,7 @@ public abstract class Sound {
         String main_theme = "./resources/sound_files/hotel_california.mp3";
         Media main = new Media(new File(main_theme).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(main);
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.play();
     }
 
