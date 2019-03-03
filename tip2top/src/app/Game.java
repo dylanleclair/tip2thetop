@@ -1,14 +1,10 @@
 package app;
 	
-import java.io.File;
-
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 
 
@@ -20,7 +16,7 @@ public class Game extends Application {
 	/**
 	 * Launches the menu screen, which has three different paths. 
 	 * New game, load a game, or "Help". Defines a different scene for each
-	 * of these options and implements the above two functions to animate the 
+	 * of these options and implements methods to animate the 
 	 * opening sequence for the game. After which, a save will be generated 
 	 * through which the game continues. 
 	 */

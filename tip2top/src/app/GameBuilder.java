@@ -1,7 +1,16 @@
 package app;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.util.Scanner;
 
 import javafx.animation.TranslateTransition;
 import javafx.event.EventHandler;
@@ -23,7 +32,63 @@ import javafx.scene.text.Text;
 public class GameBuilder {
 	
 	private static int openingCount = 9;
+	private static Charset charset = Charset.forName("US-ASCII");
 	
+
+    public void readFile (String pathOfFile) throws Exception {
+    	
+        BufferedReader reader = new BufferedReader(new FileReader(pathOfFile));
+        try {
+        	
+            StringBuilder sb = new StringBuilder();
+            String line = reader.readLine();
+
+            System.out.print(line);
+            while (line != null) {
+                sb.append(line);
+                sb.append(System.lineSeparator());
+                line = reader.readLine();
+               
+                Scanner skipLine = new Scanner(System.in);
+                skipLine.nextLine();
+                
+                if (line != null) {
+                	
+                	for (int i = 0; i < line.length(); i++){
+                	    char c = line.charAt(i);        
+                	    System.out.print(c);
+                	    Thread.sleep(20);
+                	}
+                }
+            }
+            // String everything = sb.toString();
+        } finally {
+            reader.close();
+            
+        }
+        
+    }
+    
+    public static void generateSave () {
+    }
+    
+    public static void saveWriter() {
+    	File defaultSave = new File("./resources/saves/default.txt");
+    	String s = "this is a test";
+    	
+    	try {
+    		BufferedWriter writer = Files.newBufferedWriter(defaultSave.toPath(), charset);
+        	writer.write(s, 0, s.length());
+        	
+        	PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(defaultSave.getPath())));
+        	out.println("hello");
+        	out.close();
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
+    	
+    }
+    
 	
 	/**
 	 * Loads opening scene onto a StackPane, reading files named "screen(digit)" from path.
@@ -124,6 +189,7 @@ public class GameBuilder {
 		    	 *  (remember that these are the images added by loadOpening() )
 		    	 *  This is performed once per image, for a total of 10 times. */
 		    	fadeImageDown(openingPane.getChildren().get(openingCount));
+				GameBuilder.saveWriter();
 		    	if (openingCount > 0) openingCount--;
 		    }
 		});
