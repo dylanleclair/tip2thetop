@@ -65,7 +65,7 @@ public class GameBuilder {
 	
 	/**
 	 * Loads opening scene onto a StackPane, reading files named "screen(digit)" from path.
-	 * @param pane - the stackpane to load images onto, from back to front.
+	 * @param pane - the StackPane to load images onto, from back to front.
 	 */
 	public static void loadOpening (StackPane pane) {
 		for (int i = 10; i >= 1; i--) {

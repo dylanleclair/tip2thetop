@@ -22,6 +22,7 @@ public class Save {
     public static void generateSave (PrintWriter out) {
     	out.println(numSaves);
     	// other variables to be stored in save here
+    	// we should draft up a consistent format before we implement this -- we don't want to have to change order. 
     }
     
     /**
@@ -32,7 +33,7 @@ public class Save {
     	numSaves++;
     	try {
     		boolean isCreated = defaultSave.createNewFile();
-    		System.out.println(isCreated);
+    		System.out.println("Was a new save created? " + isCreated);
     	} catch (Exception e) {
     	
     	}
