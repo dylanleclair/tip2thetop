@@ -10,6 +10,11 @@ public class Save {
 	protected static int numSaves = 0;
 	protected static File currentSave;
 	
+	
+	
+	// make an arraylist of files, iterate through saves directory and add each files to the arraylist
+	// that way, it's easier to access diff saves / get number of saves / etc
+	
 	public static void selectSave() {
 		// needs to be implemented on loading screen
 		currentSave = new File("./resources/saves/default.txt");
