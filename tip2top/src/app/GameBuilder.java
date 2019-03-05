@@ -1,15 +1,9 @@
 package app;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.PrintWriter;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
 import java.util.Scanner;
 
 import javafx.animation.TranslateTransition;
@@ -32,10 +26,9 @@ import javafx.scene.text.Text;
 public class GameBuilder {
 	
 	private static int openingCount = 9;
-	private static Charset charset = Charset.forName("US-ASCII");
-	
 
-    public void readFile (String pathOfFile) throws Exception {
+	
+	public void readFile (String pathOfFile) throws Exception {
     	
         BufferedReader reader = new BufferedReader(new FileReader(pathOfFile));
         try {
@@ -68,27 +61,7 @@ public class GameBuilder {
         }
         
     }
-    
-    public static void generateSave () {
-    }
-    
-    public static void saveWriter() {
-    	File defaultSave = new File("./resources/saves/default.txt");
-    	String s = "this is a test";
-    	
-    	try {
-    		BufferedWriter writer = Files.newBufferedWriter(defaultSave.toPath(), charset);
-        	writer.write(s, 0, s.length());
-        	
-        	PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(defaultSave.getPath())));
-        	out.println("hello");
-        	out.close();
-    	} catch (Exception e) {
-    		e.printStackTrace();
-    	}
-    	
-    }
-    
+
 	
 	/**
 	 * Loads opening scene onto a StackPane, reading files named "screen(digit)" from path.
@@ -121,6 +94,13 @@ public class GameBuilder {
 		translate.play(); 
 	}
 	
+	
+	public static void newGame(Stage window, Scene opening) {
+		window.setScene(opening);
+		Save.createSaveFile();
+		Save.selectSave();
+	}
+	
 	/**
 	 * Builds the menu into a BorderPane. 
 	 * @param menu the BorderPane to add resources of menu into. 
@@ -147,7 +127,7 @@ public class GameBuilder {
 		
 		// Event handling for menu buttons
 		
-		newGame.setOnAction(e -> window.setScene(opening));
+		newGame.setOnAction(e -> newGame(window, opening));
 		loadGame.setOnAction(e -> window.setScene(loadsc));
 		help.setOnAction(e -> window.setScene(helpsc));
 		
@@ -189,8 +169,8 @@ public class GameBuilder {
 		    	 *  (remember that these are the images added by loadOpening() )
 		    	 *  This is performed once per image, for a total of 10 times. */
 		    	fadeImageDown(openingPane.getChildren().get(openingCount));
-				GameBuilder.saveWriter();
 		    	if (openingCount > 0) openingCount--;
+		    	else Save.saveWriter(Save.getSave());
 		    }
 		});
 		
