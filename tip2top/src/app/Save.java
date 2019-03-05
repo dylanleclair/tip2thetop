@@ -7,13 +7,10 @@ import java.io.PrintWriter;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.ListView;
 
 public class Save {
     
 	private static ObservableList<String> names = FXCollections.observableArrayList();
-	
-	protected static int numSaves = 0;
 	protected static File currentSave;
 	
 	// make an arraylist of files, iterate through saves directory and add each files to the arraylist
@@ -31,10 +28,6 @@ public class Save {
 		return names;
 	}
 	
-	public static void selectSave() {
-		// needs to be implemented on loading screen
-		currentSave = new File("./resources/saves/default.txt");
-	}
 	public static void selectSave(int index) {
 		// needs to be implemented on loading screen
 		currentSave = new File("./resources/saves/" + names.get(index));
@@ -45,17 +38,20 @@ public class Save {
 	}
 	
     public static void generateSave (PrintWriter out) {
-    	out.println(numSaves);
+    	out.println("hello");
     	// other variables to be stored in save here
     	// we should draft up a consistent format before we implement this -- we don't want to have to change order. 
     }
     
     /**
-     * 
+     * Creates a new save file. This is only ever done at the start of a new game.
+     * @param filename - a String, the name of the file to be generated as a .txt
      */
-    public static void createSaveFile() {
-    	File defaultSave = new File("./resources/saves/default.txt");
-    	numSaves++;
+    public static void createSaveFile(String filename) {
+    
+    	filename = filename.replace(' ', '-');
+    	File defaultSave = new File("./resources/saves/" + filename + ".txt");
+    	currentSave = defaultSave;
     	try {
     		boolean isCreated = defaultSave.createNewFile();
     		System.out.println("Was a new save created? " + isCreated);
@@ -67,6 +63,7 @@ public class Save {
     
     /**
      * Early implementation of a save feature for the game. 
+     * To be used at the end of each day as part of the transitional screen.
      */
     public static void saveWriter(File saveFile) {
     	

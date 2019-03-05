@@ -11,7 +11,7 @@ import javafx.scene.paint.Color;
 public class Game extends Application {
 
 	Stage window;
-	Scene menusc, opening, loadsc, helpsc;
+	Scene menusc, opening, loadsc, helpsc, createsavesc;
 	
 	/**
 	 * Launches the menu screen, which has three different paths. 
@@ -43,9 +43,12 @@ public class Game extends Application {
 
 			// Loading and starting the screen. 
 			
+			createsavesc = new Scene(GameBuilder.buildSaveScreen(window, opening, menusc), 1280,720);
+			
+			
 			//menusc.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			
-			GameBuilder.buildMenu(menu, window, opening, loadsc, helpsc);
+			GameBuilder.buildMenu(menu, window, opening, loadsc, helpsc, createsavesc);
 			window.setScene(menusc);
 			window.setTitle("Tip to the Top");
 			window.setResizable(false);

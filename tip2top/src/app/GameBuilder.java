@@ -20,6 +20,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -27,7 +28,7 @@ import javafx.scene.text.Text;
 
 public class GameBuilder {
 	
-	private static int openingCount = 10;
+	private static int openingCount = 9;
 	private static boolean saveSet = false;
 
 	
@@ -98,10 +99,11 @@ public class GameBuilder {
 	}
 	
 	
-	public static void newGame(Stage window, Scene opening) {
+	public static void newGameButton(Stage window, Scene opening, TextField text) {
 		window.setScene(opening);
-		Save.createSaveFile();
-		Save.selectSave();
+		saveSet = true;
+		String savename = text.getText();
+		Save.createSaveFile(savename);
 	}
 	
 	/**
@@ -112,7 +114,7 @@ public class GameBuilder {
 	 * @param loadsc a Scene - the load screen to build into the "Load Screen" button of the menu.
 	 * @param helpsc a Scene - the help screen to build into the "Help" button of the menu. 
 	 */
-	public static void buildMenu (BorderPane menu, Stage window, Scene opening, Scene loadsc, Scene helpsc) {
+	public static void buildMenu (BorderPane menu, Stage window, Scene opening, Scene loadsc, Scene helpsc, Scene createsavesc) {
 		try {
 		Text title = new Text("");
 		title.setFont(new Font(120));
@@ -130,7 +132,7 @@ public class GameBuilder {
 		
 		// Event handling for menu buttons
 		
-		newGame.setOnAction(e -> newGame(window, opening));
+		newGame.setOnAction(e -> window.setScene(createsavesc));
 		loadGame.setOnAction(e -> window.setScene(loadsc));
 		help.setOnAction(e -> window.setScene(helpsc));
 		
@@ -161,25 +163,47 @@ public class GameBuilder {
 		
 	}
 	
-	public static void buildOpeningScreen (StackPane openingPane, Scene opening) {
-		
-		loadOpening(openingPane); // loads the images for the opening sequence and display them on top of each other
-		
+	public static BorderPane buildSaveScreen(Stage window, Scene openingsc, Scene menusc) {
 		BorderPane setSaveName = new BorderPane();
 		
-		TextField enterName = new TextField("Enter the name for your save here...");
-		Button confirmName = new Button("Continue");
-		VBox container = new VBox();
-		container.getChildren().addAll(enterName,confirmName);
+		TextField enterName = new TextField("Enter the name for your save here. Do NOT use special characters.");
+		Button confirmName = new Button();
+		Button backbtn = new Button();
+		VBox container = new VBox(20);
 		
-		String image = Game.class.getResource("menu.jpg").toExternalForm();
+		HBox btnbar = new HBox(20);
+		btnbar.getChildren().addAll(confirmName, backbtn);
+		
+		container.getChildren().addAll(enterName,btnbar);
+		
+		backbtn.setOnAction(e -> window.setScene(menusc));
+		
+		try {
+		Image start = new Image(new FileInputStream("./resources/menuimg/startplaying.jpg"));
+		confirmName.setGraphic(new ImageView(start));
+		confirmName.setStyle("-fx-base: #000000;");
+		
+		Image back = new Image(new FileInputStream("./resources/menuimg/back2.jpg"));
+		backbtn.setGraphic(new ImageView(back));
+		backbtn.setStyle("-fx-base: #000000;");
+		} catch (Exception e) { }
+		
+		String image = Game.class.getResource("creategame.jpg").toExternalForm();
 		setSaveName.setStyle("-fx-background-image: url('" + image + "'); " +
 		           "-fx-background-position: center center; " +
 		           "-fx-background-repeat: stretch;");
 		
-		BorderPane.setMargin(container, new Insets(250,500, 70 ,150));
+		BorderPane.setMargin(container, new Insets(300,500, 70 ,130));
 		setSaveName.setCenter(container);
-		openingPane.getChildren().add(setSaveName);
+		
+		confirmName.setOnAction(e -> newGameButton(window, openingsc, enterName));
+		
+		return setSaveName;
+	}
+	
+	public static void buildOpeningScreen (StackPane openingPane, Scene opening) {
+		
+		loadOpening(openingPane); // loads the images for the opening sequence and display them on top of each other
 		
 		opening.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
 		    @Override
@@ -187,21 +211,18 @@ public class GameBuilder {
 		    	/*  calls fadeImageDown on an object in openingPane when the mouse is pressed.
 		    	 *  (remember that these are the images added by loadOpening() )
 		    	 *  This is performed once per image, for a total of 10 times. */
-		    	if (openingCount == 10 && saveSet == false) {
-		    		
-		    	}
-		    	else {
-			    	fadeImageDown(openingPane.getChildren().get(openingCount));
-		    	}
+
+		    		if (openingCount > 0 && saveSet == true) {
+			    		fadeImageDown(openingPane.getChildren().get(openingCount));
+			    		openingCount--;
+		    		}
 		    	
-		    	if (openingCount > 0) openingCount--;
-		    	else Save.saveWriter(Save.getSave());
 		    }
 		});
 		
 	}
 	
-	public static void loadSave() {
+	public static void handleLoadSaveButton() {
 		// finish implementing -- this is for the load save button on loading screen
 	}
 	
@@ -213,27 +234,40 @@ public class GameBuilder {
 	 */
 	public static BorderPane buildLoadScreen(Stage window, Scene menusc) {
 		BorderPane loadScreen = new BorderPane();
-		Button backToMenuL = new Button("Back to the menu");
-		backToMenuL.setOnAction(e -> window.setScene(menusc));
-		Button selectSave = new Button("Select save");
+		Button backToMenu = new Button();
+		backToMenu.setOnAction(e -> window.setScene(menusc));
+		Button selectSave = new Button();
 		
-		VBox buttons = new VBox();
-		buttons.getChildren().addAll(backToMenuL, selectSave);
+		VBox buttons = new VBox(20);
+		buttons.getChildren().addAll(selectSave, backToMenu);
 		
 
+		//Formatting for buttons
+
+		try {
+		Image backimg = new Image(new FileInputStream("./resources/menuimg/back.jpg"));
+		backToMenu.setGraphic(new ImageView(backimg));
+		Image selectimg = new Image(new FileInputStream("./resources/menuimg/loadsave.jpg"));
+		selectSave.setGraphic(new ImageView(selectimg));
+		} catch (Exception e) { }
+		
+		backToMenu.setStyle("-fx-base: #000000;");
+		selectSave.setStyle("-fx-base: #000000;");
+		
+		
 		ListView<String> listView = new ListView<String>(Save.getSaves());
 		
 		int selectedSave = listView.getSelectionModel().getSelectedIndex();
 		selectSave.setOnAction(e -> Save.selectSave(selectedSave));
 		
 		
-		BorderPane.setMargin(listView, new Insets(250,100, 70 ,100));
-		BorderPane.setMargin(buttons, new Insets(250,270,0,0));
+		BorderPane.setMargin(listView, new Insets(250,80, 120 ,200));
+		BorderPane.setMargin(buttons, new Insets(270,300,0,0));
 		loadScreen.setRight(buttons);
 		loadScreen.setCenter(listView);
 		
 		
-		String image = Game.class.getResource("menu.jpg").toExternalForm();
+		String image = Game.class.getResource("loadmenu.jpg").toExternalForm();
 		loadScreen.setStyle("-fx-background-image: url('" + image + "'); " +
 		           "-fx-background-position: center center; " +
 		           "-fx-background-repeat: stretch;");
