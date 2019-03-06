@@ -130,7 +130,7 @@ public class GameBuilder {
 	public static BorderPane buildSaveScreen(Stage window, Scene openingsc, Scene menusc) {
 		BorderPane setSaveName = new BorderPane();
 		
-		TextField enterName = new TextField("Enter the name for your save here. Do NOT use special characters.");
+		TextField enterName = new TextField();
 		Button confirmName = new Button();
 		Button backbtn = new Button();
 		VBox container = new VBox(20);
