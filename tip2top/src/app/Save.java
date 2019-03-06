@@ -1,7 +1,9 @@
 package app;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 
@@ -28,6 +30,30 @@ public class Save {
 		return names;
 	}
 	
+	public static void loadSave(String name) {
+		
+		System.out.println(name);
+		currentSave = new File("./resources/saves/" + name);
+		
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader(currentSave.getPath()));
+			String line = reader.readLine();			
+			// eventually this will be something like:
+			// globalVariable/class.setVariable() with type cast from string
+			// will be diff for each line tho, so looping will be different.. maybe use an array to simplify / shorten
+			while (line != null) {
+				System.out.println(line);
+				line = reader.readLine();
+			}
+			reader.close();
+		} catch (Exception e) {
+			
+		}
+
+	}
+	
+	// do we even need these?
+	// if we set the load save button to just load a save, then we shouldn't. I'll keep em for now tho
 	public static void selectSave(int index) {
 		// needs to be implemented on loading screen
 		currentSave = new File("./resources/saves/" + names.get(index));

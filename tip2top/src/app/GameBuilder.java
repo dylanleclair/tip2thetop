@@ -1,12 +1,12 @@
 package app;
 
-import java.io.BufferedReader;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.Scanner;
 
 import javafx.animation.TranslateTransition;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.stage.Stage;
@@ -30,42 +30,6 @@ public class GameBuilder {
 	
 	private static int openingCount = 9;
 	private static boolean saveSet = false;
-
-	
-	public void readFile (String pathOfFile) throws Exception {
-    	
-        BufferedReader reader = new BufferedReader(new FileReader(pathOfFile));
-        try {
-        	
-            StringBuilder sb = new StringBuilder();
-            String line = reader.readLine();
-
-            System.out.print(line);
-            while (line != null) {
-                sb.append(line);
-                sb.append(System.lineSeparator());
-                line = reader.readLine();
-               
-                Scanner skipLine = new Scanner(System.in);
-                skipLine.nextLine();
-                
-                if (line != null) {
-                	
-                	for (int i = 0; i < line.length(); i++){
-                	    char c = line.charAt(i);        
-                	    System.out.print(c);
-                	    Thread.sleep(20);
-                	}
-                }
-            }
-            // String everything = sb.toString();
-        } finally {
-            reader.close();
-            
-        }
-        
-    }
-
 	
 	/**
 	 * Loads opening scene onto a StackPane, reading files named "screen(digit)" from path.
@@ -99,7 +63,7 @@ public class GameBuilder {
 	}
 	
 	
-	public static void newGameButton(Stage window, Scene opening, TextField text) {
+	public static void startPlayingButton(Stage window, Scene opening, TextField text) {
 		window.setScene(opening);
 		saveSet = true;
 		String savename = text.getText();
@@ -196,7 +160,7 @@ public class GameBuilder {
 		BorderPane.setMargin(container, new Insets(300,500, 70 ,130));
 		setSaveName.setCenter(container);
 		
-		confirmName.setOnAction(e -> newGameButton(window, openingsc, enterName));
+		confirmName.setOnAction(e -> startPlayingButton(window,openingsc,enterName));
 		
 		return setSaveName;
 	}
@@ -212,7 +176,7 @@ public class GameBuilder {
 		    	 *  (remember that these are the images added by loadOpening() )
 		    	 *  This is performed once per image, for a total of 10 times. */
 
-		    		if (openingCount > 0 && saveSet == true) {
+		    		if (openingCount >= 0 && saveSet == true) { // set > to not let end frame
 			    		fadeImageDown(openingPane.getChildren().get(openingCount));
 			    		openingCount--;
 		    		}
@@ -222,7 +186,10 @@ public class GameBuilder {
 		
 	}
 	
-	public static void handleLoadSaveButton() {
+	public static void loadSaveButton(ListView<String> listview) {
+		//Save.selectSave(index);
+		String selected = (String) listview.getSelectionModel().getSelectedItem();
+		Save.loadSave(selected);
 		// finish implementing -- this is for the load save button on loading screen
 	}
 	
@@ -257,8 +224,8 @@ public class GameBuilder {
 		
 		ListView<String> listView = new ListView<String>(Save.getSaves());
 		
-		int selectedSave = listView.getSelectionModel().getSelectedIndex();
-		selectSave.setOnAction(e -> Save.selectSave(selectedSave));
+
+		selectSave.setOnAction(e -> loadSaveButton(listView));
 		
 		
 		BorderPane.setMargin(listView, new Insets(250,80, 120 ,200));
