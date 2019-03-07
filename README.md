@@ -82,7 +82,7 @@ java Game
 Version 1.2
 
 ## Goals
-As of 2019-03-07 
+As of 2019-03-07 </br>
 -Add a delete save feature
 
 ## Team
