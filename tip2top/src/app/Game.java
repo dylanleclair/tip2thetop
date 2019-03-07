@@ -53,6 +53,8 @@ public class Game extends Application {
 			window.setResizable(false);
 			
 			// plays the main theme when the game starts up
+			Sound.mainTheme();
+			
 			
 			window.show();
 			
