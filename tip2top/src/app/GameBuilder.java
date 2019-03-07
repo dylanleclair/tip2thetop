@@ -125,6 +125,17 @@ public class GameBuilder {
 		
 	}
 	
+	
+	// Create a save screen
+	
+	
+	/**
+	 * Allows the user to define a save name, "between" the menu scene and the opening screen/sequence.
+	 * @param window - the Stage of the program where we want to build the save screen. 
+	 * @param openingsc - the Scene we want to switch to after the save is created.
+	 * @param menusc - the Scene we want to switch back to when "Back" is pressed.
+	 * @return a BorderPane, which is the Pane we want to display
+	 */
 	public static BorderPane buildSaveScreen(Stage window, Scene openingsc, Scene menusc) {
 		BorderPane setSaveName = new BorderPane();
 		
@@ -163,6 +174,12 @@ public class GameBuilder {
 		return setSaveName;
 	}
 	
+	
+	/**
+	 * Builds the opening scene, which is played after the save screen. 
+	 * @param openingPane - the StackPane which stores the images for the opening sequence.
+	 * @param opening - the Scene for the opening, which we build an eventhandler onto.
+	 */
 	public static void buildOpeningScreen (StackPane openingPane, Scene opening) {
 		
 		loadOpening(openingPane); // loads the images for the opening sequence and display them on top of each other
@@ -184,12 +201,11 @@ public class GameBuilder {
 		
 	}
 	
-	public static void loadSaveButton(ListView<String> listview) {
-		//Save.selectSave(index);
-		String selected = (String) listview.getSelectionModel().getSelectedItem();
-		Save.loadSave(selected);
-		// finish implementing -- this is for the load save button on loading screen
-	}
+	
+	
+	// Load screen
+		
+	
 	
 	/**
 	 * Builds the screen for "Load Game" from the menu. 
@@ -239,6 +255,24 @@ public class GameBuilder {
 		
 		return loadScreen;
 	}
+	
+	
+	/**
+	 * Handles events for the load save button on the load screen
+	 * @param listview  a ListView, the ListView displayed on the load screen.
+	 */
+	public static void loadSaveButton(ListView<String> listview) {
+		//Save.selectSave(index);
+		String selected = (String) listview.getSelectionModel().getSelectedItem();
+		Save.loadSave(selected);
+		// finish implementing -- this is for the load save button on loading screen
+	}
+	
+	
+	
+	// Help Screen 
+	
+	
 	
 	/**
 	 * Builds and returns the help screen of the game (BorderPane). 
