@@ -79,11 +79,11 @@ java Game
 ```
 
 ## Version
-Version 1.0
+Version 1.2
 
 ## Goals
-- Finish sound
-- Transition screen between days
+As of 2019-03-07 
+-Add a delete save feature
 
 ## Team
 >Contributers and people
