@@ -1,6 +1,5 @@
 package app;
 	
-
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -11,12 +10,12 @@ import javafx.scene.paint.Color;
 public class Game extends Application {
 
 	Stage window;
-	Scene menusc, opening, loadsc, helpsc;
+	Scene menusc, opening, loadsc, helpsc, createsavesc;
 	
 	/**
 	 * Launches the menu screen, which has three different paths. 
 	 * New game, load a game, or "Help". Defines a different scene for each
-	 * of these options and implements the above two functions to animate the 
+	 * of these options and implements methods to animate the 
 	 * opening sequence for the game. After which, a save will be generated 
 	 * through which the game continues. 
 	 */
@@ -43,15 +42,17 @@ public class Game extends Application {
 
 			// Loading and starting the screen. 
 			
+			createsavesc = new Scene(GameBuilder.buildSaveScreen(window, opening, menusc), 1280,720);
+			
+			
 			//menusc.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			
-			GameBuilder.buildMenu(menu, window, opening, loadsc, helpsc);
+			GameBuilder.buildMenu(menu, window, opening, loadsc, helpsc, createsavesc);
 			window.setScene(menusc);
 			window.setTitle("Tip to the Top");
 			window.setResizable(false);
 			
 			// plays the main theme when the game starts up
-			Sound.mainTheme();
 			
 			window.show();
 			
@@ -66,7 +67,9 @@ public class Game extends Application {
 	public static void main(String[] args) {
 		boolean textV = false; // in case of text version integration
 		if (textV == false) {
+			Save.initializeSaves();
 			launch(args);
+			
 		}
 		else {
 			
