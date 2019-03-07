@@ -7,7 +7,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 
-
 public class Game extends Application {
 
 	Stage window;
@@ -54,7 +53,6 @@ public class Game extends Application {
 			window.setResizable(false);
 			
 			// plays the main theme when the game starts up
-			Sound.mainTheme();
 			
 			window.show();
 			
@@ -68,7 +66,6 @@ public class Game extends Application {
 	 */
 	public static void main(String[] args) {
 		boolean textV = false; // in case of text version integration
-		
 		if (textV == false) {
 			Save.initializeSaves();
 			launch(args);

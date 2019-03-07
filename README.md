@@ -2,7 +2,7 @@
 
 A CPSC 233 Game.
 
-![alt text](https://i.gyazo.com/4b5af3497bd1368397a3707dd0598e5c.png)
+![tiptop](https://user-images.githubusercontent.com/45270659/53685691-4da9f880-3cdb-11e9-9736-464edb5be0cb.gif)
 
 The game is made for the Java CPSC 233 course. This game is much like a hotel simulator, where there are mutiple interactions
 with multiple characters. Each character you interact with and the choices you make in this game will eventually influence
