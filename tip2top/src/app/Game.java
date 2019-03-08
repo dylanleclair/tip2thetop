@@ -9,8 +9,10 @@ import javafx.scene.paint.Color;
 
 public class Game extends Application {
 
+	//protected static boolean loadingFromSave = false;
+	
 	Stage window;
-	Scene menusc, opening, loadsc, helpsc, createsavesc;
+	Scene menusc, opening, loadsc, helpsc, createsavesc, mainscene;
 	
 	/**
 	 * Launches the menu screen, which has three different paths. 
@@ -45,6 +47,11 @@ public class Game extends Application {
 			createsavesc = new Scene(GameBuilder.buildSaveScreen(window, opening, menusc), 1280,720);
 			
 			
+			// Main scene for the game
+			// 	load save or whatever will switch to the main scene after loading the save
+			//	DayBuilder.initializeDay()
+			//	mainscene = new Scene(DayBuilder.today, 1280, 720); // placeholder 
+			
 			//menusc.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			
 			GameBuilder.buildMenu(menu, window, opening, loadsc, helpsc, createsavesc);
@@ -62,6 +69,9 @@ public class Game extends Application {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	
 	/**
 	 * Main function, executes the program. A boolean switch can change between versions (we've opted for full GUI) 
 	 * @param args
@@ -69,6 +79,7 @@ public class Game extends Application {
 	public static void main(String[] args) {
 		boolean textV = false; // in case of text version integration
 		if (textV == false) {
+			
 			Save.initializeSaves();
 			launch(args);
 			
