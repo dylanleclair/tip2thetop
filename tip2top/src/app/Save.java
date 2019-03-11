@@ -18,6 +18,11 @@ public class Save {
 	// make an arraylist of files, iterate through saves directory and add each files to the arraylist
 	// that way, it's easier to access diff saves / get number of saves / etc
 	
+	/**
+	 * Loads the names of the save files into an ObservableList which displays
+	 * this information on the Load Game interface. Is also referenced when loading saves
+	 * and writing saves as it stores the names of them all.
+	 */
 	public static void initializeSaves() {
 		File directory = new File("./resources/saves");
 		String[] filesInDir = directory.list();
@@ -30,9 +35,12 @@ public class Save {
 		return names;
 	}
 	
+	/**
+	 * This method is used to load a save file, putting a user into the game at the start of the day.
+	 * @param name a String, the name of the file to be read from "saves" folder.
+	 */
 	public static void loadSave(String name) {
 		
-		System.out.println(name);
 		currentSave = new File("./resources/saves/" + name);
 		
 		try {
@@ -49,22 +57,22 @@ public class Save {
 		} catch (Exception e) {
 			
 		}
-
+		// here we would start transition into whatever day // start the gameplay
 	}
 	
-	// do we even need these?
-	// if we set the load save button to just load a save, then we shouldn't. I'll keep em for now tho
-	public static void selectSave(int index) {
-		// needs to be implemented on loading screen
-		currentSave = new File("./resources/saves/" + names.get(index));
-	}
-	
-	public static File getSave() {
+	//not being used, may be able to delete
+	public static File getSave() { // may be needed to invoke saveWriter - keep for now
 		return currentSave;
 	}
 	
+	/**
+	 * Is implemented in saveWriter.
+	 * This method "prints" the necessary info for a save file into the save file.
+	 * @param out a PrintWriter, which writes files as if you are printing output. 
+	 */
     public static void generateSave (PrintWriter out) {
     	out.println("hello");
+    	// creating two string methods for diff objects which hold variables to be stored could be v helpful
     	// other variables to be stored in save here
     	// we should draft up a consistent format before we implement this -- we don't want to have to change order. 
     }
@@ -90,6 +98,7 @@ public class Save {
     /**
      * Early implementation of a save feature for the game. 
      * To be used at the end of each day as part of the transitional screen.
+     * @param saveFile a File, the file for the save information to be written to. (current save)
      */
     public static void saveWriter(File saveFile) {
     	
