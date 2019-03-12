@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-
 
 public class NPC {
 
@@ -14,7 +11,6 @@ public class NPC {
 	
 	private String name;
 	private int roomNumber;
-	private ImageView appearance;
 	
 	// Constructors
 	
@@ -58,7 +54,7 @@ public class NPC {
 		switch(day) {
 		
 		case 1:
-			List<NPC> namesList = Arrays.asList(new NPC("Aleksandra"), new NPC("Dylan"), new NPC("Jason"),new NPC("Yvonne"), new NPC("Tiff"), new NPC("Harry"), new NPC("Patricia"));
+			List<NPC> namesList = Arrays.asList(new NPC("Aleksandra"), new NPC("Dylan"), new NPC("Jason"),new NPC("Yvonne"), new NPC("Harriet"), new NPC("Patricia"));
 			dailyCharacters.clear();
 			dailyCharacters.addAll(namesList);
 		
@@ -70,46 +66,55 @@ public class NPC {
 	}
 		
 		
-	public static String getDialogue(String character, int day) {
+	public static ArrayList<String> getDialogue(String character, int day) {
 		// returns the dialogue for the character given the day and previous variables
+		
+		ArrayList<String> queue = new ArrayList<String>();
+		
+		if (character.equalsIgnoreCase("Dylan")) {
+			
+		} else if (character.equalsIgnoreCase("Tiff")) {
+			queue.add("lmao");
+		} else if (character.equalsIgnoreCase("Yvonne")) {
+			queue.add("rip");
+		} else if (character.equalsIgnoreCase("Jason")) {
+			
+		} else if (character.equalsIgnoreCase("Harriet")) {
+			
+		}
+			
+		/*
 		
 		switch (character) {
 		
 		case "Dylan":
 			
-			switch(day) {
-			
-			case 1:
-				// build string for dialogue
-				//dialogue.display()
-			case 2:
-				
-			case 3:
-				
-			case 4:
-				
-			case 5:
-				
-			case 6:
-				
-			case 7:
-			
-			}
+			queue.add("lol");
 		
 		case "Tiff":
-
-		case "Yvonne":
 		
+			queue.add("rip");
+			
+		case "Yvonne":
+
+			queue.add("ugh");
+			
 		case "Patricia":
+
+			queue.add("wow");
 			
 		case "Jason":
+
+			queue.add("lmao");
 			
 		case "Aleksandra":
-			
+
+			queue.add("yeet");
 			
 		}
+		*/
 		
-		return "";
+		return queue;
 		
 		
 		

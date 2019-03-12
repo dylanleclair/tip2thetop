@@ -34,7 +34,7 @@ public class Game extends Application {
 			// Opening Scene
 			StackPane openingPane = new StackPane(); // Container objects for this scene
 			opening = new Scene(openingPane,1280,720); // Creates actual scene
-			GameBuilder.buildOpeningScreen(openingPane, opening);
+			GameBuilder.buildOpeningScreen(openingPane, opening, window);
 			
 			// Load Screen (creates new scene using load screen from GameBuilder		
 			loadsc = new Scene (GameBuilder.buildLoadScreen(window, menusc), 1280, 720);
