@@ -11,6 +11,8 @@ public class NPC {
 	
 	private String name;
 	private int roomNumber;
+	private static boolean dylan_1_yes;
+	
 	
 	// Constructors
 	
@@ -73,6 +75,38 @@ public class NPC {
 		
 		if (character.equalsIgnoreCase("Dylan")) {
 			
+			if (day == 1) {
+				
+				queue.add("Dylan: Hello!");
+				queue.add("You: Hi, can I help you with anything!");
+				
+				// dialogue for dylans first day 
+				
+				//ex for a branch -- make variables global so i can toString them
+				
+				// stuff leading up to a split / branch
+				
+				if (dylan_1_yes) {
+					// yes
+				}
+				else {
+					// no
+				}
+				
+			} else if (day == 2) { 
+				
+			} else if (day == 3) {
+				
+			} else if (day == 4) { 
+				
+			} else if (day == 5) {
+				
+			} else if (day == 6) {
+				
+			} else if (day == 7) {
+				
+			}
+			
 		} else if (character.equalsIgnoreCase("Tiff")) {
 			queue.add("lmao");
 		} else if (character.equalsIgnoreCase("Yvonne")) {
@@ -83,36 +117,6 @@ public class NPC {
 			
 		}
 			
-		/*
-		
-		switch (character) {
-		
-		case "Dylan":
-			
-			queue.add("lol");
-		
-		case "Tiff":
-		
-			queue.add("rip");
-			
-		case "Yvonne":
-
-			queue.add("ugh");
-			
-		case "Patricia":
-
-			queue.add("wow");
-			
-		case "Jason":
-
-			queue.add("lmao");
-			
-		case "Aleksandra":
-
-			queue.add("yeet");
-			
-		}
-		*/
 		
 		return queue;
 		
