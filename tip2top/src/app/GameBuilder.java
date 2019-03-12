@@ -26,7 +26,7 @@ import javafx.scene.text.Text;
 
 public class GameBuilder {
 	
-	private static int openingCount = 9;
+	private static int openingCount = 10;
 	private static boolean saveSet = false;
 	
 	/**
@@ -34,7 +34,7 @@ public class GameBuilder {
 	 * @param pane - the StackPane to load images onto, from back to front.
 	 */
 	public static void loadOpening (StackPane pane) {
-		for (int i = 10; i >= 1; i--) {
+		for (int i = 11; i >= 1; i--) {
 			Image image;
 			try {
 				image = new Image(new FileInputStream("./resources/introimg/screen" + i + ".jpg"));
@@ -180,7 +180,7 @@ public class GameBuilder {
 	 * @param openingPane - the StackPane which stores the images for the opening sequence.
 	 * @param opening - the Scene for the opening, which we build an eventhandler onto.
 	 */
-	public static void buildOpeningScreen (StackPane openingPane, Scene opening) {
+	public static void buildOpeningScreen (StackPane openingPane, Scene opening, Stage window) {
 		
 		loadOpening(openingPane); // loads the images for the opening sequence and display them on top of each other
 		
@@ -194,10 +194,18 @@ public class GameBuilder {
 		    		if (openingCount >= 0 && saveSet == true) { // set > to not let end frame
 			    		fadeImageDown(openingPane.getChildren().get(openingCount));
 			    		openingCount--;
+			    		//Pat added to change scene to start of day
+			    		if (openingCount == -1) {
+			    			
+			    			Scene main = new Scene(DayBuilder.buildMainScreen(window), 1280, 720);
+			    			main.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+							window.setScene(main);
+			    			//Scene dayIntro = new Scene(DayBuilder.startDay(window), 1280, 720);
+			    			//window.setScene(dayIntro);
 		    		}
 		    	
 		    }
-		});
+		}});
 		
 	}
 	
