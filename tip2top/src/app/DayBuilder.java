@@ -50,12 +50,21 @@ public class DayBuilder {
 	// one layer for desk/foreground (index 2)
 	// one layer for borderpane w buttons n shit to make it interactive?
 	
-	private static boolean dialogueActive;
+	private static int day = 1;
 	//private static int satisfaction;
 	//private static int gulagPoints;
 	private static ObservableList<String> guests = FXCollections.observableArrayList();
 	private static ObservableList<String> email = FXCollections.observableArrayList();
 	private static BorderPane amigo = new BorderPane();
+	private static Button nextC = new Button();
+	private static int index = 0;
+	private static boolean dialogueActive = false;
+	private static ImageView activeCharacter;
+	private static ArrayList<String> active = new ArrayList<>();
+	private static Text slot1 = new Text("");
+	private static Text slot2 = new Text("");
+	private static Text slot3 = new Text("");
+	
 	//private static ImageView currentCharacter = null;
 	
 	
@@ -144,6 +153,8 @@ public class DayBuilder {
 			    
 			    image5 = new Image(new FileInputStream("./resources/dayimg/dialogbox.png"));
 			    ImageView imageView5 = new ImageView(image5); 
+			    imageView5.setManaged(false);
+			    imageView5.setLayoutY(-720);
 			    pane.getChildren().add(imageView5);
 			    
 			    
@@ -164,10 +175,65 @@ public class DayBuilder {
 
 			    } catch (Exception e) { e.printStackTrace();}
 
+			    Image nextCustomer = new Image(new FileInputStream("./resources/gameimg/next.png"));
+			    ImageView next = new ImageView(nextCustomer);
+			    next.setStyle(null);
+			    
+			    nextC.setText("Next customer...");
+			    nextC.setManaged(false);
+			    nextC.setLayoutX(1300);
+			    nextC.setLayoutY(650);
+			    nextC.setGraphic(next);
+			    
+			    // change styling n such later
+			    
 			    handler.setBottom(accessAmigo);
+			    handler.setRight(nextC);
+			    
+			    
+			    handler.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+					
+					// it appears that the error occurs in the inheritance here somehow?
+					
+					int top = 0;
+					int middle = 1;
+					int bottom = 2;
+					int clickCount = 1;
+					
+					@Override
+					public void handle(MouseEvent mouseEvent) {
+						// advance
+						if (dialogueActive) {
+							if (clickCount <= active.size() - 2) {
+								clickCount++;
+
+								if (top < active.size()) slot1.setText(active.get(top));
+								if (middle <= active.size() - 1) slot2.setText(active.get(middle));
+								if (bottom <= active.size() - 2) slot3.setText(active.get(bottom));
+								top++; middle++; bottom++;
+							}
+							
+							if (active.get(top).equals(" ") && clickCount > 3) {
+								active.clear();
+								animateButtonIn(nextC);
+								slot1.setText(" ");
+								slot2.setText(" ");
+								slot3.setText(" ");
+								dialogueActive = false;
+								clickCount = 1;
+								top = 0;
+								middle = 1;
+								bottom = 2;
+								animateCharacterOut(activeCharacter);
+							}
+
+						} 
+					}
+				});
+			    
 			    
 			    pane.getChildren().add(handler);
-			    runDay(1, handler);
+			    runDay(handler);
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			} 
@@ -175,96 +241,96 @@ public class DayBuilder {
 		}
 	
 	
-	
-	/**
-	 * Main logical programming system for each day - move to whatever class handles each day
-	 * This is literally the SUBSTANCE of our program, so don't mess with it.
-	 */
-	public static void runDay (int day, BorderPane handler) { // called every day --- move to Game
 		
-		// instantiate characters
-		
-		switch (day) {
-		
-		case 1 : // day 1
-			
-			NPC.intializeCharacters(day);
-			ArrayList<NPC> dailyCharacters = NPC.getDailyCharacters();
-			
-			/* save this for day 2
-			 * for (NPC i : dailyCharacters) { // this is WRONG
-			 * 	guests.add(i.toString());
+		public static void runDay (BorderPane handler) {
+			if (day == 1) {
+				NPC.initializeCharacters(day);
+				ArrayList<NPC> dailyCharacters = NPC.getDailyCharacters();
+				
+				Collections.shuffle(dailyCharacters);
+				dailyCharacters.add(new NPC("Tiff"));
+				dailyCharacters.add(0, new NPC("Aleksandra"));
+				animateButtonIn(nextC);
+				
+				nextC.setOnAction(e -> {
+					
+					
+					// animate nextC out if index > 0
+					
+					if (index == 0) {
+						animateButtonOut(nextC);
+						animateDialogueBoxIn(today.getChildren().get(4)); // 4 is the index of dialogue box in stackpane today
+					}
+					
+					if (index > 0) {
+						animateButtonOut(nextC);
+						
+					}
+					
+					// stuff for each character
+					NPC character = dailyCharacters.get(index);
+					
+					try {
+						Image image = new Image(new FileInputStream("./resources/characters/" + character.getName() + ".png"));
+					    ImageView characterView = new ImageView(image); 
+					    
+					    activeCharacter = characterView;
+					    
+					    today.getChildren().set(1, characterView); 
+					    characterView.setManaged(false);
+					    characterView.setLayoutX(1280);
+					    characterView.setLayoutY(-20);
+
+					    active.clear();
+						for (int i = 0; i < 3; i++) active.add(" ");
+					    
+					    animateCharacterIn(characterView);
+					    
+					    
+					    
+					    //SequentialTransition seqT = new SequentialTransition(animateCharacterIn(characterView).setOnFinished(e -> System.out.println("Holy fuck")));
+					    //seqT.play();
+					   
+					    // some kind of event listener to control the flow of options
+						
+					    //dialogueActive = true;
+					    ArrayList<String> dialogue = NPC.getDialogue(character.getName(), day);
+						playDialog(handler, dialogue);
+						
+						
+						//System.out.println("tracker lol");
+					
+						//NPC.getDialogue(character.getName(),day);	
+						// do character dialogue -- listeners / etc will be muted so the player can't screw around while dealing w customers
+					    
+						
+						index++;
+						
+					    //animateCharacterOut(characterView);
+					} catch (Exception c) {c.printStackTrace();}
+					
+					
+					if (index == dailyCharacters.size()) {
+						// end the day
+					}
+					
+				});
+				
+				
+				
 			}
-			 */
-
-			// actual logic for each character 
-			
-			Collections.shuffle(dailyCharacters); // shuffle (to randomize order)
-			
-			dailyCharacters.add(new NPC("Tiff"));
-			
-			for (int i = dailyCharacters.size() -1; i > 0; i--) {
-				NPC character = dailyCharacters.get(i);
-				try {
-					Image image = new Image(new FileInputStream("./resources/characters/" + character.getName() + ".png"));
-				    ImageView characterView = new ImageView(image); 
-				    // today.getChildren.set(1, character.getAppearance());
-				    today.getChildren().set(1, characterView); 
-				    characterView.setManaged(false);
-				    characterView.setLayoutX(1280);
-				    characterView.setLayoutY(-20);
-				    // if statement to see whether character needs to be animated out before being animated in (use character)
-					
-				    animateCharacterIn(characterView);
-				    //SequentialTransition seqT = new SequentialTransition(animateCharacterIn(characterView).setOnFinished(e -> System.out.println("Holy fuck")));
-				    //seqT.play();
-				   
-				    // some kind of event listener to control the flow of options
-				    
-					dialogueActive = true; // we might need this variable to keep listeners muted
-					
-					playDialog(handler, NPC.getDialogue(character.getName(), day));
-					
-					//System.out.println("tracker lol");
-				
-					//NPC.getDialogue(character.getName(),day);	
-					// do character dialogue -- listeners / etc will be muted so the player can't screw around while dealing w customers
-					dialogueActive = false;
-				    
-					break;
-					
-				    //animateCharacterOut(characterView);
-				} catch (Exception e) {e.printStackTrace();}
-				
-
-				
-				// leave some time for the character to use computer / etc (maybe depends on if they'll actually need to use it)
-				
-				// animate character out
-				
-				}
-			
-		// all the way to day 7 baby
 		}
-		
-	}
 	
 	
 	public static void playDialog(BorderPane pane, ArrayList<String> dialog) {
-		ArrayList<String> active = new ArrayList<String>();
-		active.add("one");
-		active.add("two");
-		active.add("three");
-		String a, b, c;
-		a = active.get(0);
-		b = active.get(1);
-		c = active.get(2);
+		System.out.println(dialog.toString());
+		
+		active.addAll(dialog); // we need to separate this so we can ensure it is done correctly?
+		for (int i = 0; i < 3; i++) active.add(" ");
+		
 		
 		VBox container = new VBox(5);
 		
-		Text slot1 = new Text(a);
-		Text slot2 = new Text(b);
-		Text slot3 = new Text(c);
 		
 		slot1.setId("dialog-text");
 		slot2.setId("dialog-text");
@@ -281,30 +347,9 @@ public class DayBuilder {
 		
 		pane.getChildren().add(container);
 		
-		int length = dialog.size();
-		int count = 0;
-		pane.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent mouseEvent) {
-				// advance
-				if (count < length) {
-					// fade all 3 out
-					// add next 3 to list
-					// fade in 1 by 1
-					
-					active.add(dialog.get(count));
-					active.remove(0);
-					
-					slot1.setText(active.get(0));
-					slot2.setText(active.get(1));
-					slot3.setText(active.get(2));
-					
-					System.out.print(length);
-				System.out.println("Success!");
-				System.out.println(dialog.toString());
-				}
-			}
-		});
+		int length = active.size();
+		
+		
 		
 	}
 	
@@ -428,10 +473,11 @@ public class DayBuilder {
 		TranslateTransition translate = new TranslateTransition();
 		translate.setDuration(Duration.millis(1300)); 
 		translate.setNode(character);
-		translate.setByX(-630);
+		translate.setByX(-590);
 		translate.setCycleCount(1); 
 		translate.setAutoReverse(false); 
-		translate.setOnFinished(e -> System.out.println("lol"));
+		translate.setOnFinished(e -> dialogueActive = true);
+		
 		translate.play();
 		return translate;
 	}
@@ -442,14 +488,54 @@ public class DayBuilder {
 		TranslateTransition translate = new TranslateTransition();
 		translate.setDuration(Duration.millis(1300)); 
 		translate.setNode(character);
-		translate.setByX(630);
+		translate.setByX(590);
+		translate.setCycleCount(1); 
+		translate.setAutoReverse(false); 
+		translate.play(); 
+		//translate.setOnFinished(e -> );
+		return translate;
+		
+		
+	}
+	
+	public static TranslateTransition animateButtonIn (Node button) {
+		TranslateTransition translate = new TranslateTransition();
+		translate.setDuration(Duration.millis(1300)); 
+		translate.setNode(button);
+		translate.setByX(-350);
 		translate.setCycleCount(1); 
 		translate.setAutoReverse(false); 
 		translate.play(); 
 		return translate;
 		
+	}
+	
+	public static TranslateTransition animateButtonOut (Node button) {
+		TranslateTransition translate = new TranslateTransition();
+		translate.setDuration(Duration.millis(1300)); 
+		translate.setNode(button);
+		translate.setByX(370);
+		translate.setCycleCount(1); 
+		translate.setAutoReverse(false); 
+		translate.play(); 
+		return translate;
 		
 	}
+	
+	public static TranslateTransition animateDialogueBoxIn (Node image) {
+		
+		TranslateTransition translate = new TranslateTransition();
+		translate.setDuration(Duration.millis(1300)); 
+		translate.setNode(image);
+		translate.setByY(720);
+		translate.setCycleCount(1); 
+		translate.setAutoReverse(false); 
+		translate.play(); 
+		//translate.setOnFinished(e -> dialogueActive = true);
+		return translate;
+		
+	}
+	
 	
 	
 	// I heard you like light theme

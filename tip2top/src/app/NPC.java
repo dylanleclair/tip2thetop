@@ -52,11 +52,11 @@ public class NPC {
 
 	// Static methods for use with dailyCharacters in other classes
 	
-	public static void intializeCharacters(int day) { // finish this to modify per day
+	public static void initializeCharacters(int day) { // finish this to modify per day
 		switch(day) {
 		
 		case 1:
-			List<NPC> namesList = Arrays.asList(new NPC("Aleksandra"), new NPC("Dylan"), new NPC("Jason"),new NPC("Yvonne"), new NPC("Harriet"), new NPC("Patricia"));
+			List<NPC> namesList = Arrays.asList(new NPC("Dylan"), new NPC("Jason"),new NPC("Yvonne"), new NPC("Harriet"), new NPC("Patricia"));
 			dailyCharacters.clear();
 			dailyCharacters.addAll(namesList);
 		
@@ -79,6 +79,10 @@ public class NPC {
 				
 				queue.add("Dylan: Hello!");
 				queue.add("You: Hi, can I help you with anything!");
+				queue.add("This is line 3");
+				queue.add("This is line 4");
+				queue.add("This is line 5");
+				queue.add("This is line 6");
 				
 				// dialogue for dylans first day 
 				
@@ -108,16 +112,47 @@ public class NPC {
 			}
 			
 		} else if (character.equalsIgnoreCase("Tiff")) {
-			queue.add("lmao");
+			queue.add("Dylan: Hello!");
+			queue.add("You: Hi, can I help you with anything!");
+			queue.add("This is line 3");
+			queue.add("This is line 4");
+			queue.add("This is line 5");
+			queue.add("This is line 6");
 		} else if (character.equalsIgnoreCase("Yvonne")) {
-			queue.add("rip");
+			queue.add("Dylan: Hello!");
+			queue.add("You: Hi, can I help you with anything!");
+			queue.add("This is line 3");
+			queue.add("This is line 4");
+			queue.add("This is line 5");
+			queue.add("This is line 6");
 		} else if (character.equalsIgnoreCase("Jason")) {
-			
+			queue.add("Dylan: Hello!");
+			queue.add("You: Hi, can I help you with anything!");
+			queue.add("This is line 3");
+			queue.add("This is line 4");
+			queue.add("This is line 5");
+			queue.add("This is line 6");
 		} else if (character.equalsIgnoreCase("Harriet")) {
-			
+			queue.add("Dylan: Hello!");
+			queue.add("You: Hi, can I help you with anything!");
+			queue.add("This is line 3");
+			queue.add("This is line 4");
+			queue.add("This is line 5");
+			queue.add("This is line 6");
+		} else if (character.equalsIgnoreCase("Aleksandra")) {
+			queue.add("Dylan: Hello!");
+			queue.add("You: Hi, can I help you with anything!");
+			queue.add("This is line 3");
+			queue.add("This is line 4");
+			queue.add("This is line 5");
+			queue.add("This is line 6");
+		} else if (character.equalsIgnoreCase("Patricia")) {
+			queue.add("This is line 3");
+			queue.add("This is line 4");
+			queue.add("This is line 5");
+			queue.add("This is line 6");
 		}
-			
-		
+				
 		return queue;
 		
 		
