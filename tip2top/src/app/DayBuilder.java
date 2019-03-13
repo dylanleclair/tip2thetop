@@ -22,6 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -127,6 +128,20 @@ public class DayBuilder {
 		
 		
 		public static void loadDay (StackPane pane) {
+			
+			 DropShadow dropShadow = new DropShadow();
+			 dropShadow.setRadius(5.0);
+			 dropShadow.setOffsetX(8.0);
+			 dropShadow.setOffsetY(8.0);
+			 dropShadow.setColor(Color.BLACK);
+			 
+			 DropShadow borderGlow = new DropShadow();
+			 borderGlow.setColor(Color.YELLOW);
+			 borderGlow.setOffsetX(0f);
+			 borderGlow.setOffsetY(0f);
+			 borderGlow.setHeight(100.0);
+			 borderGlow.setWidth(100.0);
+			 
 			Image image, image2, image3, image4, image5;
 			try {
 				image = new Image(new FileInputStream("./resources/dayimg/background.jpg"));
@@ -147,9 +162,14 @@ public class DayBuilder {
 			    ImageView imageView3 = new ImageView(image3); 
 			    pane.getChildren().add(imageView3);
 			    
-			    image4 = new Image(new FileInputStream("./resources/dayimg/keys.png"));
-			    ImageView imageView4 = new ImageView(image4); 
-			    pane.getChildren().add(imageView4);
+			    for(int i = 1; i<=12; i++) {
+			        image4 = new Image(new FileInputStream("./resources/dayimg/keys/key"+i+".png"));
+				    ImageView imageView4 = new ImageView(image4); 
+				    imageView4.setEffect(dropShadow);
+				    pane.getChildren().add(imageView4);
+			    }
+			    
+			
 			    
 			    image5 = new Image(new FileInputStream("./resources/dayimg/dialogbox.png"));
 			    ImageView imageView5 = new ImageView(image5); 
