@@ -77,12 +77,9 @@ public class NPC {
 			
 			if (day == 1) {
 				
-				queue.add("Dylan: Hello!");
-				queue.add("You: Hi, can I help you with anything!");
-				queue.add("This is line 3");
-				queue.add("This is line 4");
-				queue.add("This is line 5");
-				queue.add("This is line 6");
+				queue.add("Dylan: I like skittles.");
+				queue.add("I also like to code.");
+				queue.add("Yeah, this isn't really relevant.");
 				
 				// dialogue for dylans first day 
 				
@@ -112,45 +109,33 @@ public class NPC {
 			}
 			
 		} else if (character.equalsIgnoreCase("Tiff")) {
-			queue.add("Dylan: Hello!");
-			queue.add("You: Hi, can I help you with anything!");
-			queue.add("This is line 3");
-			queue.add("This is line 4");
-			queue.add("This is line 5");
-			queue.add("This is line 6");
+			queue.add("Dylan: I'm the last character today..");
+			queue.add("Each character has their own personality..");
+			queue.add("I'm the quiet one..");
 		} else if (character.equalsIgnoreCase("Yvonne")) {
-			queue.add("Dylan: Hello!");
-			queue.add("You: Hi, can I help you with anything!");
-			queue.add("This is line 3");
-			queue.add("This is line 4");
-			queue.add("This is line 5");
-			queue.add("This is line 6");
+			queue.add("Yvonne: Right now, not everything is");
+			queue.add("not quite as complete as we want, but we have a");
+			queue.add("good idea of what needs to be done.");
 		} else if (character.equalsIgnoreCase("Jason")) {
-			queue.add("Dylan: Hello!");
-			queue.add("You: Hi, can I help you with anything!");
-			queue.add("This is line 3");
-			queue.add("This is line 4");
-			queue.add("This is line 5");
-			queue.add("This is line 6");
+			queue.add("Jason: I like to make money,");
+			queue.add("which is why our game isn't quite finished.");
+			queue.add("Honestly, so many deadlines...");
 		} else if (character.equalsIgnoreCase("Harriet")) {
-			queue.add("Dylan: Hello!");
-			queue.add("You: Hi, can I help you with anything!");
-			queue.add("This is line 3");
-			queue.add("This is line 4");
-			queue.add("This is line 5");
-			queue.add("This is line 6");
+			queue.add("Harriet: Characters are played in random order.");
+			queue.add("Each character has different choices");
+			queue.add("That chnage how they act in the following days");
+			queue.add("and determine how the score for the player.");
 		} else if (character.equalsIgnoreCase("Aleksandra")) {
-			queue.add("Dylan: Hello!");
-			queue.add("You: Hi, can I help you with anything!");
-			queue.add("This is line 3");
-			queue.add("This is line 4");
-			queue.add("This is line 5");
-			queue.add("This is line 6");
+			queue.add("Aleksandra: Hello! Welcome to our demo!");
+			queue.add("While there's still a lot to be added,");
+			queue.add("A lot of our baseline work is complete!");
+			queue.add("We still need to iron out a couple of features.");
+			queue.add("Like making animation smoother and integrating");
+			queue.add("dialogue from our script into the game.");
 		} else if (character.equalsIgnoreCase("Patricia")) {
-			queue.add("This is line 3");
-			queue.add("This is line 4");
-			queue.add("This is line 5");
-			queue.add("This is line 6");
+			queue.add("Patricia: The computer is kinda");
+			queue.add("old so don't pay too much attention");
+			queue.add("if it doesn't really work.. for now.");
 		}
 				
 		return queue;

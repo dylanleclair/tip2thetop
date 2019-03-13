@@ -232,8 +232,9 @@ public class DayBuilder {
 				});
 			    
 			    
-			    pane.getChildren().add(handler);
-			    runDay(handler);
+			    pane.getChildren().add(handler); // 6th item in pane
+			    //pane.getChildren().add(amigo); // need to change how amigo is implemented to another layer on stackpane? or even change scene. 
+			    runDay(handler); 
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			} 
@@ -366,7 +367,7 @@ public class DayBuilder {
 		
 		// set the background image
 		try {
-			Image background = new Image(new FileInputStream("./resources/menuimg/amigo.jpg"));
+			Image background = new Image(new FileInputStream("./resources/gameimg/amigobkg.png"));
 			BackgroundImage bgImg = new BackgroundImage(background,
                     BackgroundRepeat.NO_REPEAT,
                     BackgroundRepeat.NO_REPEAT,
@@ -388,7 +389,8 @@ public class DayBuilder {
 		
 		//viewGuests.setOnAction(e -> amigo.setCenter(checkins));
 		//viewEmails.setOnAction(e -> amigo.setCenter(emails));
-	
+		exit.setOnAction(e -> amigo.getChildren().clear());
+		
 	}
 	
 	public static void buildEmailScreen() { // focus on this AFTER the email screen is built
