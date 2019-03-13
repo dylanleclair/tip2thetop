@@ -270,6 +270,7 @@ public class DayBuilder {
 	
 	public static void playDialog(BorderPane pane, ArrayList<String> dialog) {
 		
+		System.out.println(dialog.toString());
 		
 		ArrayList<String> active = new ArrayList<>();
 		
@@ -278,7 +279,7 @@ public class DayBuilder {
 		for (int i = 0; i < 3; i++) dialog.add(" ");
 		
 		for (int i = 0; i < 2; i++) active.add(" ");
-		active.addAll(dialog);
+		active.addAll(dialog); // we need to separate this so we can ensure it is done correctly?
 		
 		
 		VBox container = new VBox(5);
@@ -305,6 +306,9 @@ public class DayBuilder {
 		int length = active.size();
 		
 		pane.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+			
+			// it appears that the error occurs in the inheritance here somehow?
+			
 			int top = 0;
 			int middle = 1;
 			int bottom = 2;
@@ -322,7 +326,7 @@ public class DayBuilder {
 						
 						//active.add(dialog.get(count));
 						//active.remove(0);
-						if (top <= length) slot1.setText(active.get(top));
+						if (top < length) slot1.setText(active.get(top));
 						if (middle <= length - 1) slot2.setText(active.get(middle));
 						if (bottom <= length - 2) slot3.setText(active.get(bottom));
 						top++; middle++; bottom++;
