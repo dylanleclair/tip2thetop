@@ -60,6 +60,11 @@ public class DayBuilder {
 	private static int index = 0;
 	private static boolean dialogueActive = false;
 	private static ImageView activeCharacter;
+	private static ArrayList<String> active = new ArrayList<>();
+	private static Text slot1 = new Text("");
+	private static Text slot2 = new Text("");
+	private static Text slot3 = new Text("");
+	
 	//private static ImageView currentCharacter = null;
 	
 	
@@ -185,6 +190,48 @@ public class DayBuilder {
 			    handler.setBottom(accessAmigo);
 			    handler.setRight(nextC);
 			    
+			    
+			    handler.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+					
+					// it appears that the error occurs in the inheritance here somehow?
+					
+					int top = 0;
+					int middle = 1;
+					int bottom = 2;
+					int clickCount = 1;
+					
+					@Override
+					public void handle(MouseEvent mouseEvent) {
+						// advance
+						if (dialogueActive) {
+							if (clickCount <= active.size() - 2) {
+								clickCount++;
+
+								if (top < active.size()) slot1.setText(active.get(top));
+								if (middle <= active.size() - 1) slot2.setText(active.get(middle));
+								if (bottom <= active.size() - 2) slot3.setText(active.get(bottom));
+								top++; middle++; bottom++;
+							}
+							
+							if (active.get(top).equals(" ") && clickCount > 3) {
+								active.clear();
+								animateButtonIn(nextC);
+								slot1.setText(" ");
+								slot2.setText(" ");
+								slot3.setText(" ");
+								dialogueActive = false;
+								clickCount = 1;
+								top = 0;
+								middle = 1;
+								bottom = 2;
+								animateCharacterOut(activeCharacter);
+							}
+
+						} 
+					}
+				});
+			    
+			    
 			    pane.getChildren().add(handler);
 			    runDay(handler);
 			} catch (FileNotFoundException e) {
@@ -234,6 +281,9 @@ public class DayBuilder {
 					    characterView.setLayoutX(1280);
 					    characterView.setLayoutY(-20);
 
+					    active.clear();
+						for (int i = 0; i < 3; i++) active.add(" ");
+					    
 					    animateCharacterIn(characterView);
 					    
 					    
@@ -273,24 +323,14 @@ public class DayBuilder {
 	
 	
 	public static void playDialog(BorderPane pane, ArrayList<String> dialog) {
-		
 		System.out.println(dialog.toString());
 		
-		ArrayList<String> active = new ArrayList<>();
-		
-		//active.clear();
-		
-		for (int i = 0; i < 3; i++) dialog.add(" ");
-		
-		for (int i = 0; i < 2; i++) active.add(" ");
 		active.addAll(dialog); // we need to separate this so we can ensure it is done correctly?
+		for (int i = 0; i < 3; i++) active.add(" ");
 		
 		
 		VBox container = new VBox(5);
 		
-		Text slot1 = new Text("");
-		Text slot2 = new Text("");
-		Text slot3 = new Text("");
 		
 		slot1.setId("dialog-text");
 		slot2.setId("dialog-text");
@@ -309,50 +349,7 @@ public class DayBuilder {
 		
 		int length = active.size();
 		
-		pane.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
-			
-			// it appears that the error occurs in the inheritance here somehow?
-			
-			
-			
-			
-			int top = 0;
-			int middle = 1;
-			int bottom = 2;
-			int clickCount = 1;
-			
-			@Override
-			public void handle(MouseEvent mouseEvent) {
-				// advance
-				if (dialogueActive) {
-					if (clickCount <= length - 2) {
-						clickCount++;
-
-						if (top < length) slot1.setText(active.get(top));
-						if (middle <= length - 1) slot2.setText(active.get(middle));
-						if (bottom <= length - 2) slot3.setText(active.get(bottom));
-						top++; middle++; bottom++;
-					
-						
-					}
-					
-					if (active.get(top).equals(" ") && clickCount > 3) {
-						active.clear();
-						animateButtonIn(nextC);
-						slot1.setText(" ");
-						slot2.setText(" ");
-						slot3.setText(" ");
-						dialogueActive = false;
-						clickCount = 1;
-						top = 0;
-						middle = 1;
-						bottom = 2;
-						animateCharacterOut(activeCharacter);
-					}
-
-				} 
-			}
-		});
+		
 		
 	}
 	
@@ -480,6 +477,7 @@ public class DayBuilder {
 		translate.setCycleCount(1); 
 		translate.setAutoReverse(false); 
 		translate.setOnFinished(e -> dialogueActive = true);
+		
 		translate.play();
 		return translate;
 	}
