@@ -59,6 +59,7 @@ public class DayBuilder {
 	private static Button nextC = new Button();
 	private static int index = 0;
 	private static boolean dialogueActive = false;
+	private static ImageView activeCharacter;
 	//private static ImageView currentCharacter = null;
 	
 	
@@ -225,6 +226,9 @@ public class DayBuilder {
 					try {
 						Image image = new Image(new FileInputStream("./resources/characters/" + character.getName() + ".png"));
 					    ImageView characterView = new ImageView(image); 
+					    
+					    activeCharacter = characterView;
+					    
 					    today.getChildren().set(1, characterView); 
 					    characterView.setManaged(false);
 					    characterView.setLayoutX(1280);
@@ -239,7 +243,7 @@ public class DayBuilder {
 					   
 					    // some kind of event listener to control the flow of options
 						
-					    dialogueActive = true;
+					    //dialogueActive = true;
 					    ArrayList<String> dialogue = NPC.getDialogue(character.getName(), day);
 						playDialog(handler, dialogue);
 						
@@ -309,6 +313,9 @@ public class DayBuilder {
 			
 			// it appears that the error occurs in the inheritance here somehow?
 			
+			
+			
+			
 			int top = 0;
 			int middle = 1;
 			int bottom = 2;
@@ -320,12 +327,7 @@ public class DayBuilder {
 				if (dialogueActive) {
 					if (clickCount <= length - 2) {
 						clickCount++;
-						// fade all 3 out
-						// add next 3 to list
-						// fade in 1 by 1
-						
-						//active.add(dialog.get(count));
-						//active.remove(0);
+
 						if (top < length) slot1.setText(active.get(top));
 						if (middle <= length - 1) slot2.setText(active.get(middle));
 						if (bottom <= length - 2) slot3.setText(active.get(bottom));
@@ -345,11 +347,10 @@ public class DayBuilder {
 						top = 0;
 						middle = 1;
 						bottom = 2;
+						animateCharacterOut(activeCharacter);
 					}
 
-				} else {
-					// animate next character button back in
-				}
+				} 
 			}
 		});
 		
@@ -478,7 +479,7 @@ public class DayBuilder {
 		translate.setByX(-590);
 		translate.setCycleCount(1); 
 		translate.setAutoReverse(false); 
-		translate.setOnFinished(e -> System.out.println("lol"));
+		translate.setOnFinished(e -> dialogueActive = true);
 		translate.play();
 		return translate;
 	}
@@ -493,6 +494,7 @@ public class DayBuilder {
 		translate.setCycleCount(1); 
 		translate.setAutoReverse(false); 
 		translate.play(); 
+		//translate.setOnFinished(e -> );
 		return translate;
 		
 		
@@ -531,6 +533,7 @@ public class DayBuilder {
 		translate.setCycleCount(1); 
 		translate.setAutoReverse(false); 
 		translate.play(); 
+		//translate.setOnFinished(e -> dialogueActive = true);
 		return translate;
 		
 	}
