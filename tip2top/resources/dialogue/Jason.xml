@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Jason>
+
+	<upgrade>
+		<print>???: Good morning.</print>
+		<print>You: Hello.</print>
+		<print>What can I do for you today?</print>
+		<print>Jason: I’m a returning customer, Jason.</print>
+		<print>Jason: I would like to upgrade my room.</print>
+		<print>You: Okay, that’s fine.</print>
+		<print>You: Which tier would you like to upgrade to?</print>
+		<print>Jason: To Premium, up from Basic.</print>
+		<print>Jason: A premium room costs $45, right?</print>
+		<print>You: The price for a Premium room is actually...</print>
+	</upgrade>
+
+		<upgrade_a>
+			<print>You: Wait, the price is actually $30.</print>
+			<print>Jason: Oh, thank you.</print>
+		</upgrade_a>
+	
+		<upgrade_b>
+			<print>You: Wait, the price is actually $55.</print>
+			<print>Jason: Oh, my bad.</print>
+		</upgrade_b>
+	
+		<upgrade_c>
+			<print>You: Wait, the price is actually $40.</print>
+			<print>Jason: Oh, my bad.</print>
+		</upgrade_c>
+	
+		<upgrade_d>
+			<print>You: Wait, the price is actually $65.</print>
+			<print>Jason: Wow, that’s quite a price.</print>
+		</upgrade_d>
+
+
+</Jason>

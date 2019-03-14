@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Tiff>
+
+	<iceCream>
+		<print>???: …</print>
+		<print>You: …</print>
+		<print>You: … hello?</print>
+		<print>???: Dzień dobry.</print>
+		<print>You: Sorry, do you speak English?</print>
+		<print>???: Yes, I do.</print>
+		<print>???: I’d like a basic room please.</print>
+		<print>You: Alright, can I get your name?</print>
+		<print>You: And how many days will you be staying with us?</print>
+		<print>Tiffany: Tiffany. I’ll be staying for a week.</print>
+		<print>You: Alright, sounds good.</print>
+		<print>You: Please enjoy your stay!</print>
+		<print>Tiffany: Actually, I was eating some ice cream earlier...</print>
+		<print>Tiffany: And I was wondering if you’d like to eat some with me... in my room?</print>
+	</iceCream>
+	
+		<iceCream_yes>
+			<print>You: Uh, alright. Let’s go.</print>
+			<print>Tiffany: Chocolate, Vanilla, or Mango?</print>
+			<print>You: I'll have chocolate, please.</print>
+			<print>Tiffany: So... do you like anime?</print>
+			<print>You: Unfortunately I'm not an avid fan.</print>
+			<print>Tiffany: That's alright...</print>
+			<print>Tiffany: You should watch (Tiff please add anime references here).</print>
+			<print>You: The one about (more anime references)?</print>
+			<print>You: (feel free to weeb out here)</print>
+			<print>You: ... Okay, I should probably head back to the front desk.</print>
+			<print>Tiffany: I had a great time ;)</print>
+			<print>Tiffany: See you!</print>
+		</iceCream_yes>
+	
+		<iceCream_no>
+			<print>You: Uhm… No thank you.</print>
+			<print>Tiffany: D:</print>
+			<print>Tiffany: Are you sure?</print>
+			<print>Tiffany: You can... still come to room... if you want.</print>
+			<print>You: I’m really alright, thanks...</print>
+		</iceCream_no>
+	
+</Tiff>

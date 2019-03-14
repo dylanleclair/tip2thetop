@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Dylan>
+
+	<firstDay>
+		<print>???: Hey there friend, what’s up?</print>
+		<print>You: Hi, what can I do for you today?</print>
+		<print>???: I’d like a basic room please. These rooms definitely aren’t cheap y’know.</print>
+		<print>???: I prefer the past to the present and the present to the future.</print>
+		<print>You: Alright... What’s your name?</print>
+		<print>Dylan: Dylan. I’ll be staying for two days.</print>
+		<print>You: Okay, sounds good.</print>
+	</firstDay>
+
+</Dylan>

@@ -4,9 +4,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
-
-import com.sun.corba.se.spi.orbutil.fsm.State;
-
 import javafx.animation.Animation.Status;
 import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
@@ -38,7 +35,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
 
 /**
  * Builds the scenes / related objects necessary for each day of the game. 
@@ -175,8 +171,6 @@ public class DayBuilder {
 			
 		}
 	
-	
-	
 	/**
 	 * Main logical programming system for each day - move to whatever class handles each day
 	 * This is literally the SUBSTANCE of our program, so don't mess with it.
@@ -252,7 +246,10 @@ public class DayBuilder {
 	
 	
 	public static void playDialog(BorderPane pane, ArrayList<String> dialog) {
-		ArrayList<String> active = new ArrayList<String>();
+
+		// get the array list for the given npc and prompt
+		ArrayList<String> active = Reader.getDialogue("Tiff", "iceCream_yes");
+		
 		active.add("one");
 		active.add("two");
 		active.add("three");
@@ -454,5 +451,6 @@ public class DayBuilder {
 	
 	
 	// I heard you like light theme
+	//fok outta here m8 
 	
 }

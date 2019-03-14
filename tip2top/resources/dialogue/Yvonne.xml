@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Yvonne>
+
+	<russian>
+		<print>Yvonne: Hello.</print>
+		<print>You: ...Hello?</print>
+		<print>Yvonne: I’d like to book a room for the next week.</print>
+		<print>You: Uh, okay. What’s your name?</print>
+		<print>Yvonne: Yvonne. Did you not read the dialogue?</print>
+		<print>You: Uh... What tier would you like?</print>
+		<print>Yvonne: Luxury.</print>
+		<print>You: Wait, are you a guitar player?</print>
+		<print>Yvonne: No, this is strictly for business purposes.</print>
+		<print>Yvonne: Anyways, are you Russian?</print>
+	</russian>
+
+	<russian_yes>
+		<print>Yvonne: Excellent. See you soon.</print>
+	</russian_yes>
+	
+	<russian_no>
+		<print>Yvonne: What a shame. Better be extra careful then, they’re watching.</print>
+		<print>You: What do you mean?</print>
+		<print>Yvonne: ...See you soon.</print>
+	</russian_no>
+	
+	<russian_why>
+		<print>Yvonne: Nevermind.</print>
+	</russian_why>
+
+
+</Yvonne>

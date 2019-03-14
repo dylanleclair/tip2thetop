@@ -74,7 +74,8 @@ public class NPC {
 		if (character.equalsIgnoreCase("Dylan")) {
 			
 		} else if (character.equalsIgnoreCase("Tiff")) {
-			queue.add("lmao");
+			queue.add("...");
+			queue.add("Hello.");
 		} else if (character.equalsIgnoreCase("Yvonne")) {
 			queue.add("rip");
 		} else if (character.equalsIgnoreCase("Jason")) {

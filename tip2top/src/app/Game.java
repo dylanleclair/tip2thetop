@@ -60,7 +60,7 @@ public class Game extends Application {
 			window.setResizable(false);
 			
 			// plays the main theme when the game starts up
-			Sound.mainTheme();
+			Sound.play("hotel_california.mp3");
 			
 			
 			window.show();
