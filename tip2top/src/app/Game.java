@@ -13,7 +13,6 @@ public class Game extends Application {
 	
 	Stage window;
 	Scene menusc, opening, loadsc, helpsc, createsavesc, mainscene;
-	private GameBuilder gbuilder = new GameBuilder();
 	
 	/**
 	 * Launches the menu screen, which has three different paths. 
@@ -35,17 +34,17 @@ public class Game extends Application {
 			// Opening Scene
 			StackPane openingPane = new StackPane(); // Container objects for this scene
 			opening = new Scene(openingPane,1280,720); // Creates actual scene
-			gbuilder.buildOpeningScreen(openingPane, opening, window);
+			GameBuilder.buildOpeningScreen(openingPane, opening, window);
 			
 			// Load Screen (creates new scene using load screen from GameBuilder		
-			loadsc = new Scene (gbuilder.buildLoadScreen(window, menusc), 1280, 720);
+			loadsc = new Scene (GameBuilder.buildLoadScreen(window, menusc), 1280, 720);
 	
 			// Help Screen (creates new scene using help screen from GameBuilder as root note)
-			helpsc = new Scene(gbuilder.buildHelpScreen(window, menusc), 1280,720);
+			helpsc = new Scene(GameBuilder.buildHelpScreen(window, menusc), 1280,720);
 
 			// Loading and starting the screen. 
 			
-			createsavesc = new Scene(gbuilder.buildSaveScreen(window, opening, menusc), 1280,720);
+			createsavesc = new Scene(GameBuilder.buildSaveScreen(window, opening, menusc), 1280,720);
 			
 			
 			// Main scene for the game
@@ -80,7 +79,10 @@ public class Game extends Application {
 	public static void main(String[] args) {
 		boolean textV = false; // in case of text version integration
 		if (textV == false) {
+			
+			Save.initializeSaves();
 			launch(args);
+			
 		}
 		else {
 			
