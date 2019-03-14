@@ -26,14 +26,15 @@ import javafx.scene.text.Text;
 
 public class GameBuilder {
 	
-	private static int openingCount = 10;
-	private static boolean saveSet = false;
+	private int openingCount = 10;
+	private boolean saveSet = false;
+	Save saveFile = new Save();
 	
 	/**
 	 * Loads opening scene onto a StackPane, reading files named "screen(digit)" from path.
 	 * @param pane - the StackPane to load images onto, from back to front.
 	 */
-	public static void loadOpening (StackPane pane) {
+	public void loadOpening (StackPane pane) {
 		for (int i = 11; i >= 1; i--) {
 			Image image;
 			try {
@@ -50,7 +51,7 @@ public class GameBuilder {
 	 * Translates a node downward and off of the screen. 
 	 * @param node a node, to be translated off the screen.
 	 */
-	public static void fadeImageDown (Node node) {
+	public void fadeImageDown (Node node) {
 		TranslateTransition translate = new TranslateTransition();
 		translate.setDuration(Duration.millis(2500)); 
 		translate.setNode(node);
@@ -61,11 +62,11 @@ public class GameBuilder {
 	}
 	
 	
-	public static void startPlayingButton(Stage window, Scene opening, TextField text) {
+	public void startPlayingButton(Stage window, Scene opening, TextField text) {
 		window.setScene(opening);
 		saveSet = true;
 		String savename = text.getText();
-		Save.createSaveFile(savename);
+		saveFile.createSaveFile(savename);
 	}
 	
 	/**
@@ -76,7 +77,7 @@ public class GameBuilder {
 	 * @param loadsc a Scene - the load screen to build into the "Load Screen" button of the menu.
 	 * @param helpsc a Scene - the help screen to build into the "Help" button of the menu. 
 	 */
-	public static void buildMenu (BorderPane menu, Stage window, Scene opening, Scene loadsc, Scene helpsc, Scene createsavesc) {
+	public void buildMenu (BorderPane menu, Stage window, Scene opening, Scene loadsc, Scene helpsc, Scene createsavesc) {
 		try {
 		Text title = new Text("");
 		title.setFont(new Font(120));
@@ -136,7 +137,8 @@ public class GameBuilder {
 	 * @param menusc - the Scene we want to switch back to when "Back" is pressed.
 	 * @return a BorderPane, which is the Pane we want to display
 	 */
-	public static BorderPane buildSaveScreen(Stage window, Scene openingsc, Scene menusc) {
+	public BorderPane buildSaveScreen(Stage window, Scene openingsc, Scene menusc) {
+		saveFile.initializeSaves();
 		BorderPane setSaveName = new BorderPane();
 		
 		TextField enterName = new TextField();
@@ -180,7 +182,7 @@ public class GameBuilder {
 	 * @param openingPane - the StackPane which stores the images for the opening sequence.
 	 * @param opening - the Scene for the opening, which we build an eventhandler onto.
 	 */
-	public static void buildOpeningScreen (StackPane openingPane, Scene opening, Stage window) {
+	public void buildOpeningScreen (StackPane openingPane, Scene opening, Stage window, Scene mainscene) {
 		
 		loadOpening(openingPane); // loads the images for the opening sequence and display them on top of each other
 		
@@ -196,10 +198,8 @@ public class GameBuilder {
 			    		openingCount--;
 			    		//Pat added to change scene to start of day
 			    		if (openingCount == -1) {
-			    			
-			    			Scene main = new Scene(DayBuilder.buildMainScreen(window), 1280, 720);
-			    			main.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
-							window.setScene(main);
+			    			mainscene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+							window.setScene(mainscene);
 			    			//Scene dayIntro = new Scene(DayBuilder.startDay(window), 1280, 720);
 			    			//window.setScene(dayIntro);
 		    		}
@@ -221,7 +221,7 @@ public class GameBuilder {
 	 * @param menusc - the menu scene (needed for user to return to menu)
 	 * @return the built "Load Game" screen (BorderPane), to be built into a scene (as a root node).
 	 */
-	public static BorderPane buildLoadScreen(Stage window, Scene menusc) {
+	public BorderPane buildLoadScreen(Stage window, Scene menusc) {
 		BorderPane loadScreen = new BorderPane();
 		Button backToMenu = new Button();
 		backToMenu.setOnAction(e -> window.setScene(menusc));
@@ -244,7 +244,7 @@ public class GameBuilder {
 		selectSave.setStyle("-fx-base: #000000;");
 		
 		
-		ListView<String> listView = new ListView<String>(Save.getSaves());
+		ListView<String> listView = new ListView<String>(saveFile.getSaves());
 		
 
 		selectSave.setOnAction(e -> loadSaveButton(listView));
@@ -269,10 +269,10 @@ public class GameBuilder {
 	 * Handles events for the load save button on the load screen
 	 * @param listview  a ListView, the ListView displayed on the load screen.
 	 */
-	public static void loadSaveButton(ListView<String> listview) {
+	public void loadSaveButton(ListView<String> listview) {
 		//Save.selectSave(index);
 		String selected = (String) listview.getSelectionModel().getSelectedItem();
-		Save.loadSave(selected);
+		saveFile.loadSave(selected);
 		// finish implementing -- this is for the load save button on loading screen
 	}
 	
@@ -288,7 +288,7 @@ public class GameBuilder {
 	 * @param menusc - the menu scene (needed for user to return to menu)
 	 * @return the built "Help" screen (BorderPane), to be built into a scene (as a root node)
 	 */
-	public static BorderPane buildHelpScreen(Stage window, Scene menusc) {
+	public BorderPane buildHelpScreen(Stage window, Scene menusc) {
 		BorderPane helpScreen = new BorderPane();
 		Button backToMenuH = new Button("Back to the menu");
 		backToMenuH.setOnAction(e -> window.setScene(menusc));

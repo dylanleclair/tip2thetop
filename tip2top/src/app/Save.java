@@ -12,8 +12,8 @@ import javafx.collections.ObservableList;
 
 public class Save {
     
-	private static ObservableList<String> names = FXCollections.observableArrayList();
-	protected static File currentSave;
+	private ObservableList<String> names = FXCollections.observableArrayList();
+	protected File currentSave;
 	
 	// make an arraylist of files, iterate through saves directory and add each files to the arraylist
 	// that way, it's easier to access diff saves / get number of saves / etc
@@ -23,7 +23,7 @@ public class Save {
 	 * this information on the Load Game interface. Is also referenced when loading saves
 	 * and writing saves as it stores the names of them all.
 	 */
-	public static void initializeSaves() {
+	public void initializeSaves() {
 		File directory = new File("./resources/saves");
 		String[] filesInDir = directory.list();
 		for (int i = 0; i < filesInDir.length; i++) {
@@ -31,7 +31,7 @@ public class Save {
 		}
 	}
 	
-	public static ObservableList<String> getSaves() {
+	public ObservableList<String> getSaves() {
 		return names;
 	}
 	
@@ -39,7 +39,7 @@ public class Save {
 	 * This method is used to load a save file, putting a user into the game at the start of the day.
 	 * @param name a String, the name of the file to be read from "saves" folder.
 	 */
-	public static void loadSave(String name) {
+	public void loadSave(String name) {
 		
 		currentSave = new File("./resources/saves/" + name);
 		
@@ -61,7 +61,7 @@ public class Save {
 	}
 	
 	//not being used, may be able to delete
-	public static File getSave() { // may be needed to invoke saveWriter - keep for now
+	public File getSave() { // may be needed to invoke saveWriter - keep for now
 		return currentSave;
 	}
 	
@@ -70,7 +70,7 @@ public class Save {
 	 * This method "prints" the necessary info for a save file into the save file.
 	 * @param out a PrintWriter, which writes files as if you are printing output. 
 	 */
-    public static void generateSave (PrintWriter out) {
+    public void generateSave (PrintWriter out) {
     	out.println("hello");
     	// creating two string methods for diff objects which hold variables to be stored could be v helpful
     	// other variables to be stored in save here
@@ -81,7 +81,7 @@ public class Save {
      * Creates a new save file. This is only ever done at the start of a new game.
      * @param filename - a String, the name of the file to be generated as a .txt
      */
-    public static void createSaveFile(String filename) {
+    public void createSaveFile(String filename) {
     
     	filename = filename.replace(' ', '-');
     	File defaultSave = new File("./resources/saves/" + filename + ".txt");
@@ -100,7 +100,7 @@ public class Save {
      * To be used at the end of each day as part of the transitional screen.
      * @param saveFile a File, the file for the save information to be written to. (current save)
      */
-    public static void saveWriter(File saveFile) {
+    public void saveWriter(File saveFile) {
     	
     	try {
         	PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(saveFile.getPath())));
