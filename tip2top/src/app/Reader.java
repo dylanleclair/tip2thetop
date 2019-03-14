@@ -25,7 +25,6 @@ import java.io.File;
  * ex: getDialogue("Tiff", "iceCream_yes");
  * 
  * This will play the dialogue if the user says yes to the choice within the iceCream prompt.
- * dsakhasdf
  * 
  * @author Yvonne
  */
