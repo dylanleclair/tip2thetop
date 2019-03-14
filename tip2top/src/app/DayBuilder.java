@@ -130,7 +130,6 @@ public class DayBuilder {
 			    pane.getChildren().add(imageView2);
 			    
 			    
-			    
 			    image3 = new Image(new FileInputStream("./resources/dayimg/desk_b.png"));
 			    ImageView imageView3 = new ImageView(image3); 
 			    pane.getChildren().add(imageView3);
