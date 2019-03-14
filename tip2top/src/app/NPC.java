@@ -2,6 +2,7 @@ package app;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -11,8 +12,6 @@ public class NPC {
 	
 	private String name;
 	private int roomNumber;
-	private static boolean dylan_1_yes;
-	
 	
 	// Constructors
 	
@@ -56,7 +55,11 @@ public class NPC {
 		switch(day) {
 		
 		case 1:
+
 			List<NPC> namesList = Arrays.asList(new NPC("Dylan"), new NPC("Jason"),new NPC("Yvonne"), new NPC("Harriet"), new NPC("Patricia"));
+			Collections.shuffle(namesList);
+			namesList.add(new NPC("Tiff"));
+			namesList.add(0, new NPC("Aleksandra"));
 			dailyCharacters.clear();
 			dailyCharacters.addAll(namesList);
 		
@@ -86,14 +89,7 @@ public class NPC {
 				//ex for a branch -- make variables global so i can toString them
 				
 				// stuff leading up to a split / branch
-				
-				if (dylan_1_yes) {
-					// yes
-				}
-				else {
-					// no
-				}
-				
+
 			} else if (day == 2) { 
 				
 			} else if (day == 3) {
