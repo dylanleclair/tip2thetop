@@ -6,12 +6,9 @@ import java.util.List;
 
 
 public class NPC {
-
-	private static ArrayList<NPC> dailyCharacters= new ArrayList<>();
 	
 	private String name;
 	private int roomNumber;
-	private static boolean dylan_1_yes;
 	
 	
 	// Constructors
@@ -42,17 +39,10 @@ public class NPC {
 		this.roomNumber = roomNumber;
 	}
 	
-	public static ArrayList<NPC> getDailyCharacters() {
-		return dailyCharacters;
-	}
-	
-	public static void setDailyCharacters(ArrayList<NPC> dailyCharacters) {
-		NPC.dailyCharacters = dailyCharacters;
-	}
-
 	// Static methods for use with dailyCharacters in other classes
 	
-	public static void initializeCharacters(int day) { // finish this to modify per day
+	public ArrayList<NPC> initializeCharacters(int day) { // finish this to modify per day
+		ArrayList<NPC> dailyCharacters= new ArrayList<>();
 		switch(day) {
 		
 		case 1:
@@ -61,6 +51,7 @@ public class NPC {
 			dailyCharacters.addAll(namesList);
 		
 		}
+		return dailyCharacters;
 	}
 		
 	public String toString() {
@@ -68,7 +59,7 @@ public class NPC {
 	}
 		
 		
-	public static ArrayList<String> getDialogue(String character, int day) {
+	public ArrayList<String> getDialogue(String character, int day) {
 		// returns the dialogue for the character given the day and previous variables
 		
 		ArrayList<String> queue = new ArrayList<String>();
@@ -87,12 +78,6 @@ public class NPC {
 				
 				// stuff leading up to a split / branch
 				
-				if (dylan_1_yes) {
-					// yes
-				}
-				else {
-					// no
-				}
 				
 			} else if (day == 2) { 
 				
