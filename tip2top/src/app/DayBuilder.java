@@ -35,6 +35,7 @@ import javafx.util.Duration;
 public class DayBuilder {
 
 	private StackPane today = new StackPane();
+	NPC manager = new NPC(null);
 
 	public StackPane getToday() {
 		return today;
@@ -178,8 +179,7 @@ public class DayBuilder {
 
 	public void runDay(BorderPane handler) {
 		if (day == 1) {
-			NPC.initializeCharacters(day);
-			ArrayList<NPC> dailyCharacters = NPC.getDailyCharacters();
+			ArrayList<NPC> dailyCharacters = manager.initializeCharacters(day);
 
 			Collections.shuffle(dailyCharacters);
 			dailyCharacters.add(new NPC("Tiff"));
@@ -228,7 +228,7 @@ public class DayBuilder {
 					// some kind of event listener to control the flow of options
 
 					// dialogueActive = true;
-					ArrayList<String> dialogue = NPC.getDialogue(character.getName(), day);
+					ArrayList<String> dialogue = manager.getDialogue(character.getName(), day);
 					playDialog(handler, dialogue);
 
 					// System.out.println("tracker lol");
