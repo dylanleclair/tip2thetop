@@ -88,6 +88,7 @@ public class Game extends Application {
 		boolean textV = false; // in case of text version integration
 		if (textV == false) {
 			
+			Save.initializeSaves();
 			launch(args);
 			
 			

@@ -28,7 +28,6 @@ public class GameBuilder {
 	
 	private int openingCount = 10;
 	private boolean saveSet = false;
-	Save saveFile = new Save();
 	
 	/**
 	 * Loads opening scene onto a StackPane, reading files named "screen(digit)" from path.
@@ -66,7 +65,7 @@ public class GameBuilder {
 		window.setScene(opening);
 		saveSet = true;
 		String savename = text.getText();
-		saveFile.createSaveFile(savename);
+		Save.createSaveFile(savename);
 	}
 	
 	/**
@@ -138,7 +137,6 @@ public class GameBuilder {
 	 * @return a BorderPane, which is the Pane we want to display
 	 */
 	public BorderPane buildSaveScreen(Stage window, Scene openingsc, Scene menusc) {
-		saveFile.initializeSaves();
 		BorderPane setSaveName = new BorderPane();
 		
 		TextField enterName = new TextField();
@@ -244,7 +242,7 @@ public class GameBuilder {
 		selectSave.setStyle("-fx-base: #000000;");
 		
 		
-		ListView<String> listView = new ListView<String>(saveFile.getSaves());
+		ListView<String> listView = new ListView<String>(Save.getSaves());
 		
 
 		selectSave.setOnAction(e -> loadSaveButton(listView));
@@ -272,7 +270,7 @@ public class GameBuilder {
 	public void loadSaveButton(ListView<String> listview) {
 		//Save.selectSave(index);
 		String selected = (String) listview.getSelectionModel().getSelectedItem();
-		saveFile.loadSave(selected);
+		Save.loadSave(selected);
 		// finish implementing -- this is for the load save button on loading screen
 	}
 	
