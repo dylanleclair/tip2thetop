@@ -13,7 +13,9 @@ public class Game extends Application {
 	
 	Stage window;
 	Scene menusc, opening, loadsc, helpsc, createsavesc, mainscene;
-	
+	private static GameBuilder gameb = new GameBuilder();
+	private static DayBuilder dayb = new DayBuilder();
+
 	/**
 	 * Launches the menu screen, which has three different paths. 
 	 * New game, load a game, or "Help". Defines a different scene for each
@@ -31,20 +33,26 @@ public class Game extends Application {
 			BorderPane menu = new BorderPane();
 			menusc = new Scene(menu,1280,720, Color.BLACK);
 			
+			
+			// Main scene
+			
+			dayb.loadDay();
+			mainscene = new Scene(dayb.getToday(), 1280, 720);
+			
 			// Opening Scene
 			StackPane openingPane = new StackPane(); // Container objects for this scene
 			opening = new Scene(openingPane,1280,720); // Creates actual scene
-			GameBuilder.buildOpeningScreen(openingPane, opening, window);
+			gameb.buildOpeningScreen(openingPane, opening, window, mainscene);
 			
-			// Load Screen (creates new scene using load screen from GameBuilder		
-			loadsc = new Scene (GameBuilder.buildLoadScreen(window, menusc), 1280, 720);
+			// Load Screen (creates new scene using load screen from GameBuilder	
+			loadsc = new Scene (gameb.buildLoadScreen(window, menusc), 1280, 720);
 	
 			// Help Screen (creates new scene using help screen from GameBuilder as root note)
-			helpsc = new Scene(GameBuilder.buildHelpScreen(window, menusc), 1280,720);
+			helpsc = new Scene(gameb.buildHelpScreen(window, menusc), 1280,720);
 
 			// Loading and starting the screen. 
 			
-			createsavesc = new Scene(GameBuilder.buildSaveScreen(window, opening, menusc), 1280,720);
+			createsavesc = new Scene(gameb.buildSaveScreen(window, opening, menusc), 1280,720);
 			
 			
 			// Main scene for the game
@@ -54,7 +62,7 @@ public class Game extends Application {
 			
 			//menusc.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			
-			GameBuilder.buildMenu(menu, window, opening, loadsc, helpsc, createsavesc);
+			gameb.buildMenu(menu, window, opening, loadsc, helpsc, createsavesc);
 			window.setScene(menusc);
 			window.setTitle("Tip to the Top");
 			window.setResizable(false);
@@ -82,6 +90,8 @@ public class Game extends Application {
 			
 			Save.initializeSaves();
 			launch(args);
+			
+			
 			
 		}
 		else {
