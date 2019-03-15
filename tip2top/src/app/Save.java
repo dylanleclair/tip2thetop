@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,6 +15,9 @@ public class Save {
     
 	private static ObservableList<String> names = FXCollections.observableArrayList();
 	protected static File currentSave;
+	protected static int dayOn;
+	protected static int goodPoints;
+	protected static int badPoints;
 	
 	// make an arraylist of files, iterate through saves directory and add each files to the arraylist
 	// that way, it's easier to access diff saves / get number of saves / etc
@@ -42,7 +46,7 @@ public class Save {
 	public static void loadSave(String name) {
 		
 		currentSave = new File("./resources/saves/" + name);
-		
+		ArrayList<String> lines = new ArrayList<String>();
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(currentSave.getPath()));
 			String line = reader.readLine();			
@@ -51,12 +55,20 @@ public class Save {
 			// will be diff for each line tho, so looping will be different.. maybe use an array to simplify / shorten
 			while (line != null) {
 				System.out.println(line);
+				lines.add(line);
 				line = reader.readLine();
+				
 			}
 			reader.close();
 		} catch (Exception e) {
 			
 		}
+		
+		dayOn = Integer.parseInt(lines.get(0));
+		goodPoints = Integer.parseInt(lines.get(1));
+		badPoints = Integer.parseInt(lines.get(2));
+		
+		//System.out.println(dayOn +", "+ goodPoints +", "+ badPoints);
 		// here we would start transition into whatever day // start the gameplay
 	}
 	
@@ -71,7 +83,9 @@ public class Save {
 	 * @param out a PrintWriter, which writes files as if you are printing output. 
 	 */
     public static void generateSave (PrintWriter out) {
-    	out.println("hello");
+    	out.println("1");//Class.getDay() the date the players currently on
+    	out.println("2");//Class.getGoodPoints player good points
+    	out.println("5");//Class.getBadPOints player bad points
     	// creating two string methods for diff objects which hold variables to be stored could be v helpful
     	// other variables to be stored in save here
     	// we should draft up a consistent format before we implement this -- we don't want to have to change order. 
@@ -92,7 +106,7 @@ public class Save {
     	} catch (Exception e) {
     	
     	}
-
+    	saveWriter(defaultSave);
     }
     
     /**
