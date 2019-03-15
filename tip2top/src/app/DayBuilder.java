@@ -22,6 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -127,7 +128,8 @@ public class DayBuilder {
 		
 		
 		public static void loadDay (StackPane pane) {
-			Image image, image2, image3, image4, image5;
+			Image image, image2, image3, image5;
+			Image image4;
 			try {
 				image = new Image(new FileInputStream("./resources/dayimg/background.jpg"));
 			    ImageView imageView = new ImageView(image); 
@@ -147,15 +149,57 @@ public class DayBuilder {
 			    ImageView imageView3 = new ImageView(image3); 
 			    pane.getChildren().add(imageView3);
 			    
-			    image4 = new Image(new FileInputStream("./resources/dayimg/keys.png"));
-			    ImageView imageView4 = new ImageView(image4); 
-			    pane.getChildren().add(imageView4);
-			    
 			    image5 = new Image(new FileInputStream("./resources/dayimg/dialogbox.png"));
 			    ImageView imageView5 = new ImageView(image5); 
 			    imageView5.setManaged(false);
 			    imageView5.setLayoutY(-720);
 			    pane.getChildren().add(imageView5);
+			    
+			    //addKeys(pane);
+			    
+			    //for(int i=1; i<=12;i++) {
+				    image4 = new Image(new FileInputStream("./resources/dayimg/keys/key1.png"));
+				    
+				    ImageView img = new ImageView(image4);
+				    
+				    DropShadow shadow = new DropShadow();
+				    shadow.setRadius(50);
+				    shadow.setOffsetX(8);
+				    shadow.setOffsetY(8);	
+				    
+				    /*
+				    DropShadow highlight = new DropShadow();
+				    highlight.setColor(Color.YELLOW);
+				    highlight.setRadius(50);
+				    Boolean pressed = false;
+				    
+				    img.setEffect(shadow);
+				    
+				    img.addEventHandler(MouseEvent.MOUSE_ENTERED,
+				            new EventHandler<MouseEvent>() {
+				              @Override
+				              public void handle(MouseEvent e) {
+				            	
+				                img.setEffect(highlight);
+				              }
+				            });
+
+				        img.addEventHandler(MouseEvent.MOUSE_EXITED,
+				            new EventHandler<MouseEvent>() {
+				              @Override
+				              public void handle(MouseEvent e) {
+				            	  if(pressed == false) {
+				            		  img.setEffect(shadow);
+				            	  }
+				                
+				              }
+				            });
+				    */
+				    pane.getChildren().add(img);
+			    //}
+			    
+			    
+			    
 			    
 			    
 			    BorderPane handler = new BorderPane();
@@ -260,7 +304,7 @@ public class DayBuilder {
 					
 					if (index == 0) {
 						animateButtonOut(nextC);
-						animateDialogueBoxIn(today.getChildren().get(4)); // 4 is the index of dialogue box in stackpane today
+						animateDialogueBoxIn(today.getChildren().get(3)); // 4 is the index of dialogue box in stackpane today
 					}
 					
 					if (index > 0) {
