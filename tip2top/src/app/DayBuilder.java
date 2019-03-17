@@ -326,7 +326,16 @@ public class DayBuilder {
 	public static void playDialog(BorderPane pane, ArrayList<String> dialog) {
 		System.out.println(dialog.toString());
 		
-		active.addAll(dialog); // we need to separate this so we can ensure it is done correctly?
+		active.addAll(dialog); // added by yvonne
+		/*
+		 * call dialogue 
+		 * end dialogue
+		 * insert choice 
+		 * store choice consequence
+		 * call choice dialogue 
+		 * move on
+		 * repeat
+		 */
 		for (int i = 0; i < 3; i++) active.add(" ");
 		
 		
