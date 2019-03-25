@@ -10,7 +10,9 @@ import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -27,6 +29,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 /**
@@ -50,8 +53,7 @@ public class DayBuilder {
 	// private static int gulagPoints;
 	private ObservableList<String> guests = FXCollections.observableArrayList();
 	private ObservableList<String> email = FXCollections.observableArrayList();
-	private BorderPane amigo = new BorderPane();
-	private Button nextC = new Button();
+	private Button nextC = new Button(); 
 	private int index = 0;
 	private boolean dialogueActive = false;
 	private ImageView activeCharacter;
@@ -59,10 +61,16 @@ public class DayBuilder {
 	private Text slot1 = new Text("");
 	private Text slot2 = new Text("");
 	private Text slot3 = new Text("");
-
+	private ArrayList<NPC> dailyCharacters = manager.initializeCharacters(day);
 	// Pat created this to load images for day
 
-	public void loadDay() {
+	
+	/**
+	 * Loads the basic interface for the day and it's necessary elements.
+	 * @param window
+	 * @param amigoscreen
+	 */
+	public void loadDay(Stage window, Scene amigoscreen) {
 		Image image, image2, image3, image4, image5;
 		try {
 			image = new Image(new FileInputStream("./resources/dayimg/background.jpg"));
@@ -119,6 +127,10 @@ public class DayBuilder {
 
 			// change styling n such later
 
+			accessAmigo.setOnAction(e -> {
+				window.setScene(amigoscreen);
+			});
+			
 			handler.setBottom(accessAmigo);
 			handler.setRight(nextC);
 
@@ -131,6 +143,9 @@ public class DayBuilder {
 				int bottom = 2;
 				int clickCount = 1;
 
+				/**
+				 * The class that handles the advance of the dialog as the user clicks the mouse.
+				 */
 				@Override
 				public void handle(MouseEvent mouseEvent) {
 					// advance
@@ -149,6 +164,7 @@ public class DayBuilder {
 							bottom++;
 						}
 
+						// the conditional that evaluates if a character's dialog is complete. (needs tuning)
 						if (active.get(top).equals(" ") && clickCount > 3) {
 							active.clear();
 							animateButtonIn(nextC);
@@ -160,7 +176,7 @@ public class DayBuilder {
 							top = 0;
 							middle = 1;
 							bottom = 2;
-							animateCharacterOut(activeCharacter);
+							animateCharacterOut(activeCharacter); // change this to next character button.
 						}
 
 					}
@@ -177,12 +193,15 @@ public class DayBuilder {
 
 	}
 
+	/**
+	 * Handles the "day" of events as a whole. Controls which characters are on the screen. 
+	 * @param handler a BorderPane which stores buttons/other onscreen elements as needed.  (might be causing bugs?)
+	 */
 	public void runDay(BorderPane handler) {
-		if (day == 1) {
-			ArrayList<NPC> dailyCharacters = manager.initializeCharacters(day);
+		if (day == 1) { // i think this is redundant once we make several day functionality?
 
 			Collections.shuffle(dailyCharacters);
-			dailyCharacters.add(new NPC("Tiff"));
+			dailyCharacters.add(new NPC("Tiff")); // move this to initialize characters
 			dailyCharacters.add(0, new NPC("Aleksandra"));
 			animateButtonIn(nextC);
 
@@ -216,14 +235,10 @@ public class DayBuilder {
 					characterView.setLayoutY(-20);
 
 					active.clear();
-					for (int i = 0; i < 3; i++) active.add(" ");
+					for (int i = 0; i < 3; i++) 
+						active.add(" ");
 
 					animateCharacterIn(characterView);
-
-					// SequentialTransition seqT = new
-					// SequentialTransition(animateCharacterIn(characterView).setOnFinished(e ->
-					// System.out.println("Holy fuck")));
-					// seqT.play();
 
 					// some kind of event listener to control the flow of options
 
@@ -231,7 +246,6 @@ public class DayBuilder {
 					ArrayList<String> dialogue = manager.getDialogue(character.getName(), day);
 					playDialog(handler, dialogue);
 
-					// System.out.println("tracker lol");
 
 					// NPC.getDialogue(character.getName(),day);
 					// do character dialogue -- listeners / etc will be muted so the player can't
@@ -253,6 +267,12 @@ public class DayBuilder {
 		}
 	}
 
+	/**
+	 * Handles the dialog functionality of the game. Responds to mouse click
+	 * @TODO - remove/fix the default / enter key functionality (shit's broke)?
+	 * @param pane a BorderPane, in which the dialog labels are displayed
+	 * @param dialog an ArrayList<String> which stores dialog to be played.
+	 */
 	public void playDialog(BorderPane pane, ArrayList<String> dialog) {
 		System.out.println(dialog.toString());
 
@@ -287,44 +307,61 @@ public class DayBuilder {
 
 	}
 
-	public void buildAmigoScreen() {
-
+	/**
+	 * Builds the main screen of the in-game PC. 
+	 * @param amigo the StackPane of elements to be displayed
+	 * @param window the Stage / main window of the game
+	 * @param mainscene the Scene which is returned to when the Amigo is exited. 
+	 */
+	public void buildAmigoScreen(StackPane amigo, Stage window, Scene mainscene) {
+		
 		// set the background image
+		
+		Image image;
 		try {
-			Image background = new Image(new FileInputStream("./resources/gameimg/amigobkg.png"));
-			BackgroundImage bgImg = new BackgroundImage(background, BackgroundRepeat.NO_REPEAT,
-					BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, null);
-			Background emailbkg = new Background(bgImg);
-			amigo.setBackground(emailbkg);
-		} catch (Exception e) {
+			image = new Image(new FileInputStream("./resources/gameimg/amigobkg.png"));
+			ImageView imageView = new ImageView(image);
+			amigo.getChildren().add(imageView); // 1
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
 		}
 
-		Button viewGuests = new Button();
-		Button viewEmails = new Button();
-		Button exit = new Button();
+		Button viewGuests = new Button("View Guests");
+		Button viewEmails = new Button("View Emails");
+		Button exit = new Button("Exit");
+		
+		// style the buttons
 
-		VBox amigoButtons = new VBox(20);
+		VBox amigoButtons = new VBox(15);
+		StackPane.setMargin(amigoButtons, new Insets(300, 0, 100, 580));
 		amigoButtons.getChildren().addAll(viewGuests, viewEmails, exit);
 
-		amigo.getChildren().add(amigoButtons);
+		amigo.getChildren().add(amigoButtons); // 2
 
-		// viewGuests.setOnAction(e -> amigo.setCenter(checkins));
-		// viewEmails.setOnAction(e -> amigo.setCenter(emails));
-		exit.setOnAction(e -> amigo.getChildren().clear());
+		viewGuests.setOnAction(e -> {
+			amigo.getChildren().clear();
+			buildCheckInScreen(dailyCharacters, amigo);
+		});
+		exit.setOnAction(e -> window.setScene(mainscene));
 
 	}
 
-	public void buildEmailScreen() { // focus on this AFTER the email screen is built
+	/**
+	 * 
+	 * @param amigo
+	 */
+	public void buildEmailScreen(StackPane amigo) { // focus on this AFTER the email screen is built
+
+		Image image;
 		try {
-			amigo.getChildren().clear();
-			Image background = new Image(new FileInputStream("./resources/menuimg/email.jpg"));
-			BackgroundImage bgImg = new BackgroundImage(background, BackgroundRepeat.NO_REPEAT,
-					BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, null);
-			Background emailbkg = new Background(bgImg);
-			amigo.setBackground(emailbkg);
-		} catch (Exception e) {
+			image = new Image(new FileInputStream("./resources/gameimg/amigowindow.jpg"));
+			ImageView imageView = new ImageView(image);
+			amigo.getChildren().add(imageView);
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
 		}
 
+		
 		ListView<String> emails = new ListView<>(email);
 		if (email.isEmpty())
 			email.add("You have no new emails!");
@@ -333,39 +370,44 @@ public class DayBuilder {
 
 	}
 
-	public void buildCheckInScreen(ArrayList<NPC> dailyCharacters) {
+	public void buildCheckInScreen(ArrayList<NPC> dailyCharacters, StackPane amigo) {
+		
+		Image image;
 		try {
-			// clearing the borderpane and setting an appropriate background
-			amigo.getChildren().clear();
-			Image background = new Image(new FileInputStream("./resources/menuimg/checkin.jpg"));
-			BackgroundImage bgImg = new BackgroundImage(background, BackgroundRepeat.NO_REPEAT,
-					BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, null);
-			Background checkinbkg = new Background(bgImg);
-			amigo.setBackground(checkinbkg);
-		} catch (Exception e) {
+			image = new Image(new FileInputStream("./resources/gameimg/amigowindow.jpg"));
+			ImageView imageView = new ImageView(image);
+			amigo.getChildren().add(imageView); // 3
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
 		}
-
-		// building actual elements
-		// initialize background
+		
+		BorderPane handler = new BorderPane();
+		
 		ListView<String> guestlist = new ListView<>(guests);
 		TextField guestName = new TextField("Name");
 		TextField roomNumber = new TextField("Room#");
-		Button addGuest = new Button();
-		Button checkOut = new Button();
-		Button back = new Button();
+		Button addGuest = new Button("add");
+		Button checkOut = new Button("checkout");
+		Button back = new Button("back");
 
 		HBox addName = new HBox(20);
-		addName.getChildren().addAll(guestName, roomNumber, addGuest);
+		addName.getChildren().addAll(guestName, roomNumber, addGuest); 
 
 		VBox buttons = new VBox(20);
 		buttons.getChildren().addAll(checkOut, back);
 
-		amigo.setTop(addName);
-		amigo.setCenter(guestlist);
-		amigo.setRight(buttons);
-
+		handler.setCenter(guestlist);
+		handler.setTop(addName);
+		handler.setRight(buttons);
 		// event handling for buttons
+		
+		guests.add("Sample1");
+		guests.add("Sample 2");
 
+		BorderPane.setMargin(guestlist, new Insets(250,80, 120 ,200));
+		
+		amigo.getChildren().add(handler);
+		
 		addGuest.setOnAction(e -> {
 			NPC temp = new NPC(guestName.getText(), Integer.parseInt(roomNumber.getText().replaceAll("[\\D]", "")));
 			guests.add(temp.toString());
@@ -373,7 +415,6 @@ public class DayBuilder {
 		checkOut.setOnAction(e -> guests.remove(guestlist.getSelectionModel().getSelectedIndex()));
 		back.setOnAction(e -> {
 			amigo.getChildren().clear();
-			buildAmigoScreen();
 		});
 	}
 

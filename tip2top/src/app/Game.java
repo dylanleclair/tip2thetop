@@ -12,7 +12,7 @@ public class Game extends Application {
 	//protected static boolean loadingFromSave = false;
 	
 	Stage window;
-	Scene menusc, opening, loadsc, helpsc, createsavesc, mainscene;
+	Scene menusc, opening, loadsc, helpsc, createsavesc, mainscene, amigoscreen;
 	private static GameBuilder gameb = new GameBuilder();
 	private static DayBuilder dayb = new DayBuilder();
 
@@ -36,8 +36,12 @@ public class Game extends Application {
 			
 			// Main scene
 			
-			dayb.loadDay();
+			StackPane amigo = new StackPane();
+			amigoscreen = new Scene(amigo, 1280, 720);
+			dayb.loadDay(window, amigoscreen);
 			mainscene = new Scene(dayb.getToday(), 1280, 720);
+			dayb.buildAmigoScreen(amigo, window, mainscene);
+			
 			
 			// Opening Scene
 			StackPane openingPane = new StackPane(); // Container objects for this scene
@@ -54,6 +58,8 @@ public class Game extends Application {
 			
 			createsavesc = new Scene(gameb.buildSaveScreen(window, opening, menusc), 1280,720);
 			
+			//BorderPane amigo = dayb.getAmigo();
+			//amigoscreen = new Scene(amigo,1280,720);
 			
 			// Main scene for the game
 			// 	load save or whatever will switch to the main scene after loading the save
