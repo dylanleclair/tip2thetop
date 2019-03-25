@@ -5,6 +5,7 @@ public class ChoiceCenter extends DayBuilder {
 	private int gulagPoints;
 	private int daymistakes;
 	private int totalmistakes;
+	private boolean tiff_icecream;
 	
 	public String choicePoint(int day, String character){
 		if(day ==1) {
@@ -49,11 +50,13 @@ public class ChoiceCenter extends DayBuilder {
 				if(choice == 1) {//yes
 					gulagPoints--;
 					//tiff points++
+					tiff_icecream = true;
 					return "iceCream_yes";
 				}
 				if(choice == 2) {//no
 					gulagPoints++;
 					//tiff points--
+					tiff_icecream = false;
 					return "iceCream_no";
 				}
 			}
