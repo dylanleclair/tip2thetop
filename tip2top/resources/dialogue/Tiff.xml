@@ -25,21 +25,31 @@
 			<print>You: I'll have chocolate, please.</print>
 			<print>Tiffany: So... do you like anime?</print>
 			<print>You: Unfortunately I'm not an avid fan.</print>
+			<print>You: But I have seen a few.</print>
 			<print>Tiffany: That's alright...</print>
-			<print>Tiffany: You should watch (Tiff please add anime references here).</print>
-			<print>You: The one about (more anime references)?</print>
-			<print>You: (feel free to weeb out here)</print>
+			<print>Tiffany: You should watch Hyouka.</print>
+			<print>You: The one about that curious girl?</print>
+			<print>TIffany: Yes that's the one!!</print>
+			<print>You: I love that anime!</print>
+			<print>I relate to the main character’s way of living.</print>
 			<print>You: ... Okay, I should probably head back to the front desk.</print>
 			<print>Tiffany: I had a great time ;)</print>
 			<print>Tiffany: See you!</print>
 		</iceCream_yes>
 	
 		<iceCream_no>
-			<print>You: Uhm… No thank you.</print>
+			<print>You: Uhm... No thank you.</print>
 			<print>Tiffany: D:</print>
 			<print>Tiffany: Are you sure?</print>
 			<print>Tiffany: You can... still come to room... if you want.</print>
-			<print>You: I’m really alright, thanks...</print>
+			<print>You: I’m really alright, thanks.</print>
 		</iceCream_no>
+		
+		<room>
+		<print>Tiffany: 嗨。</print>
+		<print>You: Hi, would you like any shampoo?</print>
+		<print>You: Also, how was your stay last night?</print>
+		
+		</room>
 	
 </Tiff>

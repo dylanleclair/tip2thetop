@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Mystery>
+
+	<aleks>
+		<print>???: ...</print>
+		<print>???: You aren’t the clerk that’s usually here...</print>
+		<print>You: Yes, I’m new he-</print>
+		<print>???: Is Aleksandra here right now?</print>
+		<print>You: No, but I can give her a call or leave a message if you’d like?</print>
+		<print>???: No, that will not be necessary.</print> 
+	</aleks>
+
+</Mystery>

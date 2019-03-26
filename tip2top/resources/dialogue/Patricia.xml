@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patricia>
+
+	<famous>
+		<print>You: Welcome. How may I help you today?</print>
+		<print>???: Hello? Yes? I’d like a luxury room, please. I’ll be staying for 5 days.</print>
+		<print>You: Of course.</print>
+		<print>You: Would you like any shampoo?</print>
+		<print>???: Sure! I’m here because I’m just trying to get an escape from all the fame.</print>
+		<print>You: Sorry, what’s your name?</print>
+		<print>Patricia: I’m THE Patricia Lively!!</print>
+		<print>Patricia: How do you not recognize me?</print>
+	</famous>
+	
+	<famous_yes>
+		<print>You: Of course, I can’t imagine how taxing it is to keep up with.</print>
+		<print>Patricia: Finally someone who understands!</print>
+		<print>You: Alright, your room is number 302. Here’s your key.</print>
+		<print>Patricia: Thanks, you’re wonderful!</print>
+	</famous_yes>
+	
+	<famous_no>
+		<print>You: Uh... Okay then. Your room tonight will be number 302.</print>
+		<print>Patricia: Do you not know who I am?</print>
+		<print>You: Sorry, I don’t. Here’s your key.</print>
+	
+	</famous_no>
+
+</Patricia>
