@@ -11,6 +11,8 @@ public class NPC {
 	
 	private String name;
 	private int roomNumber;
+	private Booking booking;
+	private boolean checkedIn = false;
 	
 	
 	// Constructors
