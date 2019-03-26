@@ -26,6 +26,8 @@ public class Game extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {	
+			
+			
 			window = primaryStage; // renaming primaryStage to window for the sake of clarification
 			
 			// Initializing the Menu Scene
@@ -84,6 +86,7 @@ public class Game extends Application {
 			window.setResizable(false);
 			
 			// plays the main theme when the game starts up
+			
 			Sound.mainTheme();
 			
 			
@@ -97,7 +100,8 @@ public class Game extends Application {
 	
 	
 	/**
-	 * Main function, executes the program. A boolean switch can change between versions (we've opted for full GUI) 
+	 * Main function, executes the program. A boolean switch can change between versions (we've opted for full GUI)
+	 * because our game is literally nothing without one... 
 	 * @param args
 	 */
 	public static void main(String[] args) {

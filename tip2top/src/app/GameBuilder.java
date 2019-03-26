@@ -278,8 +278,6 @@ public class GameBuilder {
 	
 	// Help Screen 
 	
-	
-	
 	/**
 	 * Builds and returns the help screen of the game (BorderPane). 
 	 * @param window - the Stage of the application window.
