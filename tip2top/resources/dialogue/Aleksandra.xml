@@ -12,5 +12,13 @@
 		<print>Aleksandra: ... and Luxury rooms are $55.</print>
 		<print>Aleksandra: Okay, bye.</print>
 	</firstDay>
+	
+	<secondDay>
+		<print>Aleksandra: Hey! Good job yesterday, keep it up kid.</print>
+		<print>Aleksandra: Today we are trying to get rid of our extra shampoo so make sure you don’t give anything else out.</print> 
+		<print>Aleksandra: Also - the longer a customer stays, the more they save!</print>
+		<print>Aleksandra: They get a 10% discount for more than 3 nights.</print>
+		<print>Aleksandra: Okay, bye.</print>
+	</secondDay>
 
 </Aleksandra>
