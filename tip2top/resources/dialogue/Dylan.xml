@@ -36,5 +36,20 @@
 		<print>You: Uh... Did you want any shampoo?</print>
 		<print>Dylan: Sure!</print>
 	</longerStay_no>
+	
+	<roomSwap>
+		<print>Dylan: Hey, do you mind if I change rooms?</print>
+		<print>Dylan: There are some strange noises coming from the room beside me...</print>
+		<print>You: Yes, no problem.</print>
+		<print>You: What noises are coming from the room?</print>
+		<print>Dylan: Just a bunch of things I can only describe as a young female voice constantly yelling out “tu tu ru.”</print> 
+		<print>Dylan: I honestly think she’s being possessed, please help a guy out.</print>
+		<print>You: That’s weird... Alright, just move to this room right here, 101.</print>
+		<print>Dylan: Thanks! And are there any cafes nearby? Or things to do in this town?</print>
+		<print>You: Joe’s cafe is just down the street.</print>
+		<print>And honestly, the most exciting thing in this town is watching the tumbleweeds roll across the road.</print>
+		<print>Dylan: Okay sweet, uh, thanks.</print>
+		<print>Dylan: He who rides the tiger is afraid to dismount.</print>
+	</roomSwap>
 
 </Dylan>

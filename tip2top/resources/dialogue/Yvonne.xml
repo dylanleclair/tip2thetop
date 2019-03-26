@@ -15,19 +15,38 @@
 		<print>Yvonne: Anyways, are you Russian?</print>
 	</russian>
 
-	<russian_yes>
-		<print>Yvonne: Excellent. See you soon.</print>
-	</russian_yes>
+		<russian_yes>
+			<print>Yvonne: Excellent. See you soon.</print>
+		</russian_yes>
 	
-	<russian_no>
-		<print>Yvonne: What a shame. Better be extra careful then, they’re watching.</print>
-		<print>You: What do you mean?</print>
-		<print>Yvonne: ...See you soon.</print>
-	</russian_no>
+		<russian_no>
+			<print>Yvonne: What a shame. Better be extra careful then, they’re watching.</print>
+			<print>You: What do you mean?</print>
+			<print>Yvonne: ...See you soon.</print>
+		</russian_no>
 	
-	<russian_why>
-		<print>Yvonne: Nevermind.</print>
-	</russian_why>
+		<russian_why>
+			<print>Yvonne: Nevermind.</print>
+		</russian_why>
+	
+	<shampoo>
+		<print>Yvonne: Hey, my room’s out of shampoo. Do you mind if I get more?</print>
+		<print>You: Sorry, we only have conditioner at the moment.</print>
+		<print>You: You might have to wait until tomorrow until we give out shampoo again.</print>
+		<print>Yvonne: Hey come on, I really need it. Can’t you just sneak one under the counter for me?</print>
+	</shampoo>
+		
+		<shampoo_yes>
+			<print>Yvonne: Thanks. I’ll be sure to put in a good word for you to my bosses.</print>
+		</shampoo_yes>
+		
+		<shampoo_no>
+			<print>You: Sorry, don’t want to get sent to the gulags by my boss or anything.</print>
+			<print>Yvonne: Aw, that sucks.</print>
+			<print>I’ll have to go out and pick some up then.</print>
+			<print>You’ve just made this game a little harder for yourself though, good luck.</print>
+		</shampoo_no>
+		
 
 
 </Yvonne>

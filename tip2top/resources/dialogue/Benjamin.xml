@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Benjamin>
+
+	<checkIn>
+		<print>You : Hello, welcome to the Three Eagle Hotel, how can I help you?</print>
+		<print>Benjamin : Hey, got any rooms up for grabs?</print>
+		<print>You : Yes, we do have a few rooms available.</print>
+		<print>You: What kind of room would you like today?</print>
+		<print>Benjamin: Oh, I’ll take a premium room. Luxury is overkill.</print>
+		<print>You: How long do you plan on staying?</print> 
+		<print>Benjamin: Just the night.</print> 
+		<print>You: Okay, sounds good. Would you like any conditioner?</print>
+		<print>Benjamin: Nah.</print>
+	</checkIn>
+	
+
+
+</Benjamin>

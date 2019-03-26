@@ -56,6 +56,19 @@
 		</mints_no>
 
 
+	<gotMints>
+		<print>Jason: I noticed the extra mints on my pillow, thanks.</print>
+		<print>Jason: Now I can do maths with a fresh breath.</print>
+		<print>Jason: Also, could I have some conditioner?</print>
+		<print>You: Sure, here you are.</print>
+	</gotMints>
 	
+	<noGot_mints>
+		<print>Jason: I noticed I didn’t get my mints.</print>
+		<print>Jason: Now how am I supposed to do maths?</print>
+		<print>Jason: Vectors don’t calculate themselves you know.</print>
+		<print>Jason: Also, could I have some conditioner?</print>
+		<print>You: Sure, here you are.</print>
+	</noGot_mints>
 
 </Jason>
