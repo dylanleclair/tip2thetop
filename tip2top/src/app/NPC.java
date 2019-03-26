@@ -86,7 +86,7 @@ public class NPC {
 		return name + " " + roomNumber;
 	}
 		
-		
+
 	public ArrayList<String> getDialogue(String character, int day) {
 		// returns the dialogue for the character given the day and previous variables
 		
