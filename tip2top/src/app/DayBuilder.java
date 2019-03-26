@@ -4,12 +4,16 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.concurrent.TimeUnit;
 
+import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -39,6 +43,7 @@ public class DayBuilder {
 	NPC manager = new NPC(null);
 	
 	public int keys[] = {1,1,1,1,1,1,1,1,1,1,1,1};
+	public Node key[] = {null,null,null,null,null,null,null,null,null,null,null,null};
 
 	public StackPane getToday() {
 		return today;
@@ -65,138 +70,104 @@ public class DayBuilder {
 
 	// Pat created this to load images for day
 	
-	public void loadKeys() {
-		Image img1, img2,img3,img4,img5,img6,img7,img8,img9,img10,img11,img12;
-		Button k1,k2,k3,k4,k5,k6,k7,k8,k9,k10,k11,k12;
+	public void addEvent(Node node) {
+		DropShadow shadow = new DropShadow();
+		DropShadow highlight = new DropShadow();
+		DropShadow give = new DropShadow();
 		
-		try {
-			img1 = new Image(new FileInputStream("./resources/keys/key1.png"));
-			ImageView key1 = new ImageView(img1);
-			
-			img2 = new Image(new FileInputStream("./resources/keys/key2.png"));
-			ImageView key2 = new ImageView(img2);
-			
-			img3 = new Image(new FileInputStream("./resources/keys/key3.png"));
-			ImageView key3 = new ImageView(img3);
-			
-			img4 = new Image(new FileInputStream("./resources/keys/key4.png"));
-			ImageView key4 = new ImageView(img4);
-			
-			img5 = new Image(new FileInputStream("./resources/keys/key5.png"));
-			ImageView key5 = new ImageView(img5);
-			
-			img6 = new Image(new FileInputStream("./resources/keys/key6.png"));
-			ImageView key6 = new ImageView(img6);
-			
-			img7 = new Image(new FileInputStream("./resources/keys/key7.png"));
-			ImageView key7 = new ImageView(img7);
-			
-			img8 = new Image(new FileInputStream("./resources/keys/key8.png"));
-			ImageView key8 = new ImageView(img8);
-			
-			img9 = new Image(new FileInputStream("./resources/keys/key9.png"));
-			ImageView key9 = new ImageView(img9);
-			
-			img10 = new Image(new FileInputStream("./resources/keys/key10.png"));
-			ImageView key10 = new ImageView(img10);
-			
-			img11 = new Image(new FileInputStream("./resources/keys/key11.png"));
-			ImageView key11 = new ImageView(img11);
-			
-			img12 = new Image(new FileInputStream("./resources/keys/key12.png"));
-			ImageView key12 = new ImageView(img12); 
-			
-			if(keys[0]==1) {
-				k1 = new Button();
-				k1.setGraphic(key1);
-				k1.setId("1");
-				k1.setBackground(null);
-				today.getChildren().add(k1);
-			} 
-			if(keys[1]==1) {
-				k2 = new Button();
-				k2.setGraphic(key2);
-				k2.setId("2");
-				k2.setBackground(null);
-				today.getChildren().add(k2);
-			}
-			if(keys[2]==1) {
-				k3 = new Button();
-				k3.setGraphic(key3);
-				k3.setId("3");
-				k3.setBackground(null);
-				today.getChildren().add(k3);
-			}
-			if(keys[3]==1) {
-				k4 = new Button();
-				k4.setGraphic(key4);
-				k4.setId("4");
-				k4.setBackground(null);
-				today.getChildren().add(k4);
-			}
-			if(keys[4]==1) {
-				k5 = new Button();
-				k5.setGraphic(key5);
-				k5.setId("5");
-				k5.setBackground(null);
-				today.getChildren().add(k5);
-			}
-			if(keys[5]==1) {
-				k6 = new Button();
-				k6.setGraphic(key6);
-				k6.setId("6");
-				k6.setBackground(null);
-				today.getChildren().add(k6);
-			}
-			if(keys[6]==1) {
-				k7 = new Button();
-				k7.setGraphic(key7);
-				k7.setId("7");
-				k7.setBackground(null);
-				today.getChildren().add(k7);
-			}
-			if(keys[7]==1) {
-				k8 = new Button();
-				k8.setGraphic(key8);
-				k8.setId("8");
-				k8.setBackground(null);
-				today.getChildren().add(k8);
-			}
-			if(keys[8]==1) {
-				k9 = new Button();
-				k9.setGraphic(key9);
-				k9.setId("9");
-				k9.setBackground(null);
-				today.getChildren().add(k9);
-			}
-			if(keys[9]==1) {
-				k10 = new Button();
-				k10.setGraphic(key10);
-				k10.setId("10");
-				k10.setBackground(null);
-				today.getChildren().add(k10);
-			}
-			if(keys[10]==1) {
-				k11 = new Button();
-				k11.setGraphic(key11);
-				k11.setId("11");
-				k11.setBackground(null);
-				today.getChildren().add(k11);
-			}
-			if(keys[11]==1) {
-				k12 = new Button();
-				k12.setGraphic(key12);
-				k12.setId("12");
-				k12.setBackground(null);
-				today.getChildren().add(k12);
-			}
-			
-			
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		shadow.setColor(Color.BLACK);
+		shadow.setOffsetY(10);
 		
+	    highlight.setColor(Color.YELLOW);
+	    highlight.setSpread(12);
+	    highlight.setRadius(3);
+	    
+	    give.setColor(Color.RED);
+	    give.setSpread(12);
+	    give.setRadius(3);
+		
+		node.addEventHandler(MouseEvent.MOUSE_ENTERED,
+		        new EventHandler<MouseEvent>() {
+		          @Override
+		          public void handle(MouseEvent e) {
+		        	int temp;
+		        	temp = Integer.parseInt(node.getId());
+		        	temp -= 1;
+		        	if(keys[temp]==1) {
+		        		node.setEffect(highlight);
+		        	}
+		          }
+		        });
+
+		node.addEventHandler(MouseEvent.MOUSE_EXITED,
+		        new EventHandler<MouseEvent>() {
+		          @Override
+		          public void handle(MouseEvent e) {
+		        	  int temp;
+		        	  temp = Integer.parseInt(node.getId());
+		        	  temp -= 1;
+		        	  if(keys[temp]==1) {
+		        		  node.setEffect(shadow);
+		        	  }
+		        	  
+		          }
+		        });
+		
+		node.addEventHandler(MouseEvent.MOUSE_PRESSED,
+				new EventHandler<MouseEvent>() {
+					@Override
+					public void handle(MouseEvent e) {
+						
+						
+					}
+				});
+		
+		node.addEventHandler(MouseEvent.MOUSE_RELEASED,
+				new EventHandler<MouseEvent>() {
+					@Override
+					public void handle(MouseEvent e) {
+						
+						int temp;
+						temp = Integer.parseInt(node.getId());
+						temp -= 1;
+						
+						if(keys[temp]==1) {
+							for(int i = 0;i<12;i++) {
+								key[i].setEffect(shadow);
+									
+								
+							}
+							keys[temp]= 2;
+							node.setEffect(highlight);
+						}else if(keys[temp]==2) {
+							keys[temp]=3;
+							node.setEffect(give);
+							
+							TranslateTransition translate = new TranslateTransition();
+							translate.setDuration(Duration.millis(1300));
+							translate.setNode(node);
+							translate.setByX(300);
+							translate.setByY(-200);
+							translate.setCycleCount(1);
+							translate.setAutoReverse(false);
+							translate.play();
+							
+							 FadeTransition ft = new FadeTransition(Duration.millis(1000), node);
+							 ft.setDelay(Duration.millis(1300));
+						     ft.setFromValue(1.0);
+						     ft.setToValue(0);
+						     ft.setCycleCount(1);
+						     ft.setAutoReverse(true);
+						 
+						     ft.play();
+							
+							System.out.println(node.getId());
+							
+							
+						}
+						
+					}
+				});
 	}
 
 	public void loadDay() {
@@ -224,10 +195,131 @@ public class DayBuilder {
 			imageView5.setLayoutY(-720);
 			today.getChildren().add(imageView5);
 			
-			loadKeys();
+			
 
 			BorderPane handler = new BorderPane();
 			Button accessAmigo = new Button();
+			
+			Image img1, img2,img3,img4,img5,img6,img7,img8,img9,img10,img11,img12;
+			Button k1,k2,k3,k4,k5,k6,k7,k8,k9,k10,k11,k12;
+			
+			try {
+				img1 = new Image(new FileInputStream("./resources/keys/key1.png"));
+				ImageView key1 = new ImageView(img1);
+				
+				img2 = new Image(new FileInputStream("./resources/keys/key2.png"));
+				ImageView key2 = new ImageView(img2);
+				
+				img3 = new Image(new FileInputStream("./resources/keys/key3.png"));
+				ImageView key3 = new ImageView(img3);
+				
+				img4 = new Image(new FileInputStream("./resources/keys/key4.png"));
+				ImageView key4 = new ImageView(img4);
+				
+				img5 = new Image(new FileInputStream("./resources/keys/key5.png"));
+				ImageView key5 = new ImageView(img5);
+				
+				img6 = new Image(new FileInputStream("./resources/keys/key6.png"));
+				ImageView key6 = new ImageView(img6);
+				
+				img7 = new Image(new FileInputStream("./resources/keys/key7.png"));
+				ImageView key7 = new ImageView(img7);
+				
+				img8 = new Image(new FileInputStream("./resources/keys/key8.png"));
+				ImageView key8 = new ImageView(img8);
+				
+				img9 = new Image(new FileInputStream("./resources/keys/key9.png"));
+				ImageView key9 = new ImageView(img9);
+				
+				img10 = new Image(new FileInputStream("./resources/keys/key10.png"));
+				ImageView key10 = new ImageView(img10);
+				
+				img11 = new Image(new FileInputStream("./resources/keys/key11.png"));
+				ImageView key11 = new ImageView(img11);
+				
+				img12 = new Image(new FileInputStream("./resources/keys/key12.png"));
+				ImageView key12 = new ImageView(img12); 
+				
+				key[0]=key1;
+				key[1]=key2;
+				key[2]=key3;
+				key[3]=key4;
+				key[4]=key5;
+				key[5]=key6;
+				key[6]=key7;
+				key[7]=key8;
+				key[8]=key9;
+				key[9]=key10;
+				key[10]=key11;
+				key[11]=key12;
+				
+				
+				if(keys[0]==1) {
+					key1.setId("1");
+					addEvent(key1);
+					handler.getChildren().add(key1);
+				} 
+				if(keys[1]==1) {
+					key2.setId("2");
+					addEvent(key2);
+					handler.getChildren().add(key2);
+				}
+				if(keys[2]==1) {
+					key3.setId("3");
+					addEvent(key3);
+					handler.getChildren().add(key3);
+				}
+				if(keys[3]==1) {
+					key4.setId("4");
+					addEvent(key4);
+					handler.getChildren().add(key4);
+				}
+				if(keys[4]==1) {
+					key5.setId("5");
+					addEvent(key5);
+					handler.getChildren().add(key5);
+				}
+				if(keys[5]==1) {
+					key6.setId("6");
+					addEvent(key6);
+					handler.getChildren().add(key6);
+				}
+				if(keys[6]==1) {
+					key7.setId("7");
+					addEvent(key7);
+					handler.getChildren().add(key7);
+				}
+				if(keys[7]==1) {
+					key8.setId("8");
+					addEvent(key8);
+					handler.getChildren().add(key8);
+				}
+				if(keys[8]==1) {
+					key9.setId("9");
+					addEvent(key9);
+					handler.getChildren().add(key9);
+				}
+				if(keys[9]==1) {
+					key10.setId("10");
+					addEvent(key10);
+					handler.getChildren().add(key10);
+				}
+				if(keys[10]==1) {
+					key11.setId("11");
+					addEvent(key11);
+					handler.getChildren().add(key11);
+				}
+				if(keys[11]==1) {
+					key12.setId("12");
+					addEvent(key12);
+					handler.getChildren().add(key12);
+				}
+				
+				
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 			try {
 				Image amigobtn = new Image(new FileInputStream("./resources/gameimg/amigobtn.png"));
@@ -258,6 +350,7 @@ public class DayBuilder {
 
 			handler.setBottom(accessAmigo);
 			handler.setRight(nextC);
+			
 
 			handler.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
 
