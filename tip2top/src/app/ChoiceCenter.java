@@ -68,11 +68,11 @@ public class ChoiceCenter extends DayBuilder {
 				choice = 0;//function to prompt choice from player
 				if(choice == 1) {//yes discount
 					gulagPoints++;
-					return "dylan_yes";//filler prompt name
+					return "longerStay_yes";
 				}
 				if(choice ==2) {//no discount
 					gulagPoints--;
-					return "weeee";//filler prompt name
+					return "longerStay_no";
 				}
 			}
 			/*
@@ -84,32 +84,32 @@ public class ChoiceCenter extends DayBuilder {
 				if(choice == 1) {//yes email housekeeping
 					gulagPoints++;
 					jason_mint = true;
-					return "weeee";//filler prompt name
+					//return "weeee";//filler prompt name
 				}
 				if(choice == 2) {//no email
 					gulagPoints--;
 					jason_mint = false;
-					return "weeee";//filler prompt name
+					//return "weeee";//filler prompt name
 				}
 			}
 			if(character.equalsIgnoreCase("Patricia")) {
 				choice = 0;//function to prompt choice from player
 				if(choice ==1) {//yes, know her
 					//customerSatisfaction++;
-					return "weeee";//filler prompt name
+					return "famous_yes";
 				}
 				if(choice ==2) {//no, do not know her
 					//customerSatisfaction--;
-					return "weeee";//filler prompt name
+					return "famous_no";
 				}
 			}
 			if(character.equalsIgnoreCase("tiff")) {
 				//effect point, does not call function to prompt choice.
 				if(tiff_icecream == true) {
-					return "weeee";//filler prompt name
+					return "room_yes";
 				}
 				else {
-					return "weeee";//filler prompt name
+					return "room_no";
 					//slip note animation
 				}
 			}
