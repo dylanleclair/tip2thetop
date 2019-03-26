@@ -4,18 +4,22 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.concurrent.TimeUnit;
 
+import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -35,6 +39,9 @@ public class DayBuilder {
 
 	private StackPane today = new StackPane();
 	NPC manager = new NPC(null);
+	
+	public int keys[] = {1,1,1,1,1,1,1,1,1,1,1,1};
+	public Node key[] = {null,null,null,null,null,null,null,null,null,null,null,null};
 
 	public StackPane getToday() {
 		return today;
@@ -59,10 +66,113 @@ public class DayBuilder {
 	private Text slot1 = new Text("");
 	private Text slot2 = new Text("");
 	private Text slot3 = new Text("");
-	
-	// daily characters
+  
+  	// daily characters
 	private ArrayList<NPC> dailyCharacters;
+  
+
+	// Pat created this to load images for day
 	
+	public void addEvent(Node node) {
+		DropShadow shadow = new DropShadow();
+		DropShadow highlight = new DropShadow();
+		DropShadow give = new DropShadow();
+		
+		shadow.setColor(Color.BLACK);
+		shadow.setOffsetY(10);
+		
+	    highlight.setColor(Color.YELLOW);
+	    highlight.setSpread(12);
+	    highlight.setRadius(3);
+	    
+	    give.setColor(Color.RED);
+	    give.setSpread(12);
+	    give.setRadius(3);
+		
+		node.addEventHandler(MouseEvent.MOUSE_ENTERED,
+		        new EventHandler<MouseEvent>() {
+		          @Override
+		          public void handle(MouseEvent e) {
+		        	int temp;
+		        	temp = Integer.parseInt(node.getId());
+		        	temp -= 1;
+		        	if(keys[temp]==1) {
+		        		node.setEffect(highlight);
+		        	}
+		          }
+		        });
+
+		node.addEventHandler(MouseEvent.MOUSE_EXITED,
+		        new EventHandler<MouseEvent>() {
+		          @Override
+		          public void handle(MouseEvent e) {
+		        	  int temp;
+		        	  temp = Integer.parseInt(node.getId());
+		        	  temp -= 1;
+		        	  if(keys[temp]==1) {
+		        		  node.setEffect(shadow);
+		        	  }
+		        	  
+		          }
+		        });
+		
+		node.addEventHandler(MouseEvent.MOUSE_PRESSED,
+				new EventHandler<MouseEvent>() {
+					@Override
+					public void handle(MouseEvent e) {
+						
+						
+					}
+				});
+		
+		node.addEventHandler(MouseEvent.MOUSE_RELEASED,
+				new EventHandler<MouseEvent>() {
+					@Override
+					public void handle(MouseEvent e) {
+						
+						int temp;
+						temp = Integer.parseInt(node.getId());
+						temp -= 1;
+						
+						if(keys[temp]==1) {
+							for(int i = 0;i<12;i++) {
+								key[i].setEffect(shadow);
+									
+								
+							}
+							keys[temp]= 2;
+							node.setEffect(highlight);
+						}else if(keys[temp]==2) {
+							keys[temp]=3;
+							node.setEffect(give);
+							
+							TranslateTransition translate = new TranslateTransition();
+							translate.setDuration(Duration.millis(1300));
+							translate.setNode(node);
+							translate.setByX(300);
+							translate.setByY(-200);
+							translate.setCycleCount(1);
+							translate.setAutoReverse(false);
+							translate.play();
+							
+							 FadeTransition ft = new FadeTransition(Duration.millis(1000), node);
+							 ft.setDelay(Duration.millis(1300));
+						     ft.setFromValue(1.0);
+						     ft.setToValue(0);
+						     ft.setCycleCount(1);
+						     ft.setAutoReverse(true);
+						 
+						     ft.play();
+							
+							System.out.println(node.getId());
+							
+							
+						}
+						
+					}
+				});
+	}
+
 	/**
 	 * Loads the basic interface for the day and it's necessary elements.
 	 * @param window
@@ -71,6 +181,7 @@ public class DayBuilder {
 	 */
 	public void loadDay(Stage window, Scene amigoscreen, Scene transition) {
 		Image image, image2, image3, image4, image5;
+		Boolean pressed = false;
 		try {
 			image = new Image(new FileInputStream("./resources/dayimg/background.jpg"));
 			ImageView imageView = new ImageView(image);
@@ -87,18 +198,137 @@ public class DayBuilder {
 			ImageView imageView3 = new ImageView(image3);
 			today.getChildren().add(imageView3);
 
-			image4 = new Image(new FileInputStream("./resources/dayimg/keys.png"));
-			ImageView imageView4 = new ImageView(image4);
-			today.getChildren().add(imageView4);
-
 			image5 = new Image(new FileInputStream("./resources/dayimg/dialogbox.png"));
 			ImageView imageView5 = new ImageView(image5);
 			imageView5.setManaged(false);
 			imageView5.setLayoutY(-720);
 			today.getChildren().add(imageView5);
+			
+			
 
 			BorderPane handler = new BorderPane();
 			Button accessAmigo = new Button();
+			
+			Image img1, img2,img3,img4,img5,img6,img7,img8,img9,img10,img11,img12;
+			Button k1,k2,k3,k4,k5,k6,k7,k8,k9,k10,k11,k12;
+			
+			try {
+				img1 = new Image(new FileInputStream("./resources/keys/key1.png"));
+				ImageView key1 = new ImageView(img1);
+				
+				img2 = new Image(new FileInputStream("./resources/keys/key2.png"));
+				ImageView key2 = new ImageView(img2);
+				
+				img3 = new Image(new FileInputStream("./resources/keys/key3.png"));
+				ImageView key3 = new ImageView(img3);
+				
+				img4 = new Image(new FileInputStream("./resources/keys/key4.png"));
+				ImageView key4 = new ImageView(img4);
+				
+				img5 = new Image(new FileInputStream("./resources/keys/key5.png"));
+				ImageView key5 = new ImageView(img5);
+				
+				img6 = new Image(new FileInputStream("./resources/keys/key6.png"));
+				ImageView key6 = new ImageView(img6);
+				
+				img7 = new Image(new FileInputStream("./resources/keys/key7.png"));
+				ImageView key7 = new ImageView(img7);
+				
+				img8 = new Image(new FileInputStream("./resources/keys/key8.png"));
+				ImageView key8 = new ImageView(img8);
+				
+				img9 = new Image(new FileInputStream("./resources/keys/key9.png"));
+				ImageView key9 = new ImageView(img9);
+				
+				img10 = new Image(new FileInputStream("./resources/keys/key10.png"));
+				ImageView key10 = new ImageView(img10);
+				
+				img11 = new Image(new FileInputStream("./resources/keys/key11.png"));
+				ImageView key11 = new ImageView(img11);
+				
+				img12 = new Image(new FileInputStream("./resources/keys/key12.png"));
+				ImageView key12 = new ImageView(img12); 
+				
+				key[0]=key1;
+				key[1]=key2;
+				key[2]=key3;
+				key[3]=key4;
+				key[4]=key5;
+				key[5]=key6;
+				key[6]=key7;
+				key[7]=key8;
+				key[8]=key9;
+				key[9]=key10;
+				key[10]=key11;
+				key[11]=key12;
+				
+				
+				if(keys[0]==1) {
+					key1.setId("1");
+					addEvent(key1);
+					handler.getChildren().add(key1);
+				} 
+				if(keys[1]==1) {
+					key2.setId("2");
+					addEvent(key2);
+					handler.getChildren().add(key2);
+				}
+				if(keys[2]==1) {
+					key3.setId("3");
+					addEvent(key3);
+					handler.getChildren().add(key3);
+				}
+				if(keys[3]==1) {
+					key4.setId("4");
+					addEvent(key4);
+					handler.getChildren().add(key4);
+				}
+				if(keys[4]==1) {
+					key5.setId("5");
+					addEvent(key5);
+					handler.getChildren().add(key5);
+				}
+				if(keys[5]==1) {
+					key6.setId("6");
+					addEvent(key6);
+					handler.getChildren().add(key6);
+				}
+				if(keys[6]==1) {
+					key7.setId("7");
+					addEvent(key7);
+					handler.getChildren().add(key7);
+				}
+				if(keys[7]==1) {
+					key8.setId("8");
+					addEvent(key8);
+					handler.getChildren().add(key8);
+				}
+				if(keys[8]==1) {
+					key9.setId("9");
+					addEvent(key9);
+					handler.getChildren().add(key9);
+				}
+				if(keys[9]==1) {
+					key10.setId("10");
+					addEvent(key10);
+					handler.getChildren().add(key10);
+				}
+				if(keys[10]==1) {
+					key11.setId("11");
+					addEvent(key11);
+					handler.getChildren().add(key11);
+				}
+				if(keys[11]==1) {
+					key12.setId("12");
+					addEvent(key12);
+					handler.getChildren().add(key12);
+				}
+				
+				
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 			try {
 				Image amigobtn = new Image(new FileInputStream("./resources/gameimg/amigobtn.png"));
@@ -109,6 +339,7 @@ public class DayBuilder {
 				accessAmigo.setId("amigo");
 				accessAmigo.graphicProperty()
 						.bind(Bindings.when(accessAmigo.hoverProperty()).then(amigohoveredg).otherwise(amigobtng));
+				
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -134,6 +365,7 @@ public class DayBuilder {
 			
 			handler.setBottom(accessAmigo);
 			handler.setRight(nextC);
+			
 
 			handler.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
 
@@ -216,7 +448,7 @@ public class DayBuilder {
 
 				if (index == 0) {
 					animateButtonOut(nextC);
-					animateDialogueBoxIn(today.getChildren().get(4)); // 4 is the index of dialogue box in stackpane
+					animateDialogueBoxIn(today.getChildren().get(3)); // 4 is the index of dialogue box in stackpane
 																		// today
 				}
 
