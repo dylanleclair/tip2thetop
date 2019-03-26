@@ -3,6 +3,8 @@ package app;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class NPC {
@@ -14,11 +16,28 @@ public class NPC {
 	// Constructors
 	
 	public NPC(String name, int roomNumber) {
-		this.name = name;
-		this.roomNumber = roomNumber;
+        Pattern pattern = Pattern.compile("[a-zA-z0-9]*");
+        Matcher matcher = pattern.matcher(name);
+
+        if (!matcher.matches()) {
+        	this.name = "";
+		} else {
+        	this.name = name;
+		}
+        if (roomNumber >= 101 && roomNumber <= 104 || roomNumber >= 201 && roomNumber <= 204 || roomNumber >= 301 && roomNumber <= 304) {
+			this.roomNumber = roomNumber;
+		}
+
 	}
 	public NPC(String name) {
-		this.name = name;
+		Pattern compiler = Pattern.compile("[a-zA-z0-9]*");
+		Matcher ifMatch = compiler.matcher(name);
+
+		if (!ifMatch.matches()) {
+			this.name = "";
+		} else {
+			this.name = name;
+		}
 	}
 	
 	// Getters/Setters
@@ -28,7 +47,14 @@ public class NPC {
 	}
 	
 	public void setName(String name) {
-		this.name = name;
+		Pattern pattern = Pattern.compile("[a-zA-z0-9]*");
+		Matcher matcher = pattern.matcher(name);
+
+		if (!matcher.matches()) {
+			this.name = this.name;
+		} else {
+			this.name = name;
+		}
 	}
 	
 	public int getRoomNumber() {
@@ -36,7 +62,9 @@ public class NPC {
 	}
 	
 	public void setRoomNumber(int roomNumber) {
-		this.roomNumber = roomNumber;
+		if (roomNumber >= 101 && roomNumber <= 104 || roomNumber >= 201 && roomNumber <= 204 || roomNumber >= 301 && roomNumber <= 304) {
+			this.roomNumber = roomNumber;
+		}
 	}
 	
 	// Static methods for use with dailyCharacters in other classes
