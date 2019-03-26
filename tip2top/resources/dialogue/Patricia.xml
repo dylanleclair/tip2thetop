@@ -22,8 +22,8 @@
 	<famous_no>
 		<print>You: Uh... Okay then. Your room tonight will be number 302.</print>
 		<print>Patricia: Do you not know who I am?</print>
-		<print>You: Sorry, I don’t. Here’s your key.</print>
-	
+		<print>You: Sorry, I don’t.</print>
+		<print>You: You'll be in room 302. Here’s your key.</print>
 	</famous_no>
 
 </Patricia>

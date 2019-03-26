@@ -46,10 +46,19 @@
 		</iceCream_no>
 		
 		<room>
-		<print>Tiffany: 嗨。</print>
-		<print>You: Hi, would you like any shampoo?</print>
-		<print>You: Also, how was your stay last night?</print>
-		
+			<print>Tiffany: 嗨。</print>
+			<print>You: Hi, would you like any shampoo?</print>
+			<print>You: Also, how was your stay last night?</print>
 		</room>
+		
+			<room_yes>
+				<print>Tiffany: Sure, and it was great! I have more ice cream, if you want. ;)</print>
+				<print>Tiffany: Anyways, I really like you. I hope you don’t disappear!</print>
+			</room_yes>
+	
+			<room_no>
+				<print>Tiffany: ...</print>
+				<print>Tiffany: ( ´•︵•` )</print>
+			</room_no>
 	
 </Tiff>
