@@ -19,10 +19,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -46,31 +42,34 @@ public class DayBuilder {
 	// one layer for background (index 0)
 	// one layer for character (index 1)
 	// one layer for desk/foreground (index 2)
-	// one layer for borderpane w buttons n shit to make it interactive?
+	// one layer for borderpane w buttons n stuff to make it interactive?
 
 	private int day = 1;
-	// private static int satisfaction;
-	// private static int gulagPoints;
 	private ObservableList<String> guests = FXCollections.observableArrayList();
 	private ObservableList<String> email = FXCollections.observableArrayList();
 	private Button nextC = new Button(); 
 	private int index = 0;
-	private boolean dialogueActive = false;
+
+	
 	private ImageView activeCharacter;
+	
+	// dialogue slots + trackers
 	private ArrayList<String> active = new ArrayList<>();
+	private boolean dialogueActive = false;
 	private Text slot1 = new Text("");
 	private Text slot2 = new Text("");
 	private Text slot3 = new Text("");
-	private ArrayList<NPC> dailyCharacters = manager.initializeCharacters(day);
-	// Pat created this to load images for day
-
+	
+	// daily characters
+	private ArrayList<NPC> dailyCharacters;
 	
 	/**
 	 * Loads the basic interface for the day and it's necessary elements.
 	 * @param window
 	 * @param amigoscreen
+	 * @author patricia
 	 */
-	public void loadDay(Stage window, Scene amigoscreen) {
+	public void loadDay(Stage window, Scene amigoscreen, Scene transition) {
 		Image image, image2, image3, image4, image5;
 		try {
 			image = new Image(new FileInputStream("./resources/dayimg/background.jpg"));
@@ -124,7 +123,9 @@ public class DayBuilder {
 			nextC.setLayoutX(1300);
 			nextC.setLayoutY(650);
 			nextC.setGraphic(next);
-
+			
+			dailyCharacters = manager.initializeCharacters(day);
+			
 			// change styling n such later
 
 			accessAmigo.setOnAction(e -> {
@@ -136,6 +137,8 @@ public class DayBuilder {
 
 			handler.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
 
+			
+				
 				// it appears that the error occurs in the inheritance here somehow?
 
 				int top = 0;
@@ -186,7 +189,7 @@ public class DayBuilder {
 			today.getChildren().add(handler); // 6th item in pane
 			// pane.getChildren().add(amigo); // need to change how amigo is implemented to
 			// another layer on stackpane? or even change scene.
-			runDay(handler);
+			runDay(handler, window, transition);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -197,12 +200,14 @@ public class DayBuilder {
 	 * Handles the "day" of events as a whole. Controls which characters are on the screen. 
 	 * @param handler a BorderPane which stores buttons/other onscreen elements as needed.  (might be causing bugs?)
 	 */
-	public void runDay(BorderPane handler) {
-		if (day == 1) { // i think this is redundant once we make several day functionality?
+	public void runDay(BorderPane handler, Stage window, Scene transition) {
+		
+			if (day == 1) {
+				Collections.shuffle(dailyCharacters);
+				dailyCharacters.add(new NPC("Tiff")); // move this to initialize characters
+				dailyCharacters.add(0, new NPC("Aleksandra"));
+			}
 
-			Collections.shuffle(dailyCharacters);
-			dailyCharacters.add(new NPC("Tiff")); // move this to initialize characters
-			dailyCharacters.add(0, new NPC("Aleksandra"));
 			animateButtonIn(nextC);
 
 			nextC.setOnAction(e -> {
@@ -217,59 +222,61 @@ public class DayBuilder {
 
 				if (index > 0) {
 					animateButtonOut(nextC);
-
 				}
 
+				if (index < dailyCharacters.size()) {
+					
+					NPC character = dailyCharacters.get(index);
+
+					try {
+						Image image = new Image(new FileInputStream("./resources/characters/" + character.getName() + ".png"));
+						ImageView characterView = new ImageView(image);
+
+						activeCharacter = characterView;
+
+						today.getChildren().set(1, characterView);
+						characterView.setManaged(false);
+						characterView.setLayoutX(1280);
+						characterView.setLayoutY(-20);
+
+						active.clear();
+						for (int i = 0; i < 3; i++) 
+							active.add(" ");
+
+						animateCharacterIn(characterView);
+
+
+						// dialogueActive = true;
+						ArrayList<String> dialogue = manager.getDialogue(character.getName(), day);
+						playDialog(handler, dialogue);
+
+						
+
+						// animateCharacterOut(characterView);
+					} catch (Exception c) {
+						c.printStackTrace();
+					}
+					
+				}
+				
 				// stuff for each character
-				NPC character = dailyCharacters.get(index);
-
-				try {
-					Image image = new Image(new FileInputStream("./resources/characters/" + character.getName() + ".png"));
-					ImageView characterView = new ImageView(image);
-
-					activeCharacter = characterView;
-
-					today.getChildren().set(1, characterView);
-					characterView.setManaged(false);
-					characterView.setLayoutX(1280);
-					characterView.setLayoutY(-20);
-
-					active.clear();
-					for (int i = 0; i < 3; i++) 
-						active.add(" ");
-
-					animateCharacterIn(characterView);
-
-					// some kind of event listener to control the flow of options
-
-					// dialogueActive = true;
-					ArrayList<String> dialogue = manager.getDialogue(character.getName(), day);
-					playDialog(handler, dialogue);
-
-
-					// NPC.getDialogue(character.getName(),day);
-					// do character dialogue -- listeners / etc will be muted so the player can't
-					// screw around while dealing w customers
-
-					index++;
-
-					// animateCharacterOut(characterView);
-				} catch (Exception c) {
-					c.printStackTrace();
-				}
+				
 
 				if (index == dailyCharacters.size()) {
-					// end the day
+					System.out.println("LOL");
+					animateDialogueBoxOut(today.getChildren().get(4), window, transition);
+					//animate dialogue box out
 				}
-
+				
+				index++;
 			});
 
-		}
+		
 	}
 
 	/**
 	 * Handles the dialog functionality of the game. Responds to mouse click
-	 * @TODO - remove/fix the default / enter key functionality (shit's broke)?
+	 * @TODO - remove/fix the default / enter key functionality (it's broke)?
 	 * @param pane a BorderPane, in which the dialog labels are displayed
 	 * @param dialog an ArrayList<String> which stores dialog to be played.
 	 */
@@ -317,29 +324,48 @@ public class DayBuilder {
 		
 		// set the background image
 		
+		
+
 		Image image;
 		try {
-			image = new Image(new FileInputStream("./resources/gameimg/amigobkg.png"));
+			image = new Image(new FileInputStream("./resources/gameimg/amigo/mainamigo.png"));
 			ImageView imageView = new ImageView(image);
 			amigo.getChildren().add(imageView); // 1
 		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();
 		}
 
-		Button viewGuests = new Button("View Guests");
-		Button viewEmails = new Button("View Emails");
-		Button exit = new Button("Exit");
+		// Adding buttons
 		
-		// style the buttons
-
+		Button viewGuests = new Button();
+		Button viewEmails = new Button();
+		Button exit = new Button();
+		
+		// Styling the buttons
+		
+		try {
+		Image guestl = new Image(new FileInputStream("./resources/gameimg/amigo/buttons/guestsbtn.png"));
+		viewGuests.setGraphic(new ImageView(guestl));
+		Image emailsimg = new Image(new FileInputStream("./resources/gameimg/amigo/buttons/emailbtn.png"));
+		viewEmails.setGraphic(new ImageView(emailsimg));
+		Image exitimg = new Image(new FileInputStream("./resources/gameimg/amigo/buttons/exit.jpg"));
+		exit.setGraphic(new ImageView(exitimg));
+		} catch (FileNotFoundException e) { e.printStackTrace(); }
+		
+		
 		VBox amigoButtons = new VBox(15);
-		StackPane.setMargin(amigoButtons, new Insets(300, 0, 100, 580));
+		StackPane.setMargin(amigoButtons, new Insets(300, 0, 100, 520));
 		amigoButtons.getChildren().addAll(viewGuests, viewEmails, exit);
+		
+		for (Node item : amigoButtons.getChildren()) 
+			item.setStyle("-fx-base: #000000;");
+		
 
 		amigo.getChildren().add(amigoButtons); // 2
 
+		System.out.println(amigo.getChildren().size());
+		
 		viewGuests.setOnAction(e -> {
-			amigo.getChildren().clear();
 			buildCheckInScreen(dailyCharacters, amigo);
 		});
 		exit.setOnAction(e -> window.setScene(mainscene));
@@ -374,9 +400,9 @@ public class DayBuilder {
 		
 		Image image;
 		try {
-			image = new Image(new FileInputStream("./resources/gameimg/amigowindow.jpg"));
+			image = new Image(new FileInputStream("./resources/gameimg/amigo/guestamigo.png"));
 			ImageView imageView = new ImageView(image);
-			amigo.getChildren().add(imageView); // 3
+			amigo.getChildren().add(imageView);
 		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();
 		}
@@ -386,16 +412,28 @@ public class DayBuilder {
 		ListView<String> guestlist = new ListView<>(guests);
 		TextField guestName = new TextField("Name");
 		TextField roomNumber = new TextField("Room#");
-		Button addGuest = new Button("add");
-		Button checkOut = new Button("checkout");
-		Button back = new Button("back");
+		Button addGuest = new Button();
+		Button checkOut = new Button();
+		Button back = new Button();
 
+		try {
+		Image addg = new Image(new FileInputStream("./resources/gameimg/amigo/buttons/checkin.png"));
+		addGuest.setGraphic(new ImageView(addg));
+		Image checko = new Image(new FileInputStream("./resources/gameimg/amigo/buttons/checkout.png"));
+		checkOut.setGraphic(new ImageView(checko));
+		Image backimg = new Image(new FileInputStream("./resources/gameimg/amigo/buttons/back.png"));
+		back.setGraphic(new ImageView(backimg));
+		} catch (FileNotFoundException e) { e.printStackTrace(); }
+		
 		HBox addName = new HBox(20);
-		addName.getChildren().addAll(guestName, roomNumber, addGuest); 
+		addName.getChildren().addAll(guestName, roomNumber); 
 
 		VBox buttons = new VBox(20);
-		buttons.getChildren().addAll(checkOut, back);
-
+		buttons.getChildren().addAll(addGuest, checkOut, back);
+		
+		for (Node item : buttons.getChildren()) 
+			item.setStyle("-fx-base: #000000;");
+		
 		handler.setCenter(guestlist);
 		handler.setTop(addName);
 		handler.setRight(buttons);
@@ -404,9 +442,13 @@ public class DayBuilder {
 		guests.add("Sample1");
 		guests.add("Sample 2");
 
-		BorderPane.setMargin(guestlist, new Insets(250,80, 120 ,200));
+		BorderPane.setMargin(addName, new Insets(240, 0,0,230));
+		BorderPane.setMargin(buttons, new Insets(40, 240, 0, 30));
+		BorderPane.setMargin(guestlist, new Insets(40, 20, 140 ,220));
 		
 		amigo.getChildren().add(handler);
+		
+		System.out.println(amigo.getChildren().size());
 		
 		addGuest.setOnAction(e -> {
 			NPC temp = new NPC(guestName.getText(), Integer.parseInt(roomNumber.getText().replaceAll("[\\D]", "")));
@@ -414,7 +456,8 @@ public class DayBuilder {
 		});
 		checkOut.setOnAction(e -> guests.remove(guestlist.getSelectionModel().getSelectedIndex()));
 		back.setOnAction(e -> {
-			amigo.getChildren().clear();
+			amigo.getChildren().remove(amigo.getChildren().size() - 1);
+			amigo.getChildren().remove(amigo.getChildren().size() - 1);
 		});
 	}
 
@@ -495,4 +538,20 @@ public class DayBuilder {
 
 	// I heard you like light theme
 
+	public TranslateTransition animateDialogueBoxOut(Node image, Stage window, Scene transition) {
+
+		TranslateTransition translate = new TranslateTransition();
+		translate.setDuration(Duration.millis(1300));
+		translate.setNode(image);
+		translate.setByY(-720);
+		translate.setCycleCount(1);
+		translate.setAutoReverse(false);
+		translate.setOnFinished(e -> window.setScene(transition));
+		translate.play();
+		// translate.setOnFinished(e -> dialogueActive = true);
+		return translate;
+
+	}
+
+	
 }

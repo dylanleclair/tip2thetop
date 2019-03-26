@@ -12,7 +12,7 @@ public class Game extends Application {
 	//protected static boolean loadingFromSave = false;
 	
 	Stage window;
-	Scene menusc, opening, loadsc, helpsc, createsavesc, mainscene, amigoscreen;
+	Scene menusc, opening, loadsc, helpsc, createsavesc, mainscene, amigoscreen, transitionsc;
 	private static GameBuilder gameb = new GameBuilder();
 	private static DayBuilder dayb = new DayBuilder();
 
@@ -34,14 +34,24 @@ public class Game extends Application {
 			menusc = new Scene(menu,1280,720, Color.BLACK);
 			
 			
-			// Main scene
+			// Main scene + the Amigo's resources
 			
+			StackPane transition = new StackPane();
+			transitionsc = new Scene(transition, 1280,720);
 			StackPane amigo = new StackPane();
+			
+			
+			
 			amigoscreen = new Scene(amigo, 1280, 720);
-			dayb.loadDay(window, amigoscreen);
+			dayb.loadDay(window, amigoscreen, transitionsc);
 			mainscene = new Scene(dayb.getToday(), 1280, 720);
 			dayb.buildAmigoScreen(amigo, window, mainscene);
 			
+			gameb.buildTransitionScreen(transition, window,mainscene);
+			
+			// Transition screen
+			
+
 			
 			// Opening Scene
 			StackPane openingPane = new StackPane(); // Container objects for this scene
