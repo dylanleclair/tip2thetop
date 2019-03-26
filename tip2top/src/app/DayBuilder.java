@@ -134,6 +134,7 @@ public class DayBuilder {
 						if(keys[temp]==1) {
 							for(int i = 0;i<12;i++) {
 								key[i].setEffect(shadow);
+								keys[i]= 1;
 									
 								
 							}
