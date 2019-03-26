@@ -295,4 +295,14 @@ public class GameBuilder {
 	}
 	
 	
+	public void buildTransitionScreen(StackPane transition,Stage window, Scene nextDay) {
+		
+		Button nextd = new Button("Next day");
+		
+		transition.getChildren().add(nextd);
+		nextd.setOnAction(e -> {
+			window.setScene(nextDay);
+		});
+	}
+	
 }
