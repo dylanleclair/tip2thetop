@@ -16,7 +16,11 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
@@ -25,6 +29,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -53,7 +58,9 @@ public class DayBuilder {
 
 	private int day = 1;
 	private ObservableList<String> guests = FXCollections.observableArrayList();
-	private ObservableList<String> email = FXCollections.observableArrayList();
+	private ObservableList<String> emailsObservable = FXCollections.observableArrayList();
+	private ArrayList<Email> email_list = new ArrayList<Email>();
+	private ArrayList<Booking> bookings = new ArrayList<Booking>();
 	private Button nextC = new Button(); 
 	private int index = 0;
 
@@ -367,6 +374,8 @@ public class DayBuilder {
 			handler.setRight(nextC);
 			
 
+			
+			//@TODO change this to a keyboard button press so it doesn't cause bugs with amigo
 			handler.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
 
 			
@@ -438,6 +447,10 @@ public class DayBuilder {
 				Collections.shuffle(dailyCharacters);
 				dailyCharacters.add(new NPC("Tiff")); // move this to initialize characters
 				dailyCharacters.add(0, new NPC("Aleksandra"));
+				Email.initializeEmails(email_list);
+				for (Email item : email_list) {
+					emailsObservable.add(item.toString());
+				}
 			}
 
 			animateButtonIn(nextC);
@@ -600,6 +613,9 @@ public class DayBuilder {
 		viewGuests.setOnAction(e -> {
 			buildCheckInScreen(dailyCharacters, amigo);
 		});
+		viewEmails.setOnAction(e -> {
+			buildEmailScreen(amigo);
+		});
 		exit.setOnAction(e -> window.setScene(mainscene));
 
 	}
@@ -608,11 +624,13 @@ public class DayBuilder {
 	 * 
 	 * @param amigo
 	 */
-	public void buildEmailScreen(StackPane amigo) { // focus on this AFTER the email screen is built
+	public void buildEmailScreen(StackPane amigo) { 
 
+		// add functionality for emails to be opened (also need a new button!)
+		
 		Image image;
 		try {
-			image = new Image(new FileInputStream("./resources/gameimg/amigowindow.jpg"));
+			image = new Image(new FileInputStream("./resources/gameimg/amigo/emailsamigo.png"));
 			ImageView imageView = new ImageView(image);
 			amigo.getChildren().add(imageView);
 		} catch (FileNotFoundException e1) {
@@ -620,15 +638,75 @@ public class DayBuilder {
 		}
 
 		
-		ListView<String> emails = new ListView<>(email);
-		if (email.isEmpty())
-			email.add("You have no new emails!");
+		BorderPane handler = new BorderPane();
+		
+		ListView<String> emails = new ListView<>(emailsObservable);
 
-		amigo.getChildren().add(emails);
+		Button open = new Button();
+		Button back = new Button();
 
+		try {
+		Image openimg = new Image(new FileInputStream("./resources/gameimg/amigo/buttons/checkin.png"));
+		open.setGraphic(new ImageView(openimg));
+		Image backimg = new Image(new FileInputStream("./resources/gameimg/amigo/buttons/back.png"));
+		back.setGraphic(new ImageView(backimg));
+		} catch (FileNotFoundException e) { e.printStackTrace(); }
+		
+		VBox buttons = new VBox(20);
+		buttons.getChildren().addAll(open, back);
+		
+		for (Node item : buttons.getChildren()) 
+			item.setStyle("-fx-base: #000000;");
+		
+		handler.setCenter(emails);
+		handler.setRight(buttons);
+		// event handling for buttons
+		
+		guests.add("Sample1");
+		guests.add("Sample 2");
+
+		BorderPane.setMargin(buttons, new Insets(250, 240, 0, 30));
+		BorderPane.setMargin(emails, new Insets(250, 20, 140 ,220));
+		
+		amigo.getChildren().add(handler);
+		
+		System.out.println(amigo.getChildren().size());
+		
+		open.setOnAction(e -> {
+			
+			Email selected = email_list.get(emails.getSelectionModel().getSelectedIndex());
+			
+			
+			System.out.println("display the message lol");
+			
+			Alert email = new Alert(AlertType.INFORMATION);
+			email.setTitle("AmigoEmail 1.0");
+			email.setHeaderText("From: " + selected.getSender());
+			email.setContentText(selected.getMessage());
+			email.getDialogPane().setMinWidth(530);
+			email.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+			// add custom email icon
+			email.setResizable(true);
+			
+			
+
+			email.showAndWait();
+		
+		});
+		back.setOnAction(e -> {
+			amigo.getChildren().remove(amigo.getChildren().size() - 1);
+			amigo.getChildren().remove(amigo.getChildren().size() - 1);
+		});
 	}
-
+		
+	/**
+	 * 
+	 * @param dailyCharacters
+	 * @param amigo
+	 */
 	public void buildCheckInScreen(ArrayList<NPC> dailyCharacters, StackPane amigo) {
+		
+		// @TODO complete integration with bookings class
 		
 		Image image;
 		try {
@@ -701,7 +779,7 @@ public class DayBuilder {
 
 	}
 
-	// Animations
+	// Animations -- move to a different class?
 
 	public TranslateTransition animateCharacterIn(Node character) {
 		TranslateTransition translate = new TranslateTransition();
