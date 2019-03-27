@@ -25,6 +25,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -376,14 +377,55 @@ public class DayBuilder {
 			}
 
 			try {
-				Image amigobtn = new Image(new FileInputStream("./resources/gameimg/amigobtn.png"));
-				Image amigohovered = new Image(new FileInputStream("./resources/gameimg/amigobtnhov.png"));
+				Image amigobtn = new Image(new FileInputStream("./resources/gameimg/a.png"));
+				Image amigohovered = new Image(new FileInputStream("./resources/gameimg/b2.png"));
 				ImageView amigobtng = new ImageView(amigobtn);
 				ImageView amigohoveredg = new ImageView(amigohovered);
-				accessAmigo.setGraphic(amigobtng);
-				accessAmigo.setId("amigo");
-				accessAmigo.graphicProperty()
-						.bind(Bindings.when(accessAmigo.hoverProperty()).then(amigohoveredg).otherwise(amigobtng));
+				
+				DropShadow shadow = new DropShadow();
+				DropShadow highlight = new DropShadow();
+				
+				shadow.setColor(Color.BLACK);
+				shadow.setOffsetY(10);
+				
+			    highlight.setColor(Color.YELLOW);
+			    highlight.setSpread(12);
+			    highlight.setRadius(3);
+				
+				amigobtng.addEventHandler(MouseEvent.MOUSE_ENTERED,
+				        new EventHandler<MouseEvent>() {
+				          @Override
+				          public void handle(MouseEvent e) {
+				        	amigobtng.setEffect(highlight);
+				          }
+				        });
+
+				amigobtng.addEventHandler(MouseEvent.MOUSE_EXITED,
+				        new EventHandler<MouseEvent>() {
+				          @Override
+				          public void handle(MouseEvent e) {
+				        	  amigobtng.setEffect(shadow);
+				        	  
+				        	  
+				          }
+				        });
+				
+				amigobtng.addEventHandler(MouseEvent.MOUSE_PRESSED,
+				        new EventHandler<MouseEvent>() {
+				          @Override
+				          public void handle(MouseEvent e) {
+				        	  window.setScene(amigoscreen);
+				        	  
+				        	  
+				          }
+				        });
+				
+					
+					
+				
+				
+				handler.setBottom(amigobtng);
+				
 				
 
 			} catch (Exception e) {
@@ -412,11 +454,7 @@ public class DayBuilder {
 			
 			// change styling n such later
 
-			accessAmigo.setOnAction(e -> {
-				window.setScene(amigoscreen);
-			});
 			
-			handler.setBottom(accessAmigo);
 			handler.setRight(nextC);
 			
 			//@TODO change this to a keyboard button press so it doesn't cause bugs with amigo + keys
@@ -435,7 +473,7 @@ public class DayBuilder {
 				@Override
 				public void handle(MouseEvent mouseEvent) {
 					// advance
-					if (dialogueActive && (mouseEvent.getY() < 280 || mouseEvent.getX() > 490)) {
+					if (dialogueActive&&(mouseEvent.getY() < 280 || mouseEvent.getX() > 490)) {
 						if (clickCount <= active.size() - 2) {
 							clickCount++;
 
