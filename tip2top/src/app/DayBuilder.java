@@ -152,7 +152,7 @@ public class DayBuilder {
 							translate.setDuration(Duration.millis(1300));
 							translate.setNode(node);
 							translate.setByX(300);
-							translate.setByY(-200);
+							translate.setByY(-250);
 							translate.setCycleCount(1);
 							translate.setAutoReverse(false);
 							translate.play();
