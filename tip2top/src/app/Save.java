@@ -63,11 +63,15 @@ public class Save {
 		} catch (Exception e) {
 			
 		}
-		
 		dayOn = Integer.parseInt(lines.get(0));
 		goodPoints = Integer.parseInt(lines.get(1));
 		badPoints = Integer.parseInt(lines.get(2));
 		
+		if(lines.size()>0 && lines.size() <4) {
+			dayOn = Integer.parseInt(lines.get(0));
+			goodPoints = Integer.parseInt(lines.get(1));
+			badPoints = Integer.parseInt(lines.get(2));
+		}
 		//System.out.println(dayOn +", "+ goodPoints +", "+ badPoints);
 		// here we would start transition into whatever day // start the gameplay
 	}

@@ -543,6 +543,19 @@ public class DayBuilder {
 		for (int i = 0; i < 3; i++)
 			active.add(" ");
 
+		active.addAll(dialog); // added by yvonne
+		/*
+		 * call dialogue 
+		 * end dialogue
+		 * insert choice 
+		 * store choice consequence
+		 * call choice dialogue 
+		 * move on
+		 * repeat
+		 */
+		for (int i = 0; i < 3; i++) active.add(" ");
+		
+		
 		VBox container = new VBox(5);
 
 		slot1.setId("dialog-text");
