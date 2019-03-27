@@ -5,7 +5,11 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 
+// clean these up
+
 import javafx.animation.FadeTransition;
+import javafx.animation.Animation.Status;
+import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
@@ -448,6 +452,7 @@ public class DayBuilder {
 
 	}
 
+
 	/**
 	 * Handles the "day" of events as a whole. Controls which characters are on the screen. 
 	 * @param handler a BorderPane which stores buttons/other onscreen elements as needed.  (might be causing bugs?)
@@ -542,8 +547,11 @@ public class DayBuilder {
 		active.addAll(dialog); // we need to separate this so we can ensure it is done correctly?
 		for (int i = 0; i < 3; i++)
 			active.add(" ");
+    
+		// get the array list for the given npc and prompt
+		ArrayList<String> read = Reader.getDialogue("Tiff", "iceCream_yes");
 
-		active.addAll(dialog); // added by yvonne
+		active.addAll(read); // added by yvonne
 		/*
 		 * call dialogue 
 		 * end dialogue
@@ -554,7 +562,6 @@ public class DayBuilder {
 		 * repeat
 		 */
 		for (int i = 0; i < 3; i++) active.add(" ");
-		
 		
 		VBox container = new VBox(5);
 

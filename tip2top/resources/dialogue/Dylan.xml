@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Dylan>
+
+	<firstDay>
+		<print>???: Hey there friend, what’s up?</print>
+		<print>You: Hi, what can I do for you today?</print>
+		<print>???: I’d like a basic room please.</print>
+		<print>These rooms definitely aren’t cheap y’know.</print>
+		<print>???: Y'know, I prefer the past to the present and the present to the future.</print>
+		<print>You: Alright... What’s your name?</print>
+		<print>Dylan: Dylan. I’ll be staying for two days.</print>
+		<print>You: Okay, sounds good.</print>
+	</firstDay>
+	
+	<longerStay>
+		<print>You: Hello! Welcome back to the Three Eagles Hotel!</print>
+		<print>Dylan: Hey, could I extend my booking? This cute little hotel is actually pretty cozy.</print>
+		<print>You: Sure, how many days would you like to add on?</print>
+		<print>Dylan: Just until the end of the week. I have a friend in town that I’m gonna visit!</print>
+		<print>You: Sounds good! You’re all set. Is there anything else you need?</print>
+		<print>Dylan: A quick question on the pricing - any chance a longer stay gives me a discount or anything?</print>
+	</longerStay>
+	
+	<longerStay_yes>
+		<print>You: We do indeed! It’s a 10% total discount if you stay more than 3 nights.</print>
+		<print>Dylan: Oh, okay! Your eyes are free like the ocean...</print>
+		<print>Dylan: Ocean thousand mountain thousand.</print>
+		<print>You: Uh... Did you want any shampoo?</print>
+		<print>Dylan: Sure!</print>
+	</longerStay_yes>
+	
+	<longerStay_no>
+		<print>No, sorry! We do have different free items from day to day, though.</print>
+		<print>Dylan: Oh, okay! Your eyes are free like the ocean...</print>
+		<print>Dylan: Ocean thousand mountain thousand.</print>
+		<print>You: Uh... Did you want any shampoo?</print>
+		<print>Dylan: Sure!</print>
+	</longerStay_no>
+	
+	<roomSwap>
+		<print>Dylan: Hey, do you mind if I change rooms?</print>
+		<print>Dylan: There are some strange noises coming from the room beside me...</print>
+		<print>You: Yes, no problem.</print>
+		<print>You: What noises are coming from the room?</print>
+		<print>Dylan: Just a bunch of things I can only describe as a young female voice constantly yelling out “tu tu ru.”</print> 
+		<print>Dylan: I honestly think she’s being possessed, please help a guy out.</print>
+		<print>You: That’s weird... Alright, just move to this room right here, 101.</print>
+		<print>Dylan: Thanks! And are there any cafes nearby? Or things to do in this town?</print>
+		<print>You: Joe’s cafe is just down the street.</print>
+		<print>And honestly, the most exciting thing in this town is watching the tumbleweeds roll across the road.</print>
+		<print>Dylan: Okay sweet, uh, thanks.</print>
+		<print>Dylan: He who rides the tiger is afraid to dismount.</print>
+	</roomSwap>
+	
+	<pillows>
+		<print>Dylan: You should take your little horse away from the rain.</print>
+		<print>You: What?</print>
+		<print>You: I don’t have a little horse...</print>
+		<print>You: Plus we’re in the middle of the desert.</print>
+		<print>Dylan: You’ll understand one day.</print>
+		<print>Dylan: Anyways, I was looking for some extra pillows.</print>
+		<print>Dylan: Have you got any?</print>
+	</pillows>
+	
+		<pillows_yes>
+			<print>You: Yes, we do!</print>
+			<print>Dylan: Perfect, thanks homie.</print>
+		</pillows_yes>
+		
+		<pillows_no>
+			<print>You: Sorry, we’re all out.</print>
+			<print>Dylan: Darn, thanks though.</print>
+		</pillows_no>
+		
+	<leave>
+		<print>You: Welcome back, how can I help you?</print>
+		<print>Dylan: To make a long story short...</print>
+		<print>Dylan: This place is really growing on me.</print>
+		<print>Dylan: It reminds me of my adventures down under.</print>
+		<print>Dylan: So have you heard through the grapevine about any job openings?</print> 
+		<print>Dylan: You may think I’ve got my head in the clouds...</print>
+		<print>Dylan: ...staying when I want to go to Denmark...</print>
+		<print>Dylan: But haste makes waste so I may take some time here.</print> 
+		<print>Dylan: Anyways I don’t want to beat a dead horse.</print>
+		<print>Dylan: Let me know if you hear of any job openings.</print>
+		<print>Dylan: Or maybe you want to spread your wings, and join me when I leave.</print> 
+		<print>Dylan: The ball is in your court.</print>
+	</leave>
+	
+		<leave_no>
+			<print>Dylan: That’s a shame man.</print>
+			<print>Dylan: We could have had a bright future together...</print>
+			<print>Dylan: Good look out there then.</print>
+		</leave_no>
+
+</Dylan>

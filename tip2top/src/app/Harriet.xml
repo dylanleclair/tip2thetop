@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Harriet>
+
+	<rude>
+		<print>???: Hello, I’d like to reserve a room.</print>
+		<print>You: Okay, which tier would you like?</print>
+		<print>???: Luxury. Is that alright?</print>
+		<print>???: Should I repeat that? You seem slow.</print>
+		<print>You: ...</print>
+		<print>You: Okay, one premium room.</print>
+		<print>You: What’s your name?</print>
+		<print>???: Harriet.</print>
+		<print>You: And how many days will you be staying?</print>
+		<print>Harriet: 2 nights, ugh.</print>
+		<print>Harriet: Your attention span is on the same caliber of a goldfish.</print>
+		<print>Harriet: I swear I’m the only one on this planet that functions properly.</print>
+		<print>Harriet: And that room better have 3 ply toilet paper.</print>
+		<print>You: We only carry 2 ply, sorry.</print>
+		<print>Harriet: Bah! Nevermind, I can’t stay in this dirt hole.</print>
+	</rude>
+
+</Harriet>

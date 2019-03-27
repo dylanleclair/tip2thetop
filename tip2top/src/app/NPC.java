@@ -154,6 +154,8 @@ public class NPC {
 			queue.add("Dylan: I'm the last character today..");
 			queue.add("Each character has their own personality..");
 			queue.add("I'm the quiet one..");
+			queue.add("...");
+			queue.add("Hello.");
 		} else if (character.equalsIgnoreCase("Yvonne")) {
 			queue.add("Yvonne: Right now, not everything is");
 			queue.add("not quite as complete as we want, but we have a");

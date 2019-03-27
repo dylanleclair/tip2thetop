@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Aleksandra>
+
+	<firstDay>
+		<print>Aleksandra: I know you’re new and all, but that is no excuse for stupidity.</print>
+		<print>Aleksandra: Don’t forget to be nice to that girl.</print>
+		<print>Aleksandra: The one that leaves early.</print>
+		<print>Aleksandra: She is a VALUABLE customer!!!</print>
+		<print>Aleksandra: Also!!!</print>
+		<print>Aleksandra: Basic rooms are $30.</print>
+		<print>Aleksandra: Premium rooms are $40.</print>
+		<print>Aleksandra: ... and Luxury rooms are $55.</print>
+		<print>Aleksandra: Okay, bye.</print>
+	</firstDay>
+	
+	<secondDay>
+		<print>Aleksandra: Hey! Good job yesterday, keep it up kid.</print>
+		<print>Aleksandra: Today we are trying to get rid of our extra shampoo so make sure you don’t give anything else out.</print> 
+		<print>Aleksandra: Also - the longer a customer stays, the more they save!</print>
+		<print>Aleksandra: They get a 10% discount for more than 3 nights.</print>
+		<print>Aleksandra: Okay, bye.</print>
+	</secondDay>
+	
+	<thirdDay>
+		<print>Hey, you’re doing a pretty (good / bad) job so far.</print>
+		<print>Either way, I’m paying for you to be the best of the best so strive to make me some more money, yeah?</print>
+		<print>Anyways, today we are focusing on getting rid of conditioner.</print>
+		<print>Nothing else should be given out. Don’t screw up.</print>
+	
+	</thirdDay>
+	
+
+</Aleksandra>
