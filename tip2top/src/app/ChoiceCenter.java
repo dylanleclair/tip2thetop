@@ -5,6 +5,7 @@ public class ChoiceCenter extends DayBuilder {
 	private int gulagPoints;
 	private int daymistakes;
 	private int totalmistakes;
+	private int customerSatisfaction;
 	private boolean tiff_icecream;
 	private boolean jason_mint;
 	private int choice = 0;
@@ -27,22 +28,22 @@ public class ChoiceCenter extends DayBuilder {
 			if(character.equalsIgnoreCase("Jason")) {
 				choice = 0;//function to prompt choice from player
 				if(choice ==1) {//choice (a)$35
-					//customerSatisfaction++
+					customerSatisfaction++;
 					gulagPoints++;
 					return "upgrade_a";
 				}
 				if(choice ==2) {//choice (b)$55
-					//customerSatisfaction--;
+					customerSatisfaction--;
 					gulagPoints++;
 					return "upgrade_b";
 				}
 				if(choice ==3) {//choice (c)$40
-					//customerSatisfaction++
+					customerSatisfaction++;
 					gulagPoints--;
 					return "upgrade_c";
 				}
 				if(choice ==1) {//choice (d)$65
-					//customerSatisfaction--;
+					customerSatisfaction--;
 					gulagPoints++;
 					return "upgrade_d";
 				}
@@ -51,13 +52,13 @@ public class ChoiceCenter extends DayBuilder {
 				choice = 0;//function to prompt choice from player
 				if(choice == 1) {//yes
 					gulagPoints--;
-					//tiff points++
+					customerSatisfaction++;
 					tiff_icecream = true;
 					return "iceCream_yes";
 				}
 				if(choice == 2) {//no
 					gulagPoints++;
-					//tiff points--
+					customerSatisfaction--;
 					tiff_icecream = false;
 					return "iceCream_no";
 				}
@@ -95,11 +96,11 @@ public class ChoiceCenter extends DayBuilder {
 			if(character.equalsIgnoreCase("Patricia")) {
 				choice = 0;//function to prompt choice from player
 				if(choice ==1) {//yes, know her
-					//customerSatisfaction++;
+					customerSatisfaction++;
 					return "famous_yes";
 				}
 				if(choice ==2) {//no, do not know her
-					//customerSatisfaction--;
+					customerSatisfaction--;
 					return "famous_no";
 				}
 			}
@@ -119,24 +120,24 @@ public class ChoiceCenter extends DayBuilder {
 				choice = 0;//function to prompt choice from player
 				if(choice ==1) {//yes shampoo
 					gulagPoints++;
-					//customerSatisfaction++;
+					customerSatisfaction++;
 					return "weeee";//filler prompt name
 				}
 				if(choice ==2) {//no shampoo
 					gulagPoints--;
-					//customerSatisfaction--;
+					customerSatisfaction--;
 					return "weeee";//filler prompt name
 				}
 			}
 			if(character.equalsIgnoreCase("Jason")) {
 				//effect point
 				if(jason_mint == true) {
-					//customerSatisfaction++;
+					customerSatisfaction++;
 					return "weeee";//filler prompt name
 					//tip +10
 				}
 				else {
-					//customerSatisfaction--;
+					customerSatisfaction--;
 					return "weeee";//filler prompt name
 					
 				}
@@ -147,7 +148,7 @@ public class ChoiceCenter extends DayBuilder {
 			if(character.equalsIgnoreCase("Tiff")) {
 				choice = 0; //function to prompt choice
 				if(choice==1) {//give pillow
-					//customerSatisfaction++;
+					customerSatisfaction++;
 					//dailymistakes++;
 					return "weeee";//filler prompt name
 				}
