@@ -10,6 +10,7 @@ class NPCTest {
     /**
      * Tests the getName method of the NPC class. Players can select whatever name they want. This test ensures that special characters
      * and different combinations are tested.
+     * @result Name will be returned without any errors
      */
     @Test
     void getName() {
@@ -20,6 +21,7 @@ class NPCTest {
     /**
      * Tests the setName method and changes the name of the NPC that was created. Special characters are not allowed allowed.
      * This test ensures that different combinations are tested, and that the method works as it is intended to.
+     * @result The name will be changed and returned with no errors
      */
     @Test
     void setName() {
@@ -34,6 +36,7 @@ class NPCTest {
     /**
      * The testConstructors method tests the different combinations that people can create an NPC with. Room numbers that are not valid and
      * names with special characters are not allowed in this test.
+     * @result A new NPC will be created following the standards and it will not result in any errors
      */
     @Test
     void testConstructors() {
@@ -47,20 +50,8 @@ class NPCTest {
     }
 
     /**
-     * This tests the default constructor for the NPC class. Special characters are not allowed, as well as testing for if
-     * the room number is valid or not
-     */
-    @Test
-    void testDefaultConstructor() {
-        NPC npc = new NPC("Josh");
-        NPC npc3 = new NPC("Martha");
-        assertEquals("Josh", npc.getName(), "Created an NPC with name Josh");
-        assertEquals(0,npc.getRoomNumber(),"Default NPC should have no room number assigned to it. Defaults to 0");
-        assertEquals(0,npc3.getRoomNumber(),"Created an NPC with an invalid room number. Should default to 0");
-    }
-
-    /**
      * Tests the getRoomNumber method in the NPC class.
+     * @result The room number will be returned without any errors
      */
     @Test
     void getRoomNumber() {
@@ -73,6 +64,7 @@ class NPCTest {
     /**
      * Tests the setRoomNumber of the NPC class. The method changes the NPC's room number. This tests to see if all the standards
      * of the room number change are followed, and if the room number change used a valid room number.
+     * @result The room number will change following the standards given and it will not produce any errors
      */
     @Test
     void setRoomNumber() {
@@ -85,7 +77,8 @@ class NPCTest {
     }
 
     /**
-     *
+     *Tests the setCheckedIn method.
+     * @result Changes the boolean of the customer depending on whether they are checked in or not
      */
     @Test
     void testSetCheckedIn() {
@@ -94,6 +87,10 @@ class NPCTest {
         assertEquals(false,npc.isCheckedIn(),"NPC Bob has checked out, should change isCheckedIn to false");
     }
 
+    /**
+     * Tests the isCheckedIn method
+     * @result Returns the correct boolean if a customer has checked in without any errors
+     */
     @Test
     void testIsCheckedIn() {
         NPC npc = new NPC("Bob");
@@ -104,6 +101,7 @@ class NPCTest {
 
     /**
      * Tests the to string method of the NPC class. Should return the name and room number of the npc.
+     * @result The resulting toString should be in the correct format with no errors
      */
     @Test
     void testToString() {
@@ -111,6 +109,11 @@ class NPCTest {
         assertEquals("Bob 0",npc.toString(),"Expected to string to return (name (room number))");
     }
 
+    /**
+     * Tests the setBooking method inside the NPC class.
+     * @result The bookings will change from one booking to another, including everything associated with it, such as
+     * Name, room number, and type of room.
+     */
     @Test
     void setBooking() {
         Booking one = new Booking("Josh",204,"King");
@@ -124,6 +127,10 @@ class NPCTest {
         assertEquals(two,npc2.getBooking(),"Expected the same booking");
     }
 
+    /**
+     * Tests the getBooking method inside the NPC class.
+     * @result Returns the correct booking without any errors
+     */
     @Test
     void testGetBooking() {
         Booking one = new Booking("Bob",104,"Deluxe");
