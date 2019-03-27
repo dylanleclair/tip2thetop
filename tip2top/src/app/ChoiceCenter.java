@@ -210,6 +210,7 @@ public class ChoiceCenter {
 				System.out.println("size = "+character.getPrompts().size());
 			} else if (character.getName().equals("Harriet")) {
 				character.getPrompts().add("rude");
+				character.getPrompts().add("");
 			} else if (character.getName().contentEquals("Yvonne")) {
 				character.getPrompts().add("russian");
 				character.getPrompts().add("");
@@ -225,6 +226,7 @@ public class ChoiceCenter {
 				character.getPrompts().add("room");
 				character.getPrompts().add("pillows");
 			} else if (character.getName().contentEquals("Mystery")) {
+				character.getPrompts().add("");
 				character.getPrompts().add("aleks");
 			}
 		}

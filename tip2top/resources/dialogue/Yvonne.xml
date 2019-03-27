@@ -10,6 +10,8 @@
 		<print>Yvonne: Yvonne. Did you not read the dialogue?</print>
 		<print>You: Uh... What tier would you like?</print>
 		<print>Yvonne: Luxury.</print>
+		<print>You: Excellent choice - how about room 12?</print>
+		<print>Yvonne: That's fine.</print>
 		<print>You: Wait, are you a guitar player?</print>
 		<print>Yvonne: No, this is strictly for business purposes.</print>
 		<print>Yvonne: Anyways, are you Russian?</print>
@@ -17,18 +19,18 @@
 	</russian>
 
 		<russian_yes>
-			<print>Yvonne: Excellent. See you soon.</print>
+			<print>Yvonne: That's pretty lucky...</print>
+			<print>You: Excuse me?</print>
+			<print>Yvonne: Excellent, could I get my key? Thank you.</print>
 		</russian_yes>
 	
 		<russian_no>
 			<print>Yvonne: What a shame. Better be extra careful then, they’re watching.</print>
 			<print>You: What do you mean?</print>
-			<print>Yvonne: ...See you soon.</print>
+			<print>Yvonne: Could I get my key please?</print>
+			<print> -- You remember to give her the key... --</print>
+			<print>She stares at you blankly.</print>
 		</russian_no>
-	
-		<russian_why>
-			<print>Yvonne: Nevermind.</print>
-		</russian_why>
 	
 	<shampoo>
 		<print>Yvonne: Hey, my room’s out of shampoo. Do you mind if I get more?</print>

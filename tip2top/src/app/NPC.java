@@ -125,7 +125,7 @@ public class NPC {
 		if (populated == false) {
 
 			NPC jason = new NPC("Jason");
-			jason.setBooking(new Booking("Jason", 5, "Basic"));
+			jason.setBooking(new Booking("Jason", 4, "Basic"));
 			jason.setCheckedIn(true);
 			
 			allCharacters.add(new NPC("Dylan"));
