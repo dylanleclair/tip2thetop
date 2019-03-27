@@ -8,17 +8,17 @@ import java.util.regex.Pattern;
 
 
 public class NPC {
-	
+
 	private String name;
 	private int roomNumber;
 	private Booking booking;
 	private boolean checkedIn = false;
-	
+
 	private boolean populated = false;
-	
-	
+
+
 	// Constructors
-	
+
 	public NPC(String name) {
 
 		this.name = name;
@@ -27,11 +27,11 @@ public class NPC {
 	}
 
 	// Getters/Setters
-	
+
 	public String getName() {
 		return name;
 	}
-	
+
 	public void setName(String name) {
 		//Check for special characters source : found online.
 		Pattern pattern = Pattern.compile("[a-zA-z0-9]*");
@@ -43,11 +43,11 @@ public class NPC {
 			this.name = name;
 		}
 	}
-	
+
 	public int getRoomNumber() {
 		return roomNumber;
 	}
-	
+
 	public void setRoomNumber(int roomNumber) {
 		if (roomNumber >= 101 && roomNumber <= 104 || roomNumber >= 201 && roomNumber <= 204 || roomNumber >= 301 && roomNumber <= 304) {
 			this.roomNumber = roomNumber;
@@ -70,7 +70,7 @@ public class NPC {
 	public void setCheckedIn(boolean checkedIn) {
 		this.checkedIn = checkedIn;
 	}
-	
+
 	public NPC getCharacter (String name, ArrayList<NPC> allCharacters) {
 		for (NPC character : allCharacters) {
 			if (name.equals(character.getName()) ) {
@@ -79,40 +79,40 @@ public class NPC {
 		}
 		return null;
 	}
-	
+
 	/**
-	 * Returns a list of NPCs for the current day, selecting them from the list of all characters 
+	 * Returns a list of NPCs for the current day, selecting them from the list of all characters
 	 * @param day - an int, the day # to load the characters for
 	 * @param allcharacters - the array of all character NPCs to retreive objects from
 	 * @return the list of daily characters
 	 */
 	public ArrayList<NPC> initializeCharacters(int day, ArrayList<NPC> allcharacters) { // finish this to modify per day
 		ArrayList<NPC> dailyCharacters= new ArrayList<>();
-		
+
 		List<String> characters_day_1 = Arrays.asList("Dylan", "Jason", "Yvonne", "Harriet", "Patricia");
-		
+
 		switch(day) {
-		
+
 		case 1:
-			
+
 			dailyCharacters.clear();
 			for (NPC character : allcharacters) {
 				if (characters_day_1.contains(character.getName())) {
 					dailyCharacters.add(character);
 				}
 			}
-		
+
 		}
 		return dailyCharacters;
 	}
-	
+
 	public void populateAllCharacters(ArrayList<NPC> allCharacters) {
 		if (populated == false) {
 
 			NPC jason = new NPC("Jason");
 			jason.setBooking(new Booking("Jason", 5, "Basic"));
 			jason.setCheckedIn(true);
-			
+
 			allCharacters.add(new NPC("Dylan"));
 			allCharacters.add(jason);
 			allCharacters.add(new NPC("Yvonne"));
@@ -125,50 +125,50 @@ public class NPC {
 			allCharacters.add(new NPC("Anna"));
 			allCharacters.add(new NPC("Dimitri"));
 			allCharacters.add(new NPC("Gloria"));
-		
+
 			populated = true;
 		}
 	}
-		
+
 	public String toString() {
 		return name + " " + roomNumber;
 	}
-		
-		
+
+
 	public ArrayList<String> getDialogue(String character, int day) {
 		// returns the dialogue for the character given the day and previous variables
-		
+
 		ArrayList<String> queue = new ArrayList<String>();
-		
+
 		if (character.equalsIgnoreCase("Dylan")) {
-			
+
 			if (day == 1) {
-				
+
 				queue.add("Dylan: I like skittles.");
 				queue.add("I also like to code.");
 				queue.add("Yeah, this isn't really relevant.");
-				
-				// dialogue for dylans first day 
-				
+
+				// dialogue for dylans first day
+
 				//ex for a branch -- make variables global so i can toString them
-				
+
 				// stuff leading up to a split / branch
-				
-				
-			} else if (day == 2) { 
-				
+
+
+			} else if (day == 2) {
+
 			} else if (day == 3) {
-				
-			} else if (day == 4) { 
-				
+
+			} else if (day == 4) {
+
 			} else if (day == 5) {
-				
+
 			} else if (day == 6) {
-				
+
 			} else if (day == 7) {
-				
+
 			}
-			
+
 		} else if (character.equalsIgnoreCase("Tiff")) {
 			queue.add("Dylan: I'm the last character today..");
 			queue.add("Each character has their own personality..");
@@ -198,12 +198,12 @@ public class NPC {
 			queue.add("old so don't pay too much attention");
 			queue.add("if it doesn't really work.. for now.");
 		}
-				
+
 		return queue;
-		
-		
-		
+
+
+
 	}
-		
-		
+
+
 }
