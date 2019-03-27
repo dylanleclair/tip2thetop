@@ -134,5 +134,59 @@ public class NPCTest {
         assertEquals(one,npc.getBooking(),"Expected booking to be the same");
     }
 
+    /**
+     * Tests the getKey method inside the NPC class
+     * @result Returns the correct key number of the NPC without any errors
+     */
+    @Test
+    void testGetKey() {
+        NPC npc = new NPC("Bob");
+        assertEquals(0,npc.getKey(),"Default key should be 0");
+    }
+
+    /**
+     * Tests the setKey method inside the NPC class
+     * @result Changes the NPC key to a new key without any errors
+     */
+    @Test
+    void testSetKey() {
+        NPC npc = new NPC("Bob");
+        npc.setKey(11);
+        assertEquals(11,npc.getKey(),"Set the key to be 11, expected 11");
+    }
+
+    /**
+     * Tests the getCharacter class inside the NPC class
+     * @result Returns an arrayList of NPC without any errors.
+     */
+    @Test
+    void testGetCharacter() {
+        NPC npc = new NPC("Bob");
+        ArrayList<NPC> one = new ArrayList<>();
+        one.add(npc);
+        assertEquals(one.get(0),npc.getCharacter("Bob",one),"Expected to return a character Bob");
+    }
+
+    //These two methods were recentley added. More work has to be done on them to be finalized, as well as meeting
+    //with the group to see what we want these methods to return. Tests are not yet implemented for them, however
+    //they will be soon
+    /*
+    @Test
+    void testInitializeCharacters() {
+        NPC npc = new NPC("Bob");
+        ArrayList<NPC> one = new ArrayList<>();
+        ArrayList<NPC> two = new ArrayList<>();
+        npc.initializeCharacters(1,one,two);
+    }
+
+
+    @Test
+    void testPopulateAllCharacters() {
+        NPC npc = new NPC("Bob");
+        ArrayList<NPC> one = new ArrayList<>();
+        npc.populateAllCharacters(one);
+        //assertEquals(true,npc.getPopulated);
+    }
+    */
 
 }
