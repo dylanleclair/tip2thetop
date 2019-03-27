@@ -293,13 +293,14 @@ public class GameBuilder {
 	}
 	
 	
-	public void buildTransitionScreen(StackPane transition,Stage window, Scene nextDay) {
+	public void buildTransitionScreen(StackPane transition,Stage window, Scene nextDay, DayBuilder dayb, Scene transitionsc) {
 		
 		Button nextd = new Button("Next day");
 		
 		transition.getChildren().add(nextd);
 		nextd.setOnAction(e -> {
 			window.setScene(nextDay);
+			dayb.triggerNewDay(window, transitionsc);
 		});
 	}
 	

@@ -92,19 +92,32 @@ public class NPC {
 	public void initializeCharacters(int day, ArrayList<NPC> allcharacters, ArrayList<NPC> dailyCharacters) { // finish this to modify per day
 		
 		List<String> characters_day_1 = Arrays.asList("Dylan", "Jason", "Yvonne", "Harriet");
+		List<String> characters_day_2 = Arrays.asList("Dylan", "Jason", "Mystery", "Patricia", "Tiff");
 		
-		switch(day) {
+		// need a Mystery character image
 		
-		case 1:
-			
+		if (day == 1) {
 			//dailyCharacters.clear();
 			for (NPC character : allcharacters) {
 				if (characters_day_1.contains(character.getName())) {
 					dailyCharacters.add(character);
 				}
 			}
-		
 		}
+			
+
+		if (day == 2) {
+			dailyCharacters.clear();
+			for (NPC character : allcharacters) {
+				if (characters_day_2.contains(character.getName())) {
+					dailyCharacters.add(character);
+				}
+			}
+		}
+
+			
+		
+		
 		
 	}
 	

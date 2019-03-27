@@ -46,6 +46,8 @@ public class DayBuilder {
 	Booking bmanager = new Booking(null);
 	ChoiceCenter cmanager = new ChoiceCenter();
 	
+	BorderPane handler = new BorderPane();
+	
 	
 	// NPC Management
 	ArrayList<NPC> allCharacters = new ArrayList<NPC>();
@@ -73,6 +75,7 @@ public class DayBuilder {
 	private ObservableList<String> emailsObservable = FXCollections.observableArrayList(); // list of emails toStrings displayed in Amigo 1000 
 	private ArrayList<Email> email_list = new ArrayList<Email>(); // list of emails in the Amigo 1000
 	private Button nextC = new Button(); 
+	private boolean clickable = false;
 	private int index = 0;
 
 	// Image of the character currently in slot 1 / being displayed
@@ -223,8 +226,6 @@ public class DayBuilder {
 			today.getChildren().add(imageView5);
 			
 			
-
-			BorderPane handler = new BorderPane();
 			Button accessAmigo = new Button();
 			
 			Image img1, img2,img3,img4,img5,img6,img7,img8,img9,img10,img11,img12;
@@ -499,11 +500,17 @@ public class DayBuilder {
 				for (Email item : email_list) {
 					emailsObservable.add(item.toString());
 				}
+			} else if (day == 2) {
+				Collections.shuffle(dailyCharacters);
+				dailyCharacters.add(0, manager.getCharacter("Aleksandra", allCharacters));
+				System.out.println(dailyCharacters.toString());
 			}
 
 			animateButtonIn(nextC);
 
 			nextC.setOnAction(e -> {
+				
+				clickable = false;
 
 				// animate nextC out if index > 0
 
@@ -691,7 +698,7 @@ public class DayBuilder {
 		Button back = new Button();
 
 		try {
-		Image openimg = new Image(new FileInputStream("./resources/gameimg/amigo/buttons/checkin.png"));
+		Image openimg = new Image(new FileInputStream("./resources/gameimg/amigo/buttons/readbtn.jpg"));
 		open.setGraphic(new ImageView(openimg));
 		Image backimg = new Image(new FileInputStream("./resources/gameimg/amigo/buttons/back.png"));
 		back.setGraphic(new ImageView(backimg));
@@ -842,6 +849,16 @@ public class DayBuilder {
 	public static void verifyAmigo() {
 
 	}
+	
+	
+	public void triggerNewDay(Stage window, Scene transitionsc) {
+		index = 0;
+		day++;
+		nextC.setLayoutX(1300);
+		nextC.setLayoutY(650);
+		manager.initializeCharacters(day, allCharacters, dailyCharacters);
+		runDay(handler,window,transitionsc);
+	}
 
 	// Animations -- move to a different class?
 
@@ -884,9 +901,10 @@ public class DayBuilder {
 		TranslateTransition translate = new TranslateTransition();
 		translate.setDuration(Duration.millis(1300));
 		translate.setNode(button);
-		translate.setByX(-350);
+		translate.setByX(-370);
 		translate.setCycleCount(1);
 		translate.setAutoReverse(false);
+		translate.setOnFinished(e -> clickable = true);
 		translate.play();
 		return translate;
 
@@ -935,5 +953,6 @@ public class DayBuilder {
 
 	}
 
+	
 	
 }
