@@ -12,17 +12,16 @@ public class NPC {
 	private Booking booking;
 	private boolean checkedIn = false;
 	
+	private boolean populated = false;
+	
 	
 	// Constructors
 	
-	public NPC(String name, int roomNumber) {
-		this.name = name;
-		this.roomNumber = roomNumber;
-	}
 	public NPC(String name) {
 		this.name = name;
+		booking = new Booking(name);
 	}
-	
+
 	// Getters/Setters
 	
 	public String getName() {
@@ -40,20 +39,76 @@ public class NPC {
 	public void setRoomNumber(int roomNumber) {
 		this.roomNumber = roomNumber;
 	}
+	public Booking getBooking() {
+		return booking;
+	}
+	public boolean isCheckedIn() {
+		return checkedIn;
+	}
+	public void setBooking(Booking booking) {
+		this.booking = booking;
+	}
+	public void setCheckedIn(boolean checkedIn) {
+		this.checkedIn = checkedIn;
+	}
 	
-	// Static methods for use with dailyCharacters in other classes
+	public NPC getCharacter (String name, ArrayList<NPC> allCharacters) {
+		for (NPC character : allCharacters) {
+			if (name.equals(character.getName()) ) {
+				return character;
+			}
+		}
+		return null;
+	}
 	
-	public ArrayList<NPC> initializeCharacters(int day) { // finish this to modify per day
+	/**
+	 * Returns a list of NPCs for the current day, selecting them from the list of all characters 
+	 * @param day - an int, the day # to load the characters for
+	 * @param allcharacters - the array of all character NPCs to retreive objects from
+	 * @return the list of daily characters
+	 */
+	public ArrayList<NPC> initializeCharacters(int day, ArrayList<NPC> allcharacters) { // finish this to modify per day
 		ArrayList<NPC> dailyCharacters= new ArrayList<>();
+		
+		List<String> characters_day_1 = Arrays.asList("Dylan", "Jason", "Yvonne", "Harriet", "Patricia");
+		
 		switch(day) {
 		
 		case 1:
-			List<NPC> namesList = Arrays.asList(new NPC("Dylan"), new NPC("Jason"),new NPC("Yvonne"), new NPC("Harriet"), new NPC("Patricia"));
+			
 			dailyCharacters.clear();
-			dailyCharacters.addAll(namesList);
+			for (NPC character : allcharacters) {
+				if (characters_day_1.contains(character.getName())) {
+					dailyCharacters.add(character);
+				}
+			}
 		
 		}
 		return dailyCharacters;
+	}
+	
+	public void populateAllCharacters(ArrayList<NPC> allCharacters) {
+		if (populated == false) {
+
+			NPC jason = new NPC("Jason");
+			jason.setBooking(new Booking("Jason", 5, "Basic"));
+			jason.setCheckedIn(true);
+			
+			allCharacters.add(new NPC("Dylan"));
+			allCharacters.add(jason);
+			allCharacters.add(new NPC("Yvonne"));
+			allCharacters.add(new NPC("Harriet"));
+			allCharacters.add(new NPC("Patricia"));
+			allCharacters.add(new NPC("Aleksandra"));
+			allCharacters.add(new NPC("Tiff"));
+			allCharacters.add(new NPC("???"));
+			allCharacters.add(new NPC("Benjamin"));
+			allCharacters.add(new NPC("Anna"));
+			allCharacters.add(new NPC("Dimitri"));
+			allCharacters.add(new NPC("Gloria"));
+		
+			populated = true;
+		}
 	}
 		
 	public String toString() {

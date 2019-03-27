@@ -1,11 +1,44 @@
 package app;
 
+import java.util.ArrayList;
+
+import javafx.collections.ObservableList;
+
 public class Booking extends AmigoBuilder {
 
+	private String owner;
 	private int roomNumber;
 	private String roomType;
-	private String owner;
 	
+	public String getOwner() {
+		return owner;
+	}
+
+	public int getRoomNumber() {
+		return roomNumber;
+	}
+
+	public String getRoomType() {
+		return roomType;
+	}
+
+	public void setOwner(String owner) {
+		this.owner = owner;
+	}
+
+	public void setRoomNumber(int roomNumber) {
+		this.roomNumber = roomNumber;
+	}
+
+	public void setRoomType(String roomType) {
+		this.roomType = roomType;
+	}
+
+	public Booking(String owner) {
+		setOwner(owner);
+		this.roomNumber = 0;
+		this.roomType = null;
+	}
 	
 	public Booking(String owner, int roomNumber, String roomType) {
 		this.owner = owner;
@@ -14,8 +47,16 @@ public class Booking extends AmigoBuilder {
 	}
 	
 	public String toString () {
-		String toReturn = "Guest: " + owner + " | " + "Room #: " + roomNumber + " | " + "Room Type: " + roomType;
+		String toReturn = "Guest: " + owner + " | " + "Room #" + roomNumber + " | " + "Room Type: " + roomType;
 		return toReturn;
+	}
+	
+	public void loadBookings(ArrayList<NPC> allCharacters, ObservableList<String> bookings) {
+		for (NPC c : allCharacters) {
+			if (c.isCheckedIn()) {
+				 bookings.add(c.getBooking().toString());
+			}
+		} 
 	}
 	
 	// finish once you have several days functional

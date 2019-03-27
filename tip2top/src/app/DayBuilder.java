@@ -4,7 +4,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.concurrent.TimeUnit;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
@@ -13,14 +12,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.DialogPane;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
@@ -44,6 +41,15 @@ public class DayBuilder {
 
 	private StackPane today = new StackPane();
 	NPC manager = new NPC(null);
+	Booking bmanager = new Booking(null);
+	
+	
+	// NPC Management
+	ArrayList<NPC> allCharacters = new ArrayList<NPC>();
+  	// daily characters
+	private ArrayList<NPC> dailyCharacters;
+	
+	// make a function in NPC to fill this with all characters
 	
 	public int keys[] = {1,1,1,1,1,1,1,1,1,1,1,1};
 	public Node key[] = {null,null,null,null,null,null,null,null,null,null,null,null};
@@ -57,14 +63,15 @@ public class DayBuilder {
 	// one layer for borderpane w buttons n stuff to make it interactive?
 
 	private int day = 1;
-	private ObservableList<String> guests = FXCollections.observableArrayList();
-	private ObservableList<String> emailsObservable = FXCollections.observableArrayList();
-	private ArrayList<Email> email_list = new ArrayList<Email>();
-	private ArrayList<Booking> bookings = new ArrayList<Booking>();
+	
+	// Amigo 1000 resources
+	private ObservableList<String> bookings = FXCollections.observableArrayList(); // list of bookings toStrings displayed in Amigo
+	private ObservableList<String> emailsObservable = FXCollections.observableArrayList(); // list of emails toStrings displayed in Amigo 1000 
+	private ArrayList<Email> email_list = new ArrayList<Email>(); // list of emails in the Amigo 1000
 	private Button nextC = new Button(); 
 	private int index = 0;
 
-	
+	// Image of the character currently in slot 1 / being displayed
 	private ImageView activeCharacter;
 	
 	// dialogue slots + trackers
@@ -74,8 +81,7 @@ public class DayBuilder {
 	private Text slot2 = new Text("");
 	private Text slot3 = new Text("");
   
-  	// daily characters
-	private ArrayList<NPC> dailyCharacters;
+
   
 
 	// Pat created this to load images for day
@@ -362,7 +368,12 @@ public class DayBuilder {
 			nextC.setLayoutY(650);
 			nextC.setGraphic(next);
 			
-			dailyCharacters = manager.initializeCharacters(day);
+			manager.populateAllCharacters(allCharacters);
+
+			System.out.println(allCharacters.size());
+			
+			bmanager.loadBookings(allCharacters, bookings);
+			dailyCharacters = manager.initializeCharacters(day, allCharacters);
 			
 			// change styling n such later
 
@@ -375,7 +386,7 @@ public class DayBuilder {
 			
 
 			
-			//@TODO change this to a keyboard button press so it doesn't cause bugs with amigo
+			//@TODO change this to a keyboard button press so it doesn't cause bugs with amigo + keys
 			handler.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
 
 			
@@ -661,9 +672,6 @@ public class DayBuilder {
 		handler.setCenter(emails);
 		handler.setRight(buttons);
 		// event handling for buttons
-		
-		guests.add("Sample1");
-		guests.add("Sample 2");
 
 		BorderPane.setMargin(buttons, new Insets(250, 240, 0, 30));
 		BorderPane.setMargin(emails, new Insets(250, 20, 140 ,220));
@@ -704,6 +712,7 @@ public class DayBuilder {
 	 * @param dailyCharacters
 	 * @param amigo
 	 */
+	@SuppressWarnings("unchecked")
 	public void buildCheckInScreen(ArrayList<NPC> dailyCharacters, StackPane amigo) {
 		
 		// @TODO complete integration with bookings class
@@ -719,9 +728,13 @@ public class DayBuilder {
 		
 		BorderPane handler = new BorderPane();
 		
-		ListView<String> guestlist = new ListView<>(guests);
-		TextField guestName = new TextField("Name");
-		TextField roomNumber = new TextField("Room#");
+		ListView<String> guestlist = new ListView<>(bookings);
+		TextField guestName = new TextField("Name"); // change to ComboBox
+		ComboBox roomNum = new ComboBox(); // change to ComboBox
+		ComboBox roomType = new ComboBox();
+		for (int i = 1; i <= 12; i++) roomNum.getItems().add(i);
+		roomType.getItems().addAll("Basic ($30)", "Premium ($40)", "Luxury ($55)");
+		
 		Button addGuest = new Button();
 		Button checkOut = new Button();
 		Button back = new Button();
@@ -736,7 +749,7 @@ public class DayBuilder {
 		} catch (FileNotFoundException e) { e.printStackTrace(); }
 		
 		HBox addName = new HBox(20);
-		addName.getChildren().addAll(guestName, roomNumber); 
+		addName.getChildren().addAll(guestName, roomNum, roomType); 
 
 		VBox buttons = new VBox(20);
 		buttons.getChildren().addAll(addGuest, checkOut, back);
@@ -744,13 +757,11 @@ public class DayBuilder {
 		for (Node item : buttons.getChildren()) 
 			item.setStyle("-fx-base: #000000;");
 		
+		// positioning for elements
+		
 		handler.setCenter(guestlist);
 		handler.setTop(addName);
 		handler.setRight(buttons);
-		// event handling for buttons
-		
-		guests.add("Sample1");
-		guests.add("Sample 2");
 
 		BorderPane.setMargin(addName, new Insets(240, 0,0,230));
 		BorderPane.setMargin(buttons, new Insets(40, 240, 0, 30));
@@ -761,10 +772,30 @@ public class DayBuilder {
 		System.out.println(amigo.getChildren().size());
 		
 		addGuest.setOnAction(e -> {
-			NPC temp = new NPC(guestName.getText(), Integer.parseInt(roomNumber.getText().replaceAll("[\\D]", "")));
-			guests.add(temp.toString());
+			
+			String selectedType = (String) roomType.getValue();
+			selectedType = selectedType.substring(0, selectedType.length() - 6);
+			int roomNumber = (int) roomNum.getValue();
+			
+			String gname = guestName.getText();
+			
+			// checks if values entered are valid by testing the entered name
+			
+			if (gname != null) {
+				for (NPC character : allCharacters) {
+					if (gname.contentEquals(character.getName())) {
+						Booking toAdd = new Booking(gname,roomNumber,selectedType);
+						character.setBooking(toAdd); // updates the character's booking
+						bookings.add(toAdd.toString()); // updates the list on screen
+						
+					}
+				}
+				
+			}
+			
+
 		});
-		checkOut.setOnAction(e -> guests.remove(guestlist.getSelectionModel().getSelectedIndex()));
+		checkOut.setOnAction(e -> bookings.remove(guestlist.getSelectionModel().getSelectedIndex()));
 		back.setOnAction(e -> {
 			amigo.getChildren().remove(amigo.getChildren().size() - 1);
 			amigo.getChildren().remove(amigo.getChildren().size() - 1);
