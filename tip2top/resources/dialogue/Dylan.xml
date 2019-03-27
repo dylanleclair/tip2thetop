@@ -71,5 +71,26 @@
 			<print>You: Sorry, we’re all out.</print>
 			<print>Dylan: Darn, thanks though.</print>
 		</pillows_no>
+		
+	<leave>
+		<print>You: Welcome back, how can I help you?</print>
+		<print>Dylan: To make a long story short...</print>
+		<print>Dylan: This place is really growing on me.</print>
+		<print>Dylan: It reminds me of my adventures down under.</print>
+		<print>Dylan: So have you heard through the grapevine about any job openings?</print> 
+		<print>Dylan: You may think I’ve got my head in the clouds...</print>
+		<print>Dylan: ...staying when I want to go to Denmark...</print>
+		<print>Dylan: But haste makes waste so I may take some time here.</print> 
+		<print>Dylan: Anyways I don’t want to beat a dead horse.</print>
+		<print>Dylan: Let me know if you hear of any job openings.</print>
+		<print>Dylan: Or maybe you want to spread your wings, and join me when I leave.</print> 
+		<print>Dylan: The ball is in your court.</print>
+	</leave>
+	
+		<leave_no>
+			<print>Dylan: That’s a shame man.</print>
+			<print>Dylan: We could have had a bright future together...</print>
+			<print>Dylan: Good look out there then.</print>
+		</leave_no>
 
 </Dylan>

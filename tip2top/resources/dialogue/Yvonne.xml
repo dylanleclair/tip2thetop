@@ -77,5 +77,31 @@
 			<print>Yvonne: Guess I’ll need to find someone else.</print>
 			<print>Yvonne: See you around.</print>
 		</sellToaster_no>
+		
+	<soap>
+		<print>Yvonne: Hey. I ran out of soap.</print>
+		<print>Yvonne: Could I please get some more?</print>
+		<print>You: Uh... trumpet player today?</print>
+		<print>Yvonne: Business operates as per usual.</print>
+		<print>Yvonne: So, about my soap?</print>
+	</soap>
+	
+		<soap_yes>
+			<print>You: Sure, here you are.</print>
+			<print>Yvonne: Finally! Thank you!</print>
+			<print>Yvonne: Hope you’re enjoying the game my friend.</print>
+			<print>Yvonne: And keep your eyes peeled, you don’t know who might disappear next...</print>
+		</soap_yes>
+		
+		<soap_no>
+			<print>Yvonne: Aw, please?</print>
+			<print>You: Sorry, no can do. We’re out of stock.</print>
+			<print>Yvonne: But I saw you giving them out earlier!</print>
+			<print>You: All out.</print>
+			<print>Yvonne: Ugh...</print>
+			<print>Yvonne: Well, I hope you’re enjoying the game.</print>
+			<print>Yvonne: And watch your back.</print>
+			<print>Yvonne: You’ll never know who'll disappear next.</print>
+		</soap_no>
 
 </Yvonne>

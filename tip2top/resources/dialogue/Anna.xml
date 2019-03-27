@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Anna>
+
+	<missing>
+		<print>You: Hello! Welcome to the Three Eagles Hotel.</print>
+		<print>???: I just arrived in town, and I heard there were a couple disappearances around here.</print> 
+		<print>???: Also, I’d like to book a luxury room please.</print>
+		<print>You: Really?</print>
+		<print>You: Also, what’s your name?</print>
+		<print>Anna: Anna. Have you heard anything about them?</print>
+	</missing>
+	
+		<missing_yes>
+			<print>You: Actually, I’ve heard of some people never arriving at their final destination...</print> 
+			<print>You: Like after they check out, they completely fall off the grid.</print>
+			<print>You: Don’t worry though.</print>
+			<print>You: The police haven’t been able to confirm a link to this hotel.</print>
+			<print>Anna: That is quite unnerving.</print>
+			<print>You: Rest assured, none of the missing people have stayed in the luxury rooms... yet.</print> 
+			<print>Anna: ...Yet?</print>
+			<print>You: Oh uhm...</print>
+			<print>You: I don’t know where that came from. Sorry.</print>
+			<print>You: Would you like some soap?</print>
+			<print>Anna: Uh, no thanks.</print>
+			<print>You: Anyways, here’s your key.</print> 
+			<print>You: Have a lovely stay in the Three Eagle Hotel.</print>
+		</missing_yes>
+
+		<missing_no>
+			<print>You: I haven’t heard anything about it.</print>
+			<print>You: I would trust your sources.</print>
+			<print>You: Anyways, you’re staying in our luxury rooms - they are quite lovely!</print> 
+			<print>You: If you have any other concerns don’t be afraid to ask.</print>
+			<print>You: Here’s your key. You’ll be staying in room 303.</print>
+			<print>Anna: Thank you!</print>
+			<print>You: Would you like any soap?</print>
+			<print>Anna: Sure!</print>
+			<print>Anna: Also, did you know lemon meringue pie is by far the sweetest pie?</print>
+			<print>Anna: You are as sweet as lemon meringue pie!</print>
+		</missing_no>
+	
+
+</Anna>

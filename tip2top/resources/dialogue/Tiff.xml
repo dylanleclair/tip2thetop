@@ -83,5 +83,34 @@
 			<print>Tiffany: Well...</print>
 			<print>Tiffany: I guess you need to survive too.</print>
 		</pillows_no>
+		
+	<toaster>
+		<print>Tiffany: Hello!</print>
+		<print>You: Hey. What can I do for you today?</print>
+		<print>Tiffany: Recently I feel like there’s been no FUN!</print>
+		<print>You: What do you mean by that?</print> 
+		<print>Tiffany: Oh, you surely know what I mean.</print>
+	</toaster>
+	
+		<toaster_yes>
+			<print>Tiffany: How’re you enjoying your toaster?</print>
+		</toaster_yes>
+		
+		<toaster_no>
+			<print>Tiffany: You should have bought that toaster earlier.</print>
+		</toaster_no>
+		
+	<toaster2>
+		<print>You: What?</print>
+		<print>You: How did you know?</print>
+		<print>Tiffany: I can already smell the bread.</print>
+		<print>You: Wait, how old are you?</print>
+		<print>Tiffany: That’s not important.</print>
+		<print>Tiffany: The important thing is that I still LOVE this hotel.</print>
+		<print>Tiffany: Except your boss.</print>
+		<print>Tiffany: She freaks me out...</print>
+		<print>Tiffany: Anyways, I just wanted to say hi :3</print>
+		<print>Tiffany: See you!!</print>
+	</toaster2>
 	
 </Tiff>
