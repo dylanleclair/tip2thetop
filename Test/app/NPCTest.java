@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class NPCTest {
+public class NPCTest {
 
     /**
      * Tests the getName method of the NPC class. Players can select whatever name they want. This test ensures that special characters
