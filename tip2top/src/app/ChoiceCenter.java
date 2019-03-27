@@ -1,6 +1,13 @@
 package app;
 
-public class ChoiceCenter extends DayBuilder {
+import java.util.ArrayList;
+import java.util.Optional;
+
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
+
+public class ChoiceCenter {
 
 	private int gulagPoints;
 	private int daymistakes;
@@ -10,10 +17,14 @@ public class ChoiceCenter extends DayBuilder {
 	private boolean jason_mint;
 	private int choice = 0;
 	
+	
+	// arrays for prompts
+	
+	
 	public String choicePoint(int day, String character){
 		if(day ==1) {
 			if(character.equalsIgnoreCase("Yvonne")) {
-				choice = 0;//function to prompt choice from player
+				choice = getChoiceYesNo("Are you Russian?", "Well... which is it?");//function to prompt choice from player
 				if(choice == 1){//yes russian
 					gulagPoints++;
 					return "russian_yes";
@@ -21,13 +32,13 @@ public class ChoiceCenter extends DayBuilder {
 				if(choice ==2) {//no russian
 					return "russian_no";
 				}
-				if(choice ==3) {//ask why
-					return "russian_why";
-				}
+				//if(choice ==3) {//ask why
+				//	return "russian_why";
+				//}
 			}
 			if(character.equalsIgnoreCase("Jason")) {
-				choice = 0;//function to prompt choice from player
-				if(choice ==1) {//choice (a)$35
+				choice = getChoiceABCD("Making Upgrades...", "How much does a Premium room cost?");//function to prompt choice from player
+				if(choice ==1) {//choice (a)$30
 					customerSatisfaction++;
 					gulagPoints++;
 					return "upgrade_a";
@@ -42,14 +53,14 @@ public class ChoiceCenter extends DayBuilder {
 					gulagPoints--;
 					return "upgrade_c";
 				}
-				if(choice ==1) {//choice (d)$65
+				if(choice ==4) {//choice (d)$65
 					customerSatisfaction--;
 					gulagPoints++;
 					return "upgrade_d";
 				}
 			}
 			if(character.equalsIgnoreCase("Tiff")) {
-				choice = 0;//function to prompt choice from player
+				choice = getChoiceYesNo("Ice Cream with Tiff", "Are you feeling hungry, or?");//function to prompt choice from player
 				if(choice == 1) {//yes
 					gulagPoints--;
 					customerSatisfaction++;
@@ -187,9 +198,88 @@ public class ChoiceCenter extends DayBuilder {
 	}
 	
 	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	public void initializePrompts(ArrayList<NPC> allCharacters) {
+		
+		for (NPC character : allCharacters) {
+			if (character.getName().equals("Dylan") ) {
+				character.getPrompts().add("firstDay");
+				character.getPrompts().add("longerStay");
+			} else if (character.getName().equals("Aleksandra")) {
+				character.getPrompts().add("firstDay");
+				character.getPrompts().add("secondDay");
+				System.out.println("size = "+character.getPrompts().size());
+			} else if (character.getName().equals("Harriet")) {
+				character.getPrompts().add("rude");
+			} else if (character.getName().contentEquals("Yvonne")) {
+				character.getPrompts().add("russian");
+				character.getPrompts().add("");
+				character.getPrompts().add("shampoo");
+			} else if (character.getName().contentEquals("Jason")) {
+				character.getPrompts().add("upgrade");
+				character.getPrompts().add("mints");
+			} else if (character.getName().contentEquals("Patricia")) {
+				character.getPrompts().add("");
+				character.getPrompts().add("famous");
+			} else if (character.getName().contentEquals("Tiff")) {
+				character.getPrompts().add("iceCream");
+				character.getPrompts().add("room");
+				character.getPrompts().add("pillows");
+			} else if (character.getName().contentEquals("Mystery")) {
+				character.getPrompts().add("aleks");
+			}
+		}
+	}
+	
+	public int getChoiceYesNo(String header,String content) {
+		
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Tip To the Top - Enter a choice!");
+		alert.setHeaderText(header);
+		alert.setContentText(content);
 
+		ButtonType buttonTypeOne = new ButtonType("Yes");
+		ButtonType buttonTypeTwo = new ButtonType("No");
+
+		alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
+
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == buttonTypeOne){
+		   return 1;
+		} else if (result.get() == buttonTypeTwo) {
+		   return 2;
+		} 
+		
+		return 0;
+		
 	}
 
+	public int getChoiceABCD(String header,String content) {
+		
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Tip To the Top - Enter a choice!");
+		alert.setHeaderText(header);
+		alert.setContentText(content);
+
+		ButtonType buttonTypeOne = new ButtonType("30");
+		ButtonType buttonTypeTwo = new ButtonType("55");
+		ButtonType buttonTypeThree = new ButtonType("40");
+		ButtonType buttonTypeFour = new ButtonType("65");
+
+		alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeThree, buttonTypeFour);
+
+		Optional<ButtonType> result = alert.showAndWait(); // change this to allow the user to refer to the Amigo 1000 in the future.
+		if (result.get() == buttonTypeOne){
+		   return 1;
+		} else if (result.get() == buttonTypeTwo) {
+		   return 2;
+		} else if (result.get() == buttonTypeThree) {
+			return 3;
+		} else if (result.get() == buttonTypeFour) {
+			return 4;
+		}
+		
+		return 0;
+		
+	}
+	
 }

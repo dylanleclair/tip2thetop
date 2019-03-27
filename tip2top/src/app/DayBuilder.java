@@ -8,8 +8,6 @@ import java.util.Collections;
 // clean these up
 
 import javafx.animation.FadeTransition;
-import javafx.animation.Animation.Status;
-import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
@@ -27,7 +25,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -47,12 +44,14 @@ public class DayBuilder {
 	private StackPane today = new StackPane();
 	NPC manager = new NPC(null);
 	Booking bmanager = new Booking(null);
+	ChoiceCenter cmanager = new ChoiceCenter();
 	
 	
 	// NPC Management
 	ArrayList<NPC> allCharacters = new ArrayList<NPC>();
   	// daily characters
-	private ArrayList<NPC> dailyCharacters;
+	private ArrayList<NPC> dailyCharacters = new ArrayList<NPC>();
+	private NPC character = null;
 	
 	// make a function in NPC to fill this with all characters
 	
@@ -398,12 +397,15 @@ public class DayBuilder {
 			nextC.setLayoutY(650);
 			nextC.setGraphic(next);
 			
+			
 			manager.populateAllCharacters(allCharacters);
+			cmanager.initializePrompts(allCharacters);
 
 			System.out.println(allCharacters.size());
 			
 			bmanager.loadBookings(allCharacters, bookings);
-			dailyCharacters = manager.initializeCharacters(day, allCharacters);
+			
+			manager.initializeCharacters(day, allCharacters, dailyCharacters);
 			
 			// change styling n such later
 
@@ -414,12 +416,8 @@ public class DayBuilder {
 			handler.setBottom(accessAmigo);
 			handler.setRight(nextC);
 			
-
-			
 			//@TODO change this to a keyboard button press so it doesn't cause bugs with amigo + keys
 			handler.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
-
-			
 				
 				// it appears that the error occurs in the inheritance here somehow?
 
@@ -434,7 +432,7 @@ public class DayBuilder {
 				@Override
 				public void handle(MouseEvent mouseEvent) {
 					// advance
-					if (dialogueActive) {
+					if (dialogueActive && (mouseEvent.getY() < 280 || mouseEvent.getX() > 490)) {
 						if (clickCount <= active.size() - 2) {
 							clickCount++;
 
@@ -444,6 +442,13 @@ public class DayBuilder {
 								slot2.setText(active.get(middle));
 							if (bottom <= active.size() - 2)
 								slot3.setText(active.get(bottom));
+							if (active.get(bottom + 1).contentEquals("choice")) {
+								String prompt = cmanager.choicePoint(day, character.getName());
+								ArrayList<String> read = Reader.getDialogue(character.getName(), prompt);
+								active.remove(bottom+1);
+								active.addAll(bottom + 1, read);
+							}
+							
 							top++;
 							middle++;
 							bottom++;
@@ -461,7 +466,7 @@ public class DayBuilder {
 							top = 0;
 							middle = 1;
 							bottom = 2;
-							animateCharacterOut(activeCharacter); // change this to next character button.
+							//animateCharacterOut(activeCharacter); // change this to next character button.
 						}
 
 					}
@@ -487,8 +492,9 @@ public class DayBuilder {
 		
 			if (day == 1) {
 				Collections.shuffle(dailyCharacters);
-				dailyCharacters.add(new NPC("Tiff")); // move this to initialize characters
-				dailyCharacters.add(0, new NPC("Aleksandra"));
+				dailyCharacters.add(manager.getCharacter("Tiff", allCharacters)); // move this to initialize characters
+				dailyCharacters.add(0, manager.getCharacter("Aleksandra", allCharacters));
+				System.out.println(dailyCharacters.toString());
 				Email.initializeEmails(email_list);
 				for (Email item : email_list) {
 					emailsObservable.add(item.toString());
@@ -503,64 +509,56 @@ public class DayBuilder {
 
 				if (index == 0) {
 					animateButtonOut(nextC);
-					animateDialogueBoxIn(today.getChildren().get(3)); // 4 is the index of dialogue box in stackpane
-																		// today
+					animateDialogueBoxIn(today.getChildren().get(3)); // 3 is the index of dialogue box in stackpane
+					runCharacter(handler);													// today
 				}
 
 				if (index > 0) {
 					animateButtonOut(nextC);
-				}
-
-				if (index < dailyCharacters.size()) {
-					
-					NPC character = dailyCharacters.get(index);
-
-					try {
-						Image image = new Image(new FileInputStream("./resources/characters/" + character.getName() + ".png"));
-						ImageView characterView = new ImageView(image);
-
-						activeCharacter = characterView;
-
-						today.getChildren().set(1, characterView);
-						characterView.setManaged(false);
-						characterView.setLayoutX(1280);
-						characterView.setLayoutY(-20);
-
-						active.clear();
-						for (int i = 0; i < 3; i++) 
-							active.add(" ");
-
-						animateCharacterIn(characterView);
-
-
-						// dialogueActive = true;
-						ArrayList<String> dialogue = manager.getDialogue(character.getName(), day);
-						playDialog(handler, dialogue);
-
-						
-
-						// animateCharacterOut(characterView);
-					} catch (Exception c) {
-						c.printStackTrace();
-					}
-					
-				}
-				
-				// stuff for each character
-				
-
-				if (index == dailyCharacters.size()) {
-					System.out.println("LOL");
-					animateDialogueBoxOut(today.getChildren().get(4), window, transition);
-					//animate dialogue box out
+					animateCharacterOut(activeCharacter, handler, window, transition);
 				}
 				
 				index++;
+				System.out.println(index);
 			});
 
 		
 	}
 
+	
+	public void runCharacter(BorderPane handler) {
+		if (index == 0) character = dailyCharacters.get(index);
+		if (index >= 1) character = dailyCharacters.get(index -1); // just corrects the index to fix a bug where a player was skipped.
+
+		try {
+			Image image = new Image(new FileInputStream("./resources/characters/" + character.getName() + ".png"));
+			ImageView characterView = new ImageView(image);
+
+			activeCharacter = characterView;
+
+			today.getChildren().set(1, characterView);
+			characterView.setManaged(false);
+			characterView.setLayoutX(1280);
+			characterView.setLayoutY(-20);
+
+			active.clear();
+			for (int i = 0; i < 3; i++) 
+				active.add(" ");
+
+			animateCharacterIn(characterView);
+
+			System.out.println(character.getPrompts().size());
+			System.out.println(allCharacters.get(5).getPrompts().size());
+			ArrayList<String> read = Reader.getDialogue(character.getName(), character.getPrompts().get(day - 1));
+			
+			playDialog(handler, read);
+
+		} catch (Exception c) {
+			c.printStackTrace();
+		}
+	}
+	
+	
 	/**
 	 * Handles the dialog functionality of the game. Responds to mouse click
 	 * @TODO - remove/fix the default / enter key functionality (it's broke)?
@@ -575,9 +573,7 @@ public class DayBuilder {
 			active.add(" ");
     
 		// get the array list for the given npc and prompt
-		ArrayList<String> read = Reader.getDialogue("Tiff", "iceCream_yes");
 
-		active.addAll(read); // added by yvonne
 		/*
 		 * call dialogue 
 		 * end dialogue
@@ -587,9 +583,8 @@ public class DayBuilder {
 		 * move on
 		 * repeat
 		 */
-		for (int i = 0; i < 3; i++) active.add(" ");
 		
-		VBox container = new VBox(5);
+		VBox container = new VBox(10);
 
 		slot1.setId("dialog-text");
 		slot2.setId("dialog-text");
@@ -608,13 +603,6 @@ public class DayBuilder {
 
 	}
 
-	public static void animateTextIn() {
-
-	}
-
-	public static void animateTextOut() {
-
-	}
 
 	/**
 	 * Builds the main screen of the in-game PC. 
@@ -871,7 +859,7 @@ public class DayBuilder {
 	}
 
 	// reverses animate character in?
-	public TranslateTransition animateCharacterOut(Node character) {
+	public TranslateTransition animateCharacterOut(Node character, BorderPane handler, Stage window, Scene transition) {
 		TranslateTransition translate = new TranslateTransition();
 		translate.setDuration(Duration.millis(1300));
 		translate.setNode(character);
@@ -879,7 +867,15 @@ public class DayBuilder {
 		translate.setCycleCount(1);
 		translate.setAutoReverse(false);
 		translate.play();
-		// translate.setOnFinished(e -> );
+		translate.setOnFinished(e -> {
+			if (index -1 < dailyCharacters.size()) runCharacter(handler);
+			if (index -1 == dailyCharacters.size()) {
+				System.out.println("LOL");
+				animateDialogueBoxOut(today.getChildren().get(3), window, transition);
+				//animate dialogue box out
+			}
+			
+		});
 		return translate;
 
 	}
