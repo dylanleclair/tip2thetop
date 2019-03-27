@@ -13,6 +13,9 @@ public class NPC {
 	private boolean checkedIn = false;
 	
 	private boolean populated = false;
+
+	private int key;
+
 	
 	
 	// Constructors
@@ -51,6 +54,15 @@ public class NPC {
 	public void setCheckedIn(boolean checkedIn) {
 		this.checkedIn = checkedIn;
 	}
+
+	public int getKey() {
+		return this.getKey();
+	}
+	
+	public void setKey(int key) {
+		this.key = key;
+	}
+
 	
 	public NPC getCharacter (String name, ArrayList<NPC> allCharacters) {
 		for (NPC character : allCharacters) {
@@ -60,7 +72,8 @@ public class NPC {
 		}
 		return null;
 	}
-	
+
+
 	/**
 	 * Returns a list of NPCs for the current day, selecting them from the list of all characters 
 	 * @param day - an int, the day # to load the characters for
