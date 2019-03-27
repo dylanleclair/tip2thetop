@@ -12,7 +12,7 @@
 		<print>You: Which tier would you like to upgrade to?</print>
 		<print>Jason: To Premium, up from Basic.</print>
 		<print>Jason: A premium room costs $45, right?</print>
-		<print>You: The price for a Premium room is actually...</print>
+		<print>choice</print>
 	</upgrade>
 
 		<upgrade_a>

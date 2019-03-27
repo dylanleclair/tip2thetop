@@ -17,11 +17,13 @@
 		<print>You: Please enjoy your stay!</print>
 		<print>Tiffany: Actually, I was eating some ice cream earlier...</print>
 		<print>Tiffany: And I was wondering if you’d like to eat some with me... in my room?</print>
+		<print>choice</print>
 	</iceCream>
 	
 		<iceCream_yes>
 			<print>You: Uh, alright. Let’s go.</print>
-			<print>Tiffany: Chocolate, Vanilla, or Mango?</print>
+			<print>You pretend there's an intricate animation to her room...</print>
+			<print>Tiffany: Okay - chocolate, vanilla, or mango?</print>
 			<print>You: I'll have chocolate, please.</print>
 			<print>Tiffany: So... do you like anime?</print>
 			<print>You: Unfortunately I'm not an avid fan.</print>
