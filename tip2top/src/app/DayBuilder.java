@@ -22,6 +22,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -267,61 +268,85 @@ public class DayBuilder {
 				if(keys[0]==1) {
 					key1.setId("1");
 					addEvent(key1);
+					key1.setX(40);
+					key1.setY(50);
 					handler.getChildren().add(key1);
 				} 
 				if(keys[1]==1) {
 					key2.setId("2");
 					addEvent(key2);
+					key2.setX(40);
+					key2.setY(50);
 					handler.getChildren().add(key2);
 				}
 				if(keys[2]==1) {
 					key3.setId("3");
 					addEvent(key3);
+					key3.setX(40);
+					key3.setY(50);
 					handler.getChildren().add(key3);
 				}
 				if(keys[3]==1) {
 					key4.setId("4");
 					addEvent(key4);
+					key4.setX(40);
+					key4.setY(50);
 					handler.getChildren().add(key4);
 				}
 				if(keys[4]==1) {
 					key5.setId("5");
 					addEvent(key5);
+					key5.setX(40);
+					key5.setY(50);
 					handler.getChildren().add(key5);
 				}
 				if(keys[5]==1) {
 					key6.setId("6");
 					addEvent(key6);
+					key6.setX(40);
+					key6.setY(50);
 					handler.getChildren().add(key6);
 				}
 				if(keys[6]==1) {
 					key7.setId("7");
 					addEvent(key7);
+					key7.setX(40);
+					key7.setY(50);
 					handler.getChildren().add(key7);
 				}
 				if(keys[7]==1) {
 					key8.setId("8");
 					addEvent(key8);
+					key8.setX(40);
+					key8.setY(50);
 					handler.getChildren().add(key8);
 				}
 				if(keys[8]==1) {
 					key9.setId("9");
 					addEvent(key9);
+					key9.setX(40);
+					key9.setY(50);
 					handler.getChildren().add(key9);
 				}
 				if(keys[9]==1) {
 					key10.setId("10");
 					addEvent(key10);
+					key10.setX(40);
+					key10.setY(50);
 					handler.getChildren().add(key10);
 				}
 				if(keys[10]==1) {
 					key11.setId("11");
 					addEvent(key11);
+					key11.setX(40);
+					key11.setY(50);
 					handler.getChildren().add(key11);
 				}
 				if(keys[11]==1) {
 					key12.setId("12");
 					addEvent(key12);
+					key12.setX(40);
+					key12.setY(50);
 					handler.getChildren().add(key12);
 				}
 				
