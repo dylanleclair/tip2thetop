@@ -51,5 +51,25 @@
 		<print>Dylan: Okay sweet, uh, thanks.</print>
 		<print>Dylan: He who rides the tiger is afraid to dismount.</print>
 	</roomSwap>
+	
+	<pillows>
+		<print>Dylan: You should take your little horse away from the rain.</print>
+		<print>You: What?</print>
+		<print>You: I don’t have a little horse...</print>
+		<print>You: Plus we’re in the middle of the desert.</print>
+		<print>Dylan: You’ll understand one day.</print>
+		<print>Dylan: Anyways, I was looking for some extra pillows.</print>
+		<print>Dylan: Have you got any?</print>
+	</pillows>
+	
+		<pillows_yes>
+			<print>You: Yes, we do!</print>
+			<print>Dylan: Perfect, thanks homie.</print>
+		</pillows_yes>
+		
+		<pillows_no>
+			<print>You: Sorry, we’re all out.</print>
+			<print>Dylan: Darn, thanks though.</print>
+		</pillows_no>
 
 </Dylan>

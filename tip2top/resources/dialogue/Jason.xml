@@ -70,5 +70,33 @@
 		<print>Jason: Also, could I have some conditioner?</print>
 		<print>You: Sure, here you are.</print>
 	</noGot_mints>
+	
+	<sell_lyrynx>
+		<print>Jason: Hey there.</print>
+		<print>You: Hey. How are you?</print>
+		<print>Jason: I’ve been working on this project recently…</print>
+		<print>Jason: And I was wondering if you’d like to try it out.</print>
+		<print>Jason: It’s quite easy to use.</print>
+		<print>Jason: It’s a math program, to help you learn linear algebra.</print>
+		<print>Jason: It’s called Lyrynx.</print>
+		<print>Jason: You can learn how to solve matrices, find the area of a parallelepiped, calculate vectors in 17 dimensions...</print>
+		<print>Jason: What do you say?</print>
+		<print>Jason: It’s only $40 a month.</print>
+	</sell_lyrynx>
+	
+		<sell_Lyes>
+			<print>You: Uh, sure!</print>
+			<print>You: I’ve always wanted to learn Linear Algebra.</print>
+			<print>Jason: Hooray!</print>
+			<print>Jason: I’ll get you set up right away.</print>
+		</sell_Lyes>
+		
+		<sell_Lno>
+			<print>You: No thank you, I can’t afford that...</print>
+			<print>Jason: How about I give you a discount then?</print>
+			<print>You: No, I’m alright.</print>
+			<print>You: I don’t need to learn linear algebra.</print>
+			<print>Jason: Well, suit yourself.</print>
+		</sell_Lno>
 
 </Jason>

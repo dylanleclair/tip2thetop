@@ -13,6 +13,15 @@
 		<print>Benjamin: Nah.</print>
 	</checkIn>
 	
-
+	<checkOut>
+		<print>Benjamin: Hey!</print>
+		<print>You: Hey there.</print>
+		<print>You: What can I do for you today?</print>
+		<print>Benjamin: I just wanted to let you know that the bed was a tad too short.</print>
+		<print>Benjamin: But other than that, I’ve had a really nice stay.</print>
+		<print>You: That’s good to hear.</print>
+		<print>Benjamin: Here’s the key.</print>
+		<print>Benjamin: See you around.</print>
+	</checkOut>
 
 </Benjamin>

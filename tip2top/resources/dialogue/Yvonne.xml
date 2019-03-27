@@ -47,6 +47,35 @@
 			<print>You’ve just made this game a little harder for yourself though, good luck.</print>
 		</shampoo_no>
 		
-
+	<sellToaster>
+		<print>You: Hey there.</print>
+		<print>Yvonne: Hi! I was wondering if you had any space to store extra luggage.</print>
+		<print>You: Is that a tuba case?</print>
+		<print>Yvonne: You betcha! But there isn’t a tuba in here.</print>
+		<print>You: Then what is it?</print>
+		<print>Yvonne: It’s none of your business, that’s what it is.</print>
+		<print>You: Oh, okay...</print>
+		<print>Yvonne: Anyways, has anyone mysterious caught your eye recently?</print>
+		<print>Yvonne: There have been a lot of oddballs floating around you know.</print>
+		<print>You: What do you mean?</print>
+		<print>Yvonne: Just keep an eye out for Russians.</print>
+		<print>Yvonne: You just can’t trust ‘em.</print>
+		<print>Yvonne: Anyways, I’ve got this old toaster for sale.</print>
+		<print>Yvonne: Would like it?</print>
+		<print>Yvonne: I’m only selling it for a dollar.</print>
+	</sellToaster>
+	
+		<sellToaster_yes>
+			<print>You: Sure, I’ll take it off your hands!</print>
+			<print>Yvonne: Great, thank you!</print>
+			<print>Yvonne: Good luck getting that old thing working though.</print>
+		</sellToaster_yes>
+		
+		<sellToaster_no>
+			<print>You: No, I’m good.</print>
+			<print>Yvonne: Darn, I was sure you’d buy it.</print>
+			<print>Yvonne: Guess I’ll need to find someone else.</print>
+			<print>Yvonne: See you around.</print>
+		</sellToaster_no>
 
 </Yvonne>

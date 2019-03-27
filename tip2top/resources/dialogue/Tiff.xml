@@ -61,4 +61,27 @@
 				<print>Tiffany: ( ´•︵•` )</print>
 			</room_no>
 	
+	<pillows>
+		<print>You: Uh, good morning?</print> 
+		<print>You: How was your stay last night?</print>
+		<print>Tiffany: It was good...</print>
+		<print>Tiffany: But I’ve noticed that one of the guests have disappeared...</print>
+		<print>You: Wait, disappeared?</print>
+		<print>You: What do you mean?</print>
+		<print>Tiffany: ...</print>
+		<print>Tiffany: Can I have more pillows please, my friends are going to end up sleeping on the floor...</print>
+		<print>You: Wait, you didn’t answer my question.</print>
+		<print>Tiffany: ...</print>
+		<print>Tiffany: I’m waiting for a pillow.</print>
+	</pillows>
+	
+		<pillows_yes>
+			<print>Tiffany: Thank you, bye. :)</print>
+		</pillows_yes>
+		
+		<pillows_no>
+			<print>Tiffany: Well...</print>
+			<print>Tiffany: I guess you need to survive too.</print>
+		</pillows_no>
+	
 </Tiff>
