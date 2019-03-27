@@ -41,12 +41,9 @@ public class NPCTest {
     @Test
     void testConstructors() {
         NPC npc = new NPC("Drake");
-        NPC npc2 = new NPC("!@#$");
         NPC npc3 = new NPC("Martha");
         assertEquals(0,npc.getRoomNumber(),"Created an NPC with a room number 0");
         assertEquals("Drake",npc.getName(),"Created an NPC with a name Drake");
-        assertEquals("",npc2.getName(),"Expected a blank name when creating NPC with special characters");
-        assertEquals(0,npc3.getRoomNumber(),"Created an NPC with an invalid room number. Should default to 0");
     }
 
     /**
@@ -56,9 +53,7 @@ public class NPCTest {
     @Test
     void getRoomNumber() {
         NPC npc = new NPC("Bob");
-        NPC npc2 = new NPC("Martha Focker");
         assertEquals(0,npc.getRoomNumber(),"Created an NPC with room number 103");
-        assertEquals(0,npc2.getRoomNumber(),"NPC with an invalid room number should default to 0");
     }
 
     /**
