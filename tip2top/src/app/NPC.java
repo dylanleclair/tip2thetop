@@ -20,15 +20,9 @@ public class NPC {
 	// Constructors
 	
 	public NPC(String name) {
-		//Check for special characters found online.
-		Pattern pattern = Pattern.compile("[a-zA-z0-9]*");
-		Matcher matcher = pattern.matcher(name);
 
-		if (!matcher.matches()) {
-			this.name = "";
-		} else {
-			this.name = name;
-		}
+		this.name = name;
+
 		booking = new Booking(name);
 	}
 
@@ -39,7 +33,7 @@ public class NPC {
 	}
 	
 	public void setName(String name) {
-		//Check for special characters found online.
+		//Check for special characters source : found online.
 		Pattern pattern = Pattern.compile("[a-zA-z0-9]*");
 		Matcher matcher = pattern.matcher(name);
 
