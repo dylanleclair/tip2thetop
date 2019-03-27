@@ -65,7 +65,7 @@ public class NPC {
 	}
 
 	public int getKey() {
-		return this.getKey();
+		return this.key;
 	}
 	
 	public void setKey(int key) {

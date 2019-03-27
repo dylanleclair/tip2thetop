@@ -163,9 +163,12 @@ public class DayBuilder {
 							}
 							keys[temp]= 2;
 							node.setEffect(highlight);
-						}else if(keys[temp]==2) {
+						}else if(keys[temp]==2&& character != null&&character.getKey()==0) {
 							keys[temp]=3;
 							node.setEffect(give);
+							
+							character.setKey(temp+1);
+							System.out.print(character.getKey());
 							
 							TranslateTransition translate = new TranslateTransition();
 							translate.setDuration(Duration.millis(1300));
@@ -185,7 +188,6 @@ public class DayBuilder {
 						 
 						     ft.play();
 							
-							System.out.println(node.getId());
 							
 							
 						}
