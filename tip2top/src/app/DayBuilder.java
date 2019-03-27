@@ -378,9 +378,8 @@ public class DayBuilder {
 
 			try {
 				Image amigobtn = new Image(new FileInputStream("./resources/gameimg/a.png"));
-				Image amigohovered = new Image(new FileInputStream("./resources/gameimg/b2.png"));
+				
 				ImageView amigobtng = new ImageView(amigobtn);
-				ImageView amigohoveredg = new ImageView(amigohovered);
 				
 				DropShadow shadow = new DropShadow();
 				DropShadow highlight = new DropShadow();
