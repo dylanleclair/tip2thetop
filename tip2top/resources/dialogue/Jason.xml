@@ -11,28 +11,40 @@
 		<print>You: Okay, that’s fine.</print>
 		<print>You: Which tier would you like to upgrade to?</print>
 		<print>Jason: To Premium, up from Basic.</print>
-		<print>Jason: A premium room costs $45, right?</print>
+		<print>Jason: A premium room - they cost $45, right?</print>
 		<print>choice</print>
 	</upgrade>
 
 		<upgrade_a>
-			<print>You: Wait, the price is actually $30.</print>
+			<print>You: The price is actually $30.</print>
 			<print>Jason: Oh, thank you.</print>
+			<print>You: Is room 6 okay?</print>
+			<print>Jason: That sounds perfect.</print>
+			<print> -- Don't forget to give him his key! --</print>
 		</upgrade_a>
 	
 		<upgrade_b>
 			<print>You: Wait, the price is actually $55.</print>
 			<print>Jason: Oh, my bad.</print>
+			<print>You: Is room 6 okay?</print>
+			<print>Jason: That sounds perfect.</print>
+			<print> -- Don't forget to give him his key! --</print>
 		</upgrade_b>
 	
 		<upgrade_c>
 			<print>You: Wait, the price is actually $40.</print>
 			<print>Jason: Oh, my bad.</print>
+			<print>You: Is room 6 okay?</print>
+			<print>Jason: That sounds perfect.</print>
+			<print> -- Don't forget to give him his key! --</print>
 		</upgrade_c>
 	
 		<upgrade_d>
 			<print>You: Wait, the price is actually $65.</print>
 			<print>Jason: Wow, that’s quite a price.</print>
+			<print>You: Is room 6 okay?</print>
+			<print>Jason: That sounds perfect.</print>
+			<print> -- Don't forget to give him his key! --</print>
 		</upgrade_d>
 
 
