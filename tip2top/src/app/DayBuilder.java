@@ -684,7 +684,7 @@ public class DayBuilder {
 		System.out.println(amigo.getChildren().size());
 		
 		addGuest.setOnAction(e -> {
-			NPC temp = new NPC(guestName.getText(), Integer.parseInt(roomNumber.getText().replaceAll("[\\D]", "")));
+			NPC temp = new NPC(guestName.getText(), Integer.parseInt(roomNumber.getText().replaceAll("[\\D]", "")),0);
 			guests.add(temp.toString());
 		});
 		checkOut.setOnAction(e -> guests.remove(guestlist.getSelectionModel().getSelectedIndex()));

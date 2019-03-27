@@ -9,13 +9,15 @@ public class NPC {
 	
 	private String name;
 	private int roomNumber;
+	private int key;
 	
 	
 	// Constructors
 	
-	public NPC(String name, int roomNumber) {
+	public NPC(String name, int roomNumber, int key) {
 		this.name = name;
 		this.roomNumber = roomNumber;
+		this.key = key;
 	}
 	public NPC(String name) {
 		this.name = name;
@@ -37,6 +39,14 @@ public class NPC {
 	
 	public void setRoomNumber(int roomNumber) {
 		this.roomNumber = roomNumber;
+	}
+	
+	public int getKey() {
+		return this.getKey();
+	}
+	
+	public void setKey(int key) {
+		this.key = key;
 	}
 	
 	// Static methods for use with dailyCharacters in other classes
