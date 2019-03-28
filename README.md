@@ -83,9 +83,9 @@ Version 1.6
 
 ## Goals
 As of 2019-03-27 </br>
--Focus on saving the game through different days
--Implement more days into the game
--Smoother transition screen between days
+-Focus on saving the game through different days </br>
+-Implement more days into the game </br>
+-Smoother transition screen between days </br>
 
 ## Team
 >Contributers and people
