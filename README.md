@@ -84,8 +84,8 @@ java Game
 ### Via IDE (IntelliJ)
 1.) First, clone the TEST branch of the repository. Then checkout from version control and clone it onto IntelliJ
 
-2.) Mark the test folder as the Tests sources root 
-![alt text](https://i.gyazo.com/bb257b4c5558be72eb09f141365a0104.png)
+2.) Mark the test folder as the Tests sources root </br>
+![alt text](https://i.gyazo.com/bb257b4c5558be72eb09f141365a0104.png) </br>
 
 3.) Then run the Test through Run
 
