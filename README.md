@@ -79,11 +79,13 @@ java Game
 ```
 
 ## Version
-Version 1.2
+Version 1.6
 
 ## Goals
-As of 2019-03-07 </br>
--Add a delete save feature
+As of 2019-03-27 </br>
+-Focus on saving the game through different days
+-Implement more days into the game
+-Smoother transition screen between days
 
 ## Team
 >Contributers and people
