@@ -51,7 +51,8 @@ public class NPCTest {
     @Test
     void testGetRoomNumber() {
         NPC npc = new NPC("Bob");
-        assertEquals(0,npc.getRoomNumber(),"Created an NPC with room number 103");
+        npc.setRoomNumber(103);
+        assertEquals(103,npc.getRoomNumber(),"Created an NPC with room number 103");
     }
 
     /**
