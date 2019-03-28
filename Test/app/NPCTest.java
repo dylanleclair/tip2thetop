@@ -13,7 +13,7 @@ public class NPCTest {
      * @result Name will be returned without any errors
      */
     @Test
-    void getName() {
+    void testGetName() {
         NPC npc = new NPC("Bob");
         assertEquals("Bob",npc.getName(),"Expected a name of Bob when creating a new NPC");
     }
@@ -24,7 +24,7 @@ public class NPCTest {
      * @result The name will be changed and returned with no errors
      */
     @Test
-    void setName() {
+    void testSetName() {
         NPC npc = new NPC("Bob");
         NPC npc2 = new NPC("John");
         npc.setName("John");
@@ -41,8 +41,6 @@ public class NPCTest {
     @Test
     void testConstructors() {
         NPC npc = new NPC("Drake");
-        NPC npc3 = new NPC("Martha");
-        assertEquals(0,npc.getRoomNumber(),"Created an NPC with a room number 0");
         assertEquals("Drake",npc.getName(),"Created an NPC with a name Drake");
     }
 
@@ -51,7 +49,7 @@ public class NPCTest {
      * @result The room number will be returned without any errors
      */
     @Test
-    void getRoomNumber() {
+    void testGetRoomNumber() {
         NPC npc = new NPC("Bob");
         assertEquals(0,npc.getRoomNumber(),"Created an NPC with room number 103");
     }
@@ -62,7 +60,7 @@ public class NPCTest {
      * @result The room number will change following the standards given and it will not produce any errors
      */
     @Test
-    void setRoomNumber() {
+    void tesSetRoomNumber() {
         NPC npc = new NPC("Bob");
         NPC npc2 = new NPC("Drake");
         npc.setRoomNumber(203);
@@ -110,7 +108,7 @@ public class NPCTest {
      * Name, room number, and type of room.
      */
     @Test
-    void setBooking() {
+    void testSetBooking() {
         Booking one = new Booking("Josh",204,"King");
         Booking two = new Booking("Jim",304,"Suite");
         NPC npc = new NPC("Bob");
