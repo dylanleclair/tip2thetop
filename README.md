@@ -89,6 +89,12 @@ java Game
 
 3.) Then run the Test through Run
 
+### Through hamcrest-core and JUNIT
+1.) Make sure all files are compiled in the directory
+2.) Make sure the NPCTest is inside of the src
+3.) Have the hamcrest-core.jar and junit.jar inside of the src directory
+4.) Compile using command line and run via junit
+
 ## Version
 Version 1.6
 
