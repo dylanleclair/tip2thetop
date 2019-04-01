@@ -1,11 +1,6 @@
 package app;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
@@ -46,23 +41,28 @@ public class Save {
 	public static void loadSave(String name) {
 		
 		currentSave = new File("./resources/saves/" + name);
-		ArrayList<String> lines = new ArrayList<String>();
+		
+		
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader(currentSave.getPath()));
-			String line = reader.readLine();			
+			ObjectInputStream reader = new ObjectInputStream(new FileInputStream(currentSave.getPath()));
+			goodPoints = reader.readInt();
+			badPoints = reader.readInt();
+			ArrayList<NPC> characters = (ArrayList<NPC>)reader.readObject();
 			// eventually this will be something like:
 			// globalVariable/class.setVariable() with type cast from string
 			// will be diff for each line tho, so looping will be different.. maybe use an array to simplify / shorten
-			while (line != null) {
-				System.out.println(line);
-				lines.add(line);
-				line = reader.readLine();
-				
-			}
 			reader.close();
+			for(int x = 0; x< characters.size(); x++) {
+				System.out.println(characters.get(x));
+			}
+			System.out.println(goodPoints);
+			System.out.println(badPoints);
+			
 		} catch (Exception e) {
 			
 		}
+		
+		/*
 		dayOn = Integer.parseInt(lines.get(0));
 		goodPoints = Integer.parseInt(lines.get(1));
 		badPoints = Integer.parseInt(lines.get(2));
@@ -72,6 +72,7 @@ public class Save {
 			goodPoints = Integer.parseInt(lines.get(1));
 			badPoints = Integer.parseInt(lines.get(2));
 		}
+		*/
 		//System.out.println(dayOn +", "+ goodPoints +", "+ badPoints);
 		// here we would start transition into whatever day // start the gameplay
 	}
@@ -81,18 +82,42 @@ public class Save {
 		return currentSave;
 	}
 	
-	/**
+	
+    public static void generateSave (ObjectOutputStream out, ArrayList<NPC> dailyCharacters) {
+    	
+    	try {
+    		/*
+    		out.writeInt(1);//DayBuilder.getDay() the date the players currently on
+        	out.writeInt(2);//ChoiceCenter.getGoodPoints player good points
+        	out.writeInt(5);//ChoiceCenter.getBadPOints player bad points
+			*/
+			out.writeObject(dailyCharacters);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    	// creating two string methods for diff objects which hold variables to be stored could be v helpful
+    	// other variables to be stored in save here
+    	// we should draft up a consistent format before we implement this -- we don't want to have to change order. 
+    }
+    /**
 	 * Is implemented in saveWriter.
 	 * This method "prints" the necessary info for a save file into the save file.
 	 * @param out a PrintWriter, which writes files as if you are printing output. 
 	 */
-    public static void generateSave (PrintWriter out) {
-    	out.println("1");//Class.getDay() the date the players currently on
-    	out.println("2");//Class.getGoodPoints player good points
-    	out.println("5");//Class.getBadPOints player bad points
-    	// creating two string methods for diff objects which hold variables to be stored could be v helpful
-    	// other variables to be stored in save here
-    	// we should draft up a consistent format before we implement this -- we don't want to have to change order. 
+    //initialization method
+    public static void generateSave (ObjectOutputStream out) {
+    	//initializing save file
+    	ArrayList<NPC> test = new ArrayList<NPC>(2);
+    	test.add(new NPC("Tiff"));
+    	test.add(new NPC("test"));
+    	try {
+    		out.writeInt(1);
+    		out.writeInt(5);
+			out.writeObject(test);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
     
     /**
@@ -102,7 +127,7 @@ public class Save {
     public static void createSaveFile(String filename) {
     
     	filename = filename.replace(' ', '-');
-    	File defaultSave = new File("./resources/saves/" + filename + ".txt");
+    	File defaultSave = new File("./resources/saves/" + filename + ".data");
     	currentSave = defaultSave;
     	try {
     		boolean isCreated = defaultSave.createNewFile();
@@ -118,10 +143,11 @@ public class Save {
      * To be used at the end of each day as part of the transitional screen.
      * @param saveFile a File, the file for the save information to be written to. (current save)
      */
+    //initialization method
     public static void saveWriter(File saveFile) {
     	
     	try {
-        	PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(saveFile.getPath())));
+        	ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(saveFile.getPath()));
         	generateSave(out);
         	out.close();
     	} catch (Exception e) {
@@ -129,5 +155,17 @@ public class Save {
     	}
     	
     }
+    
+	 public static void saveWriter(File saveFile, ArrayList dailyCharacters) {
+	    	
+	    	try {
+	        	ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(saveFile.getPath()));
+	        	generateSave(out, dailyCharacters);
+	        	out.close();
+	    	} catch (Exception e) {
+	    		e.printStackTrace();
+	    	}
+	    	
+	    }
     
 }

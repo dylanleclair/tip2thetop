@@ -620,15 +620,6 @@ public class DayBuilder {
     
 		// get the array list for the given npc and prompt
 
-		/*
-		 * call dialogue 
-		 * end dialogue
-		 * insert choice 
-		 * store choice consequence
-		 * call choice dialogue 
-		 * move on
-		 * repeat
-		 */
 		
 		VBox container = new VBox(10);
 

@@ -1,11 +1,12 @@
 package app;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 
-public class NPC {
+public class NPC implements Serializable{
 	
 	private String name;
 	private int roomNumber;
