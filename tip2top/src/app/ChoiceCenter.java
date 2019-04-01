@@ -96,7 +96,7 @@ public class ChoiceCenter {
 				if(choice == 1) {//yes email housekeeping
 					gulagPoints++;
 					jason_mint = true;
-					//return "weeee";//filler prompt name
+					return "mints_yes";
 				}
 				if(choice == 2) {//no email
 					gulagPoints--;
@@ -132,24 +132,24 @@ public class ChoiceCenter {
 				if(choice ==1) {//yes shampoo
 					gulagPoints++;
 					customerSatisfaction++;
-					return "weeee";//filler prompt name
+					return "shampoo_yes";//filler prompt name
 				}
 				if(choice ==2) {//no shampoo
 					gulagPoints--;
 					customerSatisfaction--;
-					return "weeee";//filler prompt name
+					return "shampoo_no";//filler prompt name
 				}
 			}
 			if(character.equalsIgnoreCase("Jason")) {
 				//effect point
 				if(jason_mint == true) {
 					customerSatisfaction++;
-					return "weeee";//filler prompt name
+					return "gotMints";//filler prompt name
 					//tip +10
 				}
 				else {
 					customerSatisfaction--;
-					return "weeee";//filler prompt name
+					return "noGot_mints";//filler prompt name
 					
 				}
 			}
@@ -160,12 +160,12 @@ public class ChoiceCenter {
 				choice = 0; //function to prompt choice
 				if(choice==1) {//give pillow
 					customerSatisfaction++;
-					//dailymistakes++;
-					return "weeee";//filler prompt name
+					daymistakes++;
+					return "pillow_yes";//filler prompt name
 				}
 				if (choice ==2) {//does not give pillow
-					//customerSatisfaction--;
-					return "weeee";//filler prompt name
+					customerSatisfaction--;
+					return "pillow_no";//filler prompt name
 				}
 			}
 			//insert phone session for Patricia
@@ -173,22 +173,36 @@ public class ChoiceCenter {
 				choice = 0; //function to prompt choice
 				if(choice ==1) {//yes buy lyryx
 					gulagPoints--;
-					//customerSatisfaction++;
-					return "weeee";//filler prompt name
+					customerSatisfaction++;
+					//dailyspendings+=40.0;
+					return "sell_Lyes";
 				}
 				if(choice ==2) {//no buy
 					gulagPoints++;
-					//customerSatisfaction--;
-					return "weeee";//filler prompt name
+					customerSatisfaction--;
+					return "sell_Lno";
 				}
 			}
 			if(character.equalsIgnoreCase("yvonne")) {
-				choice = 0;
+				choice = 0;//function to prompt choice
 				if(choice ==1) {//yes buy toaster
-					
+					//dailyspendings+=1.0;
+					return "sellToaster_yes";
 				}
 				if (choice ==2) {//no buy
-					
+					return "sellToaster_no";
+				}
+			}
+			if(character.equalsIgnoreCase("dylan")) {
+				choice = 0;//function to prompt choice
+				if(choice ==1) {//yes pillow
+					customerSatisfaction++;
+					daymistakes++;
+					return "pillows_yes";
+				}
+				if(choice == 2) {// no pillows
+					customerSatisfaction--;
+					return "pillows_no";
 				}
 			}
 			
