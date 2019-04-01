@@ -15,6 +15,7 @@ public class Game extends Application {
 	Scene menusc, opening, loadsc, helpsc, createsavesc, mainscene, amigoscreen, transitionsc;
 	private static GameBuilder gameb = new GameBuilder();
 	private static DayBuilder dayb = new DayBuilder();
+	private static Email emanager = new Email();
 
 	/**
 	 * Launches the menu screen, which has three different paths. 
@@ -68,7 +69,7 @@ public class Game extends Application {
 
 			// Loading and starting the screen. 
 			
-			createsavesc = new Scene(gameb.buildSaveScreen(window, opening, menusc), 1280,720);
+			createsavesc = new Scene(gameb.buildSaveScreen(window, opening, menusc, emanager), 1280,720);
 			
 			//BorderPane amigo = dayb.getAmigo();
 			//amigoscreen = new Scene(amigo,1280,720);

@@ -24,7 +24,7 @@ public class ChoiceCenter {
 	public String choicePoint(int day, String character){
 		if(day ==1) {
 			if(character.equalsIgnoreCase("Yvonne")) {
-				choice = getChoiceYesNo("Are you Russian?", "Well... which is it?");//function to prompt choice from player
+				choice = getChoiceTwoOptions("Are you Russian?", "Well... which is it?", "Yes", "No");//function to prompt choice from player
 				if(choice == 1){//yes russian
 					gulagPoints++;
 					return "russian_yes";
@@ -37,7 +37,7 @@ public class ChoiceCenter {
 				//}
 			}
 			if(character.equalsIgnoreCase("Jason")) {
-				choice = getChoiceABCD("Making Upgrades...", "How much does a Premium room cost?");//function to prompt choice from player
+				choice = getChoiceABCD("Making Upgrades...", "How much does a Premium room cost?", "30", "55", "40", "65");//function to prompt choice from player
 				if(choice ==1) {//choice (a)$30
 					customerSatisfaction++;
 					gulagPoints++;
@@ -77,7 +77,7 @@ public class ChoiceCenter {
 		}
 		if(day == 2) {
 			if(character.equalsIgnoreCase("Dylan")) {
-				choice = 0;//function to prompt choice from player
+				choice = getChoiceTwoOptions("Do you know your policy?", "Does the Three Eagle Hotel offer discounts to customers who several nights?", "Yes", "No");//function to prompt choice from player
 				if(choice == 1) {//yes discount
 					gulagPoints++;
 					return "longerStay_yes";
@@ -207,7 +207,6 @@ public class ChoiceCenter {
 			} else if (character.getName().equals("Aleksandra")) {
 				character.getPrompts().add("firstDay");
 				character.getPrompts().add("secondDay");
-				System.out.println("size = "+character.getPrompts().size());
 			} else if (character.getName().equals("Harriet")) {
 				character.getPrompts().add("rude");
 				character.getPrompts().add("");
@@ -232,6 +231,32 @@ public class ChoiceCenter {
 		}
 	}
 	
+	
+	public int getChoiceTwoOptions(String header,String content, String option1, String option2) {
+		
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Tip To the Top - Enter a choice!");
+		alert.setHeaderText(header);
+		alert.setContentText(content);
+
+		ButtonType buttonTypeOne = new ButtonType(option1);
+		ButtonType buttonTypeTwo = new ButtonType(option2);
+
+		alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
+
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == buttonTypeOne){
+		   return 1;
+		} else if (result.get() == buttonTypeTwo) {
+		   return 2;
+		} 
+		
+		return 0;
+		
+	}
+	
+	
+	
 	public int getChoiceYesNo(String header,String content) {
 		
 		Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -255,18 +280,29 @@ public class ChoiceCenter {
 		
 	}
 
-	public int getChoiceABCD(String header,String content) {
+	
+	/**
+	 * Creates a choice prompt with a title, header and 4 options. All are defined by String passed as parameters.
+	 * @param header - the header for the choice alert
+	 * @param content - the body / content of the choice alert
+	 * @param buttonA - the first option
+	 * @param buttonB - the second option
+	 * @param buttonC - the third option
+	 * @param buttonD - the fourth option
+	 * @return an int, 1-4 depending on the choice made (handled by choicePoint)
+	 */
+	public int getChoiceABCD(String header,String content, String buttonA, String buttonB, String buttonC, String buttonD) {
 		
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Tip To the Top - Enter a choice!");
 		alert.setHeaderText(header);
 		alert.setContentText(content);
 
-		ButtonType buttonTypeOne = new ButtonType("30");
-		ButtonType buttonTypeTwo = new ButtonType("55");
-		ButtonType buttonTypeThree = new ButtonType("40");
-		ButtonType buttonTypeFour = new ButtonType("65");
-
+		ButtonType buttonTypeOne = new ButtonType(buttonA);
+		ButtonType buttonTypeTwo = new ButtonType(buttonB);
+		ButtonType buttonTypeThree = new ButtonType(buttonC);
+		ButtonType buttonTypeFour = new ButtonType(buttonD);
+		
 		alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeThree, buttonTypeFour);
 
 		Optional<ButtonType> result = alert.showAndWait(); // change this to allow the user to refer to the Amigo 1000 in the future.
