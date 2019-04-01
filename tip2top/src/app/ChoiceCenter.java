@@ -15,6 +15,7 @@ public class ChoiceCenter {
 	private int customerSatisfaction;
 	private boolean tiff_icecream;
 	private boolean jason_mint;
+	private boolean has_toaster;
 	private int choice = 0;
 	
 	
@@ -101,7 +102,7 @@ public class ChoiceCenter {
 				if(choice == 2) {//no email
 					gulagPoints--;
 					jason_mint = false;
-					//return "weeee";//filler prompt name
+					return "mints_no";
 				}
 			}
 			if(character.equalsIgnoreCase("Patricia")) {
@@ -187,9 +188,11 @@ public class ChoiceCenter {
 				choice = 0;//function to prompt choice
 				if(choice ==1) {//yes buy toaster
 					//dailyspendings+=1.0;
+					has_toaster = true;
 					return "sellToaster_yes";
 				}
 				if (choice ==2) {//no buy
+					has_toaster = false;
 					return "sellToaster_no";
 				}
 			}
@@ -206,6 +209,67 @@ public class ChoiceCenter {
 				}
 			}
 			
+		}
+		
+		if(day == 5) {
+			if(character.equalsIgnoreCase("anna")) {
+				choice = 0;//function to prompt choice
+				if(choice == 1) {//yes missing
+					daymistakes++;
+					return "missing_yes";
+				}
+				if(choice ==2) {//no missing 
+					customerSatisfaction++;
+					return "missing_no";
+				}
+			}
+			if(character.equalsIgnoreCase("dylan")) {
+				choice = 0;//function to prompt choice
+				if(choice == 1) {//yes leave with dylan 
+					//triggers alternate ending
+				}
+				if(choice == 2) {//no leave with dylan
+					return "leave_no";
+				}
+			}
+			if(character.equalsIgnoreCase("yvonne")) {
+				choice = 0;//function to prompt choice
+				if(choice == 1) {//yes give soap
+					//customerSatisfaction++;
+					return "soap_yes";
+				}
+				if(choice == 2) {//not give soap
+					daymistakes++;
+					return "soap_no";
+				}
+			}
+			if(character.equalsIgnoreCase("Tiffany")) {
+				//effect point
+				if(has_toaster) {
+					return "toaster_yes";
+					//connects to toaster 2
+				}
+				else {
+					return "toaster_no";
+				}
+			}
+			
+		}
+		if(day ==6) {
+	
+			if(character.equalsIgnoreCase("dimitri")) {
+				if(has_toaster) {
+					choice = 0;//function to prompt choice
+					if(choice ==1) {//sell toaster
+						has_toaster = false;
+						//tips+=10;
+						return "";
+					}
+					if(choice == 2) {
+						return "";
+					}
+				}
+			}
 		}
 		
 		return "";
