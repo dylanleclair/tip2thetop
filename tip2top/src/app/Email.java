@@ -110,6 +110,18 @@ public class Email extends AmigoBuilder implements Serializable{
 		loadEmails(savename);
 		
 	}
+
+	/**
+	 * Creates a new email and adds it to an arrayList that contains a list of emails.
+	 * @param name The name of the sender
+	 * @param subject The subject of the email
+	 * @param message The message of the email
+	 * @param emailList The list that the email will be added to.
+	 */
+	public void createEmail(String name, String subject, String message, ArrayList<Email> emailList) {
+		Email email = new Email(name,subject,message);
+		emailList.add(email);
+	}
 	
 	/**
 	 * Returns the string of the message, in a format to be displayed by the screen.
