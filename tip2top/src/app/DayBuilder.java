@@ -46,6 +46,7 @@ public class DayBuilder {
 	NPC manager = new NPC(null);
 	Booking bmanager = new Booking(null);
 	ChoiceCenter cmanager = new ChoiceCenter();
+	Email emanager = new Email();
 	
 	BorderPane handler = new BorderPane();
 	
@@ -535,7 +536,6 @@ public class DayBuilder {
 				dailyCharacters.add(manager.getCharacter("Tiff", allCharacters)); // move this to initialize characters
 				dailyCharacters.add(0, manager.getCharacter("Aleksandra", allCharacters));
 				System.out.println(dailyCharacters.toString());
-				Email.initializeEmails(email_list);
 				for (Email item : email_list) {
 					emailsObservable.add(item.toString());
 				}
@@ -620,15 +620,6 @@ public class DayBuilder {
     
 		// get the array list for the given npc and prompt
 
-		/*
-		 * call dialogue 
-		 * end dialogue
-		 * insert choice 
-		 * store choice consequence
-		 * call choice dialogue 
-		 * move on
-		 * repeat
-		 */
 		
 		VBox container = new VBox(10);
 

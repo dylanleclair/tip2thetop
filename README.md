@@ -12,6 +12,7 @@ the gameplay experience.
 Made with the JavaFX Library and JDK 1.8.
 
 ## Setup/Installation
+>Remember to clone the master branch of the game, as that is the one that is the most up to date.
 ### For Windows
 
 1.) Install git for the desktop [here](https://git-scm.com/downloads). Choose the appropriate operating system.
@@ -78,12 +79,30 @@ javac game.java
 java Game
 ```
 
+## Running the JUNIT Tests
+
+### Via IDE (IntelliJ)
+1.) First, clone the TEST branch of the repository. Then checkout from version control and clone it onto IntelliJ
+
+2.) Mark the test folder as the Tests sources root </br>
+![alt text](https://i.gyazo.com/bb257b4c5558be72eb09f141365a0104.png) </br>
+
+3.) Then run the Test through Run
+
+### Through hamcrest-core and JUNIT
+1.) Make sure all files are compiled in the directory <br/>
+2.) Make sure the NPCTest is inside of the src <br/>
+3.) Have the hamcrest-core.jar and junit.jar inside of the src directory <br/>
+4.) Compile using command line and run via junit <br/>
+
 ## Version
-Version 1.2
+Version 1.6
 
 ## Goals
-As of 2019-03-07 </br>
--Add a delete save feature
+As of 2019-03-27 </br>
+-Focus on saving the game through different days </br>
+-Implement more days into the game </br>
+-Smoother transition screen between days </br>
 
 ## Team
 >Contributers and people

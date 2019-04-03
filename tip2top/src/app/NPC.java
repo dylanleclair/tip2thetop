@@ -1,5 +1,6 @@
 package app;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -7,7 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class NPC {
+public class NPC implements Serializable{
 	
 	private String name;
 	private int roomNumber;
