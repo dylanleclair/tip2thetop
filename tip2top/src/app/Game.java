@@ -49,7 +49,7 @@ public class Game extends Application {
 			mainscene = new Scene(dayb.getToday(), 1280, 720);
 			dayb.buildAmigoScreen(amigo, window, mainscene);
 			
-			gameb.buildTransitionScreen(transition, window,mainscene);
+			gameb.buildTransitionScreen(transition, window,mainscene, dayb, transitionsc);
 			
 			// Transition screen
 			

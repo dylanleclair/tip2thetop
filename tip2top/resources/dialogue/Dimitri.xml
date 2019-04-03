@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Dimitri>
+
+	<checkIn>
+		<print>???: Hi.</print>
+		<print>You: Hello.</print>
+		<print>You: How may I help you today?</print>
+		<print>???: That room behind you.</print>
+		<print>???: I want.</print>
+		<print>???: This place is very very very nice!</print>
+		<print>You: Unfortunately, I can’t give you that room.</print>
+		<print>You: It’s the current staff’s residency room.</print>
+		<print>You: So, it’s my room.</print>
+		<print>???: PLEASE! Give Dimitri this room.</print>
+		<print>Dimitri: I like. Very very much!</print>
+		<print>Dimitri: Dimitri will play triple the doubloon!!</print>
+		<print>You: Well, alright.</print>
+		<print>You: Guess I’ll be sleeping in the broom closet...</print>
+	</checkIn>
+
+</Dimitri>

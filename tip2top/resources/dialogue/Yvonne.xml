@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Yvonne>
+
+	<russian>
+		<print>Yvonne: Hello.</print>
+		<print>You: ...Hello?</print>
+		<print>Yvonne: I’d like to book a room for the next week.</print>
+		<print>You: Uh, okay. What’s your name?</print>
+		<print>Yvonne: Yvonne. Did you not read the dialogue?</print>
+		<print>You: Uh... What tier would you like?</print>
+		<print>Yvonne: Luxury.</print>
+		<print>You: Excellent choice - how about room 12?</print>
+		<print>Yvonne: That's fine.</print>
+		<print>You: Wait, are you a guitar player?</print>
+		<print>Yvonne: No, this is strictly for business purposes.</print>
+		<print>Yvonne: Anyways, are you Russian?</print>
+		<print>choice</print>
+	</russian>
+
+		<russian_yes>
+			<print>Yvonne: That's pretty lucky...</print>
+			<print>You: Excuse me?</print>
+			<print>Yvonne: Excellent, could I get my key? Thank you.</print>
+		</russian_yes>
+	
+		<russian_no>
+			<print>Yvonne: What a shame. Better be extra careful then, they’re watching.</print>
+			<print>You: What do you mean?</print>
+			<print>Yvonne: Could I get my key please?</print>
+			<print> -- You remember to give her the key... --</print>
+			<print>She stares at you blankly.</print>
+		</russian_no>
+	
+	<shampoo>
+		<print>Yvonne: Hey, my room’s out of shampoo. Do you mind if I get more?</print>
+		<print>You: Sorry, we only have conditioner at the moment.</print>
+		<print>You: You might have to wait until tomorrow until we give out shampoo again.</print>
+		<print>Yvonne: Hey come on, I really need it. Can’t you just sneak one under the counter for me?</print>
+	</shampoo>
+		
+		<shampoo_yes>
+			<print>Yvonne: Thanks. I’ll be sure to put in a good word for you to my bosses.</print>
+		</shampoo_yes>
+		
+		<shampoo_no>
+			<print>You: Sorry, don’t want to get sent to the gulags by my boss or anything.</print>
+			<print>Yvonne: Aw, that sucks.</print>
+			<print>I’ll have to go out and pick some up then.</print>
+			<print>You’ve just made this game a little harder for yourself though, good luck.</print>
+		</shampoo_no>
+		
+	<sellToaster>
+		<print>You: Hey there.</print>
+		<print>Yvonne: Hi! I was wondering if you had any space to store extra luggage.</print>
+		<print>You: Is that a tuba case?</print>
+		<print>Yvonne: You betcha! But there isn’t a tuba in here.</print>
+		<print>You: Then what is it?</print>
+		<print>Yvonne: It’s none of your business, that’s what it is.</print>
+		<print>You: Oh, okay...</print>
+		<print>Yvonne: Anyways, has anyone mysterious caught your eye recently?</print>
+		<print>Yvonne: There have been a lot of oddballs floating around you know.</print>
+		<print>You: What do you mean?</print>
+		<print>Yvonne: Just keep an eye out for Russians.</print>
+		<print>Yvonne: You just can’t trust ‘em.</print>
+		<print>Yvonne: Anyways, I’ve got this old toaster for sale.</print>
+		<print>Yvonne: Would like it?</print>
+		<print>Yvonne: I’m only selling it for a dollar.</print>
+	</sellToaster>
+	
+		<sellToaster_yes>
+			<print>You: Sure, I’ll take it off your hands!</print>
+			<print>Yvonne: Great, thank you!</print>
+			<print>Yvonne: Good luck getting that old thing working though.</print>
+		</sellToaster_yes>
+		
+		<sellToaster_no>
+			<print>You: No, I’m good.</print>
+			<print>Yvonne: Darn, I was sure you’d buy it.</print>
+			<print>Yvonne: Guess I’ll need to find someone else.</print>
+			<print>Yvonne: See you around.</print>
+		</sellToaster_no>
+		
+	<soap>
+		<print>Yvonne: Hey. I ran out of soap.</print>
+		<print>Yvonne: Could I please get some more?</print>
+		<print>You: Uh... trumpet player today?</print>
+		<print>Yvonne: Business operates as per usual.</print>
+		<print>Yvonne: So, about my soap?</print>
+	</soap>
+	
+		<soap_yes>
+			<print>You: Sure, here you are.</print>
+			<print>Yvonne: Finally! Thank you!</print>
+			<print>Yvonne: Hope you’re enjoying the game my friend.</print>
+			<print>Yvonne: And keep your eyes peeled, you don’t know who might disappear next...</print>
+		</soap_yes>
+		
+		<soap_no>
+			<print>Yvonne: Aw, please?</print>
+			<print>You: Sorry, no can do. We’re out of stock.</print>
+			<print>Yvonne: But I saw you giving them out earlier!</print>
+			<print>You: All out.</print>
+			<print>Yvonne: Ugh...</print>
+			<print>Yvonne: Well, I hope you’re enjoying the game.</print>
+			<print>Yvonne: And watch your back.</print>
+			<print>Yvonne: You’ll never know who'll disappear next.</print>
+		</soap_no>
+
+</Yvonne>

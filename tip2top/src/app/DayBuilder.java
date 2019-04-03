@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 
+// clean these up
+
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.beans.binding.Bindings;
@@ -23,6 +25,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -42,12 +45,16 @@ public class DayBuilder {
 	private StackPane today = new StackPane();
 	NPC manager = new NPC(null);
 	Booking bmanager = new Booking(null);
+	ChoiceCenter cmanager = new ChoiceCenter();
+	
+	BorderPane handler = new BorderPane();
 	
 	
 	// NPC Management
 	ArrayList<NPC> allCharacters = new ArrayList<NPC>();
   	// daily characters
-	private ArrayList<NPC> dailyCharacters;
+	private ArrayList<NPC> dailyCharacters = new ArrayList<NPC>();
+	private NPC character = null;
 	
 	// make a function in NPC to fill this with all characters
 	
@@ -69,6 +76,7 @@ public class DayBuilder {
 	private ObservableList<String> emailsObservable = FXCollections.observableArrayList(); // list of emails toStrings displayed in Amigo 1000 
 	private ArrayList<Email> email_list = new ArrayList<Email>(); // list of emails in the Amigo 1000
 	private Button nextC = new Button(); 
+	private boolean clickable = false;
 	private int index = 0;
 
 	// Image of the character currently in slot 1 / being displayed
@@ -150,20 +158,24 @@ public class DayBuilder {
 						if(keys[temp]==1) {
 							for(int i = 0;i<12;i++) {
 								key[i].setEffect(shadow);
+								keys[i]= 1;
 									
 								
 							}
 							keys[temp]= 2;
 							node.setEffect(highlight);
-						}else if(keys[temp]==2) {
+						}else if(keys[temp]==2&& character != null&&character.getKey()==0) {
 							keys[temp]=3;
 							node.setEffect(give);
+							
+							character.setKey(temp+1);
+							System.out.print(character.getKey());
 							
 							TranslateTransition translate = new TranslateTransition();
 							translate.setDuration(Duration.millis(1300));
 							translate.setNode(node);
 							translate.setByX(300);
-							translate.setByY(-200);
+							translate.setByY(-250);
 							translate.setCycleCount(1);
 							translate.setAutoReverse(false);
 							translate.play();
@@ -177,7 +189,6 @@ public class DayBuilder {
 						 
 						     ft.play();
 							
-							System.out.println(node.getId());
 							
 							
 						}
@@ -218,8 +229,6 @@ public class DayBuilder {
 			today.getChildren().add(imageView5);
 			
 			
-
-			BorderPane handler = new BorderPane();
 			Button accessAmigo = new Button();
 			
 			Image img1, img2,img3,img4,img5,img6,img7,img8,img9,img10,img11,img12;
@@ -279,61 +288,85 @@ public class DayBuilder {
 				if(keys[0]==1) {
 					key1.setId("1");
 					addEvent(key1);
+					key1.setX(40);
+					key1.setY(50);
 					handler.getChildren().add(key1);
 				} 
 				if(keys[1]==1) {
 					key2.setId("2");
 					addEvent(key2);
+					key2.setX(40);
+					key2.setY(50);
 					handler.getChildren().add(key2);
 				}
 				if(keys[2]==1) {
 					key3.setId("3");
 					addEvent(key3);
+					key3.setX(40);
+					key3.setY(50);
 					handler.getChildren().add(key3);
 				}
 				if(keys[3]==1) {
 					key4.setId("4");
 					addEvent(key4);
+					key4.setX(40);
+					key4.setY(50);
 					handler.getChildren().add(key4);
 				}
 				if(keys[4]==1) {
 					key5.setId("5");
 					addEvent(key5);
+					key5.setX(40);
+					key5.setY(50);
 					handler.getChildren().add(key5);
 				}
 				if(keys[5]==1) {
 					key6.setId("6");
 					addEvent(key6);
+					key6.setX(40);
+					key6.setY(50);
 					handler.getChildren().add(key6);
 				}
 				if(keys[6]==1) {
 					key7.setId("7");
 					addEvent(key7);
+					key7.setX(40);
+					key7.setY(50);
 					handler.getChildren().add(key7);
 				}
 				if(keys[7]==1) {
 					key8.setId("8");
 					addEvent(key8);
+					key8.setX(40);
+					key8.setY(50);
 					handler.getChildren().add(key8);
 				}
 				if(keys[8]==1) {
 					key9.setId("9");
 					addEvent(key9);
+					key9.setX(40);
+					key9.setY(50);
 					handler.getChildren().add(key9);
 				}
 				if(keys[9]==1) {
 					key10.setId("10");
 					addEvent(key10);
+					key10.setX(40);
+					key10.setY(50);
 					handler.getChildren().add(key10);
 				}
 				if(keys[10]==1) {
 					key11.setId("11");
 					addEvent(key11);
+					key11.setX(40);
+					key11.setY(50);
 					handler.getChildren().add(key11);
 				}
 				if(keys[11]==1) {
 					key12.setId("12");
 					addEvent(key12);
+					key12.setX(40);
+					key12.setY(50);
 					handler.getChildren().add(key12);
 				}
 				
@@ -344,14 +377,54 @@ public class DayBuilder {
 			}
 
 			try {
-				Image amigobtn = new Image(new FileInputStream("./resources/gameimg/amigobtn.png"));
-				Image amigohovered = new Image(new FileInputStream("./resources/gameimg/amigobtnhov.png"));
+				Image amigobtn = new Image(new FileInputStream("./resources/gameimg/a.png"));
+				
 				ImageView amigobtng = new ImageView(amigobtn);
-				ImageView amigohoveredg = new ImageView(amigohovered);
-				accessAmigo.setGraphic(amigobtng);
-				accessAmigo.setId("amigo");
-				accessAmigo.graphicProperty()
-						.bind(Bindings.when(accessAmigo.hoverProperty()).then(amigohoveredg).otherwise(amigobtng));
+				
+				DropShadow shadow = new DropShadow();
+				DropShadow highlight = new DropShadow();
+				
+				shadow.setColor(Color.BLACK);
+				shadow.setOffsetY(10);
+				
+			    highlight.setColor(Color.YELLOW);
+			    highlight.setSpread(12);
+			    highlight.setRadius(3);
+				
+				amigobtng.addEventHandler(MouseEvent.MOUSE_ENTERED,
+				        new EventHandler<MouseEvent>() {
+				          @Override
+				          public void handle(MouseEvent e) {
+				        	amigobtng.setEffect(highlight);
+				          }
+				        });
+
+				amigobtng.addEventHandler(MouseEvent.MOUSE_EXITED,
+				        new EventHandler<MouseEvent>() {
+				          @Override
+				          public void handle(MouseEvent e) {
+				        	  amigobtng.setEffect(shadow);
+				        	  
+				        	  
+				          }
+				        });
+				
+				amigobtng.addEventHandler(MouseEvent.MOUSE_PRESSED,
+				        new EventHandler<MouseEvent>() {
+				          @Override
+				          public void handle(MouseEvent e) {
+				        	  window.setScene(amigoscreen);
+				        	  
+				        	  
+				          }
+				        });
+				
+					
+					
+				
+				
+				handler.setBottom(amigobtng);
+				
 				
 
 			} catch (Exception e) {
@@ -368,28 +441,23 @@ public class DayBuilder {
 			nextC.setLayoutY(650);
 			nextC.setGraphic(next);
 			
+			
 			manager.populateAllCharacters(allCharacters);
+			cmanager.initializePrompts(allCharacters);
 
 			System.out.println(allCharacters.size());
 			
 			bmanager.loadBookings(allCharacters, bookings);
-			dailyCharacters = manager.initializeCharacters(day, allCharacters);
+			
+			manager.initializeCharacters(day, allCharacters, dailyCharacters);
 			
 			// change styling n such later
 
-			accessAmigo.setOnAction(e -> {
-				window.setScene(amigoscreen);
-			});
 			
-			handler.setBottom(accessAmigo);
 			handler.setRight(nextC);
-			
-
 			
 			//@TODO change this to a keyboard button press so it doesn't cause bugs with amigo + keys
 			handler.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
-
-			
 				
 				// it appears that the error occurs in the inheritance here somehow?
 
@@ -404,7 +472,7 @@ public class DayBuilder {
 				@Override
 				public void handle(MouseEvent mouseEvent) {
 					// advance
-					if (dialogueActive) {
+					if (dialogueActive&&(mouseEvent.getY() < 280 || mouseEvent.getX() > 490)) {
 						if (clickCount <= active.size() - 2) {
 							clickCount++;
 
@@ -414,6 +482,13 @@ public class DayBuilder {
 								slot2.setText(active.get(middle));
 							if (bottom <= active.size() - 2)
 								slot3.setText(active.get(bottom));
+							if (active.get(bottom + 1).contentEquals("choice")) {
+								String prompt = cmanager.choicePoint(day, character.getName());
+								ArrayList<String> read = Reader.getDialogue(character.getName(), prompt);
+								active.remove(bottom+1);
+								active.addAll(bottom + 1, read);
+							}
+							
 							top++;
 							middle++;
 							bottom++;
@@ -431,7 +506,7 @@ public class DayBuilder {
 							top = 0;
 							middle = 1;
 							bottom = 2;
-							animateCharacterOut(activeCharacter); // change this to next character button.
+							//animateCharacterOut(activeCharacter); // change this to next character button.
 						}
 
 					}
@@ -446,7 +521,8 @@ public class DayBuilder {
 			e.printStackTrace();
 		}
 
-	}
+}
+
 
 	/**
 	 * Handles the "day" of events as a whole. Controls which characters are on the screen. 
@@ -456,80 +532,79 @@ public class DayBuilder {
 		
 			if (day == 1) {
 				Collections.shuffle(dailyCharacters);
-				dailyCharacters.add(new NPC("Tiff")); // move this to initialize characters
-				dailyCharacters.add(0, new NPC("Aleksandra"));
+				dailyCharacters.add(manager.getCharacter("Tiff", allCharacters)); // move this to initialize characters
+				dailyCharacters.add(0, manager.getCharacter("Aleksandra", allCharacters));
+				System.out.println(dailyCharacters.toString());
 				Email.initializeEmails(email_list);
 				for (Email item : email_list) {
 					emailsObservable.add(item.toString());
 				}
+			} else if (day == 2) {
+				Collections.shuffle(dailyCharacters);
+				dailyCharacters.add(0, manager.getCharacter("Aleksandra", allCharacters));
+				System.out.println(dailyCharacters.toString());
 			}
 
 			animateButtonIn(nextC);
 
 			nextC.setOnAction(e -> {
+				
+				clickable = false;
 
 				// animate nextC out if index > 0
 
 				if (index == 0) {
 					animateButtonOut(nextC);
-					animateDialogueBoxIn(today.getChildren().get(3)); // 4 is the index of dialogue box in stackpane
-																		// today
+					animateDialogueBoxIn(today.getChildren().get(3)); // 3 is the index of dialogue box in stackpane
+					runCharacter(handler);													// today
 				}
 
 				if (index > 0) {
 					animateButtonOut(nextC);
-				}
-
-				if (index < dailyCharacters.size()) {
-					
-					NPC character = dailyCharacters.get(index);
-
-					try {
-						Image image = new Image(new FileInputStream("./resources/characters/" + character.getName() + ".png"));
-						ImageView characterView = new ImageView(image);
-
-						activeCharacter = characterView;
-
-						today.getChildren().set(1, characterView);
-						characterView.setManaged(false);
-						characterView.setLayoutX(1280);
-						characterView.setLayoutY(-20);
-
-						active.clear();
-						for (int i = 0; i < 3; i++) 
-							active.add(" ");
-
-						animateCharacterIn(characterView);
-
-
-						// dialogueActive = true;
-						ArrayList<String> dialogue = manager.getDialogue(character.getName(), day);
-						playDialog(handler, dialogue);
-
-						
-
-						// animateCharacterOut(characterView);
-					} catch (Exception c) {
-						c.printStackTrace();
-					}
-					
-				}
-				
-				// stuff for each character
-				
-
-				if (index == dailyCharacters.size()) {
-					System.out.println("LOL");
-					animateDialogueBoxOut(today.getChildren().get(4), window, transition);
-					//animate dialogue box out
+					animateCharacterOut(activeCharacter, handler, window, transition);
 				}
 				
 				index++;
+				System.out.println(index);
 			});
 
 		
 	}
 
+	
+	public void runCharacter(BorderPane handler) {
+		if (index == 0) character = dailyCharacters.get(index);
+		if (index >= 1) character = dailyCharacters.get(index -1); // just corrects the index to fix a bug where a player was skipped.
+
+		try {
+			Image image = new Image(new FileInputStream("./resources/characters/" + character.getName() + ".png"));
+			ImageView characterView = new ImageView(image);
+
+			activeCharacter = characterView;
+
+			today.getChildren().set(1, characterView);
+			characterView.setManaged(false);
+			characterView.setLayoutX(1280);
+			characterView.setLayoutY(-20);
+
+			active.clear();
+			for (int i = 0; i < 3; i++) 
+				active.add(" ");
+
+			animateCharacterIn(characterView);
+
+			System.out.println(character.getPrompts().size());
+			System.out.println(allCharacters.get(5).getPrompts().size());
+			ArrayList<String> read = Reader.getDialogue(character.getName(), character.getPrompts().get(day - 1));
+			
+			playDialog(handler, read);
+
+		} catch (Exception c) {
+			c.printStackTrace();
+		}
+	}
+	
+	
 	/**
 	 * Handles the dialog functionality of the game. Responds to mouse click
 	 * @TODO - remove/fix the default / enter key functionality (it's broke)?
@@ -542,8 +617,9 @@ public class DayBuilder {
 		active.addAll(dialog); // we need to separate this so we can ensure it is done correctly?
 		for (int i = 0; i < 3; i++)
 			active.add(" ");
+    
+		// get the array list for the given npc and prompt
 
-		active.addAll(dialog); // added by yvonne
 		/*
 		 * call dialogue 
 		 * end dialogue
@@ -553,10 +629,8 @@ public class DayBuilder {
 		 * move on
 		 * repeat
 		 */
-		for (int i = 0; i < 3; i++) active.add(" ");
 		
-		
-		VBox container = new VBox(5);
+		VBox container = new VBox(10);
 
 		slot1.setId("dialog-text");
 		slot2.setId("dialog-text");
@@ -575,13 +649,6 @@ public class DayBuilder {
 
 	}
 
-	public static void animateTextIn() {
-
-	}
-
-	public static void animateTextOut() {
-
-	}
 
 	/**
 	 * Builds the main screen of the in-game PC. 
@@ -670,7 +737,7 @@ public class DayBuilder {
 		Button back = new Button();
 
 		try {
-		Image openimg = new Image(new FileInputStream("./resources/gameimg/amigo/buttons/checkin.png"));
+		Image openimg = new Image(new FileInputStream("./resources/gameimg/amigo/buttons/readbtn.jpg"));
 		open.setGraphic(new ImageView(openimg));
 		Image backimg = new Image(new FileInputStream("./resources/gameimg/amigo/buttons/back.png"));
 		back.setGraphic(new ImageView(backimg));
@@ -806,7 +873,6 @@ public class DayBuilder {
 				
 			}
 			
-
 		});
 		checkOut.setOnAction(e -> bookings.remove(guestlist.getSelectionModel().getSelectedIndex()));
 		back.setOnAction(e -> {
@@ -821,6 +887,16 @@ public class DayBuilder {
 	 */
 	public static void verifyAmigo() {
 
+	}
+	
+	
+	public void triggerNewDay(Stage window, Scene transitionsc) {
+		index = 0;
+		day++;
+		nextC.setLayoutX(1300);
+		nextC.setLayoutY(650);
+		manager.initializeCharacters(day, allCharacters, dailyCharacters);
+		runDay(handler,window,transitionsc);
 	}
 
 	// Animations -- move to a different class?
@@ -839,7 +915,7 @@ public class DayBuilder {
 	}
 
 	// reverses animate character in?
-	public TranslateTransition animateCharacterOut(Node character) {
+	public TranslateTransition animateCharacterOut(Node character, BorderPane handler, Stage window, Scene transition) {
 		TranslateTransition translate = new TranslateTransition();
 		translate.setDuration(Duration.millis(1300));
 		translate.setNode(character);
@@ -847,7 +923,15 @@ public class DayBuilder {
 		translate.setCycleCount(1);
 		translate.setAutoReverse(false);
 		translate.play();
-		// translate.setOnFinished(e -> );
+		translate.setOnFinished(e -> {
+			if (index -1 < dailyCharacters.size()) runCharacter(handler);
+			if (index -1 == dailyCharacters.size()) {
+				System.out.println("LOL");
+				animateDialogueBoxOut(today.getChildren().get(3), window, transition);
+				//animate dialogue box out
+			}
+			
+		});
 		return translate;
 
 	}
@@ -856,9 +940,10 @@ public class DayBuilder {
 		TranslateTransition translate = new TranslateTransition();
 		translate.setDuration(Duration.millis(1300));
 		translate.setNode(button);
-		translate.setByX(-350);
+		translate.setByX(-370);
 		translate.setCycleCount(1);
 		translate.setAutoReverse(false);
+		translate.setOnFinished(e -> clickable = true);
 		translate.play();
 		return translate;
 
@@ -907,5 +992,6 @@ public class DayBuilder {
 
 	}
 
+	
 	
 }

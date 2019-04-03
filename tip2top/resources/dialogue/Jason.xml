@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Jason>
+
+	<upgrade>
+		<print>???: Good morning.</print>
+		<print>You: Hello.</print>
+		<print>What can I do for you today?</print>
+		<print>Jason: I’m a returning customer, Jason.</print>
+		<print>Jason: I would like to upgrade my room.</print>
+		<print>You: Okay, that’s fine.</print>
+		<print>You: Which tier would you like to upgrade to?</print>
+		<print>Jason: To Premium, up from Basic.</print>
+		<print>Jason: A premium room - they cost $45, right?</print>
+		<print>choice</print>
+	</upgrade>
+
+		<upgrade_a>
+			<print>You: The price is actually $30.</print>
+			<print>Jason: Oh, thank you.</print>
+			<print>You: Is room 6 okay?</print>
+			<print>Jason: That sounds perfect.</print>
+			<print> -- Don't forget to give him his key! --</print>
+		</upgrade_a>
+	
+		<upgrade_b>
+			<print>You: Wait, the price is actually $55.</print>
+			<print>Jason: Oh, my bad.</print>
+			<print>You: Is room 6 okay?</print>
+			<print>Jason: That sounds perfect.</print>
+			<print> -- Don't forget to give him his key! --</print>
+		</upgrade_b>
+	
+		<upgrade_c>
+			<print>You: Wait, the price is actually $40.</print>
+			<print>Jason: Oh, my bad.</print>
+			<print>You: Is room 6 okay?</print>
+			<print>Jason: That sounds perfect.</print>
+			<print> -- Don't forget to give him his key! --</print>
+		</upgrade_c>
+	
+		<upgrade_d>
+			<print>You: Wait, the price is actually $65.</print>
+			<print>Jason: Wow, that’s quite a price.</print>
+			<print>You: Is room 6 okay?</print>
+			<print>Jason: That sounds perfect.</print>
+			<print> -- Don't forget to give him his key! --</print>
+		</upgrade_d>
+
+
+	<mints>
+		<print>You: Hey, how are you doing today?</print>
+		<print>Jason: I’m doing well. How about you?</print>
+		<print>You: Good, good. How’s the upgraded room treating you?</print>
+		<print>Jason: It’s very nice, but I was hoping for an extra few mints on my pillow as part of the luxury experience...</print>
+		<print>You: Okay, I’ll see what I can do.</print>
+		<print>You: On the other hand, do you want shampoo?</print>
+		<print>Jason: No thanks. It’s just that mints really make the stay, you know.</print> 
+		<print>You: Alright, I understand.</print>
+	</mints>
+	
+		<mints_yes>
+			<print>You email housekeeping about the mints.</print>
+		</mints_yes>
+		
+		<mints_no>
+			<print>You move onto the next customer.</print>
+		</mints_no>
+
+
+	<gotMints>
+		<print>Jason: I noticed the extra mints on my pillow, thanks.</print>
+		<print>Jason: Now I can do maths with a fresh breath.</print>
+		<print>Jason: Also, could I have some conditioner?</print>
+		<print>You: Sure, here you are.</print>
+	</gotMints>
+	
+	<noGot_mints>
+		<print>Jason: I noticed I didn’t get my mints.</print>
+		<print>Jason: Now how am I supposed to do maths?</print>
+		<print>Jason: Vectors don’t calculate themselves you know.</print>
+		<print>Jason: Also, could I have some conditioner?</print>
+		<print>You: Sure, here you are.</print>
+	</noGot_mints>
+	
+	<sell_lyrynx>
+		<print>Jason: Hey there.</print>
+		<print>You: Hey. How are you?</print>
+		<print>Jason: I’ve been working on this project recently…</print>
+		<print>Jason: And I was wondering if you’d like to try it out.</print>
+		<print>Jason: It’s quite easy to use.</print>
+		<print>Jason: It’s a math program, to help you learn linear algebra.</print>
+		<print>Jason: It’s called Lyrynx.</print>
+		<print>Jason: You can learn how to solve matrices, find the area of a parallelepiped, calculate vectors in 17 dimensions...</print>
+		<print>Jason: What do you say?</print>
+		<print>Jason: It’s only $40 a month.</print>
+	</sell_lyrynx>
+	
+		<sell_Lyes>
+			<print>You: Uh, sure!</print>
+			<print>You: I’ve always wanted to learn Linear Algebra.</print>
+			<print>Jason: Hooray!</print>
+			<print>Jason: I’ll get you set up right away.</print>
+		</sell_Lyes>
+		
+		<sell_Lno>
+			<print>You: No thank you, I can’t afford that...</print>
+			<print>Jason: How about I give you a discount then?</print>
+			<print>You: No, I’m alright.</print>
+			<print>You: I don’t need to learn linear algebra.</print>
+			<print>Jason: Well, suit yourself.</print>
+		</sell_Lno>
+
+</Jason>
