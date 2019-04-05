@@ -45,9 +45,13 @@ public class Save {
 		
 		try {
 			ObjectInputStream reader = new ObjectInputStream(new FileInputStream(currentSave.getPath()));
-			goodPoints = reader.readInt();
-			badPoints = reader.readInt();
 			ArrayList<NPC> characters = (ArrayList<NPC>)reader.readObject();
+			ArrayList<Email> emails = (ArrayList<Email>)reader.readObject();
+			int currentDay = reader.readInt();
+			double currentMoney = reader.readDouble();
+			boolean tiff_icecream = reader.readBoolean();
+			boolean jason_mints = reader.readBoolean();
+			boolean has_toaster = reader.readBoolean();
 			// eventually this will be something like:
 			// globalVariable/class.setVariable() with type cast from string
 			// will be diff for each line tho, so looping will be different.. maybe use an array to simplify / shorten
@@ -55,8 +59,6 @@ public class Save {
 			for(int x = 0; x< characters.size(); x++) {
 				System.out.println(characters.get(x));
 			}
-			System.out.println(goodPoints);
-			System.out.println(badPoints);
 			
 		} catch (Exception e) {
 			
@@ -83,15 +85,18 @@ public class Save {
 	}
 	
 	
-    public static void generateSave (ObjectOutputStream out, ArrayList<NPC> dailyCharacters) {
+    public static void generateSave (ObjectOutputStream out, ArrayList<NPC> allCharacters, ArrayList emails, int day, double money, boolean tiff_icecream, boolean jason_mints, boolean has_toaster) {
     	
     	try {
-    		/*
-    		out.writeInt(1);//DayBuilder.getDay() the date the players currently on
-        	out.writeInt(2);//ChoiceCenter.getGoodPoints player good points
-        	out.writeInt(5);//ChoiceCenter.getBadPOints player bad points
-			*/
-			out.writeObject(dailyCharacters);
+    		
+			out.writeObject(allCharacters);
+			out.writeObject(emails);
+			out.writeInt(day);
+			out.writeDouble(money);
+			out.writeBoolean(tiff_icecream);
+			out.writeBoolean(jason_mints);
+			out.writeBoolean(has_toaster);
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -156,11 +161,11 @@ public class Save {
     	
     }
     
-	 public static void saveWriter(File saveFile, ArrayList dailyCharacters) {
+	 public static void saveWriter(File saveFile, ArrayList allCharacters, ArrayList emails, int day, double money, boolean tiff_icecream, boolean jason_mints, boolean has_toaster) {
 	    	
 	    	try {
 	        	ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(saveFile.getPath()));
-	        	generateSave(out, dailyCharacters);
+	        	generateSave(out, allCharacters,  emails, day, money, tiff_icecream, jason_mints, has_toaster);
 	        	out.close();
 	    	} catch (Exception e) {
 	    		e.printStackTrace();
