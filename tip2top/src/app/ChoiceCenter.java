@@ -11,12 +11,15 @@ public class ChoiceCenter {
 
 	private int gulagPoints;
 	private int daymistakes;
-	private int totalmistakes;
+	//private int totalmistakes;
 	private int customerSatisfaction;
 	private boolean tiff_icecream;
 	private boolean jason_mint;
 	private boolean has_toaster;
 	private int choice = 0;
+	private double tips;
+	private double spendings;
+	private double bonus;
 	
 	
 	// arrays for prompts
@@ -145,8 +148,9 @@ public class ChoiceCenter {
 				//effect point
 				if(jason_mint == true) {
 					customerSatisfaction++;
+					tips+=10;
 					return "gotMints";//filler prompt name
-					//tip +10
+					
 				}
 				else {
 					customerSatisfaction--;
@@ -175,7 +179,7 @@ public class ChoiceCenter {
 				if(choice ==1) {//yes buy lyryx
 					gulagPoints--;
 					customerSatisfaction++;
-					//dailyspendings+=40.0;
+					spendings+=40.0;
 					return "sell_Lyes";
 				}
 				if(choice ==2) {//no buy
@@ -187,7 +191,7 @@ public class ChoiceCenter {
 			if(character.equalsIgnoreCase("yvonne")) {
 				choice = 0;//function to prompt choice
 				if(choice ==1) {//yes buy toaster
-					//dailyspendings+=1.0;
+					spendings+=1.0;
 					has_toaster = true;
 					return "sellToaster_yes";
 				}
@@ -235,7 +239,7 @@ public class ChoiceCenter {
 			if(character.equalsIgnoreCase("yvonne")) {
 				choice = 0;//function to prompt choice
 				if(choice == 1) {//yes give soap
-					//customerSatisfaction++;
+					customerSatisfaction++;
 					return "soap_yes";
 				}
 				if(choice == 2) {//not give soap
@@ -262,7 +266,7 @@ public class ChoiceCenter {
 					choice = 0;//function to prompt choice
 					if(choice ==1) {//sell toaster
 						has_toaster = false;
-						//tips+=10;
+						tips+=10;
 						return "";
 					}
 					if(choice == 2) {
