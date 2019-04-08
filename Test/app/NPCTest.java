@@ -166,16 +166,29 @@ public class NPCTest {
         assertEquals(one.get(0),npc.getCharacter("Bob",one),"Expected to return a character Bob");
     }
 
-    //These two methods were recentley added. More work has to be done on them to be finalized, as well as meeting
-    //with the group to see what we want these methods to return. Tests are not yet implemented for them, however
-    //they will be soon
-    /*
+
     @Test
     void testInitializeCharacters() {
         NPC npc = new NPC("Bob");
-        ArrayList<NPC> one = new ArrayList<>();
+        ArrayList<NPC> allChar = new ArrayList<>();
+        allChar.add(new NPC("Dylan"));
+        allChar.add(new NPC("Yvonne"));
+        allChar.add(new NPC("Tiff"));
+        allChar.add(new NPC("Jason"));
+        allChar.add(new NPC("Patrica"));
+        allChar.add(new NPC("Harriet"));
+        allChar.add(new NPC("Mystery"));
         ArrayList<NPC> two = new ArrayList<>();
-        npc.initializeCharacters(1,one,two);
+        two.add(new NPC("Dylan"));
+        two.add(new NPC("Yvonne"));
+        two.add(new NPC("Jason"));
+        two.add(new NPC("Harriet"));
+        ArrayList<NPC> three = new ArrayList<>();
+        npc.initializeCharacters(1,allChar,three);
+        assertEquals(two.get(0).getName(),three.get(0).getName());
+        assertEquals(two.get(1).getName(),three.get(1).getName());
+        assertEquals(two.get(2).getName(),three.get(2).getName());
+        assertEquals(two.get(3).getName(),three.get(3).getName());
     }
 
 
@@ -184,8 +197,8 @@ public class NPCTest {
         NPC npc = new NPC("Bob");
         ArrayList<NPC> one = new ArrayList<>();
         npc.populateAllCharacters(one);
-        //assertEquals(true,npc.getPopulated);
+        assertEquals(true,npc.getPopulated());
     }
-    */
+
 
 }

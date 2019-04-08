@@ -133,6 +133,10 @@ public class NPC implements Serializable{
 		
 		
 	}
+
+	public boolean getPopulated() {
+		return this.populated;
+	}
 	
 	public void populateAllCharacters(ArrayList<NPC> allCharacters) {
 		if (populated == false) {
