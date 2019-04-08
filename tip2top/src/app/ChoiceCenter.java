@@ -204,9 +204,16 @@ public class ChoiceCenter {
 			if (character.getName().equals("Dylan") ) {
 				character.getPrompts().add("firstDay");
 				character.getPrompts().add("longerStay");
+				character.getPrompts().add("roomSwap");
+				character.getPrompts().add("pillows");
+				character.getPrompts().add("leave"); // make dylan last on day 5
+				character.getPrompts().add("");
+				character.getPrompts().add("");
+				
 			} else if (character.getName().equals("Aleksandra")) {
 				character.getPrompts().add("firstDay");
 				character.getPrompts().add("secondDay");
+				character.getPrompts().add("thirdDay");
 				System.out.println("size = "+character.getPrompts().size());
 			} else if (character.getName().equals("Harriet")) {
 				character.getPrompts().add("rude");
@@ -215,16 +222,22 @@ public class ChoiceCenter {
 				character.getPrompts().add("russian");
 				character.getPrompts().add("");
 				character.getPrompts().add("shampoo");
+				character.getPrompts().add("sellToaster");
+				character.getPrompts().add("soap");
 			} else if (character.getName().contentEquals("Jason")) {
 				character.getPrompts().add("upgrade");
 				character.getPrompts().add("mints");
+				character.getPrompts().add("mints-placeholder"); // update when player makes choice on mints
 			} else if (character.getName().contentEquals("Patricia")) {
 				character.getPrompts().add("");
 				character.getPrompts().add("famous");
+				character.getPrompts().add(""); // add some dialogue for her for day 3, because day 3 is really short rn
+				character.getPrompts().add("bigNeck");
 			} else if (character.getName().contentEquals("Tiff")) {
 				character.getPrompts().add("iceCream");
 				character.getPrompts().add("room");
 				character.getPrompts().add("pillows");
+				character.getPrompts().add("toaster-placeholder"); // update when player chooses toaster
 			} else if (character.getName().contentEquals("Mystery")) {
 				character.getPrompts().add("");
 				character.getPrompts().add("aleks");
