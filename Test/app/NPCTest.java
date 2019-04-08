@@ -185,10 +185,10 @@ public class NPCTest {
         two.add(new NPC("Harriet"));
         ArrayList<NPC> three = new ArrayList<>();
         npc.initializeCharacters(1,allChar,three);
-        assertEquals(two.get(0).getName(),three.get(0).getName());
-        assertEquals(two.get(1).getName(),three.get(1).getName());
-        assertEquals(two.get(2).getName(),three.get(2).getName());
-        assertEquals(two.get(3).getName(),three.get(3).getName());
+        assertEquals(two.get(0).getName(),three.get(0).getName(),"Expected to return a character Dylan");
+        assertEquals(two.get(1).getName(),three.get(1).getName(),"Expected to return a character Yvonne");
+        assertEquals(two.get(2).getName(),three.get(2).getName(),"Expected to return a character Jason");
+        assertEquals(two.get(3).getName(),three.get(3).getName(),"Expected to return a character Harriet");
     }
 
 
