@@ -10,9 +10,16 @@ public class Save {
     
 	private static ObservableList<String> names = FXCollections.observableArrayList();
 	protected static File currentSave;
-	protected static int dayOn;
 	protected static int goodPoints;
 	protected static int badPoints;
+	protected static ArrayList<NPC> characters;
+	protected static ArrayList<Email> emails;
+	protected static int currentDay;
+	protected static double currentMoney;
+	protected static double bonus;
+	protected static boolean tiff_icecream;
+	protected static boolean jason_mints;
+	protected static boolean has_toaster;
 	
 	// make an arraylist of files, iterate through saves directory and add each files to the arraylist
 	// that way, it's easier to access diff saves / get number of saves / etc
@@ -45,13 +52,14 @@ public class Save {
 		
 		try {
 			ObjectInputStream reader = new ObjectInputStream(new FileInputStream(currentSave.getPath()));
-			ArrayList<NPC> characters = (ArrayList<NPC>)reader.readObject();
-			ArrayList<Email> emails = (ArrayList<Email>)reader.readObject();
-			int currentDay = reader.readInt();
-			double currentMoney = reader.readDouble();
-			boolean tiff_icecream = reader.readBoolean();
-			boolean jason_mints = reader.readBoolean();
-			boolean has_toaster = reader.readBoolean();
+			characters = (ArrayList<NPC>)reader.readObject();
+			emails = (ArrayList<Email>)reader.readObject();
+			currentDay = reader.readInt();
+			currentMoney = reader.readDouble();
+			bonus = reader.readDouble();
+			tiff_icecream = reader.readBoolean();
+			jason_mints = reader.readBoolean();
+			has_toaster = reader.readBoolean();
 			// eventually this will be something like:
 			// globalVariable/class.setVariable() with type cast from string
 			// will be diff for each line tho, so looping will be different.. maybe use an array to simplify / shorten
@@ -85,7 +93,7 @@ public class Save {
 	}
 	
 	
-    public static void generateSave (ObjectOutputStream out, ArrayList<NPC> allCharacters, ArrayList emails, int day, double money, boolean tiff_icecream, boolean jason_mints, boolean has_toaster) {
+    public static void generateSave (ObjectOutputStream out, ArrayList<NPC> allCharacters, ArrayList emails, int day, double money, double bonus, boolean tiff_icecream, boolean jason_mints, boolean has_toaster) {
     	
     	try {
     		
@@ -93,6 +101,7 @@ public class Save {
 			out.writeObject(emails);
 			out.writeInt(day);
 			out.writeDouble(money);
+			out.writeDouble(bonus);
 			out.writeBoolean(tiff_icecream);
 			out.writeBoolean(jason_mints);
 			out.writeBoolean(has_toaster);
@@ -161,11 +170,11 @@ public class Save {
     	
     }
     
-	 public static void saveWriter(File saveFile, ArrayList allCharacters, ArrayList emails, int day, double money, boolean tiff_icecream, boolean jason_mints, boolean has_toaster) {
+	 public static void saveWriter(File saveFile, ArrayList allCharacters, ArrayList emails, int day, double money, double bonus, boolean tiff_icecream, boolean jason_mints, boolean has_toaster) {
 	    	
 	    	try {
 	        	ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(saveFile.getPath()));
-	        	generateSave(out, allCharacters,  emails, day, money, tiff_icecream, jason_mints, has_toaster);
+	        	generateSave(out, allCharacters,  emails, day, money, bonus, tiff_icecream, jason_mints, has_toaster);
 	        	out.close();
 	    	} catch (Exception e) {
 	    		e.printStackTrace();
