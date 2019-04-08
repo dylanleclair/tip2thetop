@@ -61,11 +61,12 @@ public class GameBuilder {
 	}
 	
 	
-	public void startPlayingButton(Stage window, Scene opening, TextField text) {
+	public void startPlayingButton(Stage window, Scene opening, TextField text, Email emanager) {
 		window.setScene(opening);
 		saveSet = true;
 		String savename = text.getText();
 		Save.createSaveFile(savename);
+		emanager.initializeEmails(savename);
 	}
 	
 	/**
@@ -136,7 +137,7 @@ public class GameBuilder {
 	 * @param menusc - the Scene we want to switch back to when "Back" is pressed.
 	 * @return a BorderPane, which is the Pane we want to display
 	 */
-	public BorderPane buildSaveScreen(Stage window, Scene openingsc, Scene menusc) {
+	public BorderPane buildSaveScreen(Stage window, Scene openingsc, Scene menusc, Email emanager) {
 		BorderPane setSaveName = new BorderPane();
 		
 		TextField enterName = new TextField();
@@ -169,7 +170,7 @@ public class GameBuilder {
 		BorderPane.setMargin(container, new Insets(300,500, 70 ,130));
 		setSaveName.setCenter(container);
 		
-		confirmName.setOnAction(e -> startPlayingButton(window,openingsc,enterName));
+		confirmName.setOnAction(e -> startPlayingButton(window,openingsc,enterName, emanager));
 		
 		return setSaveName;
 	}

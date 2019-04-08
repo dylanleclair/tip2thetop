@@ -28,11 +28,18 @@ public class NPC implements Serializable{
 	}
 
 	// Getters/Setters
-	
+	/**
+	 * Returns the name of NPC
+	 * @return - the name of the NPC(String)
+	 */
 	public String getName() {
 		return name;
 	}
 	
+	/**
+	 * Sets the name of the NPC from the inputted
+	 * @param name, sets the name of the NPC from inputted
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
