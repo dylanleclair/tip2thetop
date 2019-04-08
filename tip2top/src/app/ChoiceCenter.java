@@ -22,9 +22,48 @@ public class ChoiceCenter {
 	private double bonus;//does not reset by day
 	
 	
+	/*
+	 * temp function
+	 * used to reset the variables for each day
+	 */
+	public void reset() {
+		this.gulagPoints = 0;
+		this.daymistakes = 0;
+		this.customerSatisfaction = 0;
+		this.tips = 0;
+		this.spendings = 0;
+	}
+	
+	//getters
+	public double getTips() {
+		return this.tips;
+	}
+	public double getSpendings() {
+		return this.spendings;
+	}
+	public double getBonus() {
+		return this.bonus;
+	}
+	public int getGP() {
+		return this.gulagPoints;
+	}
+	public int getDM() {
+		return this.daymistakes;
+	}
+	public int getCS() {
+		return this.customerSatisfaction;
+	}
+	public boolean getToaster() {
+		return this.has_toaster;
+	}
+	public boolean getIcecream() {
+		return this.tiff_icecream;
+	}
+	public boolean getMints() {
+		return this.jason_mint;
+	}
+	
 	// arrays for prompts
-	
-	
 	public String choicePoint(int day, String character){
 		if(day ==1) {
 			if(character.equalsIgnoreCase("Yvonne")) {
