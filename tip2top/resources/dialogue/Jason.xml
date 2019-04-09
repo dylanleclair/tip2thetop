@@ -54,18 +54,30 @@
 		<print>You: Good, good. How’s the upgraded room treating you?</print>
 		<print>Jason: It’s very nice, but I was hoping for an extra few mints on my pillow as part of the luxury experience...</print>
 		<print>You: Okay, I’ll see what I can do.</print>
-		<print>You: On the other hand, do you want shampoo?</print>
-		<print>Jason: No thanks. It’s just that mints really make the stay, you know.</print> 
-		<print>You: Alright, I understand.</print>
+		<print>choice</print>
 	</mints>
 	
 		<mints_yes>
-			<print>You email housekeeping about the mints.</print>
+			<print>-- You email housekeeping about the mints. --</print>
 		</mints_yes>
 		
 		<mints_no>
-			<print>You move onto the next customer.</print>
+			<print>-- You move onto the next customer. --</print>
 		</mints_no>
+
+	<askShampoo>
+		<print>You: Do you need anything? Shampoo, maybe?</print>
+		<print>Jason: No, thanks. It's just that mints really make the stay, you know?</print>
+		<print>Alright, I understand.</print>
+	</askShampoo>
+	
+	<refuseAsk>
+		<print>You: You sure like mints, but I hope you have a good day.</print>
+		<print>Jason: Life without mints just isn't as good. It's the small things.</print>
+		<print> -- You reflect upon his wisdom, and agree.. --</print>
+		<print>You: It really is... Take care. </print>
+		<print>Jason: Thanks.</print>
+	</refuseAsk>
 
 
 	<gotMints>

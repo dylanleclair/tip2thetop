@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import javafx.collections.ObservableList;
 
-public class Booking extends AmigoBuilder implements Serializable{
+public class Booking implements Serializable{
 
 	private String owner;
 	private int roomNumber;

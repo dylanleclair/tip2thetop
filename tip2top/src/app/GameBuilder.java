@@ -66,7 +66,7 @@ public class GameBuilder {
 		saveSet = true;
 		String savename = text.getText();
 		Save.createSaveFile(savename);
-		emanager.initializeEmails(savename);
+		
 	}
 	
 	/**
@@ -297,6 +297,16 @@ public class GameBuilder {
 	public void buildTransitionScreen(StackPane transition,Stage window, Scene nextDay, DayBuilder dayb, Scene transitionsc) {
 		
 		Button nextd = new Button("Next day");
+		
+		ChoiceCenter cc = dayb.getChoiceManager();
+		Money mirror = dayb.getMoneyManager();
+		
+		//mmanager.calc(dm, cs, gulag, tips, bonus, spendings);
+		// do calculations
+		
+		// build the GUI stuff
+		
+		
 		
 		transition.getChildren().add(nextd);
 		nextd.setOnAction(e -> {
