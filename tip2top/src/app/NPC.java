@@ -93,8 +93,14 @@ public class NPC {
 		
 		List<String> characters_day_1 = Arrays.asList("Dylan", "Jason", "Yvonne", "Harriet");
 		List<String> characters_day_2 = Arrays.asList("Dylan", "Jason", "Mystery", "Patricia", "Tiff");
-		
+		List<String> characters_day_3 = Arrays.asList("Benjamin", "Yvonne", "Jason", "Dylan");
+		List<String> characters_day_4 = Arrays.asList("Tiff","Patricia","Jason", "Yvonne", "Dylan", "Benjamin");
+		List<String> characters_day_5 = Arrays.asList("Jason", "Patricia", "Anna", "Dylan", "Yvonne", "Tiff", "Dimitri");
+		List<String> characters_day_6 = Arrays.asList("Yvonne","Dimitri", "Dylan", "Tiffany"); 
 		// need a Mystery character image
+				
+				
+				// day 5 is dylan alt ending 
 		
 		if (day == 1) {
 			//dailyCharacters.clear();
