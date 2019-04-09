@@ -23,10 +23,36 @@ public class ChoiceCenter {
 	private double bonus;
 	private boolean toasterPurchased;
 	
-	
-	// arrays for prompts
-	
-	
+	public int getGulagPoints() {
+		return gulagPoints;
+	}
+
+
+	public int getDaymistakes() {
+		return daymistakes;
+	}
+
+
+	public int getCustomerSatisfaction() {
+		return customerSatisfaction;
+	}
+
+
+	public void setGulagPoints(int gulagPoints) {
+		this.gulagPoints = gulagPoints;
+	}
+
+
+	public void setDaymistakes(int daymistakes) {
+		this.daymistakes = daymistakes;
+	}
+
+
+	public void setCustomerSatisfaction(int customerSatisfaction) {
+		this.customerSatisfaction = customerSatisfaction;
+	}
+
+
 	public String choicePoint(int day, String character){
 		if(day ==1) {
 			if(character.equalsIgnoreCase("Yvonne")) {
@@ -122,6 +148,9 @@ public class ChoiceCenter {
 					return "mints_no";
 				}
 			}
+			
+			
+			
 			if(character.equalsIgnoreCase("Patricia")) {
 				choice = getChoiceTwoOptions("Do you know Patty P the superstar?", "Does Patricia look familiar? Maybe she's some kind of sports star? How are you supposed to know who she is?", "Yes, of course","No? Who is she??");//function to prompt choice from player
 				if(choice ==1) {//yes, know her
@@ -275,7 +304,7 @@ public class ChoiceCenter {
 		}
 		if(day ==6) {
 	
-			if(character.equalsIgnoreCase("dimitri")) {
+			if(character.equalsIgnoreCase("Dimitri")) {
 				if(has_toaster) {
 					choice = 0;//function to prompt choice
 					if(choice ==1) {//sell toaster
@@ -292,8 +321,35 @@ public class ChoiceCenter {
 		
 		return "";
 	}
+
 	
-	/**
+/**
+* Allows for more than one choice to be made during a given day (so as not to spam choice point even more) -- use for amenities!!
+*
+*/
+	public String secondaryChoicePoint(int day, String character){
+		if(day ==2) {
+			if(character.equalsIgnoreCase("Jason")) {
+				choice = getChoiceTwoOptions("Are you Russian?", "Well... which is it?", "Yes", "No");//function to prompt choice from player
+				if(choice == 1){//yes russian
+					gulagPoints++;
+					return "russian_yes";
+				}
+				if(choice ==2) {//no russian
+					return "russian_no";
+				}
+				//if(choice ==3) {//ask why
+				//	return "russian_why";
+				//}
+				
+				
+			}
+		}
+			return "";
+		}
+	
+  
+  	/**
 	 * The prompts for each character are initialized so that the program can read the XML files accordingly, and decisions for later days can easily be changed by editing these lists.
 	 * @param allCharacters an ArrayList<NPC>, which stores all the characters as NPC objects.
 	 */

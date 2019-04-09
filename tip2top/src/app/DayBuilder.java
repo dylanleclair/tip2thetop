@@ -45,7 +45,9 @@ public class DayBuilder {
 	Booking bmanager = new Booking(null);
 	ChoiceCenter cmanager = new ChoiceCenter();
 	Email emanager = new Email();
+	Money moneyManager = new Money();
 	
+
 	BorderPane handler = new BorderPane();
 	
 	
@@ -60,6 +62,23 @@ public class DayBuilder {
 	public int keys[] = {1,1,1,1,1,1,1,1,1,1,1,1};
 	public Node key[] = {null,null,null,null,null,null,null,null,null,null,null,null};
 
+	
+	public Money getMoneyManager() {
+		return moneyManager;
+	}
+
+	public void setChoiceManager(Money moneyManager) {
+		this.cmanager = moneyManager;
+	}
+
+	public ChoiceCenter getChoiceManager() {
+		return cmanager;
+	}
+
+	public void setMoneyManager(Money moneyManager) {
+		this.moneyManager = moneyManager;
+	}
+	
 	public StackPane getToday() {
 		return today;
 	}
@@ -441,8 +460,16 @@ public class DayBuilder {
 			nextC.setGraphic(next);
 			
 			
+			// initializing everything
+			
 			manager.populateAllCharacters(allCharacters);
 			cmanager.initializePrompts(allCharacters);
+			
+			emanager.initializeEmails(email_list);
+			
+			for (Email item : email_list) {
+				emailsObservable.add(item.toString());
+			}
 
 			System.out.println(allCharacters.size());
 			
@@ -486,6 +513,9 @@ public class DayBuilder {
 								ArrayList<String> read = Reader.getDialogue(character.getName(), prompt);
 								active.remove(bottom+1);
 								active.addAll(bottom + 1, read);
+							}
+							if (active.get(bottom + 1).contentEquals("choice2")) {
+								//String prompt = cmanager.choicePoint
 							}
 							
 							top++;
@@ -536,9 +566,7 @@ public class DayBuilder {
 				dailyCharacters.add(manager.getCharacter("Tiff", allCharacters)); // move this to initialize characters
 				dailyCharacters.add(0, manager.getCharacter("Aleksandra", allCharacters));
 				System.out.println(dailyCharacters.toString());
-				for (Email item : email_list) {
-					emailsObservable.add(item.toString());
-				}
+
 			} else if (day == 2) {
 				
 				dailyCharacters.add(0, manager.getCharacter("Aleksandra", allCharacters));
@@ -883,6 +911,8 @@ public class DayBuilder {
 	 */
 	public static void verifyAmigo() {
 
+		
+		
 	}
 	
 	

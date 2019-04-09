@@ -29,7 +29,7 @@ import java.io.File;
  * @author Yvonne
  */
 
-public abstract class Reader {
+public class Reader {
 	
 	/**
 	 * Main reader class for xml files. 

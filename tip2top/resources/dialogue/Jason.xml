@@ -66,9 +66,24 @@
 		</mints_yes>
 		
 		<mints_no>
-			<print>-- You move onto the next customer. Who really cares</print>
-			<print>that much about mints anyways? --</print>
+
+			<print>-- You move onto the next customer. --</print>
+
 		</mints_no>
+
+	<askShampoo>
+		<print>You: Do you need anything? Shampoo, maybe?</print>
+		<print>Jason: No, thanks. It's just that mints really make the stay, you know?</print>
+		<print>Alright, I understand.</print>
+	</askShampoo>
+	
+	<refuseAsk>
+		<print>You: You sure like mints, but I hope you have a good day.</print>
+		<print>Jason: Life without mints just isn't as good. It's the small things.</print>
+		<print> -- You reflect upon his wisdom, and agree.. --</print>
+		<print>You: It really is... Take care. </print>
+		<print>Jason: Thanks.</print>
+	</refuseAsk>
 
 
 	<gotMints>
