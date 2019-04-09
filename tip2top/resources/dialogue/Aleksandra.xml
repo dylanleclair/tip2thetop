@@ -4,6 +4,8 @@
 	<firstDay>
 		<print>Aleksandra: I know you’re new and all, but that is no excuse for stupidity.</print>
 		<print>Aleksandra: I can't afford to train you super well, so pay attention.</print>
+		<print> ((She's not lying... Paying attention to her is very important.))</print>
+		<print> ((I mean, she does get a bit narcissistic but you will need to listen!))</print>
 		<print>Aleksandra: Basic rooms are $30. They're most common.</print>
 		<print>Aleksandra: Premium rooms are $40.</print>
 		<print>Aleksandra: Lastly, luxury rooms are $55.</print>
@@ -28,14 +30,22 @@
 		<print>make sure you don’t give anything else out.</print> 
 		<print>Aleksandra: Also - the longer a customer stays, the more they save!</print>
 		<print>Aleksandra: They get a 10% discount for more than 3 nights.</print>
-		<print>Aleksandra: Good luck!</print>
+		<print>Aleksandra: ALSO! I'm going out with Romeo today so it looks like</print>
+		<print>Aleksandra: you're in charge! Don't screw up! You're well trained, right?</print>
+		<print>Aleksandra: Bahaha, who am I kidding- good luck!</print>
 	</secondDay>
 	
 	<thirdDay>
-		<print>Hey, you’re doing a pretty (good / bad) job so far.</print>
-		<print>Either way, I’m paying for you to be the best of the best so strive to make me some more money, yeah?</print>
-		<print>Anyways, today we are focusing on getting rid of conditioner.</print>
-		<print>Nothing else should be given out. Don’t screw up.</print>
+		<print>Aleksandra: Hey, you’re doing a pretty okay job so far.</print>
+		<print>Aleksandra: I'll be honest, most of my employees lose it when I go out with</print>
+		<print>Romeo but you seem much cooler than all of those losers.</print>
+		<print>You: Thank yo-</print>
+		<print>Aleksandra: Either way, I’m paying for you to be the best of the best so</print>
+		<print>strive to make me some more money, yeah?</print>
+		<print>You: I'll do my be-</print>
+		<print>Aleksandra: Anyways, today we are focusing on getting rid of conditioner.</print>
+		<print>Hear that? It's like you don't pay attention. CONDITIONER.</print>
+		<print>Aleksandra: Nothing else (!!!) should be given out. Don’t screw up.</print>
 	
 	</thirdDay>
 	

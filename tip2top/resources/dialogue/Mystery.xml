@@ -6,8 +6,21 @@
 		<print>???: You aren’t the clerk that’s usually here...</print>
 		<print>You: Yes, I’m new he-</print>
 		<print>???: Is Aleksandra here right now?</print>
+		<print>choice</print>
+	</aleks>
+	
+	<aleks_yes>
+		<print>???: Great, can I talk to her?</print>
+		<print>You: Of course, I'll be right back...</print>
+		<print>-- You walk to her office quickly.. She isn't there. --</print>
+		<print>-- You remember that she said she was going out with Romeo.. --</print>
+		<print>You: Sorry, I thought she was here but it she's actually out right now..</print>
+		<print>???: Pathetic... Whatever, I have to go.</print>
+	</aleks_yes>
+	
+	<aleks_no>
 		<print>You: No, but I can give her a call or leave a message if you’d like?</print>
 		<print>???: No, that will not be necessary.</print> 
-	</aleks>
-
+	</aleks_no>
+	
 </Mystery>

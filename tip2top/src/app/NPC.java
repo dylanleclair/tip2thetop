@@ -107,9 +107,28 @@ public class NPC implements Serializable{
 		List<String> characters_day_6 = Arrays.asList("Yvonne","Dimitri", "Dylan", "Tiffany"); 
 		// need a Mystery character image
 				
-				
-				// day 5 is dylan alt ending 
+		ArrayList<List<String>> lol = new ArrayList<List<String>>();
+		lol.add(characters_day_1);
+		lol.add(characters_day_2);
+		lol.add(characters_day_3);
+		lol.add(characters_day_4);
+		lol.add(characters_day_5);
+		lol.add(characters_day_6);
 		
+		
+		if (day != 1) {
+			dailyCharacters.clear();
+		}
+		
+		for (NPC character: allcharacters ) {
+			if (lol.get(day - 1).contains(character.getName())) {
+				dailyCharacters.add(character);
+			}
+		}
+		
+				// day 5 is dylan alt ending 
+		/**
+
 		if (day == 1) {
 			//dailyCharacters.clear();
 			for (NPC character : allcharacters) {
@@ -129,8 +148,9 @@ public class NPC implements Serializable{
 			}
 		}
 
-			
-		
+	
+				 * 
+		 */
 		
 		
 	}
