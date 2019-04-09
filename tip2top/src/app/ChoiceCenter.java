@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.Region;
 import javafx.scene.control.ButtonType;
 
 public class ChoiceCenter {
@@ -20,6 +21,7 @@ public class ChoiceCenter {
 	private double tips;
 	private double spendings;
 	private double bonus;
+	private boolean toasterPurchased;
 	
 	public int getGulagPoints() {
 		return gulagPoints;
@@ -106,6 +108,18 @@ public class ChoiceCenter {
 			}
 		}
 		if(day == 2) {
+			if(character.equalsIgnoreCase("Mystery")) {
+				choice = getChoiceTwoOptions("Is the big boss in the fort?", "Is Aleksandra in the office or out with her Romeo? Earth to you, sleepyhead.", "Yeah, she is.", "She's with her boy toy.");
+				if(choice == 1) {//yes she is
+					gulagPoints++;
+					return "aleks_yes";
+				}
+				if(choice ==2) {//no she isnt
+					gulagPoints--;
+					return "aleks_no";
+				}
+			}
+			
 			if(character.equalsIgnoreCase("Dylan")) {
 				choice = getChoiceTwoOptions("Do you know your policy?", "Does the Three Eagle Hotel offer discounts to customers who several nights?", "Yes", "No");//function to prompt choice from player
 				if(choice == 1) {//yes discount
@@ -122,7 +136,7 @@ public class ChoiceCenter {
 			 * will change after when proper functions are ready
 			 */
 			if(character.equalsIgnoreCase("Jason")) {
-				choice = 0;//function to prompt choice from player
+				choice = getChoiceTwoOptions("Email housekeeping?", "Are you going to hook your boy Jason up with some complimentary mints or what?", "Of course", "No, we're poor");//function to prompt choice from player
 				if(choice == 1) {//yes email housekeeping
 					gulagPoints++;
 					jason_mint = true;
@@ -138,7 +152,7 @@ public class ChoiceCenter {
 			
 			
 			if(character.equalsIgnoreCase("Patricia")) {
-				choice = 0;//function to prompt choice from player
+				choice = getChoiceTwoOptions("Do you know Patty P the superstar?", "Does Patricia look familiar? Maybe she's some kind of sports star? How are you supposed to know who she is?", "Yes, of course","No? Who is she??");//function to prompt choice from player
 				if(choice ==1) {//yes, know her
 					customerSatisfaction++;
 					return "famous_yes";
@@ -309,6 +323,10 @@ public class ChoiceCenter {
 	}
 
 	
+/**
+* Allows for more than one choice to be made during a given day (so as not to spam choice point even more) -- use for amenities!!
+*
+*/
 	public String secondaryChoicePoint(int day, String character){
 		if(day ==2) {
 			if(character.equalsIgnoreCase("Jason")) {
@@ -330,7 +348,11 @@ public class ChoiceCenter {
 			return "";
 		}
 	
-			
+  
+  	/**
+	 * The prompts for each character are initialized so that the program can read the XML files accordingly, and decisions for later days can easily be changed by editing these lists.
+	 * @param allCharacters an ArrayList<NPC>, which stores all the characters as NPC objects.
+	 */
 	public void initializePrompts(ArrayList<NPC> allCharacters) {
 		
 		for (NPC character : allCharacters) {
@@ -373,7 +395,24 @@ public class ChoiceCenter {
 			} else if (character.getName().contentEquals("Mystery")) {
 				character.getPrompts().add("");
 				character.getPrompts().add("aleks");
+			} else if (character.getName().contentEquals("Benjamin")) {
+				character.getPrompts().add("");
+				character.getPrompts().add("");
+				character.getPrompts().add("checkIn");
+				character.getPrompts().add("checkOut");
+			} else if (character.getName().contentEquals("Anna")) {
+
+				
+			} else if (character.getName().contentEquals("Dimitri")) {
+				for (int i = 0; i < 4; i++)
+				character.getPrompts().add("");
+				
+				character.getPrompts().add("checkIn"); // day 5
+				character.getPrompts().add("toaster"); 
+				// day 6 --- treat this like Tiff's choice point
+				
 			}
+				
 		}
 	}
 	
@@ -385,6 +424,9 @@ public class ChoiceCenter {
 		alert.setHeaderText(header);
 		alert.setContentText(content);
 
+		alert.getDialogPane().setMinWidth(250);
+		alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+		
 		ButtonType buttonTypeOne = new ButtonType(option1);
 		ButtonType buttonTypeTwo = new ButtonType(option2);
 
@@ -410,6 +452,9 @@ public class ChoiceCenter {
 		alert.setHeaderText(header);
 		alert.setContentText(content);
 
+		alert.getDialogPane().setMinWidth(250);
+		alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+		
 		ButtonType buttonTypeOne = new ButtonType("Yes");
 		ButtonType buttonTypeTwo = new ButtonType("No");
 
@@ -444,6 +489,10 @@ public class ChoiceCenter {
 		alert.setHeaderText(header);
 		alert.setContentText(content);
 
+		
+		alert.getDialogPane().setMinWidth(350);
+		alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+		
 		ButtonType buttonTypeOne = new ButtonType(buttonA);
 		ButtonType buttonTypeTwo = new ButtonType(buttonB);
 		ButtonType buttonTypeThree = new ButtonType(buttonC);

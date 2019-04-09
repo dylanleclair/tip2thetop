@@ -52,8 +52,12 @@
 		<print>You: Hey, how are you doing today?</print>
 		<print>Jason: I’m doing well. How about you?</print>
 		<print>You: Good, good. How’s the upgraded room treating you?</print>
-		<print>Jason: It’s very nice, but I was hoping for an extra few mints on my pillow as part of the luxury experience...</print>
+		<print>Jason: It’s very nice, but I was hoping for an extra few</print>
+		<print>mints on my pillow as part of the luxury experience...</print>
 		<print>You: Okay, I’ll see what I can do.</print>
+		<print>You: On the other hand, do you want shampoo?</print>
+		<print>Jason: No thanks. It’s just that mints really make the stay, you know.</print> 
+		<print>You: Alright, I understand.</print>
 		<print>choice</print>
 	</mints>
 	
@@ -62,7 +66,9 @@
 		</mints_yes>
 		
 		<mints_no>
+
 			<print>-- You move onto the next customer. --</print>
+
 		</mints_no>
 
 	<askShampoo>

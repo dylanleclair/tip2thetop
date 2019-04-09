@@ -18,5 +18,19 @@
 		<print>You: Well, alright.</print>
 		<print>You: Guess I’ll be sleeping in the broom closet...</print>
 	</checkIn>
+	
+	<toaster>
+	
+	<print>-- Dimitri walks out of his room grinning. --</print>
+	<print>Dimitri: Ah, I believe I have ze BEST room in the house.</print>
+	<print>You: That’s good to hear...</print>
+	<print>Dimitri: Howeva, Dimitri would like it verrry much if you give me blanket and toaster. </print>
+	<print>Dimitri: Dimitri wants to be niiiiiice and toasty at the dark time.</print>
+		
+		
+	
+	
+	</toaster>
+	
 
 </Dimitri>

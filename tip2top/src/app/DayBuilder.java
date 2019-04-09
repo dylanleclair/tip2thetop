@@ -9,7 +9,6 @@ import java.util.Collections;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
-import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -25,7 +24,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -221,7 +219,7 @@ public class DayBuilder {
 	 * Loads the basic interface for the day and it's necessary elements.
 	 * @param window
 	 * @param amigoscreen
-	 * @author patricia
+	 * @author patricia, dylan
 	 */
 	public void loadDay(Stage window, Scene amigoscreen, Scene transition) {
 		Image image, image2, image3, image4, image5;
@@ -561,16 +559,23 @@ public class DayBuilder {
 	 */
 	public void runDay(BorderPane handler, Stage window, Scene transition) {
 		
+		Collections.shuffle(dailyCharacters);
+		
 			if (day == 1) {
-				Collections.shuffle(dailyCharacters);
+				
 				dailyCharacters.add(manager.getCharacter("Tiff", allCharacters)); // move this to initialize characters
 				dailyCharacters.add(0, manager.getCharacter("Aleksandra", allCharacters));
 				System.out.println(dailyCharacters.toString());
 
 			} else if (day == 2) {
-				Collections.shuffle(dailyCharacters);
+				
 				dailyCharacters.add(0, manager.getCharacter("Aleksandra", allCharacters));
 				System.out.println(dailyCharacters.toString());
+			} else if (day == 3) {
+				
+				dailyCharacters.add(0, manager.getCharacter("Aleksandra", allCharacters));
+				System.out.println(dailyCharacters.toString());
+				
 			}
 
 			animateButtonIn(nextC);
@@ -917,6 +922,7 @@ public class DayBuilder {
 		nextC.setLayoutX(1300);
 		nextC.setLayoutY(650);
 		manager.initializeCharacters(day, allCharacters, dailyCharacters);
+		System.out.println(dailyCharacters);
 		runDay(handler,window,transitionsc);
 	}
 
