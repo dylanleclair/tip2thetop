@@ -18,10 +18,36 @@ public class ChoiceCenter {
 	private boolean has_toaster;
 	private int choice = 0;
 	
-	
-	// arrays for prompts
-	
-	
+	public int getGulagPoints() {
+		return gulagPoints;
+	}
+
+
+	public int getDaymistakes() {
+		return daymistakes;
+	}
+
+
+	public int getCustomerSatisfaction() {
+		return customerSatisfaction;
+	}
+
+
+	public void setGulagPoints(int gulagPoints) {
+		this.gulagPoints = gulagPoints;
+	}
+
+
+	public void setDaymistakes(int daymistakes) {
+		this.daymistakes = daymistakes;
+	}
+
+
+	public void setCustomerSatisfaction(int customerSatisfaction) {
+		this.customerSatisfaction = customerSatisfaction;
+	}
+
+
 	public String choicePoint(int day, String character){
 		if(day ==1) {
 			if(character.equalsIgnoreCase("Yvonne")) {
@@ -105,6 +131,9 @@ public class ChoiceCenter {
 					return "mints_no";
 				}
 			}
+			
+			
+			
 			if(character.equalsIgnoreCase("Patricia")) {
 				choice = 0;//function to prompt choice from player
 				if(choice ==1) {//yes, know her
@@ -257,7 +286,7 @@ public class ChoiceCenter {
 		}
 		if(day ==6) {
 	
-			if(character.equalsIgnoreCase("dimitri")) {
+			if(character.equalsIgnoreCase("Dimitri")) {
 				if(has_toaster) {
 					choice = 0;//function to prompt choice
 					if(choice ==1) {//sell toaster
@@ -274,8 +303,30 @@ public class ChoiceCenter {
 		
 		return "";
 	}
+
 	
+	public String secondaryChoicePoint(int day, String character){
+		if(day ==2) {
+			if(character.equalsIgnoreCase("Jason")) {
+				choice = getChoiceTwoOptions("Are you Russian?", "Well... which is it?", "Yes", "No");//function to prompt choice from player
+				if(choice == 1){//yes russian
+					gulagPoints++;
+					return "russian_yes";
+				}
+				if(choice ==2) {//no russian
+					return "russian_no";
+				}
+				//if(choice ==3) {//ask why
+				//	return "russian_why";
+				//}
+				
+				
+			}
+		}
+			return "";
+		}
 	
+			
 	public void initializePrompts(ArrayList<NPC> allCharacters) {
 		
 		for (NPC character : allCharacters) {

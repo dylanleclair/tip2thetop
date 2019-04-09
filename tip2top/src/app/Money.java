@@ -5,7 +5,8 @@ import java.lang.Math;
 public class Money extends ChoiceCenter{
 	
 
-	private static double money; // the current amount of money player has
+	private double money; // the current amount of money player has
+	
 	public double getMoney() {
 		return this.money;
 	}
@@ -20,7 +21,7 @@ public class Money extends ChoiceCenter{
 	/*
 	 * the sysout print statements can be replaced with display methods onto gui
 	 */
-	public static void calc(int dm, int cs, int gulag, double tips, double bonus, double spendings){
+	public void calc(int dm, int cs, int gulag, double tips, double bonus, double spendings){
 		double addon = 0.0;
 		double penalty = 0.0;
 		double basic = 100.0+bonus;
@@ -56,15 +57,22 @@ public class Money extends ChoiceCenter{
 		System.out.println("Sub Total: \t$"+daily);
 		System.out.println("Total: \t\t$"+money);
 
+		
+		// GUI implementation
+		
+		
 	}
 	
 	
 	public static void main(String[] args) {
 		//testing code
-		money = 100.0;
-		calc(1, 2, 0, 10.0, 0, 29.99);
+		
+		Money test = new Money();
+		
+		test.money = 100.0;
+		test.calc(1, 2, 0, 10.0, 0, 29.99);
 		System.out.println();
-		calc(0, -2, 2, 0, 0, 0);
+		test.calc(0, -2, 2, 0, 0, 0);
 
 	}
 
