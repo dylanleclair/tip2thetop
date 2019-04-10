@@ -52,7 +52,8 @@
 		<print>You: What noises are coming from the room?</print>
 		<print>Dylan: Just a bunch of things I can only describe as a young female voice constantly yelling out “tu tu ru.”</print> 
 		<print>Dylan: I honestly think she’s being possessed, please help a guy out.</print>
-		<print>You: That’s weird... Alright, just move to this room right here, 101.</print>
+		<print>You: That’s weird... Alright, just move to this room right here, room 1.</print>
+		<print>-- Don't forget to change his booking and give him the key! --</print>
 		<print>Dylan: Thanks! And are there any cafes nearby? Or things to do in this town?</print>
 		<print>You: Joe’s cafe is just down the street.</print>
 		<print>And honestly, the most exciting thing in this town is watching the tumbleweeds roll across the road.</print>
@@ -68,6 +69,7 @@
 		<print>Dylan: You’ll understand one day.</print>
 		<print>Dylan: Anyways, I was looking for some extra pillows.</print>
 		<print>Dylan: Have you got any?</print>
+		<print>choice</print>
 	</pillows>
 	
 		<pillows_yes>
@@ -93,6 +95,7 @@
 		<print>Dylan: Let me know if you hear of any job openings.</print>
 		<print>Dylan: Or maybe you want to spread your wings, and join me when I leave.</print> 
 		<print>Dylan: The ball is in your court.</print>
+		<print>choice</print>
 	</leave>
 	
 		<leave_no>

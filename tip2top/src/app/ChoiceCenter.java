@@ -136,7 +136,7 @@ public class ChoiceCenter {
 			 * will change after when proper functions are ready
 			 */
 			if(character.equalsIgnoreCase("Jason")) {
-				choice = getChoiceTwoOptions("Email housekeeping?", "Are you going to hook your boy Jason up with some complimentary mints or what?", "Of course", "No, we're poor");//function to prompt choice from player
+				choice = getChoiceTwoOptions("Email housekeeping?", "Are you going to hook your boy Jason up with some complimentary mints or what?", "Of course", "No, we're poor");
 				if(choice == 1) {//yes email housekeeping
 					gulagPoints++;
 					jason_mint = true;
@@ -175,7 +175,7 @@ public class ChoiceCenter {
 		}
 		if(day ==3) {
 			if(character.equalsIgnoreCase("Yvonne")) {
-				choice = 0;//function to prompt choice from player
+				choice = getChoiceYesNo("Sneak shampoo?", "Are you gonna sneak some sweat shampoo to Yvonne?");
 				if(choice ==1) {//yes shampoo
 					gulagPoints++;
 					customerSatisfaction++;
@@ -205,7 +205,7 @@ public class ChoiceCenter {
 		}
 		if(day ==4) {
 			if(character.equalsIgnoreCase("Tiff")) {
-				choice = 0; //function to prompt choice
+				choice = getChoiceTwoOptions("Give pillow?", "Wanna be nice and sneak her a pillow?", "Sure", "Noway");
 				if(choice==1) {//give pillow
 					customerSatisfaction++;
 					daymistakes++;
@@ -216,9 +216,9 @@ public class ChoiceCenter {
 					return "pillow_no";//filler prompt name
 				}
 			}
-			//insert phone session for Patricia
+			//insert email session for Patricia
 			if(character.equalsIgnoreCase("jason")) {
-				choice = 0; //function to prompt choice
+				choice = getChoiceTwoOptions("Buy Lyryx?", "Uh...Are you gonna accept the offer?", "Why not? It sounds cool.", "Nope. I'm a poor hotel worker");
 				if(choice ==1) {//yes buy lyryx
 					gulagPoints--;
 					customerSatisfaction++;
@@ -232,7 +232,7 @@ public class ChoiceCenter {
 				}
 			}
 			if(character.equalsIgnoreCase("yvonne")) {
-				choice = 0;//function to prompt choice
+				choice = getChoiceTwoOptions("Buy toaster?", "Wanna toast up your day by buying this toasty toaster? (You can toast your breakfast with this too)", "Yeah! Hot breakfast!", "Nah. I'm poor");
 				if(choice ==1) {//yes buy toaster
 					spendings+=1.0;
 					has_toaster = true;
@@ -244,7 +244,7 @@ public class ChoiceCenter {
 				}
 			}
 			if(character.equalsIgnoreCase("dylan")) {
-				choice = 0;//function to prompt choice
+				choice = getChoiceTwoOptions("Give pillow?", "Wanna be nice and sneak him some puffy pillows?", "Sure!", "No.");
 				if(choice ==1) {//yes pillow
 					customerSatisfaction++;
 					daymistakes++;
