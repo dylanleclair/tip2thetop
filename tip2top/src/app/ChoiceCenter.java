@@ -179,12 +179,12 @@ public class ChoiceCenter {
 				if(choice ==1) {//yes shampoo
 					gulagPoints++;
 					customerSatisfaction++;
-					return "shampoo_yes";//filler prompt name
+					return "shampoo_yes";
 				}
 				if(choice ==2) {//no shampoo
 					gulagPoints--;
 					customerSatisfaction--;
-					return "shampoo_no";//filler prompt name
+					return "shampoo_no";
 				}
 			}
 			if(character.equalsIgnoreCase("Jason")) {
@@ -192,12 +192,12 @@ public class ChoiceCenter {
 				if(jason_mint == true) {
 					customerSatisfaction++;
 					tips+=10;
-					return "gotMints";//filler prompt name
+					return "gotMints";
 					
 				}
 				else {
 					customerSatisfaction--;
-					return "noGot_mints";//filler prompt name
+					return "noGot_mints";
 					
 				}
 			}
