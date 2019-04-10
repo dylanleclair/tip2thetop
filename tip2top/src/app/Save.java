@@ -30,6 +30,10 @@ public class Save {
 		}
 	}
 	
+	/**
+	 * Returns the current saves
+	 * @return - returns the current saves (ObservableList<String>)
+	 */
 	public static ObservableList<String> getSaves() {
 		return names;
 	}
@@ -77,12 +81,19 @@ public class Save {
 		// here we would start transition into whatever day // start the gameplay
 	}
 	
-	//not being used, may be able to delete
+	/**
+	 * Returns the current save
+	 * @return - returns the current save(File)
+	 */
 	public static File getSave() { // may be needed to invoke saveWriter - keep for now
 		return currentSave;
 	}
 	
-	
+	/**
+	 * Generates a save of game used at the end of each day
+	 * @param out, the objectOutputStream to write data
+	 * @param dailyCharacters, list of all the characers they saw in the day
+	 */
     public static void generateSave (ObjectOutputStream out, ArrayList<NPC> dailyCharacters) {
     	
     	try {
@@ -99,6 +110,7 @@ public class Save {
     	// other variables to be stored in save here
     	// we should draft up a consistent format before we implement this -- we don't want to have to change order. 
     }
+    
     /**
 	 * Is implemented in saveWriter.
 	 * This method "prints" the necessary info for a save file into the save file.
@@ -156,6 +168,11 @@ public class Save {
     	
     }
     
+    /**
+     * Writes to the save file
+     * @param saveFile, the file the data is written to
+     * @param dailyCharacters, all the character the user saw in the day
+     */
 	 public static void saveWriter(File saveFile, ArrayList dailyCharacters) {
 	    	
 	    	try {

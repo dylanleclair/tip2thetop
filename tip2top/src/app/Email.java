@@ -13,41 +13,77 @@ public class Email extends AmigoBuilder implements Serializable{
 	private String message;
 	private ArrayList<Email> emails = new ArrayList<Email>();
 	
+	/**
+	 * Returns the string for email subject line
+	 * @return - returns the email subject(String)
+	 */
 	public String getSubject() {
 		return subject;
 	}
 
+	/**
+	 * Returns the string for the sender of email
+	 * @return - returns the email sender(String)
+	 */
 	public String getSender() {
 		return sender;
 	}
 
+	/**
+	 * Returns the string for main content of the email
+	 * @return - returns the email message(String) 
+	 */
 	public String getMessage() {
 		return message;
 	}
 
+	/**
+	 * Sets the main content for the email
+	 * @param subject, sets the string for the subject to the parameter
+	 */
 	public void setSubject(String subject) {
 		this.subject = subject;
 	}
 
+	/**
+	 * Sets the sender for the email
+	 * @param sender, sets the string for the sender to the parameter
+	 */
 	public void setSender(String sender) {
 		this.sender = sender;
 	}
 
+	/**
+	 * Sets the main content for the email
+	 * @param message, sets the string for the message to the parameter
+	 */
 	public void setMessage(String message) {
 		this.message = message;
 	}
 
+	/**
+	 * Defualt Constructor
+	 */
 	public Email() {
 		
 	}
 	
+	/**
+	 * Email constructor with parameter for sender, subject and message
+	 * @param sender, sets the email sender to this parameter
+	 * @param subject, sets the email subject to this parameter
+	 * @param message, sets the email message to this parameter
+	 */
 	public Email(String sender, String subject, String message) {
 		this.sender = sender;
 		this.subject = subject;
 		this.message = message;
 	}
 	
-	
+	/**
+	 * Saves email to text file
+	 * @param savename, sets name of text file
+	 */
 	public void saveEmails (String savename) {
 		
 		try { 
@@ -65,6 +101,10 @@ public class Email extends AmigoBuilder implements Serializable{
 		
 	}
 	
+	/**
+	 * Loads the entire email from a text file
+	 * @param savename, name of text file for email extraction
+	 */
 	public void loadEmails (String savename) {
 		
 		try {
@@ -89,9 +129,10 @@ public class Email extends AmigoBuilder implements Serializable{
 
 	}
 	
-	
-
-	
+	/**
+	 * Initializes all the emails to the save files and loads them into the game
+	 * @param savename, name of test file to save and load emails from
+	 */
 	public void initializeEmails (String savename) {
 		emails.add(new Email("DarkAssassin13", "Watch out!!", "Hey!! " + 
 				"As you can see, there is no need for me to introduce myself to you because I don't have any business with you. My duty as I am mailing you now is just to ASSASSINATE YOU. If you don't comply, I have to do it as I have already been paid for that. But I have to ask you this question. What is the problem you have with your friend that made him to hire us to kill you?\n" + 
@@ -113,6 +154,7 @@ public class Email extends AmigoBuilder implements Serializable{
 	
 	/**
 	 * Returns the string of the message, in a format to be displayed by the screen.
+	 * @return - returns the string of the message(String)
 	 */
 	public String toString() {
 		

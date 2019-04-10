@@ -21,7 +21,12 @@ public class ChoiceCenter {
 	
 	// arrays for prompts
 	
-	
+	/**
+	 * Takes current day and character and loads the prompt name required for the input
+	 * @param day, uses day to determine where to look for prompt
+	 * @param character, uses character to find prompt required for the current day
+	 * @return returns the name of the prompt
+	 */
 	public String choicePoint(int day, String character){
 		if(day ==1) {
 			if(character.equalsIgnoreCase("Yvonne")) {
@@ -275,7 +280,10 @@ public class ChoiceCenter {
 		return "";
 	}
 	
-	
+	/**
+	 * Add possible prompts for every character
+	 * @param allCharacters, an arrayList of NPC objects to populate with prompts
+	 */
 	public void initializePrompts(ArrayList<NPC> allCharacters) {
 		
 		for (NPC character : allCharacters) {
@@ -309,7 +317,14 @@ public class ChoiceCenter {
 		}
 	}
 	
-	
+	/**
+	 * Creates two choice input box for user and returns the choice
+	 * @param header, string for the header of the choice box
+	 * @param content, string for the content of the choice box
+	 * @param option1, string for the content of first choice
+	 * @param option2, string for the content of the second choice 
+	 * @return - returns the choice inputed by user(int)
+	 */
 	public int getChoiceTwoOptions(String header,String content, String option1, String option2) {
 		
 		Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -334,7 +349,12 @@ public class ChoiceCenter {
 	}
 	
 	
-	
+	/**
+	 * Creates yes/no choice input box for user and returns the choice
+	 * @param header, string for the header of the choice box
+	 * @param content, string for the content of the choice box
+	 * @return - returns the choice inputed by the user(int)
+	 */
 	public int getChoiceYesNo(String header,String content) {
 		
 		Alert alert = new Alert(AlertType.CONFIRMATION);

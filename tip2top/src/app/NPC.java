@@ -30,57 +30,106 @@ public class NPC implements Serializable{
 	// Getters/Setters
 	/**
 	 * Returns the name of NPC
-	 * @return - the name of the NPC(String)
+	 * @return - returns the name of the NPC(String)
 	 */
 	public String getName() {
 		return name;
 	}
 	
 	/**
-	 * Sets the name of the NPC from the inputted
-	 * @param name, sets the name of the NPC from inputted
+	 * Sets the name of the NPC to the parameter
+	 * @param name, sets the name of the NPC to the parameter
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 	
+	/**
+	 * Returns ArrayList prompt
+	 * @return - returns the ArrayList prompts(ArrayList<String>)
+	 */
 	public ArrayList<String> getPrompts() {
 		return prompts;
 	}
 
+	/**
+	 * Sets the ArrayList prompts to the parameter
+	 * @param prompts, sets the ArrayList prompts to the parameter
+	 */
 	public void setPrompts(ArrayList<String> prompts) {
 		this.prompts = prompts;
 	}
 
+	/**
+	 * Returns the room number 
+	 * @return - returns the room number(int)
+	 */
 	public int getRoomNumber() {
 		return roomNumber;
 	}
 	
+	/**
+	 * Sets the room number to the parameter
+	 * @param roomNumber, sets the room number to the parameter
+	 */
 	public void setRoomNumber(int roomNumber) {
 		this.roomNumber = roomNumber;
 	}
+	
+	/**
+	 * Returns the booking object
+	 * @return - returns the booking object(Booking)
+	 */
 	public Booking getBooking() {
 		return booking;
 	}
+	
+	/**
+	 * Returns the NPC check in state
+	 * @return, returns checkedin(boolean)
+	 */
 	public boolean isCheckedIn() {
 		return checkedIn;
 	}
+	
+	/**
+	 * Sets the booking object to the parameter
+	 * @param booking, sets the booking to the parameter
+	 */
 	public void setBooking(Booking booking) {
 		this.booking = booking;
 	}
+	
+	/**
+	 * Sets the NPC check in state to the parameter
+	 * @param checkedIn, sets the checkedin state to the parameter
+	 */
 	public void setCheckedIn(boolean checkedIn) {
 		this.checkedIn = checkedIn;
 	}
 
+	/**
+	 * Returns the key number
+	 * @return - returns the key number(int)
+	 */
 	public int getKey() {
 		return this.key;
 	}
 	
+	/**
+	 * Sets the key number to the parameter
+	 * @param key, sets the key number to the parameter
+	 */
 	public void setKey(int key) {
 		this.key = key;
 	}
 
-	
+	/**
+	 * 
+	 * @param name
+	 * @param allCharacters
+	 * @return - returns the NPC object
+	 */
 	public NPC getCharacter (String name, ArrayList<NPC> allCharacters) {
 		for (NPC character : allCharacters) {
 			if (name.equals(character.getName()) ) {
@@ -122,13 +171,13 @@ public class NPC implements Serializable{
 				}
 			}
 		}
-
-			
-		
-		
-		
+	
 	}
 	
+	/**
+	 * Populates all the charcters into our all character arraylist
+	 * @param allCharacters, ArrayList to add all possible game NPC's
+	 */
 	public void populateAllCharacters(ArrayList<NPC> allCharacters) {
 		if (populated == false) {
 
@@ -153,6 +202,9 @@ public class NPC implements Serializable{
 		}
 	}
 		
+	/**
+	 * Creates a string that displays characters name and room number
+	 */
 	public String toString() {
 		return name + " " + roomNumber;
 	}

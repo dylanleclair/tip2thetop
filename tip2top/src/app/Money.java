@@ -10,22 +10,20 @@ public class Money extends ChoiceCenter{
 		return this.money;
 	}
 	/**
+	 * Calculates daily salary for user based on daily performance
 	 * @param dm an int, the number of daily mistakes
 	 * @param cs an int, customer satisfaction points
 	 * @param gulag an int, gulag points
 	 * @param tips a double, the tips for the day(selling stuff money goes here)
 	 * @param bonus a double, the bonus added to to the basic payment
-	 * @param spendings a double, the spendings you do during the day, ie. buying the toaster
-	 */
-	/*
-	 * the sysout print statements can be replaced with display methods onto gui
+	 * @param spendings a double, the spending you do during the day, ie. buying the toaster
 	 */
 	public static void calc(int dm, int cs, int gulag, double tips, double bonus, double spendings){
 		double addon = 0.0;
 		double penalty = 0.0;
 		double basic = 100.0+bonus;
 		double daily = basic;
-		//calcualtions
+		//Calculations
 		penalty = basic - basic*(1.0-(0.15*dm+0.01*gulag));
 		if(cs <0) {
 			penalty-=Math.round((basic*(1.0+(0.02*cs))-basic)*1000.0)/1000.0;
@@ -58,7 +56,9 @@ public class Money extends ChoiceCenter{
 
 	}
 	
-	
+	/**
+	 * Used for testing
+	 */
 	public static void main(String[] args) {
 		//testing code
 		money = 100.0;

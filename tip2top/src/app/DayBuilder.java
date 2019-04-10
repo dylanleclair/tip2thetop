@@ -41,7 +41,7 @@ import javafx.util.Duration;
  * Builds the scenes / related objects necessary for each day of the game.
  */
 public class DayBuilder {
-
+	
 	private StackPane today = new StackPane();
 	NPC manager = new NPC(null);
 	Booking bmanager = new Booking(null);
@@ -62,6 +62,10 @@ public class DayBuilder {
 	public int keys[] = {1,1,1,1,1,1,1,1,1,1,1,1};
 	public Node key[] = {null,null,null,null,null,null,null,null,null,null,null,null};
 
+	/**
+	 * Returns the current day StackPane
+	 * @return - returns the StackPane for the day(StackPane)
+	 */
 	public StackPane getToday() {
 		return today;
 	}
@@ -94,7 +98,10 @@ public class DayBuilder {
   
 
 	// Pat created this to load images for day
-	
+	/**
+	 * Method adds the animations to node used for key animations
+	 * @param node, adds event animations to the node
+	 */
 	public void addEvent(Node node) {
 		DropShadow shadow = new DropShadow();
 		DropShadow highlight = new DropShadow();
@@ -200,8 +207,8 @@ public class DayBuilder {
 
 	/**
 	 * Loads the basic interface for the day and it's necessary elements.
-	 * @param window
-	 * @param amigoscreen
+	 * @param window, the window used for the graphics
+	 * @param amigoscreen, the scene used for the graphics
 	 * @author patricia
 	 */
 	public void loadDay(Stage window, Scene amigoscreen, Scene transition) {
@@ -468,7 +475,7 @@ public class DayBuilder {
 				int clickCount = 1;
 
 				/**
-				 * The class that handles the advance of the dialog as the user clicks the mouse.
+				 *  The class that handles the advance of the dialog as the user clicks the mouse.
 				 */
 				@Override
 				public void handle(MouseEvent mouseEvent) {
@@ -527,7 +534,9 @@ public class DayBuilder {
 
 	/**
 	 * Handles the "day" of events as a whole. Controls which characters are on the screen. 
-	 * @param handler a BorderPane which stores buttons/other onscreen elements as needed.  (might be causing bugs?)
+	 * @param handler, a BorderPane which stores buttons/other onscreen elements as needed.
+	 * @param window, the window that holds the borderPnae for the graphics
+	 * @param transition, the scene for the animation of the graphics
 	 */
 	public void runDay(BorderPane handler, Stage window, Scene transition) {
 		
@@ -571,7 +580,10 @@ public class DayBuilder {
 		
 	}
 
-	
+	/**
+	 * Handle animating the character in and getting the prompts for the character 
+	 * @param handler, the BorderPane to add the character image to 
+	 */
 	public void runCharacter(BorderPane handler) {
 		if (index == 0) character = dailyCharacters.get(index);
 		if (index >= 1) character = dailyCharacters.get(index -1); // just corrects the index to fix a bug where a player was skipped.
@@ -703,8 +715,8 @@ public class DayBuilder {
 	}
 
 	/**
-	 * 
-	 * @param amigo
+	 * Builds the email screen inside the amigo screen
+	 * @param amigo, the StackPane that the emails will use for graphics
 	 */
 	public void buildEmailScreen(StackPane amigo) { 
 
@@ -779,9 +791,9 @@ public class DayBuilder {
 	}
 		
 	/**
-	 * 
-	 * @param dailyCharacters
-	 * @param amigo
+	 * Builds check in screen with handlers for check in and check out and a booking list
+	 * @param dailyCharacters, used to check if check ins are possible characters
+	 * @param amigo, the stackPane used to load images for the amigo interface
 	 */
 	@SuppressWarnings("unchecked")
 	public void buildCheckInScreen(ArrayList<NPC> dailyCharacters, StackPane amigo) {
@@ -880,7 +892,11 @@ public class DayBuilder {
 
 	}
 	
-	
+	/**
+	 * This transitions the days changing the scene
+	 * @param window, the window that displays the graphics
+	 * @param transitionsc, the scene displays transitions between days.
+	 */
 	public void triggerNewDay(Stage window, Scene transitionsc) {
 		index = 0;
 		day++;
@@ -890,8 +906,12 @@ public class DayBuilder {
 		runDay(handler,window,transitionsc);
 	}
 
-	// Animations -- move to a different class?
-
+	// Animations
+	/**
+	 * Animations used to animate the character onto the screen
+	 * @param character, the node that has the animation applied to
+	 * @return - returns the transition on the character(TranslateTransition)
+	 */
 	public TranslateTransition animateCharacterIn(Node character) {
 		TranslateTransition translate = new TranslateTransition();
 		translate.setDuration(Duration.millis(1300));
@@ -905,7 +925,14 @@ public class DayBuilder {
 		return translate;
 	}
 
-	// reverses animate character in?
+	/**
+	 * Animations used to animate the character out of the screen
+	 * @param character, the node that has the animation applied to
+	 * @param handler, the BorderPane that handles the animation
+	 * @param window, the window for the graphics
+	 * @param transition, the scene for the graphics
+	 * @return - returns the transition of the character(TranslateTransition)
+	 */
 	public TranslateTransition animateCharacterOut(Node character, BorderPane handler, Stage window, Scene transition) {
 		TranslateTransition translate = new TranslateTransition();
 		translate.setDuration(Duration.millis(1300));
@@ -927,6 +954,11 @@ public class DayBuilder {
 
 	}
 
+	/**
+	 * Animates the next button onto the screen
+	 * @param button, the node that has the transition applied to
+	 * @return - returns the transition of the button(TranslateTransition)
+	 */
 	public TranslateTransition animateButtonIn(Node button) {
 		TranslateTransition translate = new TranslateTransition();
 		translate.setDuration(Duration.millis(1300));
@@ -940,6 +972,11 @@ public class DayBuilder {
 
 	}
 
+	/**
+	 * Animates the next button off the screen 
+	 * @param button, the node that has the transition applied to 
+	 * @return - returns the transition of the button(TranslateTransition)
+	 */
 	public TranslateTransition animateButtonOut(Node button) {
 		TranslateTransition translate = new TranslateTransition();
 		translate.setDuration(Duration.millis(1300));
@@ -952,6 +989,11 @@ public class DayBuilder {
 
 	}
 
+	/**
+	 * Animates the dialougue box onto the screen
+	 * @param image, the node that has the transition applied to
+	 * @return - returns the transition of the dialogue box(TranslateTransition)
+	 */
 	public TranslateTransition animateDialogueBoxIn(Node image) {
 
 		TranslateTransition translate = new TranslateTransition();
@@ -966,8 +1008,13 @@ public class DayBuilder {
 
 	}
 
-	// I heard you like light theme
-
+	/**
+	 * Animates the dialogue box off the screen
+	 * @param image, the node that has the transition applied to
+	 * @param window, the window for the graphics
+	 * @param transition, the scene for the graphics
+	 * @return - returns the transition of the dialogue box(TranslateTransition)
+	 */
 	public TranslateTransition animateDialogueBoxOut(Node image, Stage window, Scene transition) {
 
 		TranslateTransition translate = new TranslateTransition();

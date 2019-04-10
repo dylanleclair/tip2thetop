@@ -101,9 +101,10 @@ public class Game extends Application {
 	
 	
 	/**
-	 * Main function, executes the program. A boolean switch can change between versions (we've opted for full GUI)
-	 * because our game is literally nothing without one... 
-	 * @param args
+	 * Main function, executes the program. A boolean to switch between GUI and text version.
+	 * Text is basic version.
+	 * GUI has more capabilities due to graphics providing enhanced game play
+	 * @param args, main args for starting game
 	 */
 	public static void main(String[] args) {
 		boolean textV = false; // in case of text version integration

@@ -31,7 +31,7 @@ public class GameBuilder {
 	
 	/**
 	 * Loads opening scene onto a StackPane, reading files named "screen(digit)" from path.
-	 * @param pane - the StackPane to load images onto, from back to front.
+	 * @param pane, the StackPane to load images onto, from back to front.
 	 */
 	public void loadOpening (StackPane pane) {
 		for (int i = 11; i >= 1; i--) {
@@ -48,7 +48,7 @@ public class GameBuilder {
 	
 	/**
 	 * Translates a node downward and off of the screen. 
-	 * @param node a node, to be translated off the screen.
+	 * @param node, a node to be translated off the screen.
 	 */
 	public void fadeImageDown (Node node) {
 		TranslateTransition translate = new TranslateTransition();
@@ -60,7 +60,13 @@ public class GameBuilder {
 		translate.play(); 
 	}
 	
-	
+	/**
+	 * Play button with loads the game
+	 * @param window, the window for the graphics
+	 * @param opening, the scene for the graphics
+	 * @param text, name for save file text file name
+	 * @param emanager, email manager to initialize emails
+	 */
 	public void startPlayingButton(Stage window, Scene opening, TextField text, Email emanager) {
 		window.setScene(opening);
 		saveSet = true;
@@ -132,10 +138,10 @@ public class GameBuilder {
 	
 	/**
 	 * Allows the user to define a save name, "between" the menu scene and the opening screen/sequence.
-	 * @param window - the Stage of the program where we want to build the save screen. 
-	 * @param openingsc - the Scene we want to switch to after the save is created.
-	 * @param menusc - the Scene we want to switch back to when "Back" is pressed.
-	 * @return a BorderPane, which is the Pane we want to display
+	 * @param window, the Stage of the program where we want to build the save screen. 
+	 * @param openingsc, the Scene we want to switch to after the save is created.
+	 * @param menusc, the Scene we want to switch back to when "Back" is pressed.
+	 * @return - a BorderPane, which is the Pane we want to display
 	 */
 	public BorderPane buildSaveScreen(Stage window, Scene openingsc, Scene menusc, Email emanager) {
 		BorderPane setSaveName = new BorderPane();
@@ -293,7 +299,14 @@ public class GameBuilder {
 		return helpScreen;
 	}
 	
-	
+	/**
+	 * Builds the transition screen for in between days
+	 * @param transition, the stackPane to load nodes onto
+	 * @param window, the window for graphics
+	 * @param nextDay, the scene for the next day
+	 * @param dayb, DayBuilder object to load a new day
+	 * @param transitionsc, the scene used to the transiion
+	 */
 	public void buildTransitionScreen(StackPane transition,Stage window, Scene nextDay, DayBuilder dayb, Scene transitionsc) {
 		
 		Button nextd = new Button("Next day");
