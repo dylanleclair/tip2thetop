@@ -882,6 +882,9 @@ public class DayBuilder {
 			int roomNumber = (int) roomNum.getValue();
 			
 			String gname = guestName.getText();
+			if(gname.equals("Tiffany")) {
+				gname = "Tiff";
+			}
 			
 			// checks if values entered are valid by testing the entered name
 			
