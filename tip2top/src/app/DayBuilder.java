@@ -498,7 +498,7 @@ public class DayBuilder {
 				@Override
 				public void handle(MouseEvent mouseEvent) {
 					// advance
-					if (dialogueActive&&(mouseEvent.getY() < 280 || mouseEvent.getX() > 490)) {
+					if (dialogueActive&&(mouseEvent.getY() < 280 || mouseEvent.getX() > 800)) {
 						if (clickCount <= active.size() - 2) {
 							clickCount++;
 
@@ -580,26 +580,32 @@ public class DayBuilder {
 
 			animateButtonIn(nextC);
 
-			nextC.setOnAction(e -> {
-				
-				clickable = false;
+			nextC.addEventHandler(MouseEvent.MOUSE_PRESSED,
+					new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent e) {
+					clickable = false;
 
-				// animate nextC out if index > 0
+					// animate nextC out if index > 0
 
-				if (index == 0) {
-					animateButtonOut(nextC);
-					animateDialogueBoxIn(today.getChildren().get(3)); // 3 is the index of dialogue box in stackpane
-					runCharacter(handler);													// today
+					if (index == 0) {
+						animateButtonOut(nextC);
+						animateDialogueBoxIn(today.getChildren().get(3)); // 3 is the index of dialogue box in stackpane
+						runCharacter(handler);													// today
+					}
+
+					if (index > 0) {
+						animateButtonOut(nextC);
+						animateCharacterOut(activeCharacter, handler, window, transition);
+					}
+					
+					index++;
+					System.out.println(index);
+					
 				}
-
-				if (index > 0) {
-					animateButtonOut(nextC);
-					animateCharacterOut(activeCharacter, handler, window, transition);
-				}
-				
-				index++;
-				System.out.println(index);
 			});
+				
+				
 
 		
 	}
@@ -725,11 +731,21 @@ public class DayBuilder {
 
 		System.out.println(amigo.getChildren().size());
 		
-		viewGuests.setOnAction(e -> {
-			buildCheckInScreen(dailyCharacters, amigo);
+		viewGuests.addEventHandler(MouseEvent.MOUSE_PRESSED,
+				new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent e) {
+				
+				buildCheckInScreen(dailyCharacters, amigo);
+			}
+			
 		});
-		viewEmails.setOnAction(e -> {
+		viewEmails.addEventHandler(MouseEvent.MOUSE_PRESSED,
+				new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent e) {
 			buildEmailScreen(amigo);
+			}
 		});
 		exit.setOnAction(e -> window.setScene(mainscene));
 
@@ -784,7 +800,10 @@ public class DayBuilder {
 		
 		System.out.println(amigo.getChildren().size());
 		
-		open.setOnAction(e -> {
+		open.addEventHandler(MouseEvent.MOUSE_PRESSED,
+				new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent e) {
 			
 			Email selected = email_list.get(emails.getSelectionModel().getSelectedIndex());
 			
@@ -803,11 +822,16 @@ public class DayBuilder {
 			
 
 			email.showAndWait();
+			}
 		
 		});
-		back.setOnAction(e -> {
+		back.addEventHandler(MouseEvent.MOUSE_PRESSED,
+				new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent e) {
 			amigo.getChildren().remove(amigo.getChildren().size() - 1);
 			amigo.getChildren().remove(amigo.getChildren().size() - 1);
+			}
 		});
 	}
 		
@@ -875,7 +899,10 @@ public class DayBuilder {
 		
 		System.out.println(amigo.getChildren().size());
 		
-		addGuest.setOnAction(e -> {
+		addGuest.addEventHandler(MouseEvent.MOUSE_PRESSED,
+				new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent e) {
 			
 			String selectedType = (String) roomType.getValue();
 			selectedType = selectedType.substring(0, selectedType.length() - 6);
@@ -899,12 +926,17 @@ public class DayBuilder {
 				}
 				
 			}
+			}
 			
 		});
 		checkOut.setOnAction(e -> bookings.remove(guestlist.getSelectionModel().getSelectedIndex()));
-		back.setOnAction(e -> {
+		back.addEventHandler(MouseEvent.MOUSE_PRESSED,
+				new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent e) {
 			amigo.getChildren().remove(amigo.getChildren().size() - 1);
 			amigo.getChildren().remove(amigo.getChildren().size() - 1);
+			}
 		});
 	}
 
