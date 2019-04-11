@@ -12,7 +12,7 @@ public class Game extends Application {
 	//protected static boolean loadingFromSave = false;
 	
 	Stage window;
-	Scene menusc, opening, loadsc, helpsc, createsavesc, mainscene, amigoscreen, transitionsc;
+	Scene menusc, opening, loadsc, helpsc, createsavesc, mainscene, amigoscreen, transitionsc, endingsc;
 	private static GameBuilder gameb = new GameBuilder();
 	private static DayBuilder dayb = new DayBuilder();
 	private static Email emanager = new Email();
@@ -52,7 +52,7 @@ public class Game extends Application {
 			
 			
 			
-			gameb.buildTransitionScreen(transition, window,mainscene, dayb, transitionsc);
+			gameb.buildTransitionScreen(transition, window,mainscene, dayb, transitionsc, menusc);
 			
 			// Transition screen
 			
@@ -62,6 +62,14 @@ public class Game extends Application {
 			StackPane openingPane = new StackPane(); // Container objects for this scene
 			opening = new Scene(openingPane,1280,720); // Creates actual scene
 			gameb.buildOpeningScreen(openingPane, opening, window, mainscene);
+			
+			
+			// Ending Scene
+			
+			StackPane endScene = new StackPane();
+			endingsc = new Scene(endScene,1280,720);
+			gameb.buildEndingScreen(endScene, "alt", menusc, window);
+			
 			
 			// Load Screen (creates new scene using load screen from GameBuilder	
 			loadsc = new Scene (gameb.buildLoadScreen(window, menusc), 1280, 720);
@@ -99,6 +107,7 @@ public class Game extends Application {
 			e.printStackTrace();
 		}
 	}
+	
 	
 	
 	
