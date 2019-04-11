@@ -216,7 +216,7 @@ public class ChoiceCenter {
 					return "pillow_no";//filler prompt name
 				}
 			}
-			//insert email session for Patricia
+			//insert email session for Patricia (currently cut)
 			if(character.equalsIgnoreCase("jason")) {
 				choice = getChoiceTwoOptions("Buy Lyryx?", "Uh...Are you gonna accept the offer?", "Why not? It sounds cool.", "Nope. I'm a poor hotel worker");
 				if(choice ==1) {//yes buy lyryx
@@ -260,7 +260,7 @@ public class ChoiceCenter {
 		
 		if(day == 5) {
 			if(character.equalsIgnoreCase("anna")) {
-				choice = 0;//function to prompt choice
+				choice = getChoiceTwoOptions("People missing?", "Have you noticed anything about those disappearances?", "Yeah...", "What? No...");
 				if(choice == 1) {//yes missing
 					daymistakes++;
 					return "missing_yes";
@@ -271,7 +271,7 @@ public class ChoiceCenter {
 				}
 			}
 			if(character.equalsIgnoreCase("dylan")) {
-				choice = 0;//function to prompt choice
+				choice = getChoiceTwoOptions("Leave with Dylan?", "Do you wish to leave with Dylan and fly off to a new future?", "Sure! Let's go.", "Sorry, I still got work to do.");
 				if(choice == 1) {//yes leave with dylan 
 					//triggers alternate ending
 				}
@@ -280,13 +280,14 @@ public class ChoiceCenter {
 				}
 			}
 			if(character.equalsIgnoreCase("yvonne")) {
-				choice = 0;//function to prompt choice
+				choice = getChoiceYesNo("Give soap?", "Give Yvonne more soap?");
 				if(choice == 1) {//yes give soap
 					customerSatisfaction++;
 					return "soap_yes";
 				}
 				if(choice == 2) {//not give soap
 					daymistakes++;
+					customerSatisfaction--;
 					return "soap_no";
 				}
 			}
@@ -306,7 +307,7 @@ public class ChoiceCenter {
 	
 			if(character.equalsIgnoreCase("Dimitri")) {
 				if(has_toaster) {
-					choice = 0;//function to prompt choice
+					choice = getChoiceTwoOptions("Sell the toaster?", "You wanna sell your toaster away to Dimitri and get that extra money?", "Why not? Bye Bye toaster.", "NO, i like my toaster.");
 					if(choice ==1) {//sell toaster
 						has_toaster = false;
 						tips+=10;
@@ -316,6 +317,24 @@ public class ChoiceCenter {
 						return "";
 					}
 				}
+				else {//you don't have toaster
+					return "";
+				}
+			}
+			if(character.equalsIgnoreCase("dylan")) {
+				choice = getChoiceTwoOptions("Where?", "You know where dylan can go and read up some old newspapers?", "The library", "The town hall");
+				if(choice == 1) {//library
+					customerSatisfaction++;
+					return "";
+				}
+				if(choice == 2) {//town hall
+					gulagPoints++;
+					return "";
+				}
+			}
+			
+			if(character.equalsIgnoreCase("patricia")) {
+				
 			}
 		}
 		
@@ -403,12 +422,13 @@ public class ChoiceCenter {
 				character.getPrompts().add("checkIn");
 				character.getPrompts().add("checkOut");
 			} else if (character.getName().contentEquals("Anna")) {
-
+				for (int i = 0; i < 4; i++)
+					character.getPrompts().add("");
+				character.getPrompts().add("missing");
 				
 			} else if (character.getName().contentEquals("Dimitri")) {
 				for (int i = 0; i < 4; i++)
-				character.getPrompts().add("");
-				
+					character.getPrompts().add("");
 				character.getPrompts().add("checkIn"); // day 5
 				character.getPrompts().add("toaster"); 
 				// day 6 --- treat this like Tiff's choice point
