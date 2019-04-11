@@ -12,7 +12,6 @@ public class ChoiceCenter {
 
 	private int gulagPoints;
 	private int daymistakes;
-	//private int totalmistakes;
 	private int customerSatisfaction;
 	private boolean tiff_icecream;
 	private boolean jason_mint;
@@ -23,6 +22,38 @@ public class ChoiceCenter {
 	private double bonus;
 	private boolean toasterPurchased;
 	
+	
+	
+	public double getSpendings() {
+		return spendings;
+	}
+
+
+	public void setSpendings(double spendings) {
+		this.spendings = spendings;
+	}
+
+
+	public double getBonus() {
+		return bonus;
+	}
+
+
+	public void setBonus(double bonus) {
+		this.bonus = bonus;
+	}
+
+
+	public double getTips() {
+		return tips;
+	}
+
+
+	public void setTips(double tips) {
+		this.tips = tips;
+	}
+
+
 	public int getGulagPoints() {
 		return gulagPoints;
 	}

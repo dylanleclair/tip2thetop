@@ -390,7 +390,6 @@ public class DayBuilder {
 				
 				
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
@@ -543,8 +542,6 @@ public class DayBuilder {
 			});
 
 			today.getChildren().add(handler); // 6th item in pane
-			// pane.getChildren().add(amigo); // need to change how amigo is implemented to
-			// another layer on stackpane? or even change scene.
 			runDay(handler, window, transition);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -582,23 +579,40 @@ public class DayBuilder {
 
 			nextC.setOnAction(e -> {
 				
-				clickable = false;
+				if (clickable) {
+					
+					
+					boolean testing = true;
+					
+					if (testing) {
+						
+						StackPane lol = new StackPane();
+						
+						//GameBuilder.loadEnding(lol, "alt");
+					}
+					
+					clickable = false;
 
-				// animate nextC out if index > 0
+					// animate nextC out if index > 0
 
-				if (index == 0) {
-					animateButtonOut(nextC);
-					animateDialogueBoxIn(today.getChildren().get(3)); // 3 is the index of dialogue box in stackpane
-					runCharacter(handler);													// today
-				}
+					if (index == 0) {
+						animateButtonOut(nextC);
+						animateDialogueBoxIn(today.getChildren().get(3)); // 3 is the index of dialogue box in stackpane
+						runCharacter(handler);													// today
+					}
 
-				if (index > 0) {
-					animateButtonOut(nextC);
-					animateCharacterOut(activeCharacter, handler, window, transition);
+					if (index > 0) {
+						animateButtonOut(nextC);
+						animateCharacterOut(activeCharacter, handler, window, transition);
+					}
+					
+					index++;
+					System.out.println(index);
+					
+					
 				}
 				
-				index++;
-				System.out.println(index);
+
 			});
 
 		
