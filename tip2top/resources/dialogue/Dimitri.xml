@@ -20,6 +20,7 @@
 	</checkIn>
 	
 	<ifToaster>
+  	<print>-- Dimitri walks out of his room grinning. --</print>
 		<print>Dimitri: Ah, I believe I have ze BEST room in the house.</print>
 		<print>You: That’s good to hear...</print>
 		<print>Dimitri: Howeva, Dimitri would like it verrry much if you give me blanket and toaster.</print> 
@@ -49,5 +50,6 @@
 		<print>You: Just huddle.</print>
 		<print>Dimitri: Fine, be that way.</print>
 	</noToaster>
+
 
 </Dimitri>

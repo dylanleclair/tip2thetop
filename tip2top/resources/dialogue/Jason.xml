@@ -11,28 +11,40 @@
 		<print>You: Okay, that’s fine.</print>
 		<print>You: Which tier would you like to upgrade to?</print>
 		<print>Jason: To Premium, up from Basic.</print>
-		<print>Jason: A premium room costs $45, right?</print>
-		<print>You: The price for a Premium room is actually...</print>
+		<print>Jason: A premium room - they cost $45, right?</print>
+		<print>choice</print>
 	</upgrade>
 
 		<upgrade_a>
-			<print>You: Wait, the price is actually $30.</print>
+			<print>You: The price is actually $30.</print>
 			<print>Jason: Oh, thank you.</print>
+			<print>You: Is room 6 okay?</print>
+			<print>Jason: That sounds perfect.</print>
+			<print> -- Don't forget to give him his key! --</print>
 		</upgrade_a>
 	
 		<upgrade_b>
 			<print>You: Wait, the price is actually $55.</print>
 			<print>Jason: Oh, my bad.</print>
+			<print>You: Is room 6 okay?</print>
+			<print>Jason: That sounds perfect.</print>
+			<print> -- Don't forget to give him his key! --</print>
 		</upgrade_b>
 	
 		<upgrade_c>
 			<print>You: Wait, the price is actually $40.</print>
 			<print>Jason: Oh, my bad.</print>
+			<print>You: Is room 6 okay?</print>
+			<print>Jason: That sounds perfect.</print>
+			<print> -- Don't forget to give him his key! --</print>
 		</upgrade_c>
 	
 		<upgrade_d>
 			<print>You: Wait, the price is actually $65.</print>
 			<print>Jason: Wow, that’s quite a price.</print>
+			<print>You: Is room 6 okay?</print>
+			<print>Jason: That sounds perfect.</print>
+			<print> -- Don't forget to give him his key! --</print>
 		</upgrade_d>
 
 
@@ -40,22 +52,43 @@
 		<print>You: Hey, how are you doing today?</print>
 		<print>Jason: I’m doing well. How about you?</print>
 		<print>You: Good, good. How’s the upgraded room treating you?</print>
-		<print>Jason: It’s very nice, but I was hoping for an extra few mints on my pillow as part of the luxury experience...</print>
+		<print>Jason: It’s very nice, but I was hoping for an extra few</print>
+		<print>mints on my pillow as part of the luxury experience...</print>
 		<print>You: Okay, I’ll see what I can do.</print>
 		<print>You: On the other hand, do you want shampoo?</print>
 		<print>Jason: No thanks. It’s just that mints really make the stay, you know.</print> 
 		<print>You: Alright, I understand.</print>
+		<print>choice</print>
 	</mints>
 	
 		<mints_yes>
-			<print>You email housekeeping about the mints.</print>
+			<print>-- You email housekeeping about the mints. --</print>
 		</mints_yes>
 		
 		<mints_no>
-			<print>You move onto the next customer.</print>
+
+			<print>-- You move onto the next customer. --</print>
+
 		</mints_no>
 
-
+	<askShampoo>
+		<print>You: Do you need anything? Shampoo, maybe?</print>
+		<print>Jason: No, thanks. It's just that mints really make the stay, you know?</print>
+		<print>Alright, I understand.</print>
+	</askShampoo>
+	
+	<refuseAsk>
+		<print>You: You sure like mints, but I hope you have a good day.</print>
+		<print>Jason: Life without mints just isn't as good. It's the small things.</print>
+		<print> -- You reflect upon his wisdom, and agree.. --</print>
+		<print>You: It really is... Take care. </print>
+		<print>Jason: Thanks.</print>
+	</refuseAsk>
+	
+	<day3>
+		<print>choice</print>
+	</day3>
+	
 	<gotMints>
 		<print>Jason: I noticed the extra mints on my pillow, thanks.</print>
 		<print>Jason: Now I can do maths with a fresh breath.</print>
@@ -73,7 +106,7 @@
 		<print>Jason: Also, could I have some conditioner?</print>
 		<print>You: Sure, here you are.</print>
 	</gotMints>
-	
+
 	<noGot_mints>
 		<print>Jason: I noticed I didn’t get my mints.</print>
 		<print>Jason: Now how am I supposed to do maths?</print>
@@ -97,6 +130,7 @@
 		<print>Jason: You can learn how to solve matrices, find the area of a parallelepiped, calculate vectors in 17 dimensions...</print>
 		<print>Jason: What do you say?</print>
 		<print>Jason: It’s only $40 a month.</print>
+		<print>choice</print>
 	</sell_lyrynx>
 	
 		<sell_Lyes>

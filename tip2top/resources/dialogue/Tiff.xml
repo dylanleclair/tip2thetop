@@ -14,14 +14,20 @@
 		<print>You: And how many days will you be staying with us?</print>
 		<print>Tiffany: Tiffany. I’ll be staying for a week.</print>
 		<print>You: Alright, sounds good.</print>
-		<print>You: Please enjoy your stay!</print>
+		<print>You: Please enjoy your stay! Your room is #2.</print>
+		<print>You: Here's your key. I'll enter you into our system.</print>
+		<print>Tiffany: Thank you!!</print>
+		<print> -- She looks nervous.. -- </print>
 		<print>Tiffany: Actually, I was eating some ice cream earlier...</print>
-		<print>Tiffany: And I was wondering if you’d like to eat some with me... in my room?</print>
+		<print>Tiffany: And I was wondering if you’d like to eat some with me... </print>
+		<print>in my room?</print>
+		<print>choice</print>
 	</iceCream>
 	
 		<iceCream_yes>
 			<print>You: Uh, alright. Let’s go.</print>
-			<print>Tiffany: Chocolate, Vanilla, or Mango?</print>
+			<print>You pretend there's an intricate animation to her room...</print>
+			<print>Tiffany: Okay - chocolate, vanilla, or mango?</print>
 			<print>You: I'll have chocolate, please.</print>
 			<print>Tiffany: So... do you like anime?</print>
 			<print>You: Unfortunately I'm not an avid fan.</print>
@@ -31,24 +37,26 @@
 			<print>You: The one about that curious girl?</print>
 			<print>TIffany: Yes that's the one!!</print>
 			<print>You: I love that anime!</print>
-			<print>I relate to the main character’s way of living.</print>
-			<print>You: ... Okay, I should probably head back to the front desk.</print>
+			<print>I envy the main character’s way of living.</print>
+			<print>You: ... Okay, I should really head back to the front desk.</print>
 			<print>Tiffany: I had a great time ;)</print>
-			<print>Tiffany: See you!</print>
+			<print>You return to the lobby after exchanging goodbyes.</print>
 		</iceCream_yes>
 	
 		<iceCream_no>
 			<print>You: Uhm... No thank you.</print>
-			<print>Tiffany: D:</print>
+			<print>-- Tiffany looks disappointed... --</print>
 			<print>Tiffany: Are you sure?</print>
-			<print>Tiffany: You can... still come to room... if you want.</print>
+			<print>Tiffany: You can... still come to my room... if you want.</print>
 			<print>You: I’m really alright, thanks.</print>
+			<print>-- She pauses for a second before leaving.  --</print>
 		</iceCream_no>
 		
 		<room>
 			<print>Tiffany: 嗨。</print>
 			<print>You: Hi, would you like any shampoo?</print>
 			<print>You: Also, how was your stay last night?</print>
+			<print>choice</print>
 		</room>
 		
 			<room_yes>
@@ -73,6 +81,7 @@
 		<print>You: Wait, you didn’t answer my question.</print>
 		<print>Tiffany: ...</print>
 		<print>Tiffany: I’m waiting for a pillow.</print>
+		<print>choice</print>
 	</pillows>
 	
 		<pillows_yes>
@@ -85,33 +94,52 @@
 		</pillows_no>
 		
 	<toaster>
+		<print>choice</print>
+	</toaster>
+	
+	<toaster_yes>
 		<print>Tiffany: Hello!</print>
 		<print>You: Hey. What can I do for you today?</print>
 		<print>Tiffany: Recently I feel like there’s been no FUN!</print>
 		<print>You: What do you mean by that?</print> 
 		<print>Tiffany: Oh, you surely know what I mean.</print>
-	</toaster>
-	
-		<toaster_yes>
-			<print>Tiffany: How’re you enjoying your toaster?</print>
-		</toaster_yes>
-		
-		<toaster_no>
-			<print>Tiffany: You should have bought that toaster earlier.</print>
-		</toaster_no>
-		
-	<toaster2>
-		<print>You: What?</print>
-		<print>You: How did you know?</print>
-		<print>Tiffany: I can already smell the bread.</print>
-		<print>You: Wait, how old are you?</print>
+		<print>You: I really don't see what you mean...?</print>
+		<print>Tiffany: So how’re you enjoying your toaster?</print>
+		<print>You: Uh, it's been lovely? It makes breakfast nicer.</print>
+		<print>Tiffany: I'm glad! You deserve the best...</print>
+		<print>-- You can't help but feel she's a little overbearing...</print>
+		<print>You (concerned): Wait, how old are you?</print>
 		<print>Tiffany: That’s not important.</print>
 		<print>Tiffany: The important thing is that I still LOVE this hotel.</print>
 		<print>Tiffany: Except your boss.</print>
 		<print>Tiffany: She freaks me out...</print>
 		<print>Tiffany: Anyways, I just wanted to say hi :3</print>
 		<print>Tiffany: See you!!</print>
-	</toaster2>
+		
+	</toaster_yes>
+	
+		
+	<toaster_no>
+		<print>Tiffany: Hello!</print>
+		<print>You: Hey. What can I do for you today?</print>
+		<print>Tiffany: You know, lately, I feel like there’s been no FUN!</print>
+		<print>You: What do you mean by that?</print> 
+		<print>Tiffany: Oh, you surely know what I mean.</print>
+		<print>You: I really don't see what you mean...?</print>
+		<print>Tiffany: You should have bought that toaster earlier.</print>
+		<print>You: What?</print>
+		<print>You: How did you know?</print>
+		<print>Tiffany: I can already smell the bread.</print>
+		<print>Tiffany: You might miss start missing it pretty soon...</print>
+		<print>You: Okay?? I'm just glad it was so cheap...</print>
+		<print>You: But, seriously, how did you know?</print>
+		<print>Tiffany: That’s not important.</print>
+		<print>Tiffany: The important thing is that I still LOVE this hotel.</print>
+		<print>Tiffany: Except your boss.</print>
+		<print>Tiffany: She freaks me out...</print>
+		<print>Tiffany: Anyways, I just wanted to say hi :3</print>
+		<print>Tiffany: See you!!</print>
+	</toaster_no>
 	
 	<toiletPaper>
 		<print>Tiffany: Здрастуйте.</print>

@@ -1,19 +1,28 @@
 package app;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.PrintWriter;
+import java.io.*;
+import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.Node;
 
 public class Save {
     
+	//TODO add key array to save
 	private static ObservableList<String> names = FXCollections.observableArrayList();
 	protected static File currentSave;
+	protected static int goodPoints;
+	protected static int badPoints;
+	protected static ArrayList<NPC> characters;
+	protected static ArrayList<Email> emails;
+	protected static Node[] keys;
+	protected static int currentDay;
+	protected static double currentMoney;
+	protected static double bonus;
+	protected static boolean tiff_icecream;
+	protected static boolean jason_mints;
+	protected static boolean has_toaster;
 	
 	// make an arraylist of files, iterate through saves directory and add each files to the arraylist
 	// that way, it's easier to access diff saves / get number of saves / etc
@@ -43,20 +52,36 @@ public class Save {
 		
 		currentSave = new File("./resources/saves/" + name);
 		
+		
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader(currentSave.getPath()));
-			String line = reader.readLine();			
-			// eventually this will be something like:
-			// globalVariable/class.setVariable() with type cast from string
-			// will be diff for each line tho, so looping will be different.. maybe use an array to simplify / shorten
-			while (line != null) {
-				System.out.println(line);
-				line = reader.readLine();
-			}
+			ObjectInputStream reader = new ObjectInputStream(new FileInputStream(currentSave.getPath()));
+			characters = (ArrayList<NPC>)reader.readObject();
+			emails = (ArrayList<Email>)reader.readObject();
+			keys = (Node[])reader.readObject();
+			currentDay = reader.readInt();
+			currentMoney = reader.readDouble();
+			bonus = reader.readDouble();
+			tiff_icecream = reader.readBoolean();
+			jason_mints = reader.readBoolean();
+			has_toaster = reader.readBoolean();
+			
 			reader.close();
+			
 		} catch (Exception e) {
 			
 		}
+		/*
+		System.out.println(characters);
+		System.out.println(emails);
+		System.out.println(keys);
+		System.out.println(currentDay);
+		System.out.println(currentMoney);
+		System.out.println(bonus);
+		System.out.println(tiff_icecream);
+		System.out.println(jason_mints);
+		System.out.println(has_toaster);
+		*/
+		
 		// here we would start transition into whatever day // start the gameplay
 	}
 	
@@ -65,16 +90,49 @@ public class Save {
 		return currentSave;
 	}
 	
-	/**
+	
+    public static void generateSave (ObjectOutputStream out, ArrayList<NPC> allCharacters, ArrayList emails, Node[] key, int day, double money, double bonus, boolean tiff_icecream, boolean jason_mints, boolean has_toaster) {
+    	
+    	try {
+    		
+			out.writeObject(allCharacters);
+			out.writeObject(emails);
+			out.writeObject(key);
+			out.writeInt(day);
+			out.writeDouble(money);
+			out.writeDouble(bonus);
+			out.writeBoolean(tiff_icecream);
+			out.writeBoolean(jason_mints);
+			out.writeBoolean(has_toaster);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    	// creating two string methods for diff objects which hold variables to be stored could be v helpful
+    	// other variables to be stored in save here
+    	// we should draft up a consistent format before we implement this -- we don't want to have to change order. 
+    }
+    /**
 	 * Is implemented in saveWriter.
 	 * This method "prints" the necessary info for a save file into the save file.
 	 * @param out a PrintWriter, which writes files as if you are printing output. 
 	 */
-    public static void generateSave (PrintWriter out) {
-    	out.println("hello");
-    	// creating two string methods for diff objects which hold variables to be stored could be v helpful
-    	// other variables to be stored in save here
-    	// we should draft up a consistent format before we implement this -- we don't want to have to change order. 
+    //initialization method
+    public static void generateSave (ObjectOutputStream out) {
+    	//initializing save file
+    	try {
+    		out.writeObject(new ArrayList<NPC>());
+			out.writeObject(new ArrayList<Email>());
+			out.writeObject(new Node[0]);
+			out.writeInt(1);
+			out.writeDouble(0.0);
+			out.writeDouble(0.0);
+			out.writeBoolean(false);
+			out.writeBoolean(false);
+			out.writeBoolean(false);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
     
     /**
@@ -84,7 +142,7 @@ public class Save {
     public static void createSaveFile(String filename) {
     
     	filename = filename.replace(' ', '-');
-    	File defaultSave = new File("./resources/saves/" + filename + ".txt");
+    	File defaultSave = new File("./resources/saves/" + filename + ".data");
     	currentSave = defaultSave;
     	try {
     		boolean isCreated = defaultSave.createNewFile();
@@ -92,7 +150,7 @@ public class Save {
     	} catch (Exception e) {
     	
     	}
-
+    	saveWriter(defaultSave);
     }
     
     /**
@@ -100,10 +158,11 @@ public class Save {
      * To be used at the end of each day as part of the transitional screen.
      * @param saveFile a File, the file for the save information to be written to. (current save)
      */
+    //initialization method
     public static void saveWriter(File saveFile) {
     	
     	try {
-        	PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(saveFile.getPath())));
+        	ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(saveFile.getPath()));
         	generateSave(out);
         	out.close();
     	} catch (Exception e) {
@@ -111,5 +170,30 @@ public class Save {
     	}
     	
     }
+    /**
+     * takes in data from the game to save to the file specified,
+     * the order to enter the parameters is as listed in the parameters section below
+     * @param saveFile a File, the file to save to
+     * @param allCharacters an ArrayList, that stores every NPC in the game
+     * @param emails an ArrayList, that stores all of the players received emails
+     * @param key an Node array, that stores the state of the keys
+     * @param day an int, the day the player in currently on
+     * @param money a double, the money the player currently has
+     * @param bonus a double, the raise added to the player's earnings
+     * @param tiff_icecream a boolean, for story branching
+     * @param jason_mints a boolean, for story branching
+     * @param has_toaster a boolean, for story branching
+     */
+	 public static void saveWriter(File saveFile, ArrayList allCharacters, ArrayList emails, Node[] key, int day, double money, double bonus, boolean tiff_icecream, boolean jason_mints, boolean has_toaster) {
+	    	
+	    	try {
+	        	ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(saveFile.getPath()));
+	        	generateSave(out, allCharacters,  emails, key, day, money, bonus, tiff_icecream, jason_mints, has_toaster);
+	        	out.close();
+	    	} catch (Exception e) {
+	    		e.printStackTrace();
+	    	}
+	    	
+	    }
     
 }

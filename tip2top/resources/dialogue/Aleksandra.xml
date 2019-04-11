@@ -3,30 +3,49 @@
 
 	<firstDay>
 		<print>Aleksandra: I know you’re new and all, but that is no excuse for stupidity.</print>
-		<print>Aleksandra: Don’t forget to be nice to that girl.</print>
-		<print>Aleksandra: The one that leaves early.</print>
-		<print>Aleksandra: She is a VALUABLE customer!!!</print>
-		<print>Aleksandra: Also!!!</print>
-		<print>Aleksandra: Basic rooms are $30.</print>
+		<print>Aleksandra: I can't afford to train you super well, so pay attention.</print>
+		<print> ((She's not lying... Paying attention to her is very important.))</print>
+		<print> ((I mean, she does get a bit narcissistic but you will need to listen!))</print>
+		<print>Aleksandra: Basic rooms are $30. They're most common.</print>
 		<print>Aleksandra: Premium rooms are $40.</print>
-		<print>Aleksandra: ... and Luxury rooms are $55.</print>
-		<print>Aleksandra: Okay, bye.</print>
+		<print>Aleksandra: Lastly, luxury rooms are $55.</print>
+		<print>Aleksandra: Every time we have a new customer, make sure that you</print>
+		<print>Aleksandra: make use of that PC of yours and enter them into our bookings.</print>
+		<print>Aleksandra: Also - make sure you assign them to the right room.</print>
+		<print>Aleksandra: Basic rooms are 1-4, premium are 5-8, and luxury are 9-12.</print>
+		<print>Aleksandra: Some people will ask you all kinds of weird things.</print>
+		<print>Aleksandra: Just do your best to make them happy, and I'll be happy.</print>
+		<print>Aleksandra: Don’t forget to be nice to that weird chick.</print>
+		<print>Aleksandra: You'll probably run into her last - she's kinda quiet.</print>
+		<print>Aleksandra: For some reason she always visits this dump.</print>
+		<print>Aleksandra: If you ever forget, a bunch of information</print>
+		<print>Aleksandra: on the rooms is available in your PC.</print>
+		<print>Aleksandra: Try not to burn the place down.</print>
 	</firstDay>
 	
 	<secondDay>
 		<print>Aleksandra: Hey! Good job yesterday, keep it up kid.</print>
-		<print>Aleksandra: Today we are trying to get rid of our extra shampoo so make sure you don’t give anything else out.</print> 
+		<print>You: I'm not a ki-</print>
+		<print>Aleksandra: Today we are trying to get rid of our extra shampoo so</print>
+		<print>make sure you don’t give anything else out.</print> 
 		<print>Aleksandra: Also - the longer a customer stays, the more they save!</print>
 		<print>Aleksandra: They get a 10% discount for more than 3 nights.</print>
-		<print>Aleksandra: Okay, bye.</print>
+		<print>Aleksandra: ALSO! I'm going out with Romeo today so it looks like</print>
+		<print>Aleksandra: you're in charge! Don't screw up! You're well trained, right?</print>
+		<print>Aleksandra: Bahaha, who am I kidding- good luck!</print>
 	</secondDay>
 	
 	<thirdDay>
-		<print>Hey, you’re doing a pretty okay job so far.</print>
-		<print>Either way, I’m paying for you to be the best of the best so strive to make me some more money, yeah?</print>
-		<print>Anyways, today we are focusing on getting rid of conditioner.</print>
-		<print>Nothing else should be given out. Don’t screw up.</print>
-		<print>Okay, bye.</print>
+		<print>Aleksandra: Hey, you’re doing a pretty okay job so far.</print>
+		<print>Aleksandra: I'll be honest, most of my employees lose it when I go out with</print>
+		<print>Romeo but you seem much cooler than all of those losers.</print>
+		<print>You: Thank yo-</print>
+		<print>Aleksandra: Either way, I’m paying for you to be the best of the best so</print>
+		<print>strive to make me some more money, yeah?</print>
+		<print>You: I'll do my be-</print>
+		<print>Aleksandra: Anyways, today we are focusing on getting rid of conditioner.</print>
+		<print>Hear that? It's like you don't pay attention. CONDITIONER.</print>
+		<print>Aleksandra: Nothing else (!!!) should be given out. Don’t screw up.</print>
 	</thirdDay>
 	
 	<fourthDay>

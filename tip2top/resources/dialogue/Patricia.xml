@@ -9,21 +9,28 @@
 		<print>???: Sure! I’m here because I’m just trying to get an escape from all the fame.</print>
 		<print>You: Sorry, what’s your name?</print>
 		<print>Patricia: I’m THE Patricia Lively!!</print>
-		<print>Patricia: How do you not recognize me?</print>
+		<print>Patricia: Do you not recognize me?</print>
+		<print>choice</print>
 	</famous>
 	
 	<famous_yes>
 		<print>You: Of course, I can’t imagine how taxing it is to keep up with.</print>
 		<print>Patricia: Finally someone who understands!</print>
-		<print>You: Alright, your room is number 302. Here’s your key.</print>
+		<print>You: Yup, back in fifth grade the playground kids were all over me.</print>
+		<print>Patricia: I have to respect the hustle. You're a good kid.</print>
+		<print>You: Thanks, that's very kind of you.</print>
+		<print>...</print>
+		<print>You: Alright, your room is number 10. Here’s your key.</print>
 		<print>Patricia: Thanks, you’re wonderful!</print>
 	</famous_yes>
 	
 	<famous_no>
-		<print>You: Uh... Okay then. Your room tonight will be number 302.</print>
-		<print>Patricia: Do you not know who I am?</print>
 		<print>You: Sorry, I don’t.</print>
-		<print>You: You'll be in room 302. Here’s your key.</print>
+		<print>Patricia: Wow, that's rough.. And you consider yourself a good employee?</print>
+		<print>You: I'm really sorry but I didn't want to just lie...</print>
+		<print>Patricia: As if that's any excuse.</print>
+		<print>You: Uh... Okay then. Your room tonight will be number 10.</print>
+		<print>You: Here's your key- have a good stay, Ms. Lively.</print>
 	</famous_no>
 	
 	<bigNeck>
