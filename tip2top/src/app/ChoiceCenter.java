@@ -381,7 +381,8 @@ public class ChoiceCenter {
 			} else if (character.getName().contentEquals("Jason")) {
 				character.getPrompts().add("upgrade");
 				character.getPrompts().add("mints");
-				character.getPrompts().add("mints-placeholder"); // update when player makes choice on mints
+				character.getPrompts().add("day3");
+				character.getPrompts().add("sell_lyrynx");
 			} else if (character.getName().contentEquals("Patricia")) {
 				character.getPrompts().add("");
 				character.getPrompts().add("famous");
@@ -390,8 +391,9 @@ public class ChoiceCenter {
 			} else if (character.getName().contentEquals("Tiff")) {
 				character.getPrompts().add("iceCream");
 				character.getPrompts().add("room");
+				character.getPrompts().add(""); 
 				character.getPrompts().add("pillows");
-				character.getPrompts().add("toaster-placeholder"); // update when player chooses toaster
+				character.getPrompts().add("toaster"); // update when player chooses toaster
 			} else if (character.getName().contentEquals("Mystery")) {
 				character.getPrompts().add("");
 				character.getPrompts().add("aleks");

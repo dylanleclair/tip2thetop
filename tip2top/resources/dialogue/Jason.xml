@@ -84,15 +84,18 @@
 		<print>You: It really is... Take care. </print>
 		<print>Jason: Thanks.</print>
 	</refuseAsk>
-
-
+	
+	<day3>
+		<print>choice</print>
+	</day3>
+	
 	<gotMints>
 		<print>Jason: I noticed the extra mints on my pillow, thanks.</print>
 		<print>Jason: Now I can do maths with a fresh breath.</print>
 		<print>Jason: Also, could I have some conditioner?</print>
 		<print>You: Sure, here you are.</print>
 	</gotMints>
-	
+
 	<noGot_mints>
 		<print>Jason: I noticed I didn’t get my mints.</print>
 		<print>Jason: Now how am I supposed to do maths?</print>

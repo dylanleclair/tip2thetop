@@ -5,15 +5,18 @@ import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.Node;
 
 public class Save {
     
+	//TODO add key array to save
 	private static ObservableList<String> names = FXCollections.observableArrayList();
 	protected static File currentSave;
 	protected static int goodPoints;
 	protected static int badPoints;
 	protected static ArrayList<NPC> characters;
 	protected static ArrayList<Email> emails;
+	protected static Node[] keys;
 	protected static int currentDay;
 	protected static double currentMoney;
 	protected static double bonus;
@@ -54,36 +57,31 @@ public class Save {
 			ObjectInputStream reader = new ObjectInputStream(new FileInputStream(currentSave.getPath()));
 			characters = (ArrayList<NPC>)reader.readObject();
 			emails = (ArrayList<Email>)reader.readObject();
+			keys = (Node[])reader.readObject();
 			currentDay = reader.readInt();
 			currentMoney = reader.readDouble();
 			bonus = reader.readDouble();
 			tiff_icecream = reader.readBoolean();
 			jason_mints = reader.readBoolean();
 			has_toaster = reader.readBoolean();
-			// eventually this will be something like:
-			// globalVariable/class.setVariable() with type cast from string
-			// will be diff for each line tho, so looping will be different.. maybe use an array to simplify / shorten
+			
 			reader.close();
-			for(int x = 0; x< characters.size(); x++) {
-				System.out.println(characters.get(x));
-			}
 			
 		} catch (Exception e) {
 			
 		}
-		
 		/*
-		dayOn = Integer.parseInt(lines.get(0));
-		goodPoints = Integer.parseInt(lines.get(1));
-		badPoints = Integer.parseInt(lines.get(2));
-		
-		if(lines.size()>0 && lines.size() <4) {
-			dayOn = Integer.parseInt(lines.get(0));
-			goodPoints = Integer.parseInt(lines.get(1));
-			badPoints = Integer.parseInt(lines.get(2));
-		}
+		System.out.println(characters);
+		System.out.println(emails);
+		System.out.println(keys);
+		System.out.println(currentDay);
+		System.out.println(currentMoney);
+		System.out.println(bonus);
+		System.out.println(tiff_icecream);
+		System.out.println(jason_mints);
+		System.out.println(has_toaster);
 		*/
-		//System.out.println(dayOn +", "+ goodPoints +", "+ badPoints);
+		
 		// here we would start transition into whatever day // start the gameplay
 	}
 	
@@ -93,12 +91,13 @@ public class Save {
 	}
 	
 	
-    public static void generateSave (ObjectOutputStream out, ArrayList<NPC> allCharacters, ArrayList emails, int day, double money, double bonus, boolean tiff_icecream, boolean jason_mints, boolean has_toaster) {
+    public static void generateSave (ObjectOutputStream out, ArrayList<NPC> allCharacters, ArrayList emails, Node[] key, int day, double money, double bonus, boolean tiff_icecream, boolean jason_mints, boolean has_toaster) {
     	
     	try {
     		
 			out.writeObject(allCharacters);
 			out.writeObject(emails);
+			out.writeObject(key);
 			out.writeInt(day);
 			out.writeDouble(money);
 			out.writeDouble(bonus);
@@ -121,15 +120,17 @@ public class Save {
     //initialization method
     public static void generateSave (ObjectOutputStream out) {
     	//initializing save file
-    	ArrayList<NPC> test = new ArrayList<NPC>(2);
-    	test.add(new NPC("Tiff"));
-    	test.add(new NPC("test"));
     	try {
-    		out.writeInt(1);
-    		out.writeInt(5);
-			out.writeObject(test);
+    		out.writeObject(new ArrayList<NPC>());
+			out.writeObject(new ArrayList<Email>());
+			out.writeObject(new Node[0]);
+			out.writeInt(1);
+			out.writeDouble(0.0);
+			out.writeDouble(0.0);
+			out.writeBoolean(false);
+			out.writeBoolean(false);
+			out.writeBoolean(false);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }
@@ -175,6 +176,7 @@ public class Save {
      * @param saveFile a File, the file to save to
      * @param allCharacters an ArrayList, that stores every NPC in the game
      * @param emails an ArrayList, that stores all of the players received emails
+     * @param key an Node array, that stores the state of the keys
      * @param day an int, the day the player in currently on
      * @param money a double, the money the player currently has
      * @param bonus a double, the raise added to the player's earnings
@@ -182,11 +184,11 @@ public class Save {
      * @param jason_mints a boolean, for story branching
      * @param has_toaster a boolean, for story branching
      */
-	 public static void saveWriter(File saveFile, ArrayList allCharacters, ArrayList emails, int day, double money, double bonus, boolean tiff_icecream, boolean jason_mints, boolean has_toaster) {
+	 public static void saveWriter(File saveFile, ArrayList allCharacters, ArrayList emails, Node[] key, int day, double money, double bonus, boolean tiff_icecream, boolean jason_mints, boolean has_toaster) {
 	    	
 	    	try {
 	        	ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(saveFile.getPath()));
-	        	generateSave(out, allCharacters,  emails, day, money, bonus, tiff_icecream, jason_mints, has_toaster);
+	        	generateSave(out, allCharacters,  emails, key, day, money, bonus, tiff_icecream, jason_mints, has_toaster);
 	        	out.close();
 	    	} catch (Exception e) {
 	    		e.printStackTrace();

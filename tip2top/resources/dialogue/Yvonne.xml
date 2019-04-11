@@ -37,6 +37,7 @@
 		<print>You: Sorry, we only have conditioner at the moment.</print>
 		<print>You: You might have to wait until tomorrow until we give out shampoo again.</print>
 		<print>Yvonne: Hey come on, I really need it. Can’t you just sneak one under the counter for me?</print>
+		<print>choice</print>
 	</shampoo>
 		
 		<shampoo_yes>
@@ -66,6 +67,7 @@
 		<print>Yvonne: Anyways, I’ve got this old toaster for sale.</print>
 		<print>Yvonne: Would like it?</print>
 		<print>Yvonne: I’m only selling it for a dollar.</print>
+		<print>choice</print>
 	</sellToaster>
 	
 		<sellToaster_yes>
@@ -87,6 +89,7 @@
 		<print>You: Uh... trumpet player today?</print>
 		<print>Yvonne: Business operates as per usual.</print>
 		<print>Yvonne: So, about my soap?</print>
+		<print>choice</print>
 	</soap>
 	
 		<soap_yes>

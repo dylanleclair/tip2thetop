@@ -103,7 +103,7 @@ public class NPC implements Serializable{
 		List<String> characters_day_2 = Arrays.asList("Dylan", "Jason", "Mystery", "Patricia", "Tiff");
 		List<String> characters_day_3 = Arrays.asList("Benjamin", "Yvonne", "Jason", "Dylan");
 		List<String> characters_day_4 = Arrays.asList("Tiff","Patricia","Jason", "Yvonne", "Dylan", "Benjamin");
-		List<String> characters_day_5 = Arrays.asList("Jason", "Patricia", "Anna", "Dylan", "Yvonne", "Tiff", "Dimitri");
+		List<String> characters_day_5 = Arrays.asList("Jason", "Patricia", "Anna", "Dylan", "Yvonne", "Tiff", "Dimitri");//partricia is an email on day 5
 		List<String> characters_day_6 = Arrays.asList("Yvonne","Dimitri", "Dylan", "Tiffany"); 
 		// need a Mystery character image
 				
