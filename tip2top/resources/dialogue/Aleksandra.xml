@@ -26,8 +26,51 @@
 		<print>Either way, I’m paying for you to be the best of the best so strive to make me some more money, yeah?</print>
 		<print>Anyways, today we are focusing on getting rid of conditioner.</print>
 		<print>Nothing else should be given out. Don’t screw up.</print>
-	
+		<print>Okay, bye.</print>
 	</thirdDay>
+	
+	<fourthDay>
+		<print>Aleksandra: Hey, so something happened in the laundry center.</print>
+		<print>Aleksandra: We are short on pillows!!</print> 
+		<print>Aleksandra: So, do NOT hand out the pillows!</print> 
+		<print>Aleksandra: We need to keep some for my good night sleep you know.</print>
+		<print>Aleksandra: Anyways, keep up the work and make me money.</print>
+	</fourthDay>
+	
+	<fifthDay>
+		<print>Aleksandra: Morning, loyal employee.</print>
+		<print>Aleksandra: Here’s your daily status update from your greatest boss.</print>
+		<print>Aleksandra: Today we’re trying to get rid of soap!</print>
+		<print>Aleksandra: They’ve just been getting old, and starting to smell weird.</print>
+		<print>Aleksandra: So try your best to get rid of them ASAP!</print>
+		<print>Aleksandra: The last thing I want is a repeat of last year.</print>
+		<print>Aleksandra: ALSO. DO. NOT. GIVE. OUT. TOWELS.</print>
+		<print>Aleksandra: Bye.</print>
+	</fifthDay>
+	
+	<sixthDay>
+		<print>Aleksandra: Wow!</print>
+		<print>Aleksandra: I don’t really expect my employees to last this long.</print>
+		<print>Aleksandra: You’ve almost been here for an entire week.</print>
+		<print>Aleksandra: Keep it up.</print>
+		<print>Aleksandra: But make sure you don’t screw up the policies.</print>
+		<print>Aleksandra: Today we’re focusing on blankets!</print> 
+		<print>Aleksandra: … They’re starting to smell weird too.</print>
+		<print>Aleksandra: And who’s that weird guy sleeping in your room?</print>
+		<print>Aleksandra: Actually, I don’t want to know.</print>
+		<print>Aleksandra: Also, there’s a toilet paper shipment coming in today.</print>
+		<print>Aleksandra: Bye.</print>
+	</sixthDay>
+	
+	<seventhDay>
+		<print>Aleksandra: Hey sorry I’m late.</print>
+		<print>Aleksandra: Haha, just kidding.</print>
+		<print>Aleksandra: Anyways, you’ve been here for a full week now!</print>
+		<print>Aleksandra: Isn’t that exciting!!!</print>
+		<print>Aleksandra: There are no actual policies for you today.</print>
+		<print>Aleksandra: So I’m going to stop wasting my time and go.</print>
+		<print>Aleksandra: Okay, bye.</print>
+	</seventhDay>
 	
 
 </Aleksandra>
