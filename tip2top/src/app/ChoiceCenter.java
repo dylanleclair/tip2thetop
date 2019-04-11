@@ -311,31 +311,45 @@ public class ChoiceCenter {
 					if(choice ==1) {//sell toaster
 						has_toaster = false;
 						tips+=10;
-						return "";
+						return "toaster_yes";
 					}
 					if(choice == 2) {
-						return "";
+						return "toaster_no";
 					}
 				}
 				else {//you don't have toaster
-					return "";
+					return "noToaster";
 				}
 			}
 			if(character.equalsIgnoreCase("dylan")) {
 				choice = getChoiceTwoOptions("Where?", "You know where dylan can go and read up some old newspapers?", "The library", "The town hall");
 				if(choice == 1) {//library
 					customerSatisfaction++;
-					return "";
+					return "read_a";
 				}
 				if(choice == 2) {//town hall
 					gulagPoints++;
-					return "";
+					return "read_b";
 				}
 			}
 			
 			if(character.equalsIgnoreCase("patricia")) {
-				
+				choice = getChoiceTwoOptions("Give Patricia blankets?", "Do you wanna give out some blankets to Patricia?", "yessss", "nah");
+				if(choice == 1) {//yessss
+					customerSatisfaction++;
+					gulagPoints--;
+					return "b_yes";
+				}
+				if(choice == 2) {//no
+					daymistakes++;
+					customerSatisfaction--;
+					gulagPoints++;
+					return "b_no";
+				}
 			}
+		}
+		if(day == 7) {
+			
 		}
 		
 		return "";
