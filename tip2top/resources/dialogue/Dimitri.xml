@@ -19,18 +19,37 @@
 		<print>You: Guess I’ll be sleeping in the broom closet...</print>
 	</checkIn>
 	
-	<toaster>
+	<ifToaster>
+  	<print>-- Dimitri walks out of his room grinning. --</print>
+		<print>Dimitri: Ah, I believe I have ze BEST room in the house.</print>
+		<print>You: That’s good to hear...</print>
+		<print>Dimitri: Howeva, Dimitri would like it verrry much if you give me blanket and toaster.</print> 
+		<print>Dimitri: Dimitri wants to be niiiiiice and toasty at the dark time.</print>
+	</ifToaster>
 	
-	<print>-- Dimitri walks out of his room grinning. --</print>
-	<print>Dimitri: Ah, I believe I have ze BEST room in the house.</print>
-	<print>You: That’s good to hear...</print>
-	<print>Dimitri: Howeva, Dimitri would like it verrry much if you give me blanket and toaster. </print>
-	<print>Dimitri: Dimitri wants to be niiiiiice and toasty at the dark time.</print>
+		<toaster_yes>
+			<print>You: Oh, I do have a toaster.</print>
+			<print>You: Would you like it?</print>
+			<print>Dimitri: OH MY YES PLEASE!</print>
+			<print>Dimitri: Here, $10.</print>
+			<print>Dimitri: Dimitri knows quality when he sees it.</print>
+		</toaster_yes>
 		
+		<toaster_no>
+			<print>You: Oh, I do have a toaster.</print>
+			<print>You: But it’s not for sale, sorry.</print>
+			<print>Dimitri: NOnoNOnOno!!! Please sir.</print> 
+			<print>Dimitri: Dimitri wants toaster very very very much.</print>
+			<print>You: Sorry, no is no.</print>
+			<print>Dimitri: You’ll regret this.</print>
+		</toaster_no>
 		
-	
-	
-	</toaster>
-	
+	<noToaster>
+		<print>You: Well, unfortunately I don’t have anything for you.</print>
+		<print>Dimitri: But Dimitri wants to be toast warm!</print>
+		<print>You: Just huddle.</print>
+		<print>Dimitri: Fine, be that way.</print>
+	</noToaster>
+
 
 </Dimitri>
