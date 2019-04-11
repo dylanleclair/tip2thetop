@@ -81,6 +81,7 @@
 		<print>You: Wait, you didn’t answer my question.</print>
 		<print>Tiffany: ...</print>
 		<print>Tiffany: I’m waiting for a pillow.</print>
+		<print>choice</print>
 	</pillows>
 	
 		<pillows_yes>
@@ -92,6 +93,10 @@
 			<print>Tiffany: I guess you need to survive too.</print>
 		</pillows_no>
 		
+	<toaster>
+		<print>choice</print>
+	</toaster>
+	
 	<toaster_yes>
 		<print>Tiffany: Hello!</print>
 		<print>You: Hey. What can I do for you today?</print>
