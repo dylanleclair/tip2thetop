@@ -39,5 +39,19 @@
 			<print>Anna: You are as sweet as lemon meringue pie!</print>
 		</missing_no>
 	
+	<sad>
+		<print>Anna: Hi...</print>
+		<print>You: Hey, are you okay?</print>
+		<print>Anna: Yeah, I’m alright, just feeling out of it.</print>
+		<print>You: Anything in particular happen?</print>
+		<print>Anna: No, no.</print>
+		<print>Anna: Thanks for being such a caring munchkin though.</print>
+		<print>Anna: Also, are you sleeping enough at night?</print>
+		<print>Anna: Make sure to eat 3 meals a day as well.</print>
+		<print>Anna: And do your laundry!</print>
+		<print>You: Uhm, thanks?</print>
+		<print>Anna: Okay sweetie pie, make sure you take care of yourself.</print>
+		<print>Anna: Toodles!</print>
+	</sad>
 
 </Anna>

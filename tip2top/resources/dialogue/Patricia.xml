@@ -39,5 +39,28 @@
 		<print>Patricia: You’d be great for it.</print>
 		<print>Patricia: Anyways, seeya later.</print>
 	</bigNeck>
+	
+	<blankets>
+		<print>Patricia: Hey, I’m really enjoying my stay.</print>
+		<print>You: That’s great!</print> 
+		<print>You: Is there anything I can do for you?</print>
+		<print>Patricia: Yes, actually can I have a few extra blankets?</print>
+		<print>Patricia: Gotta keep the neck warm, yknow.</print>
+	</blankets>
+	
+		<b_yes>
+			<print>You: Of course!</print>
+			<print>You: Anything for my favorite superstar.</print>
+			<print>Patricia: Thanks buddy, I owe you one.</print>
+			<print>Patricia: Okay, see you later.</print>
+		</b_yes>
+		
+		<b_no>
+			<print>You: Sorry, no can do.</print>
+			<print>Patricia: What, why?</print>
+			<print>You: Just hotel policy.</print>
+			<print>Patricia: Ugh, if only you people knew about the kind of influence I have...</print>
+			<print>Patricia: Okay, bye.</print>
+		</b_no>
 
 </Patricia>
