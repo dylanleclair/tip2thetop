@@ -82,7 +82,7 @@ public class Game extends Application {
 
 			// Loading and starting the screen. 
 			
-			createsavesc = new Scene(gameb.buildSaveScreen(window, opening, menusc, emanager), 1280,720);
+			createsavesc = new Scene(gameb.buildSaveScreen(window, opening, menusc), 1280,720);
 			
 			//BorderPane amigo = dayb.getAmigo();
 			//amigoscreen = new Scene(amigo,1280,720);

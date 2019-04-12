@@ -36,6 +36,13 @@ public class GameBuilder {
 	private boolean clickable = true;
 	
 	
+	/**
+	 * Loads the ending by stacking images into a StackPane, similar to the opening sequence.
+	 * @param endPane - the StackPane to build images into
+	 * @param ending - the String which decides the ending to be played
+	 * @param menusc - main menu scene, which is swapped to after the game is finished. 
+	 * @param window - the Stage of the game, used to switch scenes.
+	 */
 	public void loadEnding (StackPane endPane, String ending, Scene menusc, Stage window) {
 
 		File directory = new File("./resources/gameimg/endings/"+ending);
@@ -99,7 +106,13 @@ public class GameBuilder {
 		
 	}
 	
-	
+	/**
+	 * Translates a node downward and off the screen, animates a button onto screen when the last image is reached.
+	 * @param node - the node to be animated off screen 
+	 * @param endPane - the StackPane which is accessed in order to add the button.
+	 * @param window - the Stage of the game, to switch back to menu scene when the button is pressed.
+	 * @param menusc - a Scene, the  menu scene which is switched back to upon button press. 
+	 */
 	public void fadeImageDown (Node node, StackPane endPane, Stage window, Scene menusc) {
 		TranslateTransition translate = new TranslateTransition();
 		translate.setDuration(Duration.millis(1800)); 
@@ -164,7 +177,15 @@ public class GameBuilder {
 		
 	}
 	
-	public void startPlayingButton(Stage window, Scene opening, TextField text, Email emanager) {
+	
+	/**
+	 * Handles the actions for when the start playing button is pressed.
+	 * @param window a Stage, used to switch to the main scene for the game
+	 * @param opening, the Scene to switch to after.
+	 * @param text, the TextField to retreive the name of the player from.
+	 * @param emanager
+	 */
+	public void startPlayingButton(Stage window, Scene opening, TextField text) {
 		window.setScene(opening);
 		saveSet = true;
 		String savename = text.getText();
@@ -241,7 +262,7 @@ public class GameBuilder {
 	 * @param menusc - the Scene we want to switch back to when "Back" is pressed.
 	 * @return a BorderPane, which is the Pane we want to display
 	 */
-	public BorderPane buildSaveScreen(Stage window, Scene openingsc, Scene menusc, Email emanager) {
+	public BorderPane buildSaveScreen(Stage window, Scene openingsc, Scene menusc) {
 		BorderPane setSaveName = new BorderPane();
 		
 		TextField enterName = new TextField();
@@ -274,7 +295,7 @@ public class GameBuilder {
 		BorderPane.setMargin(container, new Insets(300,500, 70 ,130));
 		setSaveName.setCenter(container);
 		
-		confirmName.setOnAction(e -> startPlayingButton(window,openingsc,enterName, emanager));
+		confirmName.setOnAction(e -> startPlayingButton(window,openingsc,enterName));
 		
 		return setSaveName;
 	}
@@ -319,7 +340,13 @@ public class GameBuilder {
 	}
 	
 	
-	
+	/**
+	 * Builds the ending screen onto a StackPane according to a specified ending prompt.
+	 * @param endPane a StackPane, which the ending is loaded onto
+	 * @param ending a String, which is used to specify desired ending
+	 * @param menusc a Scene, the menu scene to switch to after the game ends.
+	 * @param window a Stage, to switch the scenes as needed.
+	 */
 	public void buildEndingScreen (StackPane endPane,String ending, Scene menusc, Stage window) {
 		
 		
@@ -429,7 +456,15 @@ public class GameBuilder {
 		return helpScreen;
 	}
 	
-	
+	/**
+	 * Builds the transition screen, calculating daily score along the way. 
+	 * @param transition - the StackPane to build elements onto. 
+	 * @param window the Stage of the application to switch scenes of.
+	 * @param nextDay - the Scene of the next day (mainscene)
+	 * @param dayb - the DayBuilder used by the game.
+	 * @param transitionsc - a Scene, which contains the transition StackPane
+	 * @param menusc - a Scene, the menu scene to return to.
+	 */
 	public void buildTransitionScreen(StackPane transition,Stage window, Scene nextDay, DayBuilder dayb, Scene transitionsc, Scene menusc) {
 		
 		transition.getChildren().clear();
@@ -465,10 +500,10 @@ public class GameBuilder {
 		Text st = new Text(Double.toString(toDisplay[5]));
 		Text total = new Text(Double.toString(toDisplay[6]));
 		
-		if (toDisplay[6] < 0) {
+		if (toDisplay[6] < 0) { // checks if the user is bankrupt / has lost
 			// end the game
 			buildEndingScreen(transition, "oom", menusc, window);
-		} else if (dayb.getDay() == 7) {
+		} else if (dayb.getDay() == 7) { // if it's the last day, ends the game
 			
 			if (cc.getChoiceFinale() == 4) {
 				buildEndingScreen(transition, "correct", menusc, window);
@@ -476,7 +511,7 @@ public class GameBuilder {
 				buildEndingScreen(transition, "incorrect", menusc, window);
 			}
 			
-		} else {
+		} else { // builds the proper screen if they aren't bankrupt / has lost
 			
 			
 			Text[] totallist = {st, total};
@@ -498,11 +533,7 @@ public class GameBuilder {
 			
 			totals.setManaged(false);
 			totals.setLayoutX(1000);
-			totals.setLayoutY(310);
-			
-			
-			// add all the stuffs 
-			
+			totals.setLayoutY(310);			
 			
 			try {
 				Image image = new Image(new FileInputStream("./resources/gameimg/transition/dailyreport.jpg"));

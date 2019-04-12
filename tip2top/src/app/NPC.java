@@ -84,7 +84,12 @@ public class NPC implements Serializable{
 		this.key = key;
 	}
 
-	
+	/**
+	 * Uses to retrieve a specific NPC from a given ArrayList of NPCs. 
+	 * @param name - the name of the NPC to retrieve
+	 * @param allCharacters - the ArrayList of NPC characters to look through.
+	 * @return the desired NPC, if they are in the list.
+	 */
 	public NPC getCharacter (String name, ArrayList<NPC> allCharacters) {
 		for (NPC character : allCharacters) {
 			if (name.equals(character.getName()) ) {
@@ -135,6 +140,10 @@ public class NPC implements Serializable{
 		
 	}
 	
+	/**
+	 * Used on day 1, to load the initial list of all characters to be used for the save. 
+	 * @param allCharacters - the ArrayList of NPCs to populate with desired NPCs for the game.
+	 */
 	public void populateAllCharacters(ArrayList<NPC> allCharacters) {
 		if (populated == false) {
 
@@ -158,7 +167,10 @@ public class NPC implements Serializable{
 			populated = true;
 		}
 	}
-		
+	
+	/**
+	 * Returns a String which reflects information of the NPC.
+	 */
 	public String toString() {
 		return name + " " + roomNumber;
 	}

@@ -8,14 +8,27 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Region;
 import javafx.scene.control.ButtonType;
 
+
+/**
+ * Prompts the user for choices and handles interaction with the game accordingly.
+ */
 public class ChoiceCenter {
 
 	private int gulagPoints;
 	private int daymistakes;
+	private int customerSatisfaction;
+	private boolean tiff_icecream;
+	private boolean jason_mint;
+	private boolean has_toaster;
+	private int choice = 0;
+	private double tips;
+	private double spendings;
+	private double bonus;
 	public boolean isTiff_icecream() {
 		return tiff_icecream;
 	}
 
+	// Setters and getters
 
 	public void setTiff_icecream(boolean tiff_icecream) {
 		this.tiff_icecream = tiff_icecream;
@@ -39,18 +52,7 @@ public class ChoiceCenter {
 
 	public void setHas_toaster(boolean has_toaster) {
 		this.has_toaster = has_toaster;
-	}
-
-
-	private int customerSatisfaction;
-	private boolean tiff_icecream;
-	private boolean jason_mint;
-	private boolean has_toaster;
-	private int choice = 0;
-	private double tips;
-	private double spendings;
-	private double bonus;
-	
+	}	
 	
 	
 	public double getSpendings() {
@@ -112,7 +114,12 @@ public class ChoiceCenter {
 		this.customerSatisfaction = customerSatisfaction;
 	}
 
-
+	/**
+	 * Main logical handler for choices in the game. Whenever a choicePoint is prompted, choicePoint returns a prompt for the dialogue to be displayed. 
+	 * @param day an int, the current day in game
+	 * @param character a String, the name of the character on screen. 
+	 * @return a String, which serves as the prompt for dialogue to be processed.
+	 */
 	public String choicePoint(int day, String character){
 		if(day ==1) {
 			if(character.equalsIgnoreCase("Yvonne")) {
@@ -556,7 +563,14 @@ public class ChoiceCenter {
 		}
 	}
 	
-	
+	/**
+	 * Creates an alert that presents the user with two customizable options.
+	 * @param header - a String, the title of the alert.
+	 * @param content - a String, the body text of the alert.
+	 * @param option1 - a String, the choice to be displayed in button 1 of the alert.
+	 * @param option2  - a String, the choice to be displayed in button 2 of the alert.
+	 * @return an int, which is processed using choicePoint.
+	 */
 	public int getChoiceTwoOptions(String header,String content, String option1, String option2) {
 		
 		Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -584,7 +598,12 @@ public class ChoiceCenter {
 	}
 	
 	
-	
+	/**
+	 * A less customized version of getChoiceTwoOptions
+	 * @param header - a String, the title text of the alert
+	 * @param content - a String, the body text of the alert.
+	 * @return an int, which is processed using choicePoint.
+	 */
 	public int getChoiceYesNo(String header,String content) {
 		
 		Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -655,7 +674,10 @@ public class ChoiceCenter {
 		
 	}
 	
-	
+	/**
+	 * Get's the choice which determines the ending that the player will receive.
+	 * @return a number, which is processed in buildTransitionScreen (GameBuilder) to build the desired ending.
+	 */
 	public int getChoiceFinale() {
 		
 		Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -690,6 +712,13 @@ public class ChoiceCenter {
 			return 0;
 	}
 	
+	
+	/**
+	 * Like choicePoint, but adds returns emails for use within the game.
+	 * @param day - an int, the current day ingame
+	 * @param characterName - the String name of the current character
+	 * @return an Email, processed by DayBuilder.
+	 */
 	public Email emailPoint (int day, String characterName) {
 		
 		if (day == 3 && characterName.equalsIgnoreCase("Benjamin")) {

@@ -62,6 +62,28 @@ public class DayBuilder {
 	public Node key[] = {null,null,null,null,null,null,null,null,null,null,null,null};
 
 	
+	// Amigo 1000 resources
+	private ObservableList<String> bookings = FXCollections.observableArrayList(); // list of bookings toStrings displayed in Amigo
+	private ObservableList<String> emailsObservable = FXCollections.observableArrayList(); // list of emails toStrings displayed in Amigo 1000 
+	private ArrayList<Email> email_list = new ArrayList<Email>(); // list of emails in the Amigo 1000
+	private Button nextC = new Button(); 
+	private boolean clickable = false;
+	private int index = 0;
+	
+	
+	// Image of the character currently in slot 1 / being displayed
+	private ImageView activeCharacter;
+	
+	// dialogue slots + trackers
+	private ArrayList<String> active = new ArrayList<>();
+	private boolean dialogueActive = false;
+	private Text slot1 = new Text("");
+	private Text slot2 = new Text("");
+	private Text slot3 = new Text("");
+	
+	
+	//Setters and getters (self-explanatory)
+	
 	public ArrayList<NPC> getDailyCharacters() {
 		return dailyCharacters;
 	}
@@ -89,10 +111,6 @@ public class DayBuilder {
 	public StackPane getToday() {
 		return today;
 	}
-	// one layer for background (index 0)
-	// one layer for character (index 1)
-	// one layer for desk/foreground (index 2)
-	// one layer for borderpane w buttons n stuff to make it interactive?
 
 	private int day = 1;
 	
@@ -103,22 +121,7 @@ public class DayBuilder {
 	public void setKeys(int[] keys) {
 		this.keys = keys;
 	}
-
-	// Amigo 1000 resources
-	private ObservableList<String> bookings = FXCollections.observableArrayList(); // list of bookings toStrings displayed in Amigo
-	private ObservableList<String> emailsObservable = FXCollections.observableArrayList(); // list of emails toStrings displayed in Amigo 1000 
-	private ArrayList<Email> email_list = new ArrayList<Email>(); // list of emails in the Amigo 1000
-	private Button nextC = new Button(); 
-	private boolean clickable = false;
-	private int index = 0;
-
-	// Image of the character currently in slot 1 / being displayed
-	private ImageView activeCharacter;
 	
-	// dialogue slots + trackers
-	private ArrayList<String> active = new ArrayList<>();
-	private boolean dialogueActive = false;
-	private Text slot1 = new Text("");
 	public ArrayList<NPC> getAllCharacters() {
 		return allCharacters;
 	}
@@ -151,14 +154,32 @@ public class DayBuilder {
 		this.email_list = email_list;
 	}
 
-	private Text slot2 = new Text("");
-	private Text slot3 = new Text("");
-  
+	
+
+	public ObservableList<String> getBookings() {
+		return bookings;
+	}
+
+	public void setBookings(ObservableList<String> bookings) {
+		this.bookings = bookings;
+	}
+
+	public ObservableList<String> getEmailsObservable() {
+		return emailsObservable;
+	}
+
+	public void setEmailsObservable(ObservableList<String> emailsObservable) {
+		this.emailsObservable = emailsObservable;
+	}
+	
 
   
-
 	// Pat created this to load images for day
 	
+	/**
+	 * Highlights selected keys
+	 * @param node - the key to be highlighted.
+	 */
 	public void addEvent(Node node) {
 		DropShadow shadow = new DropShadow();
 		DropShadow highlight = new DropShadow();
@@ -262,10 +283,10 @@ public class DayBuilder {
 	}
 
 	/**
-	 * Loads the basic interface for the day and it's necessary elements.
-	 * @param window
-	 * @param amigoscreen
-	 * @author patricia, dylan
+	 * Loads the basic interface for the day and it's necessary elements. (including keys, characters, images, etc)
+	 * @param window - the Stage, needed to switch scenes.
+	 * @param amigoscreen - the scene for the Amigo 1000s interface
+	 * @param transition - the scene for the transition screen to be built onto.
 	 */
 	public void loadDay(Stage window, Scene amigoscreen, Scene transition) {
 		Image image, image2, image3, image5;
@@ -516,7 +537,6 @@ public class DayBuilder {
 				emailsObservable.add(item.toString());
 			}
 
-			
 			bmanager.loadBookings(allCharacters, bookings);
 			
 			manager.initializeCharacters(day, allCharacters, dailyCharacters);
@@ -595,8 +615,9 @@ public class DayBuilder {
 
 
 	/**
-	 * Handles the "day" of events as a whole. Controls which characters are on the screen. 
-	 * @param handler a BorderPane which stores buttons/other onscreen elements as needed.  (might be causing bugs?)
+	 * Handles the "day" of events as a whole. Controls which characters are on the screen, advances characters and triggers animations.
+	 * @param window a Stage, needed to switch between days.
+	 * @param transition a Scene, the transition scene for the game. (between days)
 	 */
 	public void runDay(Stage window, Scene transition) {
 		
@@ -644,7 +665,10 @@ public class DayBuilder {
 		
 	}
 
-	
+	/**
+	 * Is responsible for running a single character. Triggers necessary animations and loads necessary images.
+	 * Additionally, this retreives the initial dialogue for the character.
+	 */
 	public void runCharacter() {
 		if (index == 0) character = dailyCharacters.get(index);
 		if (index >= 1) character = dailyCharacters.get(index -1); // just corrects the index to fix a bug where a player was skipped.
@@ -776,8 +800,8 @@ public class DayBuilder {
 	}
 
 	/**
-	 * 
-	 * @param amigo
+	 *  Builds the interface for the email screen of the Amigo 1000
+	 * @param amigo the StackPane to build onto.
 	 */
 	public void buildEmailScreen(StackPane amigo) { 
 
@@ -852,9 +876,9 @@ public class DayBuilder {
 	}
 		
 	/**
-	 * 
-	 * @param dailyCharacters
-	 * @param amigo
+	 * Builds the check in screen for the Amigo 1000.
+	 * @param dailyCharacters an ArrayList<NPC>, the list of characters for the day.
+	 * @param amigo a StackPane which the check in screen is built onto. 
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void buildCheckInScreen(ArrayList<NPC> dailyCharacters, StackPane amigo) {
@@ -962,35 +986,23 @@ public class DayBuilder {
 		
 	}
 	
-	
+	/**
+	 * Used to trigger the next day of the game.
+	 * @param window a Stage, used to change scenes.
+	 * @param transitionsc the Scene to switch to between days. 
+	 */
 	public void triggerNewDay(Stage window, Scene transitionsc) {
-		index = 0;
-		day++;
-		nextC.setLayoutX(1300);
+		index = 0; // resets index
+		day++; // increments day
+		nextC.setLayoutX(1300); // resets position of next characters button.
 		nextC.setLayoutY(650);
-		manager.initializeCharacters(day, allCharacters, dailyCharacters);
+		manager.initializeCharacters(day, allCharacters, dailyCharacters); // initializes characters for next day
 		System.out.println(dailyCharacters);
-		runDay(window,transitionsc);
+		runDay(window,transitionsc); // runs the next day!
 	}
 
-	// Animations -- move to a different class?
-
-	public ObservableList<String> getBookings() {
-		return bookings;
-	}
-
-	public void setBookings(ObservableList<String> bookings) {
-		this.bookings = bookings;
-	}
-
-	public ObservableList<String> getEmailsObservable() {
-		return emailsObservable;
-	}
-
-	public void setEmailsObservable(ObservableList<String> emailsObservable) {
-		this.emailsObservable = emailsObservable;
-	}
-
+	// Various animations, nothing significant
+	
 	public TranslateTransition animateCharacterIn(Node character) {
 		TranslateTransition translate = new TranslateTransition();
 		translate.setDuration(Duration.millis(1300));
@@ -1090,7 +1102,10 @@ public class DayBuilder {
 
 	}
 
-	
+	/**
+	 * Adds an email to the ListView in the Amigo 1000 and the actual list used for storage of the emails. 
+	 * @param toAdd an Email, the email to be added to the previously specified lists.
+	 */
 	public void addEmail(Email toAdd) {
 		email_list.add(toAdd);
 		emailsObservable.add(toAdd.toString());

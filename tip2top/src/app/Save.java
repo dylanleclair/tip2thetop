@@ -131,12 +131,27 @@ public class Save {
 		// here we would start transition into whatever day // start the gameplay
 	}
 	
-	//not being used, may be able to delete
+	/**
+	 * Returns the current save being run by the game. 
+	 * @return a File, the save being used by the game.
+	 */
 	public static File getSave() { // may be needed to invoke saveWriter - keep for now
 		return currentSave;
 	}
 	
-	
+	/**
+	 * Generates a save according to given variables
+	 * @param out an ObjectOutputStream which is used to write the necessary objects.
+	 * @param allCharacters the ArrayList of NPCs to be saved
+	 * @param emails the ArrayList of Email to be saved
+	 * @param key the int[] which stores key data
+	 * @param day an int, reflecting the last day completed.
+	 * @param money an int, the money earned by the user / the player's score
+	 * @param bonus an int, the amount of bonuses received
+	 * @param tiff_icecream a boolean, saved to store choices made by user
+	 * @param jason_mints a boolean, saved to store choices made by user
+	 * @param has_toaster a boolean, saved to store choices made by user
+	 */
     @SuppressWarnings("rawtypes")
 	public static void generateSave (ObjectOutputStream out, ArrayList<NPC> allCharacters, ArrayList emails, int[] key, int day, double money, double bonus, boolean tiff_icecream, boolean jason_mints, boolean has_toaster) {
     	
