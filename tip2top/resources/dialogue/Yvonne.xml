@@ -35,6 +35,7 @@
 	<shampoo>
 		<print>Yvonne: Hey, my room’s out of shampoo. Do you mind if I get more?</print>
 		<print>You: Sorry, we only have conditioner at the moment.</print>
+		<print>--You have a new email!--</print>
 		<print>You: You might have to wait until tomorrow until we give out shampoo again.</print>
 		<print>Yvonne: Hey come on, I really need it. Can’t you just sneak one under the counter for me?</print>
 		<print>choice</print>
@@ -87,6 +88,7 @@
 		<print>Yvonne: Hey. I ran out of soap.</print>
 		<print>Yvonne: Could I please get some more?</print>
 		<print>You: Uh... trumpet player today?</print>
+		<print>--You have a new email!--</print>
 		<print>Yvonne: Business operates as per usual.</print>
 		<print>Yvonne: So, about my soap?</print>
 		<print>choice</print>
@@ -117,6 +119,7 @@
 		<print>Yvonne: Well, things are about to get really wild.</print>
 		<print>You: Is that why you’ve got a...</print>
 		<print>You: Violin case?</print>
+		<print>--You have a new email!--</print>
 		<print>Yvonne: Nope.</print>
 		<print>Yvonne: Just let room service know that I’d like them to come to my room a little early.</print>
 	</roomService>

@@ -209,28 +209,24 @@ public class GameBuilder {
 		VBox menuButtons = new VBox(20);
 		Button newGame = new Button();
 		Button loadGame = new Button();
-		Button help = new Button();
 
 		Image newimg = new Image(new FileInputStream("./resources/menuimg/newgame.jpg"));
 		newGame.setGraphic(new ImageView(newimg));
 		Image loadimg = new Image(new FileInputStream("./resources/menuimg/loadgame.jpg"));
 		loadGame.setGraphic(new ImageView(loadimg));
-		Image helpimg = new Image(new FileInputStream("./resources/menuimg/help.jpg"));
-		help.setGraphic(new ImageView(helpimg));
 		
 		// Event handling for menu buttons
 		
 		newGame.setOnAction(e -> window.setScene(createsavesc));
 		loadGame.setOnAction(e -> window.setScene(loadsc));
-		help.setOnAction(e -> window.setScene(helpsc));
+	
 		
 		// Styling menu buttons (replace with images later)
 		
 		newGame.setStyle("-fx-base: #000000;");
 		loadGame.setStyle("-fx-base: #000000;");
-		help.setStyle("-fx-base: #000000;");
 		
-		menuButtons.getChildren().addAll(newGame, loadGame, help);
+		menuButtons.getChildren().addAll(newGame, loadGame);
 
 		// for Insets (padding), the order is (top, right, bottom, left)
 		

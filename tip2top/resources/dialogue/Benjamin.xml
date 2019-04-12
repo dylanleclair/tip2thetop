@@ -7,8 +7,10 @@
 		<print>You : Yes, we do have a few rooms available.</print>
 		<print>You: What kind of room would you like today?</print>
 		<print>Benjamin: Oh, I’ll take a premium room. Luxury is overkill.</print>
+		<print>Room 7 should do the trick..</print>
 		<print>You: How long do you plan on staying?</print> 
 		<print>Benjamin: Just the night.</print> 
+		<print>--You have a new email!--</print>
 		<print>You: Okay, sounds good. Would you like any conditioner?</print>
 		<print>Benjamin: Nah.</print>
 	</checkIn>

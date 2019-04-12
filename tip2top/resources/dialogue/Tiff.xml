@@ -75,6 +75,7 @@
 		<print>Tiffany: It was good...</print>
 		<print>Tiffany: But I’ve noticed that one of the guests have disappeared...</print>
 		<print>You: Wait, disappeared?</print>
+		<print>--You have a new email!--</print>
 		<print>You: What do you mean?</print>
 		<print>Tiffany: ...</print>
 		<print>Tiffany: Can I have more pillows please, my friends are going to end up sleeping on the floor...</print>
@@ -150,6 +151,7 @@
 		<print>You: The toilet paper?</print>
 		<print>Tiffany: Yes.</print>
 		<print>You: Uhm, it was fine.</print>
+		<print>--You have a new email!--</print>
 		<print>Tiffany: Okay, it just seemed weird since Aleksandra was so worried about it.</print>
 		<print>You: Oh, thanks?</print>
 		<print>Tiffany: Welp, bye. :)</print>
