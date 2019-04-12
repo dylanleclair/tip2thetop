@@ -11,13 +11,13 @@ public class Game extends Application {
 
 	//protected static boolean loadingFromSave = false;
 	
-	static Stage window;
-	static Scene menusc, opening, loadsc, helpsc, createsavesc, mainscene, amigoscreen, transitionsc, endingsc;
-	static GameBuilder gameb = new GameBuilder();
-	static DayBuilder dayb = new DayBuilder();
-	static Email emanager = new Email();
-	static StackPane transition = new StackPane();
-	static StackPane amigo = new StackPane();
+	protected static Stage window;
+	protected static Scene menusc, opening, loadsc, helpsc, createsavesc, mainscene, amigoscreen, transitionsc, endingsc;
+	protected static GameBuilder gameb = new GameBuilder();
+	protected static DayBuilder dayb = new DayBuilder();
+	protected static Email emanager = new Email();
+	protected static StackPane transition = new StackPane();
+	protected static StackPane amigo = new StackPane();
 
 	/**
 	 * Launches the menu screen, which has three different paths. 
