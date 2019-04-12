@@ -10,6 +10,11 @@ public class Money extends ChoiceCenter{
 	public double getMoney() {
 		return this.money;
 	}
+	
+	public void setMoney(double money) {
+		this.money = money;
+	}
+	
 	/**
 	 * @param dm an int, the number of daily mistakes
 	 * @param cs an int, customer satisfaction points

@@ -4,6 +4,7 @@ package app;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
@@ -168,6 +169,7 @@ public class GameBuilder {
 		window.setScene(opening);
 		saveSet = true;
 		String savename = text.getText();
+		
 		Save.createSaveFile(savename);
 		
 	}
@@ -296,14 +298,18 @@ public class GameBuilder {
 		    	 *  (remember that these are the images added by loadOpening() )
 		    	 *  This is performed once per image, for a total of 10 times. */
 
-		    		if (openingCount >= 0 && saveSet == true && clickable) { // set > to not let end frame
+		    		if (openingCount >= 0 && saveSet == true) { // set > to not let end frame
 		    			clickable = false;
 			    		fadeImageDown(openingPane.getChildren().get(openingCount));
 			    		openingCount--;
 			    		//Pat added to change scene to start of day
 			    		if (openingCount == -1) {
 			    			mainscene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
-							window.setScene(mainscene);
+			    			
+			    			Game.dayb.runDay(window, Game.transitionsc);
+			    			
+			    			window.setScene(mainscene);
+							
 			    			//Scene dayIntro = new Scene(DayBuilder.startDay(window), 1280, 720);
 			    			//window.setScene(dayIntro);
 		    		}
@@ -427,12 +433,14 @@ public class GameBuilder {
 	
 	public void buildTransitionScreen(StackPane transition,Stage window, Scene nextDay, DayBuilder dayb, Scene transitionsc, Scene menusc) {
 		
+		transition.getChildren().clear();
+		
 		ChoiceCenter cc = dayb.getChoiceManager();
 		Money mirror = dayb.getMoneyManager();
 		
 		int dm = cc.getDaymistakes();
-		int cs = cc.getGulagPoints();
-		int gulag = cc.getCustomerSatisfaction();
+		int gulag = cc.getGulagPoints();
+		int cs = cc.getCustomerSatisfaction();
 		double tips = cc.getTips();
 		double bonus = cc.getBonus();	
 		double spendings = cc.getSpendings();
@@ -529,6 +537,24 @@ public class GameBuilder {
 				});
 				
 				savequitbtn.setOnAction(a -> {
+					ArrayList<NPC> allCharacters = dayb.getAllCharacters();
+					ArrayList<Email> emails = dayb.getEmail_list();
+					int keys[] = dayb.getKeys();
+					int day = dayb.getDay();
+					
+					double money = mirror.getMoney();
+					double bonusamt = cc.getBonus();
+					boolean tiff_icecream = cc.isTiff_icecream();
+					boolean jason_mints = cc.isJason_mint();
+					boolean has_toaster = cc.isHas_toaster();
+					File saveFile = Save.getSave();
+					
+					
+					Save.saveWriter(saveFile, allCharacters, emails, keys, day, money, bonusamt, tiff_icecream, jason_mints, has_toaster);
+					
+					window.setScene(menusc);
+					Save.initializeSaves();
+					buildLoadScreen(window, menusc);
 					
 				});
 				
