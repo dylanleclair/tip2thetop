@@ -12,6 +12,36 @@ public class ChoiceCenter {
 
 	private int gulagPoints;
 	private int daymistakes;
+	public boolean isTiff_icecream() {
+		return tiff_icecream;
+	}
+
+
+	public void setTiff_icecream(boolean tiff_icecream) {
+		this.tiff_icecream = tiff_icecream;
+	}
+
+
+	public boolean isJason_mint() {
+		return jason_mint;
+	}
+
+
+	public void setJason_mint(boolean jason_mint) {
+		this.jason_mint = jason_mint;
+	}
+
+
+	public boolean isHas_toaster() {
+		return has_toaster;
+	}
+
+
+	public void setHas_toaster(boolean has_toaster) {
+		this.has_toaster = has_toaster;
+	}
+
+
 	private int customerSatisfaction;
 	private boolean tiff_icecream;
 	private boolean jason_mint;

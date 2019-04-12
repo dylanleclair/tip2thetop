@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 
 public class Save {
     
@@ -16,7 +17,7 @@ public class Save {
 	protected static int badPoints;
 	protected static ArrayList<NPC> characters;
 	protected static ArrayList<Email> emails;
-	protected static Node[] keys;
+	protected static int[] keys;
 	protected static int currentDay;
 	protected static double currentMoney;
 	protected static double bonus;
@@ -33,6 +34,7 @@ public class Save {
 	 * and writing saves as it stores the names of them all.
 	 */
 	public static void initializeSaves() {
+		names.clear();
 		File directory = new File("./resources/saves");
 		String[] filesInDir = directory.list();
 		for (int i = 0; i < filesInDir.length; i++) {
@@ -51,13 +53,14 @@ public class Save {
 	public static void loadSave(String name) {
 		
 		currentSave = new File("./resources/saves/" + name);
+
 		
 		
 		try {
 			ObjectInputStream reader = new ObjectInputStream(new FileInputStream(currentSave.getPath()));
 			characters = (ArrayList<NPC>)reader.readObject();
 			emails = (ArrayList<Email>)reader.readObject();
-			keys = (Node[])reader.readObject();
+			keys = (int[])reader.readObject();
 			currentDay = reader.readInt();
 			currentMoney = reader.readDouble();
 			bonus = reader.readDouble();
@@ -67,20 +70,46 @@ public class Save {
 			
 			reader.close();
 			
-		} catch (Exception e) {
 			
+			Game.dayb.setAllCharacters(characters);
+			Game.dayb.setEmail_list(emails);
+			Game.dayb.setKeys(keys);
+			Game.dayb.setDay(currentDay + 1);
+			Game.dayb.getMoneyManager().setMoney(currentMoney);
+			Game.dayb.getChoiceManager().setBonus(bonus);
+			Game.dayb.getChoiceManager().setTiff_icecream(tiff_icecream);
+			Game.dayb.getChoiceManager().setJason_mint(jason_mints);
+			Game.dayb.getChoiceManager().setHas_toaster(has_toaster);
+			
+			// run the day
+		
+			
+			//Game.dayb.buildAmigoScreen(Game.amigo, Game.window, Game.mainscene);
+
+			
+			//Game.dayb.loadDay(Game.window, Game.amigoscreen, Game.transitionsc);
+			Game.dayb.manager.initializeCharacters(Game.dayb.getDay(), Game.dayb.getAllCharacters(), Game.dayb.getDailyCharacters());
+			Game.window.setScene(Game.mainscene);
+			Game.dayb.runDay(Game.window, Game.transitionsc);
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		/*
+		
 		System.out.println(characters);
 		System.out.println(emails);
-		System.out.println(keys);
+		for(int k :keys)
+			System.out.println(k);
 		System.out.println(currentDay);
 		System.out.println(currentMoney);
 		System.out.println(bonus);
 		System.out.println(tiff_icecream);
 		System.out.println(jason_mints);
 		System.out.println(has_toaster);
-		*/
+		
+		
 		
 		// here we would start transition into whatever day // start the gameplay
 	}
@@ -91,7 +120,7 @@ public class Save {
 	}
 	
 	
-    public static void generateSave (ObjectOutputStream out, ArrayList<NPC> allCharacters, ArrayList emails, Node[] key, int day, double money, double bonus, boolean tiff_icecream, boolean jason_mints, boolean has_toaster) {
+    public static void generateSave (ObjectOutputStream out, ArrayList<NPC> allCharacters, ArrayList emails, int[] key, int day, double money, double bonus, boolean tiff_icecream, boolean jason_mints, boolean has_toaster) {
     	
     	try {
     		
@@ -184,7 +213,7 @@ public class Save {
      * @param jason_mints a boolean, for story branching
      * @param has_toaster a boolean, for story branching
      */
-	 public static void saveWriter(File saveFile, ArrayList allCharacters, ArrayList emails, Node[] key, int day, double money, double bonus, boolean tiff_icecream, boolean jason_mints, boolean has_toaster) {
+	 public static void saveWriter(File saveFile, ArrayList allCharacters, ArrayList emails, int[] key, int day, double money, double bonus, boolean tiff_icecream, boolean jason_mints, boolean has_toaster) {
 	    	
 	    	try {
 	        	ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(saveFile.getPath()));

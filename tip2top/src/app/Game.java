@@ -11,11 +11,13 @@ public class Game extends Application {
 
 	//protected static boolean loadingFromSave = false;
 	
-	Stage window;
-	Scene menusc, opening, loadsc, helpsc, createsavesc, mainscene, amigoscreen, transitionsc, endingsc;
-	private static GameBuilder gameb = new GameBuilder();
-	private static DayBuilder dayb = new DayBuilder();
-	private static Email emanager = new Email();
+	static Stage window;
+	static Scene menusc, opening, loadsc, helpsc, createsavesc, mainscene, amigoscreen, transitionsc, endingsc;
+	static GameBuilder gameb = new GameBuilder();
+	static DayBuilder dayb = new DayBuilder();
+	static Email emanager = new Email();
+	static StackPane transition = new StackPane();
+	static StackPane amigo = new StackPane();
 
 	/**
 	 * Launches the menu screen, which has three different paths. 
@@ -39,20 +41,21 @@ public class Game extends Application {
 			
 			// Main scene + the Amigo's resources
 			
-			StackPane transition = new StackPane();
+			
 			transitionsc = new Scene(transition, 1280,720);
-			StackPane amigo = new StackPane();
+			
 			
 			
 			
 			amigoscreen = new Scene(amigo, 1280, 720);
 			dayb.loadDay(window, amigoscreen, transitionsc);
 			mainscene = new Scene(dayb.getToday(), 1280, 720);
+			mainscene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
 			dayb.buildAmigoScreen(amigo, window, mainscene);
 			
 			
 			
-			gameb.buildTransitionScreen(transition, window,mainscene, dayb, transitionsc, menusc);
+			//gameb.buildTransitionScreen(transition, window,mainscene, dayb, transitionsc, menusc);
 			
 			// Transition screen
 			
