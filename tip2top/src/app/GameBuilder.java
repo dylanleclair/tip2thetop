@@ -468,6 +468,14 @@ public class GameBuilder {
 		if (toDisplay[6] < 0) {
 			// end the game
 			buildEndingScreen(transition, "oom", menusc, window);
+		} else if (dayb.getDay() == 7) {
+			
+			if (cc.getChoiceFinale() == 4) {
+				buildEndingScreen(transition, "correct", menusc, window);
+			} else {
+				buildEndingScreen(transition, "incorrect", menusc, window);
+			}
+			
 		} else {
 			
 			

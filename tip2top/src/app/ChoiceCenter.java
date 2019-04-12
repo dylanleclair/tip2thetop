@@ -334,6 +334,8 @@ public class ChoiceCenter {
 				choice = getChoiceTwoOptions("Leave with Dylan?", "Do you wish to leave with Dylan and fly off to a new future?", "Sure! Let's go.", "Sorry, I still got work to do.");
 				if(choice == 1) {//yes leave with dylan 
 					//triggers alternate ending
+					Game.gameb.buildTransitionScreen(Game.transition, Game.window, Game.mainscene, Game.dayb, Game.transitionsc, Game.menusc);
+					Game.window.setScene(Game.transitionsc);
 				}
 				if(choice == 2) {//no leave with dylan
 					return "leave_no";
@@ -650,6 +652,40 @@ public class ChoiceCenter {
 		
 	}
 	
+	
+	public int getChoiceFinale() {
+		
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Tip to the Top - will you win?");
+		alert.setHeaderText("Which character is the one behind all the madness?");
+		alert.setContentText("Choose carefully...");
+		
+		ButtonType buttonTypeOne = new ButtonType("Yvonne");
+		ButtonType buttonTypeTwo = new ButtonType("Dylan");
+		ButtonType buttonTypeThree = new ButtonType("Jason");
+		ButtonType buttonTypeFour = new ButtonType("Aleksandra");
+		ButtonType buttonTypeFive = new ButtonType("Patricia");
+		ButtonType buttonTypeSix = new ButtonType("Tiff");
+		
+		Optional<ButtonType> result = alert.showAndWait();
+		
+		if (result.get() == buttonTypeOne){
+			   return 1;
+			} else if (result.get() == buttonTypeTwo) {
+			   return 2;
+			} else if (result.get() == buttonTypeThree) {
+				return 3;
+			} else if (result.get() == buttonTypeFour) {
+				return 4;
+			} else if (result.get() == buttonTypeFive) {
+				return 5;
+			} else if (result.get() == buttonTypeSix) {
+				return 6;
+			}
+		
+		
+			return 0;
+	}
 	
 	public Email emailPoint (int day, String characterName) {
 		
