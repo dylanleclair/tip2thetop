@@ -349,7 +349,32 @@ public class ChoiceCenter {
 			}
 		}
 		if(day == 7) {
-			
+			if(character.equalsIgnoreCase("yvonne")) {
+				choice = getChoiceTwoOptions("Give Yvonne shampoo and conditioner?", "You gonna give Yvonne her extra shampoo and conditioners? I mean, we have plenty.", "Sure!", "Nah. Sorry Yvonne.");
+				if(choice == 1) {//yess give s and c
+					customerSatisfaction++;
+					gulagPoints--;
+					return "bot_yes";
+				}
+				if(choice == 2) {//no give
+					customerSatisfaction--;
+					gulagPoints++;
+					daymistakes++;
+					return "bot_no";
+				}
+			}
+			if(character.equalsIgnoreCase("Dimitri")) {
+				choice = getChoiceYesNo("Uhh.....Dimitri?", "Ask Dimitri if he is okay?");
+				if(choice == 1) {//yes
+					customerSatisfaction++;
+					return "hot_yes";
+				}
+				if(choice == 2) {//no
+					customerSatisfaction--;
+					gulagPoints++;
+					return "hot_no";
+				}
+			}
 		}
 		
 		return "";
@@ -395,12 +420,16 @@ public class ChoiceCenter {
 				character.getPrompts().add("roomSwap");
 				character.getPrompts().add("pillows");
 				character.getPrompts().add("leave"); // make dylan last on day 5
-				character.getPrompts().add("");
+				character.getPrompts().add("read");
 				character.getPrompts().add("");
 			} else if (character.getName().equals("Aleksandra")) {
 				character.getPrompts().add("firstDay");
 				character.getPrompts().add("secondDay");
 				character.getPrompts().add("thirdDay");
+				character.getPrompts().add("fourthDay");
+				character.getPrompts().add("fifthDay");
+				character.getPrompts().add("sixthDay");
+				character.getPrompts().add("seventhDay");
 				System.out.println("size = "+character.getPrompts().size());
 			} else if (character.getName().equals("Harriet")) {
 				character.getPrompts().add("rude");
@@ -411,22 +440,30 @@ public class ChoiceCenter {
 				character.getPrompts().add("shampoo");
 				character.getPrompts().add("sellToaster");
 				character.getPrompts().add("soap");
+				character.getPrompts().add("roomService");
+				character.getPrompts().add("bottles");
 			} else if (character.getName().contentEquals("Jason")) {
 				character.getPrompts().add("upgrade");
 				character.getPrompts().add("mints");
 				character.getPrompts().add("day3");
 				character.getPrompts().add("sell_lyrynx");
+				character.getPrompts().add("");
 			} else if (character.getName().contentEquals("Patricia")) {
 				character.getPrompts().add("");
 				character.getPrompts().add("famous");
 				character.getPrompts().add(""); // add some dialogue for her for day 3, because day 3 is really short rn
 				character.getPrompts().add("bigNeck");
+				character.getPrompts().add("");
+				character.getPrompts().add("blankets");
+				character.getPrompts().add("checkOut");
 			} else if (character.getName().contentEquals("Tiff")) {
 				character.getPrompts().add("iceCream");
 				character.getPrompts().add("room");
 				character.getPrompts().add(""); 
 				character.getPrompts().add("pillows");
-				character.getPrompts().add("toaster"); // update when player chooses toaster
+				character.getPrompts().add("toaster");// update when player chooses toaster
+				character.getPrompts().add("toiletPaper");
+				
 			} else if (character.getName().contentEquals("Mystery")) {
 				character.getPrompts().add("");
 				character.getPrompts().add("aleks");
@@ -439,13 +476,15 @@ public class ChoiceCenter {
 				for (int i = 0; i < 4; i++)
 					character.getPrompts().add("");
 				character.getPrompts().add("missing");
+				character.getPrompts().add("Sad");
 				
 			} else if (character.getName().contentEquals("Dimitri")) {
 				for (int i = 0; i < 4; i++)
 					character.getPrompts().add("");
 				character.getPrompts().add("checkIn"); // day 5
-				character.getPrompts().add("toaster"); 
-				// day 6 --- treat this like Tiff's choice point
+				character.getPrompts().add("ifToaster"); 
+				character.getPrompts().add("hot");
+				
 				
 			}
 				
