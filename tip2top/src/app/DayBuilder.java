@@ -234,7 +234,6 @@ public class DayBuilder {
 							node.setEffect(give);
 							
 							character.setKey(temp+1);
-							System.out.print(character.getKey());
 							
 							TranslateTransition translate = new TranslateTransition();
 							translate.setDuration(Duration.millis(1300));
@@ -517,7 +516,6 @@ public class DayBuilder {
 				emailsObservable.add(item.toString());
 			}
 
-			System.out.println(allCharacters.size());
 			
 			bmanager.loadBookings(allCharacters, bookings);
 			
@@ -635,7 +633,7 @@ public class DayBuilder {
 					}
 					
 					index++;
-					System.out.println(index);
+					//System.out.println(index);
 					
 					
 				}
@@ -668,8 +666,8 @@ public class DayBuilder {
 
 			animateCharacterIn(characterView);
 
-			System.out.println(character.getPrompts().size());
-			System.out.println(allCharacters.get(5).getPrompts().size());
+			//System.out.println(character.getPrompts().size());
+			//System.out.println(allCharacters.get(5).getPrompts().size());
 			ArrayList<String> read = Reader.getDialogue(character.getName(), character.getPrompts().get(day - 1));
 			
 			playDialog(handler, read);
@@ -687,7 +685,7 @@ public class DayBuilder {
 	 * @param dialog an ArrayList<String> which stores dialog to be played.
 	 */
 	public void playDialog(BorderPane pane, ArrayList<String> dialog) {
-		System.out.println(dialog.toString());
+		//System.out.println(dialog.toString());
 
 		active.addAll(dialog); // we need to separate this so we can ensure it is done correctly?
 		for (int i = 0; i < 3; i++)
@@ -765,7 +763,7 @@ public class DayBuilder {
 
 		amigo.getChildren().add(amigoButtons); // 2
 
-		System.out.println(amigo.getChildren().size());
+		//System.out.println(amigo.getChildren().size());
 		
 		viewGuests.setOnAction(e -> {
 			buildCheckInScreen(dailyCharacters, amigo);
@@ -824,14 +822,14 @@ public class DayBuilder {
 		
 		amigo.getChildren().add(handler);
 		
-		System.out.println(amigo.getChildren().size());
+		//System.out.println(amigo.getChildren().size());
 		
 		open.setOnAction(e -> {
 			
 			Email selected = email_list.get(emails.getSelectionModel().getSelectedIndex());
 			
 			
-			System.out.println("display the message lol");
+			//System.out.println("display the message lol");
 			
 			Alert email = new Alert(AlertType.INFORMATION);
 			email.setTitle("AmigoEmail 1.0");
@@ -915,7 +913,7 @@ public class DayBuilder {
 		
 		amigo.getChildren().add(handler);
 		
-		System.out.println(amigo.getChildren().size());
+		//System.out.println(amigo.getChildren().size());
 		
 		addGuest.setOnAction(e -> {
 			
@@ -1018,7 +1016,7 @@ public class DayBuilder {
 		translate.setOnFinished(e -> {
 			if (index -1 < dailyCharacters.size()) runCharacter();
 			if (index -1 == dailyCharacters.size()) {
-				System.out.println("LOL");
+				//System.out.println("LOL");
 				animateDialogueBoxOut(today.getChildren().get(3), window, transition);
 				//animate dialogue box out
 			}
