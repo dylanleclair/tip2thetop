@@ -7,6 +7,8 @@ public class Money extends ChoiceCenter{
 
 	private double money; // the current amount of money player has
 	
+	// Setters and getters
+	
 	public double getMoney() {
 		return this.money;
 	}
@@ -76,18 +78,6 @@ public class Money extends ChoiceCenter{
 		return toReturn;
 		
 	}
-	
-	
-	public static void main(String[] args) {
-		//testing code
-		
-		Money test = new Money();
-		
-		test.money = 100.0;
-		test.calc(1, 2, 0, 10.0, 0, 29.99);
-		System.out.println();
-		test.calc(0, -2, 2, 0, 0, 0);
 
-	}
 
 }

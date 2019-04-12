@@ -5,13 +5,12 @@ import java.util.ArrayList;
 
 public class Email implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private String subject;
 	private String sender;
 	private String message;
+	
+	// Getters and setters
 	
 	public String getSubject() {
 		return subject;
@@ -37,16 +36,30 @@ public class Email implements Serializable{
 		this.message = message;
 	}
 
+	/**
+	 * The default constructor for email, which simply does nothing...
+	 */
 	public Email() {
 		
 	}
 	
+	
+	/**
+	 * Constructs an email according to a given sender, subject, and message.
+	 * @param sender a String, the sender of the email
+	 * @param subject a String, the subject of the email
+	 * @param message a String, the message of the email
+	 */
 	public Email(String sender, String subject, String message) {
 		this.sender = sender;
 		this.subject = subject;
 		this.message = message;
 	}
 	
+	/**
+	 * Used on the first day to add some emails to the Amigo so it isn't as empty.
+	 * @param emailList the list of emails which is handled by DayBuilder to eventually display in the Amigo 1000.
+	 */
 	public void initializeEmails (ArrayList<Email> emailList) {
 		emailList.add(new Email("DarkAssassin13", "Watch out!!", "Hey!! " + 
 				"As you can see, there is no need for me to introduce myself to you because I don't have any business with you. My duty as I am mailing you now is just to ASSASSINATE YOU. If you don't comply, I have to do it as I have already been paid for that. But I have to ask you this question. What is the problem you have with your friend that made him to hire us to kill you?\n" + 
