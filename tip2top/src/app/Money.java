@@ -32,23 +32,30 @@ public class Money extends ChoiceCenter{
 		double basic = 100.0+bonus;
 		double daily = basic;
 		//calcualtions
-		penalty = basic - basic*(1.0-(0.15*dm+0.01*gulag));
-		if(cs <0) {
-			penalty-=Math.round((basic*(1.0+(0.02*cs))-basic)*1000.0)/1000.0;
+		if(gulag >0) {
+			penalty = basic - basic*(1.0-(0.1*dm+0.08*gulag));
 		}
+		else {
+			penalty = basic - basic*(1.0-(0.1*dm));
+		}
+		if(cs <0) {
+			penalty-=Math.round((basic*(1.0+(0.02*cs))-basic)*1000.00)/1000.00;
+		}
+		penalty = Math.round((penalty)*1000.00)/1000.00;
 		daily-=penalty;
-		addon = Math.round((daily*(1.0+(0.02*cs))-daily)*1000.0)/1000.0;
+		addon = Math.round((daily*(1.0+(0.02*cs))-daily)*1000.00)/1000.00;
 		if(cs>=0) {
 			daily+=addon;
 		}
+		
 		else {
 			addon = 0.00;
 		}
 		daily+=tips;
 		daily-=70.0+spendings;
-		daily = Math.round(daily*1000.0)/1000.0;
+		daily = Math.round(daily*1000.00)/1000.00;
 		money+=daily;
-		
+		money = Math.round(money*1000.00)/1000.00;
 		
 		double[] toReturn = {basic, penalty ,addon ,tips , -70.00-spendings, daily, money};
 		//print statements
@@ -56,7 +63,7 @@ public class Money extends ChoiceCenter{
 		System.out.println("Penalty: \t\t-$"+penalty);
 		System.out.println("Bonuses: \t\t+$"+addon);
 		System.out.println("Tips: \t\t\t+$"+tips);
-		System.out.println("Daily Spendings: \t-$70.00");
+		System.out.println("Daily Spendings: \t-$70.0");
 		if(spendings>0) {
 			System.out.println(" \t\t\t-$"+spendings);
 		}

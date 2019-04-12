@@ -188,6 +188,7 @@ public class ChoiceCenter {
 				}
 				if(choice ==2) {//no discount
 					gulagPoints--;
+					daymistakes++;
 					return "longerStay_no";
 				}
 			}
@@ -239,6 +240,7 @@ public class ChoiceCenter {
 				if(choice ==1) {//yes shampoo
 					gulagPoints++;
 					customerSatisfaction++;
+					daymistakes++;
 					return "shampoo_yes";
 				}
 				if(choice ==2) {//no shampoo
@@ -323,6 +325,7 @@ public class ChoiceCenter {
 				choice = getChoiceTwoOptions("People missing?", "Have you noticed anything about those disappearances?", "Yeah...", "What? No...");
 				if(choice == 1) {//yes missing
 					daymistakes++;
+					gulagPoints++;
 					return "missing_yes";
 				}
 				if(choice ==2) {//no missing 
