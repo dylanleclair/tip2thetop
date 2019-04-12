@@ -27,7 +27,9 @@ public class Money extends ChoiceCenter{
 		double basic = 100.0+bonus;
 		double daily = basic;
 		//calcualtions
-		penalty = basic - basic*(1.0-(0.15*dm+0.01*gulag));
+		if(gulag >0) {
+			penalty = basic - basic*(1.0-(0.15*dm+0.01*gulag));
+		}
 		if(cs <0) {
 			penalty-=Math.round((basic*(1.0+(0.02*cs))-basic)*1000.0)/1000.0;
 		}
@@ -36,6 +38,7 @@ public class Money extends ChoiceCenter{
 		if(cs>=0) {
 			daily+=addon;
 		}
+		
 		else {
 			addon = 0.00;
 		}
