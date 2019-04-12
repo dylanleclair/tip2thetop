@@ -318,7 +318,7 @@ public class GameBuilder {
 		    	 *  (remember that these are the images added by loadOpening() )
 		    	 *  This is performed once per image, for a total of 10 times. */
 
-		    		if (openingCount >= 0 && saveSet == true) { // set > to not let end frame
+		    		if (openingCount >= 0 && saveSet == true && clickable) { // set > to not let end frame
 		    			clickable = false;
 			    		fadeImageDown(openingPane.getChildren().get(openingCount));
 			    		openingCount--;
