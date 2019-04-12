@@ -580,6 +580,8 @@ public class DayBuilder {
 							}
 							if (active.get(bottom + 1).contentEquals("choice2")) {
 								//String prompt = cmanager.choicePoint
+							} if (active.get(bottom + 1).contentEquals("--You have a new email!--")) {
+								addEmail(cmanager.emailPoint(day, character.getName()));
 							}
 							
 							top++;
@@ -1107,8 +1109,8 @@ public class DayBuilder {
 	 * @param toAdd an Email, the email to be added to the previously specified lists.
 	 */
 	public void addEmail(Email toAdd) {
-		email_list.add(toAdd);
-		emailsObservable.add(toAdd.toString());
+		email_list.add(0, toAdd);
+		emailsObservable.add(0, toAdd.toString());
 		
 		try {
 			

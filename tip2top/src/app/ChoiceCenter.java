@@ -176,7 +176,7 @@ public class ChoiceCenter {
 		}
 		if(day == 2) {
 			if(character.equalsIgnoreCase("Mystery")) {
-				choice = getChoiceTwoOptions("Is the big boss in the fort?", "Is Aleksandra in the office or out with her Romeo? Earth to you, sleepyhead.", "Yeah, she is.", "She's with her boy toy.");
+				choice = getChoiceTwoOptions("Is the big boss in the fort?", "Is Aleksandra in the office or out with her Romeo? Earth to you, sleepyhead.", "Yeah, she is.", "No, sorry.");
 				if(choice == 1) {//yes she is
 					gulagPoints++;
 					return "aleks_yes";
@@ -243,7 +243,7 @@ public class ChoiceCenter {
 		}
 		if(day ==3) {
 			if(character.equalsIgnoreCase("Yvonne")) {
-				choice = getChoiceYesNo("Sneak shampoo?", "Are you gonna sneak some sweat shampoo to Yvonne?");
+				choice = getChoiceYesNo("Sneak shampoo?", "Are you gonna sneak some shampoo to Yvonne?");
 				if(choice ==1) {//yes shampoo
 					gulagPoints++;
 					customerSatisfaction++;
