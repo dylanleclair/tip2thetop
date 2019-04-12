@@ -1,9 +1,12 @@
 package app;
 
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
+import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -12,6 +15,7 @@ import javafx.util.Duration;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -21,6 +25,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
@@ -28,6 +33,38 @@ public class GameBuilder {
 	
 	private int openingCount = 10;
 	private boolean saveSet = false;
+	private int countend;
+	private boolean clickable = true;
+	
+	
+	public void loadEnding (StackPane endPane, String ending, Scene menusc, Stage window) {
+
+		File directory = new File("./resources/gameimg/endings/"+ending);
+		String[] filesInDir = directory.list();
+		countend = filesInDir.length;
+	
+		
+		
+		for (int i = filesInDir.length + 1; i >= 2; i--) {
+			
+			
+			try {
+				Image image = new Image(new FileInputStream("./resources/gameimg/endings/" + ending + "/" + (i - 1)+ ".png"));
+				ImageView imageView = new ImageView(image); 
+				endPane.getChildren().add(imageView);
+				
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			
+			
+		}
+		
+		
+	}
+	
 	
 	/**
 	 * Loads opening scene onto a StackPane, reading files named "screen(digit)" from path.
@@ -52,19 +89,87 @@ public class GameBuilder {
 	 */
 	public void fadeImageDown (Node node) {
 		TranslateTransition translate = new TranslateTransition();
-		translate.setDuration(Duration.millis(2500)); 
+		translate.setDuration(Duration.millis(1800)); 
 		translate.setNode(node);
 		translate.setByY(720);
 		translate.setCycleCount(1); 
 		translate.setAutoReverse(false); 
-		translate.play(); 
+		translate.setOnFinished(e -> clickable = true);
+		translate.play();
+		
+		
 	}
 	
+	
+	public void fadeImageDown (Node node, StackPane endPane, Stage window, Scene menusc) {
+		TranslateTransition translate = new TranslateTransition();
+		translate.setDuration(Duration.millis(1800)); 
+		translate.setNode(node);
+		translate.setByY(720);
+		translate.setCycleCount(1); 
+		translate.setAutoReverse(false);
+		translate.setOnFinished(a -> clickable = true);
+		
+		
+		if (countend == 2) {
+			translate.setOnFinished(e -> {
+				
+	    		try {
+	    			Button exit = new Button();
+	    			
+	    			Image exitbtn = new Image(new FileInputStream("./resources/gameimg/amigo/buttons/exit.jpg"));
+	    			ImageView imgview = new ImageView(exitbtn);
+	    			exit.setGraphic(imgview);
+	    			exit.setDefaultButton(false);
+	    			exit.setOnAction(a -> {
+	    				window.setScene(menusc);
+	    			});
+	    			
+	    			exit.setManaged(false);
+	    			
+	    			exit.setLayoutX(620);
+	    			exit.setLayoutY(550);
+	    			exit.setVisible(true);
+
+	    			exit.setStyle("-fx-base: #000000;");
+	    			
+	    			exit.setOpacity(0);
+	    			
+	    			
+	    		     FadeTransition ft = new FadeTransition(Duration.millis(1000), exit);
+	    		     ft.setFromValue(0);
+	    		     ft.setToValue(100);
+	    		     ft.setCycleCount(1);
+	    		     ft.setAutoReverse(false);
+
+	    			
+	    			endPane.getChildren().set(endPane.getChildren().size() - 1, exit);
+	    			
+	    			ft.play();
+	    			
+	    			
+	    			
+	    		}catch (Exception a1) {
+	    			a1.printStackTrace();
+	    		}
+				
+				
+				
+			});
+		}
+		
+		translate.play();
+		
+
+		
+		
+	}
 	
 	public void startPlayingButton(Stage window, Scene opening, TextField text, Email emanager) {
 		window.setScene(opening);
 		saveSet = true;
 		String savename = text.getText();
+		
 		Save.createSaveFile(savename);
 		
 	}
@@ -188,17 +293,23 @@ public class GameBuilder {
 		opening.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
 		    @Override
 		    public void handle(MouseEvent mouseEvent) {
+		    	
 		    	/*  calls fadeImageDown on an object in openingPane when the mouse is pressed.
 		    	 *  (remember that these are the images added by loadOpening() )
 		    	 *  This is performed once per image, for a total of 10 times. */
 
 		    		if (openingCount >= 0 && saveSet == true) { // set > to not let end frame
+		    			clickable = false;
 			    		fadeImageDown(openingPane.getChildren().get(openingCount));
 			    		openingCount--;
 			    		//Pat added to change scene to start of day
 			    		if (openingCount == -1) {
 			    			mainscene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
-							window.setScene(mainscene);
+			    			
+			    			Game.dayb.runDay(window, Game.transitionsc);
+			    			
+			    			window.setScene(mainscene);
+							
 			    			//Scene dayIntro = new Scene(DayBuilder.startDay(window), 1280, 720);
 			    			//window.setScene(dayIntro);
 		    		}
@@ -209,6 +320,32 @@ public class GameBuilder {
 	}
 	
 	
+	
+	public void buildEndingScreen (StackPane endPane,String ending, Scene menusc, Stage window) {
+		
+		
+		loadEnding(endPane, ending, menusc, window);
+		
+		endPane.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent mouseEvent) {
+				// TODO Auto-generated method stub
+				if (countend > 1 && clickable) {
+					clickable = false;
+					fadeImageDown(endPane.getChildren().get(countend - 1), endPane, window, menusc);
+		    		countend--;
+		    		
+				}
+				
+				
+			} 
+			
+		});
+		
+		
+		
+	}
 	
 	// Load screen
 		
@@ -294,25 +431,156 @@ public class GameBuilder {
 	}
 	
 	
-	public void buildTransitionScreen(StackPane transition,Stage window, Scene nextDay, DayBuilder dayb, Scene transitionsc) {
+	public void buildTransitionScreen(StackPane transition,Stage window, Scene nextDay, DayBuilder dayb, Scene transitionsc, Scene menusc) {
 		
-		Button nextd = new Button("Next day");
+		transition.getChildren().clear();
 		
 		ChoiceCenter cc = dayb.getChoiceManager();
 		Money mirror = dayb.getMoneyManager();
 		
-		//mmanager.calc(dm, cs, gulag, tips, bonus, spendings);
-		// do calculations
+		int dm = cc.getDaymistakes();
+		int gulag = cc.getGulagPoints();
+		int cs = cc.getCustomerSatisfaction();
+		double tips = cc.getTips();
+		double bonus = cc.getBonus();	
+		double spendings = cc.getSpendings();
 		
-		// build the GUI stuff
+		double[] toDisplay = mirror.calc(dm, cs, gulag, tips, bonus, spendings);
+		
+		Text bp = new Text(Double.toString(toDisplay[0]));
+		Text penalty = new Text(Double.toString(toDisplay[1]));
+		Text bonuses = new Text(Double.toString(toDisplay[2]));
+		Text tip = new Text(Double.toString(toDisplay[3]));
+		Text ds = new Text(Double.toString(toDisplay[4]));
 		
 		
+		Text[] textlist = {bp, penalty, bonuses,tip,ds};
 		
-		transition.getChildren().add(nextd);
-		nextd.setOnAction(e -> {
-			window.setScene(nextDay);
-			dayb.triggerNewDay(window, transitionsc);
-		});
+		for (Text text : textlist) {
+			text.setFill(Color.GHOSTWHITE);
+			text.setFont(new Font(24));
+		}
+		
+				
+		
+		Text st = new Text(Double.toString(toDisplay[5]));
+		Text total = new Text(Double.toString(toDisplay[6]));
+		
+		if (toDisplay[6] < 0) {
+			// end the game
+			buildEndingScreen(transition, "oom", menusc, window);
+		} else {
+			
+			
+			Text[] totallist = {st, total};
+			
+			for (Text text : totallist) {
+				text.setFill(Color.GHOSTWHITE);
+				text.setFont(new Font(24));
+			}
+			
+			VBox amounts = new VBox(48);
+			VBox totals = new VBox(48);
+			
+			amounts.getChildren().addAll(bp,penalty,bonuses,tip,ds);
+			totals.getChildren().addAll(st,total);
+			
+			amounts.setManaged(false);
+			amounts.setLayoutX(530);
+			amounts.setLayoutY(262);
+			
+			totals.setManaged(false);
+			totals.setLayoutX(1000);
+			totals.setLayoutY(310);
+			
+			
+			// add all the stuffs 
+			
+			
+			try {
+				Image image = new Image(new FileInputStream("./resources/gameimg/transition/dailyreport.jpg"));
+			    ImageView imageView = new ImageView(image); 
+			    transition.getChildren().add(imageView);
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}  
+			
+			
+			
+			
+			transition.getChildren().addAll(amounts, totals);
+			
+			
+			
+			try {
+				
+				Image keepplaying = new Image(new FileInputStream("./resources/gameimg/transition/keep.png"));
+			    ImageView keepplayingimg = new ImageView(keepplaying); 
+			    
+			    Image savequit = new Image(new FileInputStream("./resources/gameimg/transition/savequit.png"));
+			    ImageView savequitimg = new ImageView(savequit); 
+				
+				
+				Button savequitbtn = new Button();
+				Button keepergoing = new Button();
+				
+				keepergoing.setGraphic(keepplayingimg);
+				savequitbtn.setGraphic(savequitimg);
+				
+				
+				keepergoing.setStyle("-fx-base: #000000;");
+				savequitbtn.setStyle("-fx-base: #000000;");
+				
+				keepergoing.setOnAction(e -> {
+					window.setScene(nextDay);
+					dayb.triggerNewDay(window, transitionsc);
+				});
+				
+				savequitbtn.setOnAction(a -> {
+					ArrayList<NPC> allCharacters = dayb.getAllCharacters();
+					ArrayList<Email> emails = dayb.getEmail_list();
+					int keys[] = dayb.getKeys();
+					int day = dayb.getDay();
+					
+					double money = mirror.getMoney();
+					double bonusamt = cc.getBonus();
+					boolean tiff_icecream = cc.isTiff_icecream();
+					boolean jason_mints = cc.isJason_mint();
+					boolean has_toaster = cc.isHas_toaster();
+					File saveFile = Save.getSave();
+					
+					
+					Save.saveWriter(saveFile, allCharacters, emails, keys, day, money, bonusamt, tiff_icecream, jason_mints, has_toaster);
+					
+					window.setScene(menusc);
+					Save.initializeSaves();
+					buildLoadScreen(window, menusc);
+					
+				});
+				
+				
+				//savequitbtn.setOnAction();
+				
+				VBox buttonbaby = new VBox(10);
+				buttonbaby.getChildren().addAll(keepergoing, savequitbtn);
+				buttonbaby.setManaged(false);
+				buttonbaby.setLayoutX(720);
+				buttonbaby.setLayoutY(490);
+				
+				transition.getChildren().add(buttonbaby);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			
+			
+			
+		}
+		
+
+		
+		
+
 	}
 	
 }

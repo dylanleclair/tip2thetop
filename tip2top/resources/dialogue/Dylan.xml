@@ -103,5 +103,37 @@
 			<print>Dylan: We could have had a bright future together...</print>
 			<print>Dylan: Good look out there then.</print>
 		</leave_no>
+		
+	<read>
+		<print>Dylan: Hey buddy.</print> 
+		<print>You: Hey.</print>
+		<print>Dylan: Sigh...</print>
+		<print>You: Uhm, you okay?</print>
+		<print>Dylan: Ah, yeah, yeah.</print>
+		<print>Dylan: Just feeling a little slow is all.</print>
+		<print>Dylan: Anyways, are there any places for where I could read up on the old newspapers in the town?</print>
+		<print>You: Well, there’s...</print>
+	</read>	
+		
+		<read_a>
+			<print>You: Well, there’s an old library down the road.</print>
+			<print>You: Try there perhaps?</print>
+			<print>Dylan: Ah, perfect!</print> 
+			<print>Dylan: Thanks homie, you’re always helpful.</print>
+			<print>Dylan: We need more people like you in the world.</print>
+			<print>Dylan: Unlike your boss...</print> 
+			<print>Dylan: Anyways, I’m off.</print>
+			<print>Dylan: Seeya around.</print>
+		</read_a>
+		
+		<read_b>
+			<print>You: Well, there’s the good ol’ town hall.</print>
+			<print>Dylan: But don’t they just have like, official record books?</print>
+			<print>You: Yeah, I guess you’re right...</print>
+			<print>Dylan: Welp, thanks for the suggestion anyways.</print>
+			<print>Dylan: I guess I’ll take a look around the block.</print>
+			<print>Dylan: Seeya around.</print>
+		</read_b>
+		
 
 </Dylan>

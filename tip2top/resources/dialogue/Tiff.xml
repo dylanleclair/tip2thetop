@@ -141,4 +141,18 @@
 		<print>Tiffany: See you!!</print>
 	</toaster_no>
 	
+	<toiletPaper>
+		<print>Tiffany: Здрастуйте.</print>
+		<print>Tiffany: What was up with the last customer?</print>
+		<print>You: Not much, though I’m not really allowed to say much to you.</print>
+		<print>Tiffany: How did the shipment go?</print>
+		<print>You: Which shipment?</print>
+		<print>You: The toilet paper?</print>
+		<print>Tiffany: Yes.</print>
+		<print>You: Uhm, it was fine.</print>
+		<print>Tiffany: Okay, it just seemed weird since Aleksandra was so worried about it.</print>
+		<print>You: Oh, thanks?</print>
+		<print>Tiffany: Welp, bye. :)</print>
+	</toiletPaper>
+	
 </Tiff>

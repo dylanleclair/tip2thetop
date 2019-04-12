@@ -92,6 +92,17 @@
 	<gotMints>
 		<print>Jason: I noticed the extra mints on my pillow, thanks.</print>
 		<print>Jason: Now I can do maths with a fresh breath.</print>
+		<print>Jason: I noticed the extra mints on my pillow, thanks.</print>
+		<print>Jason: Now I can do maths with a fresh breath.</print>
+		<print>You: Why do you need mints to do math anyways?</print>
+		<print>Jason: Well, you see with a minty fresh breath…</print>
+		<print>Jason: I can always feel good about the math I’m doing.</print>
+		<print>You: But, it’s math.</print>
+		<print>You: I don’t see how you can feel very good about it.</print>
+		<print>Jason: It’s because it’s math!</print>
+		<print>Jason: Math always feels good.</print>
+		<print>You: Well, alright.</print>
+		<print>You: To each their own, I suppose.</print>
 		<print>Jason: Also, could I have some conditioner?</print>
 		<print>You: Sure, here you are.</print>
 	</gotMints>
@@ -100,6 +111,10 @@
 		<print>Jason: I noticed I didn’t get my mints.</print>
 		<print>Jason: Now how am I supposed to do maths?</print>
 		<print>Jason: Vectors don’t calculate themselves you know.</print>
+		<print>You: Well, you could always do the math without the mints.</print>
+		<print>Jason: Wow, have you ever done linear algebra?</print>
+		<print>Jason: You might need some tutoring sessions.</print>
+		<print>Jason: You know where to find me.</print>
 		<print>Jason: Also, could I have some conditioner?</print>
 		<print>You: Sure, here you are.</print>
 	</noGot_mints>

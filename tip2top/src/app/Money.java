@@ -10,6 +10,11 @@ public class Money extends ChoiceCenter{
 	public double getMoney() {
 		return this.money;
 	}
+	
+	public void setMoney(double money) {
+		this.money = money;
+	}
+	
 	/**
 	 * @param dm an int, the number of daily mistakes
 	 * @param cs an int, customer satisfaction points
@@ -21,7 +26,7 @@ public class Money extends ChoiceCenter{
 	/*
 	 * the sysout print statements can be replaced with display methods onto gui
 	 */
-	public void calc(int dm, int cs, int gulag, double tips, double bonus, double spendings){
+	public double[] calc(int dm, int cs, int gulag, double tips, double bonus, double spendings){
 		double addon = 0.0;
 		double penalty = 0.0;
 		double basic = 100.0+bonus;
@@ -44,6 +49,8 @@ public class Money extends ChoiceCenter{
 		daily = Math.round(daily*1000.0)/1000.0;
 		money+=daily;
 		
+		
+		double[] toReturn = {basic, penalty ,addon ,tips , -70.00-spendings, daily, money};
 		//print statements
 		System.out.println("Basic payment: \t\t$"+basic);
 		System.out.println("Penalty: \t\t-$"+penalty);
@@ -59,7 +66,7 @@ public class Money extends ChoiceCenter{
 
 		
 		// GUI implementation
-		
+		return toReturn;
 		
 	}
 	

@@ -63,6 +63,14 @@ public class DayBuilder {
 	public Node key[] = {null,null,null,null,null,null,null,null,null,null,null,null};
 
 	
+	public ArrayList<NPC> getDailyCharacters() {
+		return dailyCharacters;
+	}
+
+	public void setDailyCharacters(ArrayList<NPC> dailyCharacters) {
+		this.dailyCharacters = dailyCharacters;
+	}
+
 	public Money getMoneyManager() {
 		return moneyManager;
 	}
@@ -89,6 +97,14 @@ public class DayBuilder {
 
 	private int day = 1;
 	
+	public int[] getKeys() {
+		return keys;
+	}
+
+	public void setKeys(int[] keys) {
+		this.keys = keys;
+	}
+
 	// Amigo 1000 resources
 	private ObservableList<String> bookings = FXCollections.observableArrayList(); // list of bookings toStrings displayed in Amigo
 	private ObservableList<String> emailsObservable = FXCollections.observableArrayList(); // list of emails toStrings displayed in Amigo 1000 
@@ -104,6 +120,38 @@ public class DayBuilder {
 	private ArrayList<String> active = new ArrayList<>();
 	private boolean dialogueActive = false;
 	private Text slot1 = new Text("");
+	public ArrayList<NPC> getAllCharacters() {
+		return allCharacters;
+	}
+
+	public void setAllCharacters(ArrayList<NPC> allCharacters) {
+		this.allCharacters = allCharacters;
+	}
+
+	public Node[] getKey() {
+		return key;
+	}
+
+	public void setKey(Node[] key) {
+		this.key = key;
+	}
+
+	public int getDay() {
+		return day;
+	}
+
+	public void setDay(int day) {
+		this.day = day;
+	}
+
+	public ArrayList<Email> getEmail_list() {
+		return email_list;
+	}
+
+	public void setEmail_list(ArrayList<Email> email_list) {
+		this.email_list = email_list;
+	}
+
 	private Text slot2 = new Text("");
 	private Text slot3 = new Text("");
   
@@ -225,6 +273,8 @@ public class DayBuilder {
 		Image image, image2, image3, image4, image5;
 		Boolean pressed = false;
 		try {
+			nextC.setLayoutX(1300);
+			nextC.setLayoutY(650);
 			image = new Image(new FileInputStream("./resources/dayimg/background.jpg"));
 			ImageView imageView = new ImageView(image);
 			today.getChildren().add(imageView);
@@ -390,7 +440,6 @@ public class DayBuilder {
 				
 				
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
@@ -543,9 +592,6 @@ public class DayBuilder {
 			});
 
 			today.getChildren().add(handler); // 6th item in pane
-			// pane.getChildren().add(amigo); // need to change how amigo is implemented to
-			// another layer on stackpane? or even change scene.
-			runDay(handler, window, transition);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -557,55 +603,54 @@ public class DayBuilder {
 	 * Handles the "day" of events as a whole. Controls which characters are on the screen. 
 	 * @param handler a BorderPane which stores buttons/other onscreen elements as needed.  (might be causing bugs?)
 	 */
-	public void runDay(BorderPane handler, Stage window, Scene transition) {
+	public void runDay(Stage window, Scene transition) {
 		
 		Collections.shuffle(dailyCharacters);
 		
 			if (day == 1) {
 				
 				dailyCharacters.add(manager.getCharacter("Tiff", allCharacters)); // move this to initialize characters
-				dailyCharacters.add(0, manager.getCharacter("Aleksandra", allCharacters));
 				System.out.println(dailyCharacters.toString());
 
-			} else if (day == 2) {
-				
-				dailyCharacters.add(0, manager.getCharacter("Aleksandra", allCharacters));
-				System.out.println(dailyCharacters.toString());
-			} else if (day == 3) {
-				
-				dailyCharacters.add(0, manager.getCharacter("Aleksandra", allCharacters));
-				System.out.println(dailyCharacters.toString());
-				
-			}
+			} 
 
+			dailyCharacters.add(0, manager.getCharacter("Aleksandra", allCharacters));
 			animateButtonIn(nextC);
 
 			nextC.setOnAction(e -> {
 				
-				clickable = false;
+				if (clickable) {
+					
+					
+					clickable = false;
 
-				// animate nextC out if index > 0
+					// animate nextC out if index > 0
 
-				if (index == 0) {
-					animateButtonOut(nextC);
-					animateDialogueBoxIn(today.getChildren().get(3)); // 3 is the index of dialogue box in stackpane
-					runCharacter(handler);													// today
-				}
+					if (index == 0) {
+						animateButtonOut(nextC);
+						animateDialogueBoxIn(today.getChildren().get(3)); // 3 is the index of dialogue box in stackpane
+						runCharacter();													// today
+					}
 
-				if (index > 0) {
-					animateButtonOut(nextC);
-					animateCharacterOut(activeCharacter, handler, window, transition);
+					if (index > 0) {
+						animateButtonOut(nextC);
+						animateCharacterOut(activeCharacter, handler, window, transition);
+					}
+					
+					index++;
+					System.out.println(index);
+					
+					
 				}
 				
-				index++;
-				System.out.println(index);
+
 			});
 
 		
 	}
 
 	
-	public void runCharacter(BorderPane handler) {
+	public void runCharacter() {
 		if (index == 0) character = dailyCharacters.get(index);
 		if (index >= 1) character = dailyCharacters.get(index -1); // just corrects the index to fix a bug where a player was skipped.
 
@@ -926,7 +971,7 @@ public class DayBuilder {
 		nextC.setLayoutY(650);
 		manager.initializeCharacters(day, allCharacters, dailyCharacters);
 		System.out.println(dailyCharacters);
-		runDay(handler,window,transitionsc);
+		runDay(window,transitionsc);
 	}
 
 	// Animations -- move to a different class?
@@ -954,7 +999,7 @@ public class DayBuilder {
 		translate.setAutoReverse(false);
 		translate.play();
 		translate.setOnFinished(e -> {
-			if (index -1 < dailyCharacters.size()) runCharacter(handler);
+			if (index -1 < dailyCharacters.size()) runCharacter();
 			if (index -1 == dailyCharacters.size()) {
 				System.out.println("LOL");
 				animateDialogueBoxOut(today.getChildren().get(3), window, transition);
@@ -1015,7 +1060,15 @@ public class DayBuilder {
 		translate.setByY(-720);
 		translate.setCycleCount(1);
 		translate.setAutoReverse(false);
-		translate.setOnFinished(e -> window.setScene(transition));
+		translate.setOnFinished(e -> {
+			
+			GameBuilder lol = new GameBuilder();
+			
+			
+			lol.buildTransitionScreen(Game.transition, window, Game.mainscene, Game.dayb, Game.transitionsc, Game.menusc);
+			
+			window.setScene(transition);
+		});
 		translate.play();
 		// translate.setOnFinished(e -> dialogueActive = true);
 		return translate;
