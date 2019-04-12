@@ -421,7 +421,7 @@ public class ChoiceCenter {
 				character.getPrompts().add("pillows");
 				character.getPrompts().add("leave"); // make dylan last on day 5
 				character.getPrompts().add("read");
-				character.getPrompts().add("");
+				character.getPrompts().add("checkOut");
 			} else if (character.getName().equals("Aleksandra")) {
 				character.getPrompts().add("firstDay");
 				character.getPrompts().add("secondDay");
@@ -447,7 +447,7 @@ public class ChoiceCenter {
 				character.getPrompts().add("mints");
 				character.getPrompts().add("day3");
 				character.getPrompts().add("sell_lyrynx");
-				character.getPrompts().add("");
+				character.getPrompts().add("checkOut");
 			} else if (character.getName().contentEquals("Patricia")) {
 				character.getPrompts().add("");
 				character.getPrompts().add("famous");
