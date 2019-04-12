@@ -50,7 +50,6 @@ public class ChoiceCenter {
 	private double tips;
 	private double spendings;
 	private double bonus;
-	private boolean toasterPurchased;
 	
 	
 	
@@ -560,7 +559,7 @@ public class ChoiceCenter {
 		alert.setHeaderText(header);
 		alert.setContentText(content);
 
-		alert.getDialogPane().setMinWidth(250);
+		alert.getDialogPane().setMinWidth(320);
 		alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
 		
 		ButtonType buttonTypeOne = new ButtonType(option1);
@@ -649,6 +648,37 @@ public class ChoiceCenter {
 		
 		return 0;
 		
+	}
+	
+	
+	public Email emailPoint (int day, String characterName) {
+		
+		if (day == 3 && characterName.equalsIgnoreCase("Benjamin")) {
+			return new Email("Housekeeping", "An empty room?" , "Hey, its housekeeping. One of the rooms is locked.. Also, it has had the do not disturb sign for basically a week now. I'm sure whoever is inside is not going to come out anytime soon. I'm not even sure if there's a guest inside of it anymore." );
+		} else if (day == 3 && characterName.equalsIgnoreCase("Yvonne")) {
+			return new Email("harriet240@yoml.com", "Awful Service", "Hello. I stopped by a couple days ago, and the service was absymal. The individual at the fron desk is clearly a doorknob and should be replaced with a more capable candidate. Perhaps if somone with actual brain cells was at the desk, I would have considered staying, but what's a man supposed to do? Just go with it? Unbelievable. Please get back to me if you fire that lously clerk.");
+		} else if (day == 4 && characterName.equalsIgnoreCase("Tiff")) {
+			return new Email("Aleksandra", "Stop being a good employee!", "You being so good forces me to give you a bonus because of the “ethics” and “morals” stuff. Are you here to steal my money or make money for me? I’m trying to run a profitable business here! Expect the raise. You finished reading this? Now close this silver block on your Amigo and get back to work!");
+		} else if (day == 4 && characterName.equalsIgnoreCase("Patricia")) {
+			return new Email("brokesalesman64@yaloo.ca", "Howdy there partner!", "You feel like your future’s blurry, or you just never know what to do, well no probelmo. We got the right thing just for you. Try out our magical pure-polish cleanser that can clean any surface in no time. It can clean your glasses, your windows, even your favorite crystal ball to let you see your future crystal clear! Let our cleanser make those surfaces shine your future ahead! Try one 369ml just for $15.99, $15.99! You think that’s not a good enough deal, well we have a set of 2*400ml of our magical cleanser for just 20.99, **20.99!!!!** With a bonus of our magical scrubber customized just for you! Dial the code: 2392732539 to get another 1.99 off!! Limited sale for just 20 minutes! Be quick, be fast and scrub away with our one and only MAGICAL SCCRRRRRUBBER!");
+		} else if (day == 5 && characterName.equalsIgnoreCase("Yvonne")) {
+			return new Email("annathesnack@bmail.com", "Weird noises?", "Hello, I just wanted to express some concern for the people across the hall from me? I can’t tell what it is most of the time. It’s sounding like children laughing at one moment, then an old woman sobbing in the next. And currently it sounds like two people going at it. Please help.");
+		} else if (day == 5 && characterName.equalsIgnoreCase("Tiff")) {
+			return new Email ("mysteryman86@hotmail.com", "...", "You’re really starting to tread on thin ice… I hope you manage to get it together for the last 2 days... Also, your boss is weird.");
+		} else if (day == 6 && characterName.equalsIgnoreCase("Yvonne")) {
+			return new Email ( "aleeismybabee@gulag.net", "Dining Hall", "Hello, my friend. How many rooms would you like in the dining hall of the gulag? Everything is almost ready to go. Get ready. Yours Truly, M.");
+		} else if (day == 6 && characterName.equalsIgnoreCase("Dimitri")) {
+			return new Email ("jasonmathgod@uofyaloo.ca", "A favour?","Dear Three Eagle Hotel Staff: I would like to request if it were possible for your wonderful establishment to display a few ads for Lyrynx. I’ve attached them below, have a great day. Cheers, Jason");
+		} else if (day == 6 && characterName.equalsIgnoreCase("Tiff")) {
+			return new Email ("loveuboo@coolmail.com","hey there babee ;)","i know how you were lookin at me the other nite. dont be afraid to call ;)) u know when and where. ~xoxoooxo");
+		} else if (day == 7 && characterName.equalsIgnoreCase("Patricia")) {
+			return new Email ("mysterman86@hotmail.ca", "Everything is ready.", "My dear friend. Everything is set to go. Everything will be commencing soon. We are only moments away. It was very nice knowing you. I hope that one day, wherever we end up we can do business together again. Best wishes, M");
+			
+		} else if (day == 7 && characterName.equalsIgnoreCase("Dimitri")) {
+			return new Email("mysteryman86@hotmail.ca", "URGENT", "Dearest friend. There is something wrong. It should have happened. Why didn’t it happen? Please let me stay at your place for a few days. I will be here soon. I’m worried. I hope you are well. Best, M");
+		}
+		
+		return new Email();
 	}
 	
 }

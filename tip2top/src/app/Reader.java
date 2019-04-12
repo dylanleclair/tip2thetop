@@ -1,13 +1,9 @@
 package app;
-import java.io.*;
 import java.util.*;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;

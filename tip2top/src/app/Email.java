@@ -3,11 +3,12 @@ package app;
 import java.io.*;
 import java.util.ArrayList;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
 public class Email implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String subject;
 	private String sender;
 	private String message;

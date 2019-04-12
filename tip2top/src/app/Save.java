@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 
 public class Save {
     
@@ -50,6 +49,7 @@ public class Save {
 	 * This method is used to load a save file, putting a user into the game at the start of the day.
 	 * @param name a String, the name of the file to be read from "saves" folder.
 	 */
+	@SuppressWarnings("unchecked")
 	public static void loadSave(String name) {
 		
 		currentSave = new File("./resources/saves/" + name);
@@ -89,6 +89,23 @@ public class Save {
 			
 			//Game.dayb.loadDay(Game.window, Game.amigoscreen, Game.transitionsc);
 			Game.dayb.manager.initializeCharacters(Game.dayb.getDay(), Game.dayb.getAllCharacters(), Game.dayb.getDailyCharacters());
+			
+			
+			Game.dayb.getEmailsObservable().clear();
+			for (Email email : emails) {
+				Game.dayb.getEmailsObservable().add(email.toString());
+			}
+			Game.dayb.getBookings().clear();
+			for (NPC character : characters ) {
+				if (character.isCheckedIn()) {
+					
+					Game.dayb.getBookings().add(character.getBooking().toString());
+					
+				}
+			}
+			
+
+			
 			Game.window.setScene(Game.mainscene);
 			Game.dayb.runDay(Game.window, Game.transitionsc);
 			
@@ -120,7 +137,8 @@ public class Save {
 	}
 	
 	
-    public static void generateSave (ObjectOutputStream out, ArrayList<NPC> allCharacters, ArrayList emails, int[] key, int day, double money, double bonus, boolean tiff_icecream, boolean jason_mints, boolean has_toaster) {
+    @SuppressWarnings("rawtypes")
+	public static void generateSave (ObjectOutputStream out, ArrayList<NPC> allCharacters, ArrayList emails, int[] key, int day, double money, double bonus, boolean tiff_icecream, boolean jason_mints, boolean has_toaster) {
     	
     	try {
     		
@@ -213,7 +231,8 @@ public class Save {
      * @param jason_mints a boolean, for story branching
      * @param has_toaster a boolean, for story branching
      */
-	 public static void saveWriter(File saveFile, ArrayList allCharacters, ArrayList emails, int[] key, int day, double money, double bonus, boolean tiff_icecream, boolean jason_mints, boolean has_toaster) {
+	 @SuppressWarnings({ "rawtypes", "unchecked" })
+	public static void saveWriter(File saveFile, ArrayList allCharacters, ArrayList emails, int[] key, int day, double money, double bonus, boolean tiff_icecream, boolean jason_mints, boolean has_toaster) {
 	    	
 	    	try {
 	        	ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(saveFile.getPath()));

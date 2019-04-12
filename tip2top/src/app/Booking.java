@@ -7,6 +7,10 @@ import javafx.collections.ObservableList;
 
 public class Booking implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String owner;
 	private int roomNumber;
 	private String roomType;
