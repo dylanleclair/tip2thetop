@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 
-// clean these up
 
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
@@ -270,8 +269,7 @@ public class DayBuilder {
 	 * @author patricia, dylan
 	 */
 	public void loadDay(Stage window, Scene amigoscreen, Scene transition) {
-		Image image, image2, image3, image4, image5;
-		Boolean pressed = false;
+		Image image, image2, image3, image5;
 		try {
 			nextC.setLayoutX(1300);
 			nextC.setLayoutY(650);
@@ -297,10 +295,9 @@ public class DayBuilder {
 			today.getChildren().add(imageView5);
 			
 			
-			Button accessAmigo = new Button();
 			
 			Image img1, img2,img3,img4,img5,img6,img7,img8,img9,img10,img11,img12;
-			Button k1,k2,k3,k4,k5,k6,k7,k8,k9,k10,k11,k12;
+			//Button k1,k2,k3,k4,k5,k6,k7,k8,k9,k10,k11,k12;
 			
 			try {
 				img1 = new Image(new FileInputStream("./resources/keys/key1.png"));
@@ -861,7 +858,7 @@ public class DayBuilder {
 	 * @param dailyCharacters
 	 * @param amigo
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void buildCheckInScreen(ArrayList<NPC> dailyCharacters, StackPane amigo) {
 		
 		// @TODO complete integration with bookings class
@@ -938,6 +935,7 @@ public class DayBuilder {
 					if (gname.contentEquals(character.getName())) {
 						Booking toAdd = new Booking(gname,roomNumber,selectedType);
 						character.setBooking(toAdd); // updates the character's booking
+						character.setCheckedIn(true);
 						bookings.add(toAdd.toString()); // updates the list on screen
 						
 					}
@@ -946,7 +944,10 @@ public class DayBuilder {
 			}
 			
 		});
-		checkOut.setOnAction(e -> bookings.remove(guestlist.getSelectionModel().getSelectedIndex()));
+		checkOut.setOnAction(e ->{
+			bookings.remove(guestlist.getSelectionModel().getSelectedIndex());
+			// remove the booking / set guest as checked out
+		});
 		back.setOnAction(e -> {
 			amigo.getChildren().remove(amigo.getChildren().size() - 1);
 			amigo.getChildren().remove(amigo.getChildren().size() - 1);
@@ -975,6 +976,22 @@ public class DayBuilder {
 	}
 
 	// Animations -- move to a different class?
+
+	public ObservableList<String> getBookings() {
+		return bookings;
+	}
+
+	public void setBookings(ObservableList<String> bookings) {
+		this.bookings = bookings;
+	}
+
+	public ObservableList<String> getEmailsObservable() {
+		return emailsObservable;
+	}
+
+	public void setEmailsObservable(ObservableList<String> emailsObservable) {
+		this.emailsObservable = emailsObservable;
+	}
 
 	public TranslateTransition animateCharacterIn(Node character) {
 		TranslateTransition translate = new TranslateTransition();
@@ -1075,6 +1092,20 @@ public class DayBuilder {
 
 	}
 
+	
+	public void addEmail(Email toAdd) {
+		email_list.add(toAdd);
+		emailsObservable.add(toAdd.toString());
+		
+		try {
+			
+		} catch (Exception e) {
+			
+		}
+		
+		
+		
+	}
 	
 	
 }
