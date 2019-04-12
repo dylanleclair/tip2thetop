@@ -250,37 +250,209 @@ public class DayBuilder {
 							}
 							keys[temp]= 2;
 							node.setEffect(highlight);
-						}else if(keys[temp]==2&& character != null&&character.getKey()==0) {
-							keys[temp]=3;
-							node.setEffect(give);
+						}else if(keys[temp]==2&& character != null) {
+							if(character.getName().equals("Yvonne")&&temp+1==12) {
+								keys[temp]=3;
+								node.setEffect(give);
+								
+								character.setKey(temp+1);
+								System.out.print(character.getKey());
+								
+								TranslateTransition translate = new TranslateTransition();
+								translate.setDuration(Duration.millis(1300));
+								translate.setNode(node);
+								translate.setByX(300);
+								translate.setByY(-250);
+								translate.setCycleCount(1);
+								translate.setAutoReverse(false);
+								translate.play();
+								
+								 FadeTransition ft = new FadeTransition(Duration.millis(1000), node);
+								 ft.setDelay(Duration.millis(1300));
+							     ft.setFromValue(1.0);
+							     ft.setToValue(0);
+							     ft.setCycleCount(1);
+							     ft.setAutoReverse(true);
+							 
+							     ft.play();
+							} else if(character.getName().equals("Jason")&&temp+1==6) {
+								keys[temp]=3;
+								node.setEffect(give);
+								
+								character.setKey(temp+1);
+								System.out.print(character.getKey());
+								
+								TranslateTransition translate = new TranslateTransition();
+								translate.setDuration(Duration.millis(1300));
+								translate.setNode(node);
+								translate.setByX(300);
+								translate.setByY(-250);
+								translate.setCycleCount(1);
+								translate.setAutoReverse(false);
+								translate.play();
+								
+								 FadeTransition ft = new FadeTransition(Duration.millis(1000), node);
+								 ft.setDelay(Duration.millis(1300));
+							     ft.setFromValue(1.0);
+							     ft.setToValue(0);
+							     ft.setCycleCount(1);
+							     ft.setAutoReverse(true);
+							 
+							     ft.play();
+							}else if(character.getName().equals("Dylan")&&temp+1==3) {
+								keys[temp]=3;
+								node.setEffect(give);
+								
+								character.setKey(temp+1);
+								System.out.print(character.getKey());
+								
+								TranslateTransition translate = new TranslateTransition();
+								translate.setDuration(Duration.millis(1300));
+								translate.setNode(node);
+								translate.setByX(300);
+								translate.setByY(-250);
+								translate.setCycleCount(1);
+								translate.setAutoReverse(false);
+								translate.play();
+								
+								 FadeTransition ft = new FadeTransition(Duration.millis(1000), node);
+								 ft.setDelay(Duration.millis(1300));
+							     ft.setFromValue(1.0);
+							     ft.setToValue(0);
+							     ft.setCycleCount(1);
+							     ft.setAutoReverse(true);
+							 
+							     ft.play();
+							}else if(character.getName().equals("Tiffany")&&temp+1==2) {
+								keys[temp]=3;
+								node.setEffect(give);
+								
+								character.setKey(temp+1);
+								System.out.print(character.getKey());
+								
+								TranslateTransition translate = new TranslateTransition();
+								translate.setDuration(Duration.millis(1300));
+								translate.setNode(node);
+								translate.setByX(300);
+								translate.setByY(-250);
+								translate.setCycleCount(1);
+								translate.setAutoReverse(false);
+								translate.play();
+								
+								 FadeTransition ft = new FadeTransition(Duration.millis(1000), node);
+								 ft.setDelay(Duration.millis(1300));
+							     ft.setFromValue(1.0);
+							     ft.setToValue(0);
+							     ft.setCycleCount(1);
+							     ft.setAutoReverse(true);
+							 
+							     ft.play();
+							}else if(character.getName().equals("Patricia")&&temp+1==10) {
+								keys[temp]=3;
+								node.setEffect(give);
+								
+								character.setKey(temp+1);
+								System.out.print(character.getKey());
+								
+								TranslateTransition translate = new TranslateTransition();
+								translate.setDuration(Duration.millis(1300));
+								translate.setNode(node);
+								translate.setByX(300);
+								translate.setByY(-250);
+								translate.setCycleCount(1);
+								translate.setAutoReverse(false);
+								translate.play();
+								
+								 FadeTransition ft = new FadeTransition(Duration.millis(1000), node);
+								 ft.setDelay(Duration.millis(1300));
+							     ft.setFromValue(1.0);
+							     ft.setToValue(0);
+							     ft.setCycleCount(1);
+							     ft.setAutoReverse(true);
+							 
+							     ft.play();
+							}else if(character.getName().equals("Dylan")&&temp+1==1&&character.getKey()==3) {
+								keys[temp]=3;
+								node.setEffect(give);
+								
+								character.setKey(temp+1);
+								System.out.print(character.getKey());
+								
+								TranslateTransition translate = new TranslateTransition();
+								translate.setDuration(Duration.millis(1300));
+								translate.setNode(node);
+								translate.setByX(300);
+								translate.setByY(-250);
+								translate.setCycleCount(1);
+								translate.setAutoReverse(false);
+								translate.play();
+								
+								 FadeTransition ft = new FadeTransition(Duration.millis(1000), node);
+								 ft.setDelay(Duration.millis(1300));
+							     ft.setFromValue(1.0);
+							     ft.setToValue(0);
+							     ft.setCycleCount(1);
+							     ft.setAutoReverse(true);
+							 
+							     ft.play();
+							}else if(character.getName().equals("Benjamin")&&temp+1==7) {
+								keys[temp]=3;
+								node.setEffect(give);
+								
+								character.setKey(temp+1);
+								System.out.print(character.getKey());
+								
+								TranslateTransition translate = new TranslateTransition();
+								translate.setDuration(Duration.millis(1300));
+								translate.setNode(node);
+								translate.setByX(300);
+								translate.setByY(-250);
+								translate.setCycleCount(1);
+								translate.setAutoReverse(false);
+								translate.play();
+								
+								 FadeTransition ft = new FadeTransition(Duration.millis(1000), node);
+								 ft.setDelay(Duration.millis(1300));
+							     ft.setFromValue(1.0);
+							     ft.setToValue(0);
+							     ft.setCycleCount(1);
+							     ft.setAutoReverse(true);
+							 
+							     ft.play();
+							}else if(character.getName().equals("Anna")&&temp+1==11) {
+								keys[temp]=3;
+								node.setEffect(give);
+								
+								character.setKey(temp+1);
+								System.out.print(character.getKey());
+								
+								TranslateTransition translate = new TranslateTransition();
+								translate.setDuration(Duration.millis(1300));
+								translate.setNode(node);
+								translate.setByX(300);
+								translate.setByY(-250);
+								translate.setCycleCount(1);
+								translate.setAutoReverse(false);
+								translate.play();
+								
+								 FadeTransition ft = new FadeTransition(Duration.millis(1000), node);
+								 ft.setDelay(Duration.millis(1300));
+							     ft.setFromValue(1.0);
+							     ft.setToValue(0);
+							     ft.setCycleCount(1);
+							     ft.setAutoReverse(true);
+							 
+							     ft.play();
+							}
 							
-							character.setKey(temp+1);
-							
-							TranslateTransition translate = new TranslateTransition();
-							translate.setDuration(Duration.millis(1300));
-							translate.setNode(node);
-							translate.setByX(300);
-							translate.setByY(-250);
-							translate.setCycleCount(1);
-							translate.setAutoReverse(false);
-							translate.play();
-							
-							 FadeTransition ft = new FadeTransition(Duration.millis(1000), node);
-							 ft.setDelay(Duration.millis(1300));
-						     ft.setFromValue(1.0);
-						     ft.setToValue(0);
-						     ft.setCycleCount(1);
-						     ft.setAutoReverse(true);
-						 
-						     ft.play();
-							
+							//Could add negative points here
 							
 							
 						}
 						
 					}
 				});
-	}
+}
 
 	/**
 	 * Loads the basic interface for the day and it's necessary elements. (including keys, characters, images, etc)
@@ -562,7 +734,7 @@ public class DayBuilder {
 				@Override
 				public void handle(MouseEvent mouseEvent) {
 					// advance
-					if (dialogueActive&&(mouseEvent.getY() < 280 || mouseEvent.getX() > 490)) {
+					if (dialogueActive&&(mouseEvent.getY() < 280 || mouseEvent.getX() > 800)) {
 						if (clickCount <= active.size() - 2) {
 							clickCount++;
 
