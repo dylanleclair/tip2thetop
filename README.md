@@ -96,13 +96,12 @@ java Game
 4.) Compile using command line and run via junit <br/>
 
 ## Version
-Version 1.6
+Version 2.0
 
 ## Goals
-As of 2019-03-27 </br>
--Focus on saving the game through different days </br>
--Implement more days into the game </br>
--Smoother transition screen between days </br>
+As of 2019-04-12 </br>
+-Finalze all debugging
+-Adding extra features
 
 ## Team
 >Contributers and people
