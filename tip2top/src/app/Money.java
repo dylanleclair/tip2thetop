@@ -35,10 +35,10 @@ public class Money extends ChoiceCenter{
 		double daily = basic;
 		//calcualtions
 		if(gulag >0) {
-			penalty = basic - basic*(1.0-(0.1*dm+0.08*gulag));
+			penalty = basic - basic*(1.0-(0.14*(dm+gulag)));
 		}
 		else {
-			penalty = basic - basic*(1.0-(0.1*dm));
+			penalty = basic - basic*(1.0-(0.14*dm));
 		}
 		if(cs <0) {
 			penalty-=Math.round((basic*(1.0+(0.02*cs))-basic)*1000.00)/1000.00;
