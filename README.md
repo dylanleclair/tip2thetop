@@ -100,7 +100,7 @@ Version 2.0
 
 ## Goals
 As of 2019-04-12 </br>
--Finalze all debugging
+-Finalze all debugging </br>
 -Adding extra features
 
 ## Team
