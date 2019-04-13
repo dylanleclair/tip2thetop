@@ -363,7 +363,7 @@ public class ChoiceCenter {
 					return "soap_no";
 				}
 			}
-			if(character.equalsIgnoreCase("Tiffany")) {
+			if(character.equalsIgnoreCase("Tiff")) {
 				//effect point
 				if(has_toaster) {
 					return "toaster_yes";
@@ -726,7 +726,7 @@ public class ChoiceCenter {
 		} else if (day == 3 && characterName.equalsIgnoreCase("Yvonne")) {
 			return new Email("harriet240@yoml.com", "Awful Service", "Hello. I stopped by a couple days ago, and the service was absymal. The individual at the fron desk is clearly a doorknob and should be replaced with a more capable candidate. Perhaps if somone with actual brain cells was at the desk, I would have considered staying, but what's a man supposed to do? Just go with it? Unbelievable. Please get back to me if you fire that lously clerk.");
 		} else if (day == 4 && characterName.equalsIgnoreCase("Tiff")) {
-			return new Email("Aleksandra", "Stop being a good employee!", "You being so good forces me to give you a bonus because of the “ethics” and “morals” stuff. Are you here to steal my money or make money for me? I’m trying to run a profitable business here! Expect the raise. You finished reading this? Now close this silver block on your Amigo and get back to work!");
+			return new Email("Aleksandra", "Stop being a good employee!", "You being so good forces me to give you a bonus because of the �ethics� and �morals� stuff. Are you here to steal my money or make money for me? I’m trying to run a profitable business here! Expect the raise. You finished reading this? Now close this silver block on your Amigo and get back to work!");
 		} else if (day == 4 && characterName.equalsIgnoreCase("Patricia")) {
 			return new Email("brokesalesman64@yaloo.ca", "Howdy there partner!", "You feel like your future’s blurry, or you just never know what to do, well no probelmo. We got the right thing just for you. Try out our magical pure-polish cleanser that can clean any surface in no time. It can clean your glasses, your windows, even your favorite crystal ball to let you see your future crystal clear! Let our cleanser make those surfaces shine your future ahead! Try one 369ml just for $15.99, $15.99! You think that’s not a good enough deal, well we have a set of 2*400ml of our magical cleanser for just 20.99, **20.99!!!!** With a bonus of our magical scrubber customized just for you! Dial the code: 2392732539 to get another 1.99 off!! Limited sale for just 20 minutes! Be quick, be fast and scrub away with our one and only MAGICAL SCCRRRRRUBBER!");
 		} else if (day == 5 && characterName.equalsIgnoreCase("Yvonne")) {

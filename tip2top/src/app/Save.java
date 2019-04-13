@@ -118,7 +118,8 @@ public class Save {
 		System.out.println(characters);
 		System.out.println(emails);
 		for(int k :keys)
-			System.out.println(k);
+			System.out.print(k+", ");
+		System.out.println();
 		System.out.println(currentDay);
 		System.out.println(currentMoney);
 		System.out.println(bonus);
