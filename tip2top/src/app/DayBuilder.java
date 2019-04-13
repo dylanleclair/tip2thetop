@@ -323,7 +323,7 @@ public class DayBuilder {
 							     ft.setAutoReverse(true);
 							 
 							     ft.play();
-							}else if(character.getName().equals("Tiffany")&&temp+1==2) {
+							}else if(character.getName().equals("Tiff")&&temp+1==2) {
 								keys[temp]=3;
 								node.setEffect(give);
 								

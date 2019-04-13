@@ -185,7 +185,7 @@ public class Save {
     	try {
     		out.writeObject(new ArrayList<NPC>());
 			out.writeObject(new ArrayList<Email>());
-			out.writeObject(new Node[0]);
+			out.writeObject(new int[0]);
 			out.writeInt(1);
 			out.writeDouble(0.0);
 			out.writeDouble(0.0);
